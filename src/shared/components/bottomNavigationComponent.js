@@ -2,6 +2,7 @@ import * as React from "react";
 import { BottomNavigation, Text } from "react-native-paper";
 import HelpdeskPage from "../../modules/Helpdesk/HelpdeskPage";
 import HomePage from "../../modules/Home/HomePage";
+import HospitalPage from "../../modules/Hospital/HospitalPage";
 
 const MusicRoute = () => <Text>Music</Text>;
 
@@ -23,7 +24,7 @@ const BottomNavigationComponent = () => {
         music: HomePage,
         albums: HelpdeskPage,
         assistance: HomePage,
-        hospital: HomePage,
+        hospital: HospitalPage,
         profile: HomePage,
     });
 

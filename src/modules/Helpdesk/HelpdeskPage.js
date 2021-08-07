@@ -49,7 +49,7 @@ function HelpdeskPage(props) {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 10,
+        paddingTop: 5,
         paddingLeft: 10,
         paddingRight: 10,
         height: "100%",
