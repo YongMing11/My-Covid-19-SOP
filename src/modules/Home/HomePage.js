@@ -126,6 +126,9 @@ const styles = StyleSheet.create({
         margin: 16,
         right: 0,
         bottom: 80,
+        backgroundColor: theme.colors.primaryBlue,
+        color: 'white',
+        padding: 5
     }
 
 });
