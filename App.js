@@ -1,15 +1,20 @@
 import React from 'react';
-import { Dimensions, StyleSheet, StatusBar, Platform } from 'react-native';
-import SOPPage1 from './src/modules/SOP/SOPPage1.js';
-import { Provider as PaperProvider } from "react-native-paper";
-import theme from './src/shared/constants/Theme.js';
+import { Dimensions, Button, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Alert, StatusBar, Platform, Image, ScrollView } from 'react-native';
+import { useWindowDimensions, useDeviceOrientation } from '@react-native-community/hooks';
+import { title } from './src/shared/constants/config';
+import { Provider as PaperProvider } from 'react-native-paper';
+import HomePage from './src/modules/Home/HomePage'
+import BottomNavigationComponent from './src/shared/components/bottomNavigationComponent';
+import HeaderComponent from './src/shared/components/headerComponent';
 
 export default function App() {
+
+  console.log(title)
   return (
-    <PaperProvider theme={theme}>
-      <SOPPage1 />
+    <PaperProvider>
+        {/* <HeaderComponent title={title.HomePage}></HeaderComponent> */}
+        <BottomNavigationComponent></BottomNavigationComponent>
     </PaperProvider>
   );
 }
 
-const styles = StyleSheet.create({});
