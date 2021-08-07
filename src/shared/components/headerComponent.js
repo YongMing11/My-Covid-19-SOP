@@ -9,6 +9,7 @@ const HeaderComponent = ({ options, navigation }) => {
     const subtitle = options.subtitle;
     const backButtonEnabled = options.backButtonEnabled;
     const color = 'white';
+    const dropdownContent = [{}]
 
     const _goBack = () => {
         navigation.goBack();
