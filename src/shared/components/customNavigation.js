@@ -4,6 +4,7 @@ import HomePage from '../../modules/Home/HomePage';
 import { Text } from 'react-native';
 import HeaderComponent from './headerComponent';
 import { title } from '../constants/config';
+import AssistancePage from '../../modules/Home/AssistancePage';
 
 const Stack = createStackNavigator();
 
@@ -28,7 +29,7 @@ const AssistanceScreenNavigator = () => {
             />
             <Stack.Screen
                 name="AssistancePage"
-                component={FakePage}
+                component={AssistancePage}
                 options={{
                     title: title.AssistancePage,
                     backButtonEnabled: 'true'
