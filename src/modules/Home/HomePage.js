@@ -4,16 +4,16 @@ import { useWindowDimensions, useDeviceOrientation } from '@react-native-communi
 import HeaderComponent from '../../shared/components/headerComponent';
 import { title } from '../../shared/constants/config';
 import { FAB } from 'react-native-paper';
+import theme from '../../shared/constants/Theme';
 
 function HomePage() {
     const actionButtons = [
         'I want to go out to eat',
-        'I want to go out to haha',
-        'I want to go out to eat',
-        'I want to go out to eat',
-        'I want to go out to eat',
-        'I want to go out to eat',
-        'I want to go out to eat',
+        'I want to go out to buy things',
+        'I want to go out for work',
+        'I want to open my store',
+        'I want to go somewhere else',
+        'I have emergency',
     ]
     return (
         <View style={styles.scene}>
@@ -31,8 +31,8 @@ function HomePage() {
                 <Image source={require('../../../assets/HomePage_car.png')} style={styles.carImg}></Image>
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
-                    {actionButtons.map(buttonContent =>
-                        <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
+                    {actionButtons.map((buttonContent, index) =>
+                        <TouchableOpacity key={index} onPress={() => console.log('Area Status Bar tapped')}>
                             <View style={styles.actionButton}>
                                 <Text style={styles.actionButton_text}>{buttonContent}</Text>
                             </View>
@@ -131,7 +131,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         margin: 16,
         right: 0,
-        bottom: 0,
+        bottom: 80,
+        backgroundColor: theme.colors.primaryBlue,
+        color: 'white',
+        padding: 5
     }
 
 });

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 import HomePage from '../../modules/Home/HomePage';
+import theme from '../constants/Theme';
 
 const MusicRoute = () => <Text>Music</Text>;
 
@@ -29,9 +30,9 @@ const BottomNavigationComponent = () => {
   return (
     <BottomNavigation
       shifting={false}
-      activeColor="#0E4DA4"
-      inactiveColor="#979797"
-      barStyle={{ backgroundColor: '#F4F4F4', height: 60 }}
+      activeColor={theme.colors.primaryBlue}
+      inactiveColor={theme.colors.primaryGrey}
+      barStyle={{ backgroundColor: theme.colors.secondaryGrey, height: theme.bottomNavigation.height }}
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}

@@ -28,9 +28,15 @@ const theme = {
   roundness: 30,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#4169E1",
-    accent: "#f1c40f",
+    primaryBlue: "#0E4DA4",
+    secondaryBlue: "#3677D9",
+    primaryGreen: "#d0e7da",
+    primaryGrey: '#979797',
+    secondaryGrey: '#F0F0F0',
   },
+  bottomNavigation: {
+    height: 60
+  }
 };
 
 export default theme;
