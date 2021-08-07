@@ -9,6 +9,13 @@ function HelpdeskPage(props) {
     const [text, setText] = React.useState("");
     const [selectedLanguage, setSelectedLanguage] = React.useState();
 
+    const dropDownSelections = [
+        { label: "PNN Phase 1", value: "pnn phase 1" },
+        { label: "PNN Phase 2", value: "pnn phase 2" },
+    ];
+
+    const dropDownItems = dropDownSelections.map((element) => <Picker.Item label={element.label} value={element.value} />);
+
     return (
         <View
             style={{
@@ -20,8 +27,7 @@ function HelpdeskPage(props) {
                 <View style={styles.container}>
                     <View style={styles.dropDown}>
                         <Picker mode="dropdown" selectedValue={selectedLanguage} onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}>
-                            <Picker.Item label="PNN Phase 1" value="pnn phase 1" />
-                            <Picker.Item label="JavaScript" value="js" />
+                            {dropDownItems}
                         </Picker>
                     </View>
                     <TextInput style={styles.questionTextField} label="Question" mode="outlined" dense={true} multiline={true} numberOfLines={15} value={text} onChangeText={(text) => setText(text)} />
@@ -35,14 +41,6 @@ function HelpdeskPage(props) {
                         Submit
                     </Button>
                     <Text style={styles.noteText}>*Your query will be replied in 2 working days. Besides sending a query, you can contact admin for more SOP information at +603-8888 2010.</Text>
-                    <View
-                        style={{
-                            backgroundColor: "transparent",
-                            height: "30%",
-                            width: "100%",
-                            flexShrink: 1000,
-                        }}
-                    ></View>
                 </View>
             </TouchableWithoutFeedback>
         </View>
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
         height: "100%",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         backgroundColor: "white",
     },
     dropDown: {
@@ -70,15 +68,17 @@ const styles = StyleSheet.create({
     },
     questionTextField: {
         width: "100%",
-        padding: 0,
         textAlignVertical: "top",
+        marginVertical: 5,
     },
     submitButton: {
         width: "100%",
+        marginVertical: 5,
     },
     noteText: {
         textAlign: "left",
         flexShrink: 50,
+        marginVertical: 5,
     },
 });
 
