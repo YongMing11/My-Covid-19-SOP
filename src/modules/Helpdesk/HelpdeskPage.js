@@ -30,7 +30,7 @@ function HelpdeskPage(props) {
                             {dropDownItems}
                         </Picker>
                     </View>
-                    <TextInput style={styles.questionTextField} label="Question" mode="outlined" dense={true} multiline={true} numberOfLines={15} value={text} onChangeText={(text) => setText(text)} />
+                    <TextInput style={styles.questionTextField} label="Question" mode="outlined" dense={true} multiline={true} numberOfLines={10} value={text} onChangeText={(text) => setText(text)} />
                     <Button
                         style={styles.submitButton}
                         mode="contained"
