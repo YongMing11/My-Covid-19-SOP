@@ -4,16 +4,19 @@ import { useWindowDimensions, useDeviceOrientation } from '@react-native-communi
 import { title } from './src/shared/constants/config';
 import { Provider as PaperProvider } from 'react-native-paper';
 import HomePage from './src/modules/Home/HomePage'
-import BottomNavigationComponent from './src/shared/components/bottomNavigationComponent';
 import HeaderComponent from './src/shared/components/headerComponent';
+import { NavigationContainer } from '@react-navigation/native';
+import Main from './src/shared/components/main';
 
 export default function App() {
 
   console.log(title)
   return (
     <PaperProvider>
+      <NavigationContainer>
         {/* <HeaderComponent title={title.HomePage}></HeaderComponent> */}
-        <BottomNavigationComponent></BottomNavigationComponent>
+        <Main></Main>
+      </NavigationContainer>
     </PaperProvider>
   );
 }

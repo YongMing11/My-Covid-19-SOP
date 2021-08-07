@@ -1,11 +1,8 @@
 import React from 'react'
-import { Dimensions, Button, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Alert, StatusBar, Platform, Image, ScrollView } from 'react-native';
-import { useWindowDimensions, useDeviceOrientation } from '@react-native-community/hooks';
-import HeaderComponent from '../../shared/components/headerComponent';
-import { title } from '../../shared/constants/config';
+import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import { FAB } from 'react-native-paper';
 
-function HomePage() {
+function HomePage({ navigation }) {
     const actionButtons = [
         'I want to go out to eat',
         'I want to go out to haha',
@@ -17,10 +14,8 @@ function HomePage() {
     ]
     return (
         <View style={styles.scene}>
-            <HeaderComponent title={title.HomePage}></HeaderComponent>
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
-                    {/* <Text style={styles.header}>My COVID-19 SOP</Text> */}
                     <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
                         <View style={styles.areaStatusBar}>
                             <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
@@ -31,8 +26,8 @@ function HomePage() {
                 <Image source={require('../../../assets/HomePage_car.png')} style={styles.carImg}></Image>
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
-                    {actionButtons.map(buttonContent =>
-                        <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
+                    {actionButtons.map((buttonContent, index) =>
+                        <TouchableOpacity key={index} onPress={() => navigation.navigate('AssistancePage')}>
                             <View style={styles.actionButton}>
                                 <Text style={styles.actionButton_text}>{buttonContent}</Text>
                             </View>
@@ -52,7 +47,6 @@ function HomePage() {
 
 const styles = StyleSheet.create({
     scene: {
-        paddingBottom: 80,
         backgroundColor: 'white'
     },
     container: {
