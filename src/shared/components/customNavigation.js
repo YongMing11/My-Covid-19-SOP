@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomePage from "../../modules/Home/HomePage";
-import SOPPage2 from "../../modules/SOP/SOPPage2";
+import SOPPage3 from "../../modules/SOP/SOPPage3";
 import HelpdeskPage from "../../modules/Helpdesk/HelpdeskPage";
 import HospitalPage from "../../modules/Hospital/HospitalPage";
 import { Text } from "react-native";
@@ -23,7 +23,7 @@ const AssistanceScreenNavigator = () => {
         >
             <Stack.Screen
                 name="HomePage"
-                component={SOPPage2}
+                component={SOPPage3}
                 options={{
                     title: title.HomePage,
                 }}
