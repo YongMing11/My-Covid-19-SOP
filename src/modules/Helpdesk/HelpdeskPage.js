@@ -1,9 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { Button, Provider as PaperProvider, TextInput, Text } from "react-native-paper";
+import { Button, TextInput, Text } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
-import HeaderComponent from "../../shared/components/headerComponent";
-import { title } from "../../shared/constants/config";
 
 function HelpdeskPage({ navigation }) {
     const [text, setText] = React.useState("");
