@@ -1,6 +1,9 @@
 const title = {
-    'HomePage': 'My COVID-19 SOP',
-    'AssistancePage': 'Smart Assistance'
-}
+    HelpdeskPage: "Helpdesk",
+    HomePage: "My COVID-19 SOP",
+    AssistancePage: "Smart Assistance",
+    HospitalPage: "Nearby Clinic & Hospital",
+    ProfilePage: "Profile",
+};
 
 export { title };
