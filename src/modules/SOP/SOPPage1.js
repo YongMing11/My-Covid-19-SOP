@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  ScrollView,
-  SafeAreaView,
-  FlatList,
-} from "react-native";
+import { Text, StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { withTheme, Button, Card, Title, Paragraph } from "react-native-paper";
 import theme from "../../shared/constants/Theme";
 
@@ -14,33 +7,68 @@ class SOPPage1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      statePNN1: ["Selangor", "Kuala Lumpur"],
+      states: [
+        {
+          areas: ["Selangor", "Kuala Lumpur", "Sarawak", "Malacca", "Johor"],
+          title: "PNN Phase 1",
+        },
+        {
+          areas: [
+            "Penang",
+            "Perlis",
+            "Pahang",
+            "Terengganu",
+            "Kelantan",
+          ],
+          title: "PNN Phase 2",
+        },
+        {
+          areas: [],
+          title: "PNN Phase 3",
+        },
+        {
+          areas: [],
+          title: "PNN Phase 4",
+        },
+        {
+          areas: ["Kampuing Murni", "Taman Air Condo Block A"],
+          title: "EMCO",
+        },
+      ],
     };
   }
   render() {
     const { colors } = this.props.theme;
-    const { statePNN1 } = this.state;
+    const { states } = this.state;
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.view}>
-          <Card style={styles.card}>
-            <View>
-              <Text style={styles.cardTitle}>PNN Phase 1</Text>
-            </View>
-            <Card.Content>
-              <Paragraph style={styles.textCenter}>
-                National Recovery Plan
-              </Paragraph>
-              <View style={styles.states}>
-                {statePNN1.map((state) => (
-                  <Text key={state} style={styles.state}>
-                    {`\u2022 ${state}`}
-                  </Text>
-                ))}
-              </View>
-            </Card.Content>
-          </Card>
-        </View>
+        <ScrollView>
+          <View style={styles.view}>
+            {states.map((stateCard, index) => (
+              <Card style={styles.card} key={index}>
+                <View>
+                  <Text style={styles.cardTitle}>{stateCard.title}</Text>
+                </View>
+                <Card.Content>
+                  <Paragraph style={styles.textCenter}>
+                    National Recovery Plan
+                  </Paragraph>
+                  <View style={styles.states}>
+                    {
+                    stateCard.areas.length === 0? 
+                    <Text style={styles.notAvailableMsg}>{'No state or region under this phase'}</Text>:  
+                    stateCard.areas.map((state) => (
+                      <Text key={state} style={styles.state}>
+                        {`\u2022 ${state}`}
+                      </Text>
+                    ))
+                    }
+                  </View>
+                </Card.Content>
+              </Card>
+            ))}
+          </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -55,9 +83,9 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: "row",
-    width: "95%",
+    width: "96%",
     backgroundColor: "#DCDCDC",
-    marginTop: 10,
+    marginBottom: 10,
   },
   textCenter: {
     textAlign: "center",
@@ -70,12 +98,18 @@ const styles = StyleSheet.create({
   view: {
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 15,
   },
   states: {
     flexDirection: "row",
+    flexWrap: "wrap",
   },
   state: {
-    flex: 1,
+    width: "50%",
     fontSize: 20,
   },
+  notAvailableMsg:{
+    fontSize: 16,
+    textAlign: "center",
+  }
 });
