@@ -1,23 +1,13 @@
-<<<<<<< HEAD
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
-// import HomePage from '../../modules/Home/HomePage';
-import SOPPage2 from '../../modules/SOP/SOPPage2';
-import { Text } from 'react-native';
-import HeaderComponent from './headerComponent';
-import { title } from '../constants/config';
-import AssistancePage from '../../modules/Home/AssistancePage';
-=======
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomePage from "../../modules/Home/HomePage";
+import SOPPage2 from "../../modules/SOP/SOPPage2";
 import HelpdeskPage from "../../modules/Helpdesk/HelpdeskPage";
 import HospitalPage from "../../modules/Hospital/HospitalPage";
 import { Text } from "react-native";
 import HeaderComponent from "./headerComponent";
 import { title } from "../constants/config";
 import AssistancePage from "../../modules/Home/AssistancePage";
->>>>>>> main
 
 const Stack = createStackNavigator();
 
