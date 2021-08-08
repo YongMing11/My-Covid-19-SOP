@@ -10,6 +10,8 @@ import { Text } from "react-native";
 import HeaderComponent from "./headerComponent";
 import { title } from "../constants/config";
 import AssistancePage from "../../modules/Home/AssistancePage";
+import AssistancePage2 from "../../modules/Home/AssistancePage2";
+import theme from "../constants/Theme";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +37,14 @@ const AssistanceScreenNavigator = () => {
                 name="AssistancePage"
                 component={AssistancePage}
                 options={{
+                    backButtonEnabled: 'true'
+                }}
+            />
+            <Stack.Screen
+                name="AssistancePage2"
+                component={AssistancePage2}
+                options={{
+                    title: title.AssistancePage2,
                     backButtonEnabled: 'true'
                 }}
             />
