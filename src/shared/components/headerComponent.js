@@ -4,12 +4,11 @@ import { StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
 import theme from '../constants/Theme';
 
-const HeaderComponent = ({ options, navigation }) => {
-    const title = options.title;
+const HeaderComponent = ({ options, navigation, route }) => {
+    const title = options.title || route.params.title;
     const subtitle = options.subtitle;
     const backButtonEnabled = options.backButtonEnabled;
     const color = 'white';
-    const dropdownContent = [{}]
 
     const _goBack = () => {
         navigation.goBack();

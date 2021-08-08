@@ -17,9 +17,10 @@ const AssistanceScreenNavigator = () => {
         <Stack.Navigator
             initialRouteName="HomePage"
             screenOptions={{
-                header: ({ options, navigation }) => <HeaderComponent options={options} navigation={navigation} />,
-            }}
-        >
+                header: ({ options, navigation, route }) => (
+                    <HeaderComponent options={options} navigation={navigation} route={route} />
+                ),
+            }}>
             <Stack.Screen
                 name="HomePage"
                 component={HomePage}
@@ -31,8 +32,7 @@ const AssistanceScreenNavigator = () => {
                 name="AssistancePage"
                 component={AssistancePage}
                 options={{
-                    title: title.AssistancePage,
-                    backButtonEnabled: "true",
+                    backButtonEnabled: 'true'
                 }}
             />
         </Stack.Navigator>

@@ -9,11 +9,11 @@ function HomePage({ navigation }) {
         { label: 'I want to go out to buy things', shortLabel: 'Go out to buy things' },
         { label: 'I want to open my store', shortLabel: 'Open my store' },
         { label: 'I want to go somewhere else', shortLabel: 'Go somewhere else' },
-        { label: 'I have emergency', shortLabel: 'Go somewhere else' },
+        { label: 'I have emergency', shortLabel: 'Emergency' },
     ]
 
     const onPressAction = (selectedAction) => {
-        navigation.navigate('AssistancePage', { selectedAction })
+        navigation.navigate('AssistancePage', { title: selectedAction })
     }
 
     return (
@@ -31,7 +31,7 @@ function HomePage({ navigation }) {
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
                     {actionButtons.map((buttonContent, index) =>
-                        <TouchableOpacity key={index} onPress={()=>onPressAction(buttonContent.label)}>
+                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent.shortLabel)}>
                             <View style={styles.actionButton}>
                                 <Text style={styles.actionButton_text}>{buttonContent.label}</Text>
                             </View>
