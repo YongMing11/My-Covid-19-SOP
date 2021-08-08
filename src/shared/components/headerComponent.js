@@ -2,11 +2,19 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
+import theme from '../constants/Theme';
 
-const HeaderComponent = ({ title, subtitle, backButtonEnabled = false }) => {
-    console.log(title)
-    let color = "white";
-    const _goBack = () => console.log('Went back');
+const HeaderComponent = ({ options, navigation }) => {
+    const title = options.title;
+    const subtitle = options.subtitle;
+    const backButtonEnabled = options.backButtonEnabled;
+    const color = 'white';
+    const dropdownContent = [{}]
+
+    const _goBack = () => {
+        navigation.goBack();
+        console.log('Went back')
+    };
 
     const _handleSearch = () => console.log('Searching');
 
@@ -18,7 +26,7 @@ const HeaderComponent = ({ title, subtitle, backButtonEnabled = false }) => {
             end={{ x: 1, y: 0 }}
             colors={['#32aff9', '#2385de']}>
             <Appbar.Header style={styles.header}>
-                {backButtonEnabled && <Appbar.BackAction onPress={_goBack} />}
+                {backButtonEnabled && <Appbar.BackAction onPress={_goBack} color={color} />}
                 {title && <Appbar.Content title={title} subtitle={subtitle} color={color} />}
                 {/* <Appbar.Action icon="magnify" onPress={_handleSearch} color={color} />
                 <Appbar.Action icon="dots-vertical" onPress={_handleMore} color={color}/> */}

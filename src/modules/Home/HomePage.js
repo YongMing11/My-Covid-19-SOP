@@ -1,26 +1,25 @@
 import React from 'react'
-import { Dimensions, Button, ImageBackground, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Alert, StatusBar, Platform, Image, ScrollView } from 'react-native';
-import { useWindowDimensions, useDeviceOrientation } from '@react-native-community/hooks';
-import HeaderComponent from '../../shared/components/headerComponent';
-import { title } from '../../shared/constants/config';
+import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import { FAB } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
 
-function HomePage() {
+function HomePage({ navigation }) {
     const actionButtons = [
-        'I want to go out to eat',
-        'I want to go out to buy things',
-        'I want to go out for work',
-        'I want to open my store',
-        'I want to go somewhere else',
-        'I have emergency',
+        { label: 'I want to go out to eat', shortLabel: 'Go out to eat' },
+        { label: 'I want to go out to buy things', shortLabel: 'Go out to buy things' },
+        { label: 'I want to open my store', shortLabel: 'Open my store' },
+        { label: 'I want to go somewhere else', shortLabel: 'Go somewhere else' },
+        { label: 'I have emergency', shortLabel: 'Go somewhere else' },
     ]
+
+    const onPressAction = (selectedAction) => {
+        navigation.navigate('AssistancePage', { selectedAction })
+    }
+
     return (
         <View style={styles.scene}>
-            <HeaderComponent title={title.HomePage}></HeaderComponent>
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
-                    {/* <Text style={styles.header}>My COVID-19 SOP</Text> */}
                     <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
                         <View style={styles.areaStatusBar}>
                             <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
@@ -32,9 +31,9 @@ function HomePage() {
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
                     {actionButtons.map((buttonContent, index) =>
-                        <TouchableOpacity key={index} onPress={() => console.log('Area Status Bar tapped')}>
+                        <TouchableOpacity key={index} onPress={()=>onPressAction(buttonContent.label)}>
                             <View style={styles.actionButton}>
-                                <Text style={styles.actionButton_text}>{buttonContent}</Text>
+                                <Text style={styles.actionButton_text}>{buttonContent.label}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -52,7 +51,6 @@ function HomePage() {
 
 const styles = StyleSheet.create({
     scene: {
-        paddingBottom: 80,
         backgroundColor: 'white'
     },
     container: {
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         margin: 16,
         right: 0,
-        bottom: 80,
+        bottom: 0,
         backgroundColor: theme.colors.primaryBlue,
         color: 'white',
         padding: 5
