@@ -48,7 +48,6 @@ const SOPPage2 = () => {
           >
             <View style={styles.activity}>
               {a.content.map((c, index) => {
-                console.log(c)
                 return <View style={styles.bulletItem} key={index}>
                   <Text style={styles.content}>{`\u2022  `}</Text>
                   <Text style={styles.content}>{c}</Text>
