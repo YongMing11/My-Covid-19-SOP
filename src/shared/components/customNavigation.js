@@ -38,6 +38,25 @@ const AssistanceScreenNavigator = () => {
         </Stack.Navigator>
     )
 }
+const FakeScreenNavigator = () => {
+    return (
+        <Stack.Navigator
+            initialRouteName="Fake"
+            screenOptions={{
+                header: ({ options, navigation }) => (
+                    <HeaderComponent options={options} navigation={navigation} />
+                ),
+            }}>
+            <Stack.Screen
+                name="Fake"
+                component={FakePage}
+                options={{
+                    title: title.HomePage,
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
 
 
-export { AssistanceScreenNavigator };
+export { AssistanceScreenNavigator, FakeScreenNavigator };
