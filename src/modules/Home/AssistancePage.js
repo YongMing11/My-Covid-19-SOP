@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Button } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
-import MapView from 'react-native-maps';
 
 const AssistancePage = ({ navigation, route }) => {
     const { selectedAction } = route.params
-    const [selectedLanguage, setSelectedLanguage] = useState();
+    const [selectedLanguage, setSelectedLanguage] = useState(0);
 
     console.log(selectedAction)
 
