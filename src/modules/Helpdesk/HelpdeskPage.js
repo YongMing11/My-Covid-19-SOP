@@ -5,7 +5,7 @@ import { Picker } from "@react-native-picker/picker";
 import HeaderComponent from "../../shared/components/headerComponent";
 import { title } from "../../shared/constants/config";
 
-function HelpdeskPage(props) {
+function HelpdeskPage({ navigation }) {
     const [text, setText] = React.useState("");
     const [selectedLanguage, setSelectedLanguage] = React.useState();
 
@@ -14,7 +14,7 @@ function HelpdeskPage(props) {
         { label: "PNN Phase 2", value: "pnn phase 2" },
     ];
 
-    const dropDownItems = dropDownSelections.map((element) => <Picker.Item label={element.label} value={element.value} />);
+    const dropDownItems = dropDownSelections.map((element, index) => <Picker.Item key={index} label={element.label} value={element.value} />);
 
     return (
         <View
@@ -22,7 +22,6 @@ function HelpdeskPage(props) {
                 height: "100%",
             }}
         >
-            <HeaderComponent title={title.HelpdeskPage}></HeaderComponent>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <View style={styles.dropDown}>

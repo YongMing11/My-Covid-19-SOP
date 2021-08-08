@@ -10,8 +10,8 @@ function HospitalPage(props) {
 
     const chipOptions = ["Clinic", "Hospital", "COVID-19 Screening & Treatment", "Vaccines Administration Center"];
 
-    const chipFilter = chipOptions.map((element) => (
-        <Chip style={styles.chip} mode={"outlined"} selected={true} onPress={() => console.log("Pressed")}>
+    const chipFilter = chipOptions.map((element, index) => (
+        <Chip key={index} style={styles.chip} mode={"outlined"} selected={true} onPress={() => console.log("Pressed")}>
             {element}
         </Chip>
     ));
@@ -32,9 +32,9 @@ function HospitalPage(props) {
         { title: "Hospital Sungai Buloh 4", description: "10mins - 5km", icon: "hospital-building" },
     ];
 
-    const searchResult = searchResultItems.map((element) => (
+    const searchResult = searchResultItems.map((element, index) => (
         <View>
-            <List.Item style={styles.resultItem} title={element.title} description={element.description} left={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={element.icon} />} />
+            <List.Item key={index} style={styles.resultItem} title={element.title} description={element.description} left={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={element.icon} />} />
             <View style={{ width: "100%", flexDirection: "row", justifyContent: "flex-end" }}>
                 <View style={{ width: 56 }}></View>
                 <Divider style={{ height: 1, flex: 1 }} />
@@ -44,7 +44,6 @@ function HospitalPage(props) {
 
     return (
         <View style={styles.scene}>
-            <HeaderComponent title={title.HospitalPage} />
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
                     <Searchbar style={styles.searchBar} placeholder="Search clinic or hospital" onChangeText={onChangeSearch} value={searchQuery} />

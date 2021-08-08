@@ -1,13 +1,9 @@
 const title = {
-<<<<<<< HEAD
-    HomePage: "My COVID-19 SOP",
     HelpdeskPage: "Helpdesk",
+    HomePage: "My COVID-19 SOP",
+    AssistancePage: "Smart Assistance",
     HospitalPage: "Nearby Clinic & Hospital",
+    ProfilePage: "Profile",
 };
-=======
-    'HomePage': 'My COVID-19 SOP',
-    'AssistancePage': 'Smart Assistance'
-}
->>>>>>> main
 
 export { title };
