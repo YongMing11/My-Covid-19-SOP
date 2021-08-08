@@ -1,99 +1,64 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
   ScrollView,
-  Pressable,
-  TouchableOpacity,
 } from "react-native";
 import { Searchbar, List } from "react-native-paper";
-import Accordion from "react-native-collapsible/Accordion";
-
-const SECTIONS = [
-  {
-    title: "First",
-    content: "the first",
-  },
-  {
-    title: "Second",
-    content: "Lorem ipsum...",
-  },
-];
 
 const SOPPage2 = () => {
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const icon = "chevron-down";
+  const [searchQuery, setSearchQuery] = useState("");
+  const [accordians, setAccordians] = useState([
+    {
+      title: "Area Invovled",
+      content: [
+        "KEDAH, SELANGOR, NEGERI SEMBILAN, MELAKA, JOHOR, SARAWAK, W.P. KUALA LUMPUR, W.P. PUTRAJAYA DAN W.P. LABUAN",
+        "*For Sarawak, please refer to the National Recovery Plan - SOP Phase 1 Sarawak",
+        "** For areas enforced by PKPD, PKPD SOP in the area is in force until the expiry date of the PKPD.",
+      ],
+    },
+    {
+      title: "Effective Period",
+      content: ["8 Aug until 9 Sept"],
+    },
+  ]);
 
   const onChangeSearch = (query) => setSearchQuery(query);
-  const onPressFunction = () => {
-    console.log("Pressed hoho");
-  };
-  const [activeSections, setActiveSections] = useState([]);
-
-  _renderSectionTitle = (section) => {
-    return (
-      <View style={styles.content}>
-        <Text>{section.content}</Text>
-      </View>
-    );
-  };
-
-  _renderHeader = (section) => {
-    return (
-      // <View style={styles.header}>
-      //   <Text style={styles.headerText}>{section.title}</Text>
-      // </View>
-      // <TouchableOpacity onPress={onPressFunction}>
-          <List.Item
-            key={section.title}
-            style={styles.header}
-            title={section.title}
-            right={(props) => (
-              <List.Icon
-                {...props}
-                style={{ marginRight: 0 }}
-                icon={icon}
-              />
-            )}
-          />
-        // </TouchableOpacity>
-    );
-  };
-
-  _renderContent = (section) => {
-    return (
-      <View style={styles.content}>
-        <Text>{section.content}</Text>
-      </View>
-    );
-  };
-
-  _updateSections = (activeSections) => {
-    console.log(activeSections);
-    setActiveSections([...activeSections]);
-  };
 
   return (
     <SafeAreaView style={styles.container}>
       {/* <ScrollView> */}
       <View>
         <Searchbar
-          placeholder="Search in page 3"
+          placeholder="Search in page"
           onChangeText={onChangeSearch}
           value={searchQuery}
           style={styles.searchBar}
         />
       </View>
-      <Accordion
-        sections={SECTIONS}
-        activeSections={activeSections}
-        renderHeader={_renderHeader}
-        renderContent={_renderContent}
-        onChange={_updateSections}
-        expandMultiple={true}
-      />
+      <List.Section>
+        {accordians.map((a, index) => (
+          <List.Accordion
+            title={a.title}
+            titleStyle={styles.accordianTitle}
+            style={styles.header}
+            key={index}
+          >
+            <View style={styles.activity}>
+              {a.content.map((c, index) => {
+                console.log(c)
+                return <View style={styles.bulletItem} key={index}>
+                  <Text style={styles.content}>{`\u2022  `}</Text>
+                  <Text style={styles.content}>{c}</Text>
+                </View>
+                })
+              }
+            </View>
+          </List.Accordion>
+        ))}
+      </List.Section>
       {/* </ScrollView> */}
     </SafeAreaView>
   );
@@ -111,17 +76,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  actionItem: {
-    color: "#0E4DA4",
-    backgroundColor: "#fff",
-    height: 65,
-    // alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    elevation: 4,
-    textAlign: "left",
-    paddingLeft: 10,
-  },
   header: {
     backgroundColor: "#fff",
     padding: 10,
@@ -136,14 +90,23 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
-  headerText: {
-    textAlign: "left",
-    fontSize: 16,
-    fontWeight: "500",
-  },
   content: {
-    padding: 20,
+    fontSize: 14,
+  },
+  activity: {
     marginHorizontal: 15,
+    marginBottom: 15,
     backgroundColor: "#fff",
+    padding: 10,
+  },
+  bulletItem: {
+    flexDirection: "row",
+    paddingVertical: 5,
+    paddingHorizontal: 10
+  },
+  accordianTitle: {
+    fontSize: 18,
+    color: "black",
+    fontWeight: "bold",
   },
 });
