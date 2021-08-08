@@ -1,6 +1,9 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomePage from "../../modules/Home/HomePage";
+import SOPPage1 from "../../modules/SOP/SOPPage1";
+import SOPPage2 from "../../modules/SOP/SOPPage2";
+import SOPPage3 from "../../modules/SOP/SOPPage3";
 import HelpdeskPage from "../../modules/Helpdesk/HelpdeskPage";
 import HospitalPage from "../../modules/Hospital/HospitalPage";
 import { Text } from "react-native";
@@ -92,5 +95,38 @@ const HospitalScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
-
-export { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator };
+const SOPScreenNavigator = () => {
+    return (
+        <Stack.Navigator
+            initialRouteName="SOPPage1"
+            screenOptions={{
+                header: ({ options, navigation }) => <HeaderComponent options={options} navigation={navigation} />,
+            }}
+        >
+            <Stack.Screen
+                name="SOPPage1"
+                component={SOPPage2}
+                options={{
+                    title: title.SOPPage1,
+                }}
+            />
+            <Stack.Screen
+                name="SOPPage2"
+                component={SOPPage2}
+                options={{
+                    title: title.SOPPage2,
+                    backButtonEnabled: "true",
+                }}
+            />
+            <Stack.Screen
+                name="SOPPage3"
+                component={SOPPage3}
+                options={{
+                    title: title.SOPPage3,
+                    backButtonEnabled: "true",
+                }}
+            />
+        </Stack.Navigator>
+    );
+};
+export { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator };
