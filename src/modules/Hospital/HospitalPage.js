@@ -1,8 +1,6 @@
 import React from "react";
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, ScrollView } from "react-native";
 import { Searchbar, Chip, List, Divider } from "react-native-paper";
-import HeaderComponent from "../../shared/components/headerComponent";
-import { title } from "../../shared/constants/config";
 
 function HospitalPage(props) {
     const [searchQuery, setSearchQuery] = React.useState("");
@@ -33,8 +31,8 @@ function HospitalPage(props) {
     ];
 
     const searchResult = searchResultItems.map((element, index) => (
-        <View>
-            <List.Item key={index} style={styles.resultItem} title={element.title} description={element.description} left={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={element.icon} />} />
+        <View key={index}>
+            <List.Item style={styles.resultItem} title={element.title} description={element.description} left={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={element.icon} />} />
             <View style={{ width: "100%", flexDirection: "row", justifyContent: "flex-end" }}>
                 <View style={{ width: 56 }}></View>
                 <Divider style={{ height: 1, flex: 1 }} />

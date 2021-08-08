@@ -7,6 +7,7 @@ import { Text } from "react-native";
 import HeaderComponent from "./headerComponent";
 import { title } from "../constants/config";
 import AssistancePage from "../../modules/Home/AssistancePage";
+import ProfilePage from "../../modules/Profile/ProfilePage";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,7 @@ const AssistanceScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
+
 const FakeScreenNavigator = () => {
     return (
         <Stack.Navigator
@@ -56,6 +58,7 @@ const FakeScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
+
 const HelpdeskScreenNavigator = () => {
     return (
         <Stack.Navigator
@@ -74,6 +77,7 @@ const HelpdeskScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
+
 const HospitalScreenNavigator = () => {
     return (
         <Stack.Navigator
@@ -93,4 +97,23 @@ const HospitalScreenNavigator = () => {
     );
 };
 
-export { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator };
+const ProfileScreenNavigator = () => {
+    return (
+        <Stack.Navigator
+            initialRouteName="ProfilePage"
+            screenOptions={{
+                header: ({ options, navigation }) => <HeaderComponent options={options} navigation={navigation} />,
+            }}
+        >
+            <Stack.Screen
+                name="ProfilePage"
+                component={ProfilePage}
+                options={{
+                    title: title.ProfilePage,
+                }}
+            />
+        </Stack.Navigator>
+    );
+};
+
+export { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, ProfileScreenNavigator };
