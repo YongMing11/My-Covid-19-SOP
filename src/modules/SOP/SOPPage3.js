@@ -11,9 +11,21 @@ import info from '@mock/sop.json';
 
 const SOPPage3 = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [accordians, setAccordians] = useState(info.activities);
+  const [activeAccordians, setActiveAccordians] = useState(info.activities);
 
-  const onChangeSearch = (query) => setSearchQuery(query);
+  const onChangeSearch = (query) => {
+    setSearchQuery(query);
+    if(query === ''){setActiveAccordians(info.activities); return;}
+    const result = info.activities.filter(s => {
+      let isIncluded = s.title.toLowerCase().includes(query.toLowerCase());
+      isIncluded = isIncluded || s.content.filter(c => {
+        return c.toLowerCase().includes(query.toLowerCase());
+      }).length !==0;
+      return isIncluded;
+    });
+    console.log(result);
+    setActiveAccordians(result);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -27,7 +39,7 @@ const SOPPage3 = () => {
         />
       </View>
       <List.Section>
-        {accordians.map((a, index) => (
+        {activeAccordians.map((a, index) => (
           <List.Accordion
             title={a.title}
             titleStyle={styles.accordianTitle}
