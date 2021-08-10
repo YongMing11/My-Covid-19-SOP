@@ -9,8 +9,11 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Searchbar, List } from "react-native-paper";
+import { useRoute } from '@react-navigation/native';
 
-const SOPPage2 = () => {
+const SOPPage2 = ({navigation}) => {
+  const route = useRoute();
+// console.log(route.name);
   const [searchQuery, setSearchQuery] = React.useState("");
   const sectors = [
     "General SOP Activity",
@@ -20,8 +23,8 @@ const SOPPage2 = () => {
   const icon = 'chevron-right';
 
   const onChangeSearch = (query) => setSearchQuery(query);
-  const onPressFunction = () => {
-    console.log("Pressed hoho");
+  const onPressAction = (sector) => {
+    navigation.navigate('SOPPage3',{title:sector});
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -35,7 +38,7 @@ const SOPPage2 = () => {
         />
       </View>
       {sectors.map((sector, index) => (
-        <TouchableOpacity onPress={onPressFunction}>
+        <TouchableOpacity onPress={()=>onPressAction(sector)}>
           <List.Item
             key={index}
             style={styles.actionItem}
