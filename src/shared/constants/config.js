@@ -9,4 +9,6 @@ const title = {
     SOPPage3: "General Activity",
 };
 
-export { title };
+const GOOGLE_MAPS_APIKEY = 'AIzaSyAGC9dDhMN3cxyaQrIs8h8Rgki9GCPQCGs';
+
+export { title, GOOGLE_MAPS_APIKEY };
