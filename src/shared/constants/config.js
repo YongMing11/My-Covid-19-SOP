@@ -7,4 +7,6 @@ const title = {
     SOPPage1: "SOP Information",
 };
 
-export { title };
+const GOOGLE_MAPS_APIKEY = 'AIzaSyAGC9dDhMN3cxyaQrIs8h8Rgki9GCPQCGs';
+
+export { title, GOOGLE_MAPS_APIKEY };
