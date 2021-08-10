@@ -1,40 +1,13 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { withTheme, Button, Card, Title, Paragraph, Surface } from "react-native-paper";
-import theme from "../../shared/constants/Theme";
+import info from '@mock/sop.json';
 
 class SOPPage1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phases: [
-        {
-          areas: ["Selangor", "Kuala Lumpur", "Sarawak", "Malacca", "Johor"],
-          title: "PNN Phase 1",
-        },
-        {
-          areas: [
-            "Penang",
-            "Perlis",
-            "Pahang",
-            "Terengganu",
-            "Kelantan",
-          ],
-          title: "PNN Phase 2",
-        },
-        {
-          areas: [],
-          title: "PNN Phase 3",
-        },
-        {
-          areas: [],
-          title: "PNN Phase 4",
-        },
-        {
-          areas: ["Kampuing Murni", "Taman Air Condo Block A"],
-          title: "EMCO",
-        },
-      ],
+      phases: info.phases,
     };
   }
   render() {
