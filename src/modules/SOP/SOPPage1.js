@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
-import { withTheme, Button, Card, Title, Paragraph } from "react-native-paper";
+import { withTheme, Button, Card, Title, Paragraph, Surface } from "react-native-paper";
 import theme from "../../shared/constants/Theme";
 
 class SOPPage1 extends Component {
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     width: "96%",
-    backgroundColor: "#DCDCDC",
     marginBottom: 10,
+    elevation: 6,
   },
   textCenter: {
     textAlign: "center",

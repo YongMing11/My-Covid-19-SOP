@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
   ScrollView,
-  Pressable,
   TouchableOpacity,
 } from "react-native";
-import { Searchbar, List } from "react-native-paper";
+import { Searchbar, List, Menu } from "react-native-paper";
 import { useRoute } from '@react-navigation/native';
 
 const SOPPage2 = ({navigation}) => {
@@ -28,7 +26,7 @@ const SOPPage2 = ({navigation}) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-      {/* <ScrollView> */}
+      <ScrollView>
       <View>
         <Searchbar
           placeholder="Search"
@@ -38,10 +36,10 @@ const SOPPage2 = ({navigation}) => {
         />
       </View>
       {sectors.map((sector, index) => (
-        <TouchableOpacity onPress={()=>onPressAction(sector)}>
           <List.Item
             key={index}
             style={styles.actionItem}
+            onPress={()=>onPressAction(sector)}
             title={sector}
             right={(props) => (
               <List.Icon
@@ -51,9 +49,8 @@ const SOPPage2 = ({navigation}) => {
               />
             )}
           />
-        </TouchableOpacity>
       ))}
-      {/* </ScrollView> */}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -80,5 +77,6 @@ const styles = StyleSheet.create({
     elevation: 4,
     textAlign: "left",
     paddingLeft: 10,
+    // flexDirection: "row"
   },
 });
