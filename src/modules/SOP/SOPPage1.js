@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
-import { withTheme, Button, Card, Title, Paragraph } from "react-native-paper";
+import { withTheme, Button, Card, Title, Paragraph, Surface } from "react-native-paper";
 import theme from "../../shared/constants/Theme";
 
 class SOPPage1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      states: [
+      phases: [
         {
           areas: ["Selangor", "Kuala Lumpur", "Sarawak", "Malacca", "Johor"],
           title: "PNN Phase 1",
@@ -39,15 +39,22 @@ class SOPPage1 extends Component {
   }
   render() {
     const { colors } = this.props.theme;
-    const { states } = this.state;
+    const { phases } = this.state;
+    const { navigation, route } = this.props;
+    console.log(route.name);
+
+    const onPressAction = (title) => {
+      navigation.navigate('SOPPage2', { title:title })
+    }
+
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <View style={styles.view}>
-            {states.map((stateCard, index) => (
-              <Card style={styles.card} key={index}>
+            {phases.map((phaseCard, index) => (
+              <Card style={styles.card} key={index} onPress={()=>onPressAction(phaseCard.title)}>
                 <View>
-                  <Text style={styles.cardTitle}>{stateCard.title}</Text>
+                  <Text style={styles.cardTitle}>{phaseCard.title}</Text>
                 </View>
                 <Card.Content>
                   <Paragraph style={styles.textCenter}>
@@ -55,9 +62,9 @@ class SOPPage1 extends Component {
                   </Paragraph>
                   <View style={styles.states}>
                     {
-                    stateCard.areas.length === 0? 
+                    phaseCard.areas.length === 0? 
                     <Text style={styles.notAvailableMsg}>{'No state or region under this phase'}</Text>:  
-                    stateCard.areas.map((state) => (
+                    phaseCard.areas.map((state) => (
                       <Text key={state} style={styles.state}>
                         {`\u2022 ${state}`}
                       </Text>
@@ -84,8 +91,8 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "row",
     width: "96%",
-    backgroundColor: "#DCDCDC",
     marginBottom: 10,
+    elevation: 6,
   },
   textCenter: {
     textAlign: "center",

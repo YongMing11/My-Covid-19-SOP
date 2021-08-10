@@ -37,6 +37,7 @@ const HeaderComponent = ({ options, navigation, route }) => {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: 'transparent',
+        // can specify height if we got issue: https://reactnavigation.org/docs/stack-navigator/#header-related-options
     },
     header_content: {
         color: 'white'

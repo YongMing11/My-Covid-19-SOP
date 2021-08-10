@@ -115,12 +115,12 @@ const SOPScreenNavigator = () => {
         <Stack.Navigator
             initialRouteName="SOPPage1"
             screenOptions={{
-                header: ({ options, navigation }) => <HeaderComponent options={options} navigation={navigation} />,
+                header: ({ options, navigation, route }) => <HeaderComponent options={options} navigation={navigation} route={route} />,
             }}
         >
             <Stack.Screen
                 name="SOPPage1"
-                component={SOPPage2}
+                component={SOPPage1}
                 options={{
                     title: title.SOPPage1,
                 }}
@@ -129,7 +129,6 @@ const SOPScreenNavigator = () => {
                 name="SOPPage2"
                 component={SOPPage2}
                 options={{
-                    title: title.SOPPage2,
                     backButtonEnabled: "true",
                 }}
             />
@@ -137,7 +136,6 @@ const SOPScreenNavigator = () => {
                 name="SOPPage3"
                 component={SOPPage3}
                 options={{
-                    title: title.SOPPage3,
                     backButtonEnabled: "true",
                 }}
             />

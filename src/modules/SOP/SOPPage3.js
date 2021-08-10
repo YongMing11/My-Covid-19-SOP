@@ -7,8 +7,11 @@ import {
   ScrollView,
 } from "react-native";
 import { Searchbar, List } from "react-native-paper";
+import { useRoute } from '@react-navigation/native';
 
-const SOPPage2 = () => {
+const SOPPage3 = () => {
+  const route = useRoute();
+  console.log(route.name);
   const [searchQuery, setSearchQuery] = useState("");
   const [accordians, setAccordians] = useState([
     {
@@ -63,7 +66,7 @@ const SOPPage2 = () => {
   );
 };
 
-export default SOPPage2;
+export default SOPPage3;
 
 const styles = StyleSheet.create({
   container: {

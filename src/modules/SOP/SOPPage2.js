@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   SafeAreaView,
   ScrollView,
-  Pressable,
   TouchableOpacity,
 } from "react-native";
-import { Searchbar, List } from "react-native-paper";
+import { Searchbar, List, Menu } from "react-native-paper";
+import { useRoute } from '@react-navigation/native';
 
-const SOPPage2 = () => {
+const SOPPage2 = ({navigation}) => {
+  const route = useRoute();
+// console.log(route.name);
   const [searchQuery, setSearchQuery] = React.useState("");
   const sectors = [
     "General SOP Activity",
@@ -20,12 +21,12 @@ const SOPPage2 = () => {
   const icon = 'chevron-right';
 
   const onChangeSearch = (query) => setSearchQuery(query);
-  const onPressFunction = () => {
-    console.log("Pressed hoho");
+  const onPressAction = (sector) => {
+    navigation.navigate('SOPPage3',{title:sector});
   };
   return (
     <SafeAreaView style={styles.container}>
-      {/* <ScrollView> */}
+      <ScrollView>
       <View>
         <Searchbar
           placeholder="Search"
@@ -35,10 +36,10 @@ const SOPPage2 = () => {
         />
       </View>
       {sectors.map((sector, index) => (
-        <TouchableOpacity onPress={onPressFunction}>
           <List.Item
             key={index}
             style={styles.actionItem}
+            onPress={()=>onPressAction(sector)}
             title={sector}
             right={(props) => (
               <List.Icon
@@ -48,9 +49,8 @@ const SOPPage2 = () => {
               />
             )}
           />
-        </TouchableOpacity>
       ))}
-      {/* </ScrollView> */}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -77,5 +77,6 @@ const styles = StyleSheet.create({
     elevation: 4,
     textAlign: "left",
     paddingLeft: 10,
+    // flexDirection: "row"
   },
 });
