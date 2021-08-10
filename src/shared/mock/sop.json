@@ -1,0 +1,44 @@
+{
+  "phases": [
+    {
+      "areas": ["Selangor", "Kuala Lumpur", "Sarawak", "Malacca", "Johor"],
+      "title": "PNN Phase 1"
+    },
+    {
+      "areas": [
+        "Penang",
+        "Perlis",
+        "Pahang",
+        "Terengganu",
+        "Kelantan"
+      ],
+      "title": "PNN Phase 2"
+    },
+    {
+      "areas": [],
+      "title": "PNN Phase 3"
+    },
+    {
+      "areas": [],
+      "title": "PNN Phase 4"
+    },
+    {
+      "areas": ["Kampuing Murni", "Taman Air Condo Block A"],
+      "title": "EMCO"
+    }
+  ],
+  "activities":[
+    {
+      "title": "Area Invovled",
+      "content": [
+        "KEDAH, SELANGOR, NEGERI SEMBILAN, MELAKA, JOHOR, SARAWAK, W.P. KUALA LUMPUR, W.P. PUTRAJAYA DAN W.P. LABUAN",
+        "*For Sarawak, please refer to the National Recovery Plan - SOP Phase 1 Sarawak",
+        "** For areas enforced by PKPD, PKPD SOP in the area is in force until the expiry date of the PKPD."
+      ]
+    },
+    {
+      "title": "Effective Period",
+      "content": ["8 Aug until 9 Sept"]
+    }
+  ]
+}

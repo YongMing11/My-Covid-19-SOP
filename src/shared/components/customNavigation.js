@@ -10,6 +10,7 @@ import { Text } from "react-native";
 import HeaderComponent from "./headerComponent";
 import { title } from "../constants/config";
 import AssistancePage from "../../modules/Home/AssistancePage";
+import ProfilePage from "../../modules/Profile/ProfilePage";
 import AssistancePage2 from "../../modules/Home/AssistancePage2";
 import theme from "../constants/Theme";
 
@@ -51,6 +52,7 @@ const AssistanceScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
+
 const FakeScreenNavigator = () => {
     return (
         <Stack.Navigator
@@ -69,6 +71,7 @@ const FakeScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
+
 const HelpdeskScreenNavigator = () => {
     return (
         <Stack.Navigator
@@ -87,6 +90,7 @@ const HelpdeskScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
+
 const HospitalScreenNavigator = () => {
     return (
         <Stack.Navigator
@@ -105,17 +109,18 @@ const HospitalScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
+
 const SOPScreenNavigator = () => {
     return (
         <Stack.Navigator
             initialRouteName="SOPPage1"
             screenOptions={{
-                header: ({ options, navigation }) => <HeaderComponent options={options} navigation={navigation} />,
+                header: ({ options, navigation, route }) => <HeaderComponent options={options} navigation={navigation} route={route} />,
             }}
         >
             <Stack.Screen
                 name="SOPPage1"
-                component={SOPPage2}
+                component={SOPPage1}
                 options={{
                     title: title.SOPPage1,
                 }}
@@ -124,7 +129,6 @@ const SOPScreenNavigator = () => {
                 name="SOPPage2"
                 component={SOPPage2}
                 options={{
-                    title: title.SOPPage2,
                     backButtonEnabled: "true",
                 }}
             />
@@ -132,11 +136,30 @@ const SOPScreenNavigator = () => {
                 name="SOPPage3"
                 component={SOPPage3}
                 options={{
-                    title: title.SOPPage3,
                     backButtonEnabled: "true",
                 }}
             />
         </Stack.Navigator>
     );
 };
-export { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator };
+
+const ProfileScreenNavigator = () => {
+    return (
+        <Stack.Navigator
+            initialRouteName="ProfilePage"
+            screenOptions={{
+                header: ({ options, navigation }) => <HeaderComponent options={options} navigation={navigation} />,
+            }}
+        >
+            <Stack.Screen
+                name="ProfilePage"
+                component={ProfilePage}
+                options={{
+                    title: title.ProfilePage,
+                }}
+            />
+        </Stack.Navigator>
+    );
+};
+
+export { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator, ProfileScreenNavigator };

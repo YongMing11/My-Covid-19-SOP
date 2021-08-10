@@ -7,23 +7,11 @@ import {
   ScrollView,
 } from "react-native";
 import { Searchbar, List } from "react-native-paper";
+import info from '@mock/sop.json';
 
-const SOPPage2 = () => {
+const SOPPage3 = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [accordians, setAccordians] = useState([
-    {
-      title: "Area Invovled",
-      content: [
-        "KEDAH, SELANGOR, NEGERI SEMBILAN, MELAKA, JOHOR, SARAWAK, W.P. KUALA LUMPUR, W.P. PUTRAJAYA DAN W.P. LABUAN",
-        "*For Sarawak, please refer to the National Recovery Plan - SOP Phase 1 Sarawak",
-        "** For areas enforced by PKPD, PKPD SOP in the area is in force until the expiry date of the PKPD.",
-      ],
-    },
-    {
-      title: "Effective Period",
-      content: ["8 Aug until 9 Sept"],
-    },
-  ]);
+  const [accordians, setAccordians] = useState(info.activities);
 
   const onChangeSearch = (query) => setSearchQuery(query);
 
@@ -63,7 +51,7 @@ const SOPPage2 = () => {
   );
 };
 
-export default SOPPage2;
+export default SOPPage3;
 
 const styles = StyleSheet.create({
   container: {

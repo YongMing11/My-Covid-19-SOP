@@ -5,8 +5,6 @@ const title = {
     HospitalPage: "Nearby Clinic & Hospital",
     ProfilePage: "Profile",
     SOPPage1: "SOP Information",
-    SOPPage2: "PNN Phase 1",
-    SOPPage3: "General Activity",
 };
 
 const GOOGLE_MAPS_APIKEY = 'AIzaSyAGC9dDhMN3cxyaQrIs8h8Rgki9GCPQCGs';

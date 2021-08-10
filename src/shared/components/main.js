@@ -1,7 +1,7 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import * as React from "react";
 import theme from "../constants/Theme";
-import { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator } from "./customNavigation";
+import { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator, ProfileScreenNavigator } from "./customNavigation";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -47,7 +47,7 @@ const Main = () => {
             />
             <Tab.Screen
                 name="Profile"
-                component={FakeScreenNavigator}
+                component={ProfileScreenNavigator}
                 options={{
                     tabBarIcon: "account-cog-outline",
                 }}
