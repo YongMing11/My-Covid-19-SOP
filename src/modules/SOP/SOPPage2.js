@@ -4,26 +4,29 @@ import {
   View,
   SafeAreaView,
   ScrollView,
-  TouchableOpacity,
 } from "react-native";
 import { Searchbar, List, Menu } from "react-native-paper";
 import { useRoute } from '@react-navigation/native';
+import info from '@mock/sop.json';
 
 const SOPPage2 = ({navigation}) => {
-  const route = useRoute();
-// console.log(route.name);
-  const [searchQuery, setSearchQuery] = React.useState("");
-  const sectors = [
-    "General SOP Activity",
-    "Communication Sector",
-    "Agribultural Commodities Sector",
-  ];
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeSectors, setActiveSectors] = useState(info.sectors);
   const icon = 'chevron-right';
 
-  const onChangeSearch = (query) => setSearchQuery(query);
+  const onChangeSearch = (query) => {
+    setSearchQuery(query);
+    if(query === ''){setActiveSectors(info.sectors); return;}
+    const sectorsResult = info.sectors.filter(s => {
+      return s.toLowerCase().includes(query.toLowerCase());
+    });
+    setActiveSectors(sectorsResult);
+  };
+
   const onPressAction = (sector) => {
     navigation.navigate('SOPPage3',{title:sector});
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -35,7 +38,7 @@ const SOPPage2 = ({navigation}) => {
           style={styles.searchBar}
         />
       </View>
-      {sectors.map((sector, index) => (
+      {activeSectors.map((sector, index) => (
           <List.Item
             key={index}
             style={styles.actionItem}
@@ -60,7 +63,6 @@ export default SOPPage2;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#fff",
   },
   searchBar: {
     marginHorizontal: 15,
@@ -71,12 +73,10 @@ const styles = StyleSheet.create({
     color: "#0E4DA4",
     backgroundColor: "#fff",
     height: 65,
-    // alignItems: "center",
     justifyContent: "center",
     width: "100%",
     elevation: 4,
     textAlign: "left",
     paddingLeft: 10,
-    // flexDirection: "row"
   },
 });
