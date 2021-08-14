@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { Appbar } from 'react-native-paper';
+import { Appbar, Dialog, Paragraph, Portal, Button } from 'react-native-paper';
 import theme from '../constants/Theme';
 
 const HeaderComponent = ({ options, navigation, route }) => {
@@ -11,13 +11,27 @@ const HeaderComponent = ({ options, navigation, route }) => {
     const color = 'white';
 
     const _goBack = () => {
-        navigation.goBack();
-        console.log('Went back')
+        if (options.dialog) {
+            showDialog();
+        } else {
+            navigateToPreviousPage();
+        }
     };
+
+    const navigateToPreviousPage = () => {
+        console.log('Went back')
+        navigation.goBack();
+    }
 
     const _handleSearch = () => console.log('Searching');
 
     const _handleMore = () => console.log('Shown more');
+
+    const [visible, setVisible] = React.useState(false);
+
+    const showDialog = () => setVisible(true);
+
+    const hideDialog = () => setVisible(false);
 
     return (
         <LinearGradient
@@ -30,6 +44,18 @@ const HeaderComponent = ({ options, navigation, route }) => {
                 {/* <Appbar.Action icon="magnify" onPress={_handleSearch} color={color} />
                 <Appbar.Action icon="dots-vertical" onPress={_handleMore} color={color}/> */}
             </Appbar.Header>
+            <Portal>
+                <Dialog visible={visible} onDismiss={hideDialog}>
+                    <Dialog.Title>Alert</Dialog.Title>
+                    <Dialog.Content>
+                        <Paragraph>Go back to previous page will lose the data on this page. Are you sure to proceed?</Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button onPress={hideDialog}>CANCEL</Button>
+                        <Button onPress={navigateToPreviousPage}>OK</Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
         </LinearGradient>
     );
 };

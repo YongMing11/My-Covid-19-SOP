@@ -38,7 +38,7 @@ const AssistanceScreenNavigator = () => {
                 name="AssistancePage"
                 component={AssistancePage}
                 options={{
-                    backButtonEnabled: 'true'
+                    backButtonEnabled: true
                 }}
             />
             <Stack.Screen
@@ -46,7 +46,8 @@ const AssistanceScreenNavigator = () => {
                 component={AssistancePage2}
                 options={{
                     title: title.AssistancePage2,
-                    backButtonEnabled: 'true'
+                    backButtonEnabled: true,
+                    dialog: true
                 }}
             />
         </Stack.Navigator>
