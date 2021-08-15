@@ -1,7 +1,10 @@
 import React from "react";
-import { StyleSheet, View, TouchableWithoutFeedback, Keyboard } from "react-native";
+import theme from "../../shared/constants/Theme";
+import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, Dimensions } from "react-native";
 import { Button, TextInput, Text } from "react-native-paper";
 import { Picker } from "@react-native-picker/picker";
+
+const HELPDESK_MSG = "*Your query will be replied in 2 working days. Besides sending a query, you can contact admin for more SOP information at +603-8888 2010.";
 
 function HelpdeskPage({ navigation }) {
     const [text, setText] = React.useState("");
@@ -27,7 +30,9 @@ function HelpdeskPage({ navigation }) {
                             {dropDownItems}
                         </Picker>
                     </View>
-                    <TextInput style={styles.questionTextField} label="Question" mode="outlined" dense={true} multiline={true} numberOfLines={10} value={text} onChangeText={(text) => setText(text)} />
+                    <View style={styles.questionTextFieldContainer}>
+                        <TextInput style={styles.questionTextField} label="Question" mode="outlined" dense={false} multiline={true} numberOfLines={20} value={text} onChangeText={(text) => setText(text)} />
+                    </View>
                     <Button
                         style={styles.submitButton}
                         mode="contained"
@@ -37,7 +42,7 @@ function HelpdeskPage({ navigation }) {
                     >
                         Submit
                     </Button>
-                    <Text style={styles.noteText}>*Your query will be replied in 2 working days. Besides sending a query, you can contact admin for more SOP information at +603-8888 2010.</Text>
+                    <Text style={styles.noteText}>{HELPDESK_MSG}</Text>
                 </View>
             </TouchableWithoutFeedback>
         </View>
@@ -63,14 +68,23 @@ const styles = StyleSheet.create({
         paddingTop: 8,
         paddingBottom: 8,
     },
+    questionTextFieldContainer: {
+        height: Dimensions.get("window").height * 0.4,
+        width: "100%",
+    },
     questionTextField: {
         width: "100%",
         textAlignVertical: "top",
+        textAlign: "left",
+        marginHorizontal: 0,
         marginVertical: 5,
+        padding: 0,
+        paddingVertical: 0,
     },
     submitButton: {
         width: "100%",
         marginVertical: 5,
+        backgroundColor: theme.colors.primaryBlue,
     },
     noteText: {
         textAlign: "left",
