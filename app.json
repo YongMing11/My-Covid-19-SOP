@@ -23,6 +23,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.My_COVID_SOP",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyA2mzC1eeN6h-tyP7MvO1Vpl507H7sH2sg"
+        }
       }
     },
     "web": {

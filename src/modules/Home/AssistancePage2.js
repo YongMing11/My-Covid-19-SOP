@@ -124,9 +124,9 @@ function AssistancePage2({ navigation, route }) {
                                 <DataTable style={{ width: '100%' }}>
                                     {Object.entries(value).map(([taskTitle, checked], index) => {
                                         return (
-                                            <DataTable.Row key={taskTitle} style={{ borderBottomWidth: 1, backgroundColor: checked ? theme.colors.primaryGreen : 'white' }}>
+                                            <DataTable.Row key={taskTitle} style={{ width: '100%', borderBottomWidth: 1, backgroundColor: checked ? theme.colors.primaryGreen : 'white' }}>
                                                 <DataTable.Cell style={styles.task}>{taskTitle}</DataTable.Cell>
-                                                <DataTable.Cell>
+                                                <DataTable.Cell style={{ flex: 1 }}>
                                                     <Checkbox
                                                         status={checked ? 'checked' : 'unchecked'}
                                                         onPress={() => onPressCheckBox(taskCategory, taskTitle)}
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     task: {
-        flex: 9
+        flex: 8
     },
     fab: {
         position: 'absolute',
