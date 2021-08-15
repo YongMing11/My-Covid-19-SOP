@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native';
-import { FAB } from 'react-native-paper';
+import { FAB, Portal, Modal, Title, IconButton } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
 
-function HomePage({ navigation }) {
+function HomePage({ navigation, route }) {
+    const [visible, setVisible] = useState(true);
+    const hideModal = () => setVisible(false);
+
+    useEffect(() => {
+        setVisible(true);
+        const timeOut = setTimeout(() => {
+            if (route.params) {
+                setVisible(false);
+            }
+        }, 3000)
+        return () => clearTimeout(timeOut);
+    }, [route.params])
+
+    const getDurationString = (difference) => {
+        var hoursDifference = Math.floor(difference / 1000 / 60 / 60);
+        difference -= hoursDifference * 1000 * 60 * 60
+
+        var minutesDifference = Math.floor(difference / 1000 / 60);
+        difference -= minutesDifference * 1000 * 60
+
+        var secondsDifference = Math.floor(difference / 1000);
+
+        return hoursDifference + " HOUR " + minutesDifference + " MIN " + secondsDifference + " SEC"
+    }
+
     const actionButtons = [
         { label: 'I want to go out to eat', shortLabel: 'Go out to eat' },
         { label: 'I want to go out to buy things', shortLabel: 'Go out to buy things' },
@@ -18,6 +43,24 @@ function HomePage({ navigation }) {
 
     return (
         <View style={styles.scene}>
+            {/* Display Modal when user finish activity */}
+            {route?.params && <Portal>
+                <Modal visible={visible}
+                    onDismiss={hideModal} contentContainerStyle={styles.modal}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <IconButton
+                            icon="check-circle"
+                            color="green"
+                            size={40}
+                        />
+                        <Title>You have completed your activity!</Title>
+                        <Text>Duration: {getDurationString(route.params.duration)}</Text>
+                        <Text>From {route.params.location.name}</Text>
+                        <Text>To {route.params.destination.name}</Text>
+                    </View>
+                </Modal>
+            </Portal>}
+
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
                     <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
@@ -50,8 +93,14 @@ function HomePage({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+    modal: {
+        backgroundColor: 'white',
+        padding: 25,
+        margin: 25
+    },
     scene: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        alignItems: 'center'
     },
     container: {
         flex: 1,
