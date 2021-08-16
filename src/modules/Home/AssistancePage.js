@@ -5,8 +5,10 @@ import theme from '../../shared/constants/Theme';
 import MapView, { Marker, Callout, Circle } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
+import { useLocationContext } from '../../contexts/location-context';
 
 const AssistancePage = ({ navigation, route }) => {
+    const { location, setUserLocation } = useLocationContext();
     const placesAPI_query = {
         key: GOOGLE_MAPS_APIKEY,
         language: 'en',
@@ -14,14 +16,14 @@ const AssistancePage = ({ navigation, route }) => {
     }
     const mapRef = useRef(null);
 
-    const [location, setLocation] = useState({
-        name: "Example Location",
-        address: "Example Location 1, Jalan Example, Taman Example,Example Location 1, Jalan Example, Taman ExampleExample Location 1, Jalan Example, Taman Example",
-        coordinates: {
-            latitude: 3.16854,
-            longitude: 101.53666
-        }
-    });
+    // const [location, setLocation] = useState({
+    //     name: "Example Location",
+    //     address: "Example Location 1, Jalan Example, Taman Example,Example Location 1, Jalan Example, Taman ExampleExample Location 1, Jalan Example, Taman Example",
+    //     coordinates: {
+    //         latitude: 3.16854,
+    //         longitude: 101.53666
+    //     }
+    // });
     const [destination, setDestination] = useState({
         name: "",
         address: "",
@@ -70,7 +72,7 @@ const AssistancePage = ({ navigation, route }) => {
                 }}
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
-                    setLocation({
+                    setUserLocation({
                         name: details.name,
                         address: data.description,
                         coordinates: {

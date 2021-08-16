@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import { FAB, Portal, Modal, Title, IconButton } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
+import * as Location from 'expo-location';
+import { useLocationContext } from '../../contexts/location-context';
+import Geocoder from 'react-native-geocoding';
 
 function HomePage({ navigation, route }) {
+    const { setUserLocationCoordinates, getUserLocation } = useLocationContext();
     const [visible, setVisible] = useState(true);
+    const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const hideModal = () => setVisible(false);
+    // Geocoder.init("xxxxxxxxxxxxxxxx");
 
     useEffect(() => {
         setVisible(true);
@@ -14,8 +20,31 @@ function HomePage({ navigation, route }) {
                 setVisible(false);
             }
         }, 3000)
+        permissionFlow();
         return () => clearTimeout(timeOut);
     }, [route.params])
+
+    const permissionFlow = async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            setLocationPermissionStatus(false);
+            setErrorMsg('Permission to access location was denied');
+            return;
+        }
+
+        let location = await Location.getCurrentPositionAsync({});
+        setUserLocationCoordinates({ latitude: location.coords.latitude, longitude: location.coords.longitude })
+        console.log(getUserLocation());
+        if (location) {
+            // Not finish to get State and short name of the location
+            Geocoder.from(location.coords.latitude, location.coords.longitude)
+                .then(json => {
+                    var addressComponent = json.results[0].formatted_address;
+                    console.log(addressComponent);
+                })
+                .catch(error => console.warn(error));
+        }
+    }
 
     const getDurationString = (difference) => {
         var hoursDifference = Math.floor(difference / 1000 / 60 / 60);
@@ -60,6 +89,20 @@ function HomePage({ navigation, route }) {
                     </View>
                 </Modal>
             </Portal>}
+            <Portal>
+                <Modal visible={!locationPermissionStatus}
+                    onDismiss={hideModal} contentContainerStyle={styles.modal}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <IconButton
+                            icon="map-marker-radius"
+                            color="red"
+                            size={40}
+                        />
+                        <Title style={{ textAlign: 'center' }}>Location is required for My COVID-19 SOP to work properly</Title>
+                        <Text>Please allow location access in settings</Text>
+                    </View>
+                </Modal>
+            </Portal>
 
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>

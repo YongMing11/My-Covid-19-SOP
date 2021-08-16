@@ -91,7 +91,7 @@ function ProfilePage({ navigation }) {
                     <Headline>Visited Locations</Headline>
                     <IconButton style={{ margin: 0 }} icon="unfold-more-horizontal" color={Colors.black} size={20} onPress={() => console.log("Pressed")} />
                 </View>
-                <DataTable style={{ marginTop: -10 }}>
+                <DataTable style={{ marginTop: -10, paddingHorizontal: 5 }}>
                     <DataTable.Header style={styles.tableHeader}>
                         <DataTable.Title style={styles.locationColumn}>Location</DataTable.Title>
                         <DataTable.Title style={styles.dateColumn}>Date</DataTable.Title>
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
         color: "#4D9BEC",
     },
     durationSurface: {
+        marginTop: 4,
         marginBottom: 4,
         width: "100%",
         flex: 1,
@@ -170,6 +171,7 @@ const styles = StyleSheet.create({
     rowScrollView: {
         width: "100%",
         height: "100%",
+        paddingHorizontal: 5
     },
     locationColumn: {
         flex: 2,
