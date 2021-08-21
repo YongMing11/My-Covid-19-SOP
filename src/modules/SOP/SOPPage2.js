@@ -48,47 +48,51 @@ const SOPPage2 = ({navigation}) => {
     //     console.log(err);
     // });
 
-    // formData = new FormData();
-    // // formData.append('api_key', CLOUDINARY_API_KEY);
-    // formData.append('file', {
-    //   uri: recording.getURI(),
-    //   name: recording.getURI().split('/').pop(),
-    //   type: recording.type
-    // });
-    // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    //   body: formData, // send the audio file
-    // }).then(response => response.json())
-    // .then(res => {
-    //   console.log(res);
-    // }).catch(err => {
-    //   console.log(err);
-    // }).finally(smtg => {
-    //   setRecording(undefined); 
-    // });
-
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    var raw = JSON.stringify({
-      "uri": "uri from postman"
+    formData = new FormData();
+    // formData.append('api_key', CLOUDINARY_API_KEY);
+    formData.append('file', {
+      uri: recording.getURI(),
+      name: recording.getURI().split('/').pop(),
+      type: "audio/mpeg"
+    });
+    fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
+      method: 'POST',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "multipart/form-data",
+      },
+      body: formData, // send the audio file
+    })
+    .then(response => {
+      console.log('Get response from Functions.');
+      console.log(typeof response);
+      return response.text();
+    }).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    }).finally(smtg => {
+      setRecording(undefined); 
     });
 
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
 
-    fetch("https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+    // var raw = JSON.stringify({
+    //   "uri": "uri from postman"
+    // });
+
+    // var requestOptions = {
+    //   method: 'POST',
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: 'follow'
+    // };
+
+    // fetch("https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
   }
 
   async function startRecording() {
@@ -140,7 +144,7 @@ const SOPPage2 = ({navigation}) => {
     setIsRecording(false);
 
     await recording.stopAndUnloadAsync();
-    // console.log(recording);
+    console.log(recording);
 
     const uri = recording.getURI(); 
     console.log('Recording stopped and stored at', uri);
