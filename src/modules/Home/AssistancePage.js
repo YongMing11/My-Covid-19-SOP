@@ -15,6 +15,7 @@ const AssistancePage = ({ navigation, route }) => {
         components: "country:MY"
     }
     const mapRef = useRef(null);
+    const locationInputRef = useRef();
 
     // const [location, setLocation] = useState({
     //     name: "Example Location",
@@ -34,6 +35,10 @@ const AssistancePage = ({ navigation, route }) => {
     });
 
     useEffect(() => {
+        locationInputRef.current?.setAddressText(location.address);
+    }, [])
+
+    useEffect(() => {
         onUserLocationChange();
     }, [location, destination])
 
@@ -44,8 +49,8 @@ const AssistancePage = ({ navigation, route }) => {
     }
 
     const onUserLocationChange = () => {
-        mapRef.current.fitToCoordinates([
-            location, destination
+        mapRef.current?.fitToCoordinates([
+            location.coordinates, destination.coordinates
         ], {
             edgePadding: {
                 top: 100,
@@ -65,6 +70,7 @@ const AssistancePage = ({ navigation, route }) => {
     return (
         <View style={styles.container}>
             <GooglePlacesAutocomplete
+                ref={locationInputRef}
                 placeholder='Enter your location'
                 fetchDetails={true}
                 GooglePlacesDetailsQuery={{

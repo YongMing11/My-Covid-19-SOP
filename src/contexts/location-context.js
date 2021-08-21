@@ -7,12 +7,17 @@ const LocationContext = React.createContext({
       longitude: null,
     },
     name: "",
-    address: ""
+    address: "",
+    state: "",
+    phase: ""
   },
   getUserLocation: () => { },
   getUserLocationCoordinates: () => { },
   setUserLocation: (newLocation) => { },
   setUserLocationCoordinates: (coordinates) => { },
+  setUserLocationAddress: (address) => { },
+  setUserLocationState: (state) => { },
+  setUserLocationPhase: (phase) => { }
 });
 
 const LocationProvider = ({ children }) => {
@@ -22,7 +27,9 @@ const LocationProvider = ({ children }) => {
       longitude: null,
     },
     name: "",
-    address: ""
+    address: "",
+    state: "",
+    phase: ""
   });
 
   const getUserLocation = React.useCallback(() => {
@@ -38,11 +45,22 @@ const LocationProvider = ({ children }) => {
   }, [location])
 
   const setUserLocationCoordinates = React.useCallback((coordinates) => {
-    console.log(coordinates)
     setLocation((loc) => ({ ...loc, coordinates }))
   }, [location]);
 
-  return (<LocationContext.Provider value={{ location, getUserLocation, getUserLocationCoordinates, setUserLocation, setUserLocationCoordinates }}>
+  const setUserLocationAddress = React.useCallback((address) => {
+    setLocation((loc) => ({ ...loc, address }))
+  }, [location]);
+
+  const setUserLocationState = React.useCallback((state) => {
+    setLocation((loc) => ({ ...loc, state }))
+  }, [location]);
+
+  const setUserLocationPhase = React.useCallback((phase) => {
+    setLocation((loc) => ({ ...loc, phase }))
+  }, [location]);
+
+  return (<LocationContext.Provider value={{ location, getUserLocation, getUserLocationCoordinates, setUserLocation, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase }}>
     {children}
   </LocationContext.Provider>)
 };

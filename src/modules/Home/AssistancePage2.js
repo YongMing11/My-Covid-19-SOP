@@ -38,11 +38,7 @@ function Timer({ startTime }) {
     )
 }
 
-
-function AssistancePage2({ navigation, route }) {
-    const startTime = new Date();
-    const mapRef = useRef(null);
-    const { location, destination } = route.params;
+function TaskChecklists() {
     const initialTask = {
         "Before starting your journey": {
             'Wear mask': false,
@@ -57,12 +53,43 @@ function AssistancePage2({ navigation, route }) {
         }
     }
     const [tasks, setTasks] = useState(initialTask);
-
     const onPressCheckBox = (taskCategory, taskTitle) => {
         const currentTasks = JSON.parse(JSON.stringify(tasks));
         currentTasks[taskCategory][taskTitle] = !tasks[taskCategory][taskTitle]
         setTasks(currentTasks)
     }
+
+    return (
+        Object.entries(tasks).map(([taskCategory, value], index) => {
+            console.log(index)
+            return (
+                <React.Fragment key={taskCategory}>
+                    <Text style={styles.checklistHeader}>{taskCategory}</Text>
+                    <DataTable style={{ width: '100%' }}>
+                        {Object.entries(value).map(([taskTitle, checked], index) => {
+                            return (
+                                <DataTable.Row key={taskTitle} style={{ width: '100%', borderBottomWidth: 1, backgroundColor: checked ? theme.colors.primaryGreen : 'white' }}>
+                                    <DataTable.Cell style={styles.task}>{taskTitle}</DataTable.Cell>
+                                    <DataTable.Cell style={{ flex: 1 }}>
+                                        <Checkbox
+                                            status={checked ? 'checked' : 'unchecked'}
+                                            onPress={() => onPressCheckBox(taskCategory, taskTitle)}
+                                        />
+                                    </DataTable.Cell>
+                                </DataTable.Row>
+                            )
+                        })}
+                    </DataTable>
+                </React.Fragment>
+            )
+        }))
+}
+
+
+function AssistancePage2({ navigation, route }) {
+    const startTime = new Date();
+    const mapRef = useRef(null);
+    const { location, destination } = route.params;
 
     const onUserLocationChange = () => {
         mapRef.current.fitToCoordinates([
@@ -116,30 +143,7 @@ function AssistancePage2({ navigation, route }) {
 
 
                 <View style={styles.container}>
-                    {Object.entries(tasks).map(([taskCategory, value], index) => {
-                        console.log(index)
-                        return (
-                            <React.Fragment key={taskCategory}>
-                                <Text style={styles.checklistHeader}>{taskCategory}</Text>
-                                <DataTable style={{ width: '100%' }}>
-                                    {Object.entries(value).map(([taskTitle, checked], index) => {
-                                        return (
-                                            <DataTable.Row key={taskTitle} style={{ width: '100%', borderBottomWidth: 1, backgroundColor: checked ? theme.colors.primaryGreen : 'white' }}>
-                                                <DataTable.Cell style={styles.task}>{taskTitle}</DataTable.Cell>
-                                                <DataTable.Cell style={{ flex: 1 }}>
-                                                    <Checkbox
-                                                        status={checked ? 'checked' : 'unchecked'}
-                                                        onPress={() => onPressCheckBox(taskCategory, taskTitle)}
-                                                    />
-                                                </DataTable.Cell>
-                                            </DataTable.Row>
-                                        )
-                                    })}
-                                </DataTable>
-                            </React.Fragment>
-                        )
-                    })}
-
+                    <TaskChecklists />
                     <Button style={styles.actionButton} mode="contained" onPress={finishActivity}>Done
                     </Button>
                 </View>
