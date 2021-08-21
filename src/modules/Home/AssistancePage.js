@@ -5,23 +5,26 @@ import theme from '../../shared/constants/Theme';
 import MapView, { Marker, Callout, Circle } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
+import { useLocationContext } from '../../contexts/location-context';
 
 const AssistancePage = ({ navigation, route }) => {
+    const { location, setUserLocation } = useLocationContext();
     const placesAPI_query = {
         key: GOOGLE_MAPS_APIKEY,
         language: 'en',
         components: "country:MY"
     }
     const mapRef = useRef(null);
+    const locationInputRef = useRef();
 
-    const [location, setLocation] = useState({
-        name: "Example Location",
-        address: "Example Location 1, Jalan Example, Taman Example,Example Location 1, Jalan Example, Taman ExampleExample Location 1, Jalan Example, Taman Example",
-        coordinates: {
-            latitude: 3.16854,
-            longitude: 101.53666
-        }
-    });
+    // const [location, setLocation] = useState({
+    //     name: "Example Location",
+    //     address: "Example Location 1, Jalan Example, Taman Example,Example Location 1, Jalan Example, Taman ExampleExample Location 1, Jalan Example, Taman Example",
+    //     coordinates: {
+    //         latitude: 3.16854,
+    //         longitude: 101.53666
+    //     }
+    // });
     const [destination, setDestination] = useState({
         name: "",
         address: "",
@@ -30,6 +33,10 @@ const AssistancePage = ({ navigation, route }) => {
             longitude: 101.53666
         }
     });
+
+    useEffect(() => {
+        locationInputRef.current?.setAddressText(location.address);
+    }, [])
 
     useEffect(() => {
         onUserLocationChange();
@@ -42,8 +49,8 @@ const AssistancePage = ({ navigation, route }) => {
     }
 
     const onUserLocationChange = () => {
-        mapRef.current.fitToCoordinates([
-            location, destination
+        mapRef.current?.fitToCoordinates([
+            location.coordinates, destination.coordinates
         ], {
             edgePadding: {
                 top: 100,
@@ -63,6 +70,7 @@ const AssistancePage = ({ navigation, route }) => {
     return (
         <View style={styles.container}>
             <GooglePlacesAutocomplete
+                ref={locationInputRef}
                 placeholder='Enter your location'
                 fetchDetails={true}
                 GooglePlacesDetailsQuery={{
@@ -70,7 +78,7 @@ const AssistancePage = ({ navigation, route }) => {
                 }}
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
-                    setLocation({
+                    setUserLocation({
                         name: details.name,
                         address: data.description,
                         coordinates: {

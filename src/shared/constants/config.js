@@ -7,7 +7,7 @@ const title = {
     SOPPage1: "SOP Information",
 };
 
-// const GOOGLE_MAPS_APIKEY = 'AIzaSyCqH63Adn44Hap3ePp91LORB0vrGUM2Vho';
 const GOOGLE_MAPS_APIKEY = '';
+// const GOOGLE_MAPS_APIKEY = 'AIzaSyAPNCzN7G0bSmX3vmkHOb0xqBvH6ukuAf0';
 
 export { title, GOOGLE_MAPS_APIKEY };
