@@ -16,6 +16,7 @@ const SOPPage2 = ({navigation}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSectors, setActiveSectors] = useState(info.sectors);
   const [recording, setRecording] = React.useState(false);
+  const [isRecording, setIsRecording] = useState(false);
 
   const icon = 'chevron-right';
 
@@ -39,31 +40,59 @@ const SOPPage2 = ({navigation}) => {
     // const { recordingObj } = await Audio.Recording.createAsync(require(uri));
     // console.log(recordingObj);
     console.log('start sending audio file');
-    // const data = {uri: uri};
-    FileSystem.uploadAsync('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test', uri).then(res => {
-      console.log(res);
-    }).catch(err => {
-        console.log(err);
-    });
-    // const data = {
-    //   "uri":"uri from the app"
-    // }
+
+    // Use expo File system to call API - failed
+    // FileSystem.uploadAsync('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test', uri).then(res => {
+    //   console.log(res);
+    // }).catch(err => {
+    //     console.log(err);
+    // });
+
+    // formData = new FormData();
+    // // formData.append('api_key', CLOUDINARY_API_KEY);
+    // formData.append('file', {
+    //   uri: recording.getURI(),
+    //   name: recording.getURI().split('/').pop(),
+    //   type: recording.type
+    // });
     // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
     //   method: 'POST',
     //   headers: {
-    //     'Content-Type': 'application/json'
+    //     Accept: "application/json",
+    //     "Content-Type": "multipart/form-data",
     //   },
-    //   body: JSON.stringify(data), // send the URI string
-    //   redirect: 'follow'
-    // }).then(response => response.text())
+    //   body: formData, // send the audio file
+    // }).then(response => response.json())
     // .then(res => {
     //   console.log(res);
     // }).catch(err => {
     //   console.log(err);
+    // }).finally(smtg => {
+    //   setRecording(undefined); 
     // });
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "uri": "uri from postman"
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
   }
 
   async function startRecording() {
+    setIsRecording(true);
     try {
       console.log('Requesting permissions..');
       await Audio.requestPermissionsAsync();
@@ -76,16 +105,16 @@ const SOPPage2 = ({navigation}) => {
         {
           isMeteringEnabled: true,
           android: {
-            extension: '.m4a',
-            outputFormat: RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
-            audioEncoder: RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
+            extension: '.mp3',
+            outputFormat: 2,
+            audioEncoder: 3,
             sampleRate: 44100,
             numberOfChannels: 2,
             bitRate: 128000,
           },
           ios: {
             extension: '.caf',
-            audioQuality: RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
+            audioQuality: 0x7f,
             sampleRate: 44100,
             numberOfChannels: 2,
             bitRate: 128000,
@@ -98,17 +127,20 @@ const SOPPage2 = ({navigation}) => {
         //  Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
       );
       setRecording(recording);
-      console.log(recording);
+      // console.log(recording);
       console.log('Recording started');
     } catch (err) {
       console.error('Failed to start recording', err);
+      setIsRecording(false);
     }
   }
   async function stopRecording() {
     console.log('Stopping recording..');
-    setRecording(undefined); 
+    // setRecording(undefined); 
+    setIsRecording(false);
+
     await recording.stopAndUnloadAsync();
-    console.log(recording);
+    // console.log(recording);
 
     const uri = recording.getURI(); 
     console.log('Recording stopped and stored at', uri);
@@ -118,7 +150,7 @@ const SOPPage2 = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-      <Button onPress={recording ? stopRecording : startRecording}>{recording ? 'Stop Recording' : 'Start Recording'}</Button>
+      <Button onPress={isRecording ? stopRecording : startRecording}>{isRecording ? 'Stop Recording' : 'Start Recording'}</Button>
       {/* <Button onPress={sendAudio}
       >{recording ? 'Stop Recording' : 'Start Recording'}
       </Button> */}
