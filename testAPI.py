@@ -7,14 +7,17 @@ from google.cloud import speech
 client = speech.SpeechClient()
 
 # The name of the audio file to transcribe
-gcs_uri = "gs://cloud-samples-data/speech/brooklyn_bridge.raw"
+# gcs_uri = "gs://cloud-samples-data/speech/brooklyn_bridge.raw"
+# gcs_uri = "gs://ozone-audio-17263/work.m4a"     # default file type by RN
+gcs_uri = "gs://ozone-audio-17263/work.wav"       # produced by Audacity
 
 audio = speech.RecognitionAudio(uri=gcs_uri)
 
 config = speech.RecognitionConfig(
-    encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-    sample_rate_hertz=16000,
+    # encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+    # sample_rate_hertz=44100,
     language_code="en-US",
+    audio_channel_count=2,
 )
 
 # Detects speech in the audio file

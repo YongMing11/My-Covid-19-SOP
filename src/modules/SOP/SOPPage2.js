@@ -10,11 +10,12 @@ import { useRoute } from '@react-navigation/native';
 import info from '@mock/sop.json';
 import { Audio } from 'expo-av';
 import * as MediaLibrary from 'expo-media-library';
+import * as FileSystem from 'expo-file-system';
 
 const SOPPage2 = ({navigation}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSectors, setActiveSectors] = useState(info.sectors);
-  const [recording, setRecording] = React.useState();
+  const [recording, setRecording] = React.useState(false);
 
   const icon = 'chevron-right';
 
@@ -32,19 +33,34 @@ const SOPPage2 = ({navigation}) => {
   };
 
   const sendAudio = async (uri) => {
+    // Example of uri:
+    // "file:///data/user/0/host.exp.exponent/cache/ExperienceData/UNVERIFIED-192.168.0.180-AwesomeProject/Audio/recording-2c3ad50d-6dab-4b61-912c-62d5ce4662df.m4a"
+    // get audio file
+    // const { recordingObj } = await Audio.Recording.createAsync(require(uri));
+    // console.log(recordingObj);
     console.log('start sending audio file');
-    const data = {uri: uri};
-    fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data) // send the URI string
-    }).then(res => {
+    // const data = {uri: uri};
+    FileSystem.uploadAsync('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test', uri).then(res => {
       console.log(res);
     }).catch(err => {
-      console.log(err);
+        console.log(err);
     });
+    // const data = {
+    //   "uri":"uri from the app"
+    // }
+    // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(data), // send the URI string
+    //   redirect: 'follow'
+    // }).then(response => response.text())
+    // .then(res => {
+    //   console.log(res);
+    // }).catch(err => {
+    //   console.log(err);
+    // });
   }
 
   async function startRecording() {
@@ -57,9 +73,32 @@ const SOPPage2 = ({navigation}) => {
       }); 
       console.log('Starting recording..');
       const { recording } = await Audio.Recording.createAsync(
-         Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+        {
+          isMeteringEnabled: true,
+          android: {
+            extension: '.m4a',
+            outputFormat: RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
+            audioEncoder: RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
+            sampleRate: 44100,
+            numberOfChannels: 2,
+            bitRate: 128000,
+          },
+          ios: {
+            extension: '.caf',
+            audioQuality: RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
+            sampleRate: 44100,
+            numberOfChannels: 2,
+            bitRate: 128000,
+            linearPCMBitDepth: 16,
+            linearPCMIsBigEndian: false,
+            linearPCMIsFloat: false,
+          },
+        }
+        // above structure is get from node_modules
+        //  Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
       );
       setRecording(recording);
+      console.log(recording);
       console.log('Recording started');
     } catch (err) {
       console.error('Failed to start recording', err);
@@ -67,8 +106,10 @@ const SOPPage2 = ({navigation}) => {
   }
   async function stopRecording() {
     console.log('Stopping recording..');
-    setRecording(undefined);  // set to undefined then get at next line
+    setRecording(undefined); 
     await recording.stopAndUnloadAsync();
+    console.log(recording);
+
     const uri = recording.getURI(); 
     console.log('Recording stopped and stored at', uri);
     sendAudio(uri);
@@ -77,9 +118,10 @@ const SOPPage2 = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-      <Button onPress={recording ? stopRecording : startRecording}
+      <Button onPress={recording ? stopRecording : startRecording}>{recording ? 'Stop Recording' : 'Start Recording'}</Button>
+      {/* <Button onPress={sendAudio}
       >{recording ? 'Stop Recording' : 'Start Recording'}
-      </Button>
+      </Button> */}
       <View>
         <Searchbar
           placeholder="Search"
