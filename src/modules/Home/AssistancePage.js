@@ -6,6 +6,7 @@ import MapView, { Marker, Callout, Circle } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import { useLocationContext } from '../../contexts/location-context';
+import { getStateAndPhase } from '../../shared/services/location.service';
 
 const AssistancePage = ({ navigation, route }) => {
     const { location, setUserLocation } = useLocationContext();
@@ -59,6 +60,7 @@ const AssistancePage = ({ navigation, route }) => {
                 left: 100
             }
         })
+        console.log(destination)
     }
 
     const navigateToAssistancePage2 = () => {
@@ -97,13 +99,16 @@ const AssistancePage = ({ navigation, route }) => {
                     rankby: "distance"
                 }}
                 onPress={(data, details = null) => {
+                    const { currentState, currentPhase } = getStateAndPhase(data.description);
                     setDestination({
                         name: details.name,
                         address: data.description,
                         coordinates: {
                             latitude: details.geometry.location.lat,
                             longitude: details.geometry.location.lng
-                        }
+                        },
+                        state: currentState,
+                        phase: currentPhase
                     })
                 }}
                 query={placesAPI_query}
