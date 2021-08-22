@@ -9,6 +9,7 @@ import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import { getDurationString } from '@services/timer.service';
 import info from '@mock/sop.json';
 import ModalComponent from '../../shared/components/modalComponent';
+import { getStateAndPhase } from '../../shared/services/location.service';
 
 function HomePage({ navigation, route }) {
     // === FOR TESTING PURPOSE ===
@@ -37,15 +38,17 @@ function HomePage({ navigation, route }) {
     const { setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, getUserLocation } = useLocationContext();
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
+    const [networkStatus, setNetworkStatus] = useState(true);
     Geocoder.init(GOOGLE_MAPS_APIKEY);
 
     useEffect(() => {
         setVisible(true);
+
         const timeOut = setTimeout(() => {
             if (route.params) {
                 setVisible(false);
             }
-        }, 5000)
+        }, 7000)
         permissionFlow();
         return () => clearTimeout(timeOut);
     }, [route.params])
@@ -83,32 +86,15 @@ function HomePage({ navigation, route }) {
             // Reverse Geocode to get the full address of the user coordinates
             Geocoder.from(location.coords.latitude, location.coords.longitude)
                 .then(json => {
-                    var addressComponent = json.results[0].formatted_address;
-                    let currentState = '';
-                    let currentPhase = '';
-
-                    states.forEach((state) => {
-                        if (addressComponent.toUpperCase().includes(state)) {
-                            currentState = state;
-                        }
-                    })
-                    for (let phase of info.phases) {
-                        for (let area of phase.areas) {
-                            if (addressComponent.toUpperCase().includes(area.toUpperCase())) {
-                                currentState = area.toUpperCase();
-                                currentPhase = phase.title;
-                                break;
-                            }
-                        }
-                        if (currentState && currentState !== "") break;
-                    }
-                    setUserLocationAddress(addressComponent);
+                    var address = json.results[0].formatted_address;
+                    const { currentState, currentPhase } = getStateAndPhase(address);
+                    setUserLocationAddress(address);
                     setUserLocationState(currentState);
                     setUserLocationPhase(currentPhase);
+                    setNetworkStatus(true);
                 })
-                .catch(error => console.warn(error));
+                .catch(error => setNetworkStatus(false));
         }
-
     }
 
     const actionButtons = [
@@ -142,26 +128,20 @@ function HomePage({ navigation, route }) {
             {/* Modal pop out if user location permission is not granted, user needs to turn on in settings manually */}
             <ModalComponent
                 visible={!locationPermissionStatus}
-                onDismiss={() => setVisible(false)}
+                onDismiss={() => permissionFlow()}
                 icon="map-marker-radius"
                 iconColor="red"
                 title="Location is required for My COVID-19 SOP to work properly"
                 text="Please allow location access in settings"
             />
-            {/* <Portal>
-                <Modal visible={!locationPermissionStatus}
-                    onDismiss={hideModal} contentContainerStyle={styles.modal}>
-                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <IconButton
-                            icon="map-marker-radius"
-                            color="red"
-                            size={40}
-                        />
-                        <Title style={{ textAlign: 'center' }}>Location is required for My COVID-19 SOP to work properly</Title>
-                        <Text>Please allow location access in settings</Text>
-                    </View>
-                </Modal>
-            </Portal> */}
+            <ModalComponent
+                visible={!networkStatus}
+                onDismiss={() => console.log("Close Network Modal")}
+                icon="wifi-off"
+                iconColor="black"
+                title="No internet connection"
+                text="Please make sure that WI-FI or mobile data is turned on."
+            />
 
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
