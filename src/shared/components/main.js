@@ -8,7 +8,7 @@ const Tab = createMaterialBottomTabNavigator();
 const Main = () => {
     return (
         <Tab.Navigator
-            initialRouteName="Assistance"
+            initialRouteName="SOP Info"
             shifting={false}
             activeColor={theme.colors.primaryBlue}
             inactiveColor={theme.colors.primaryGrey}

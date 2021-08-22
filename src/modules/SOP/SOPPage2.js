@@ -32,8 +32,36 @@ const SOPPage2 = ({navigation}) => {
   const onPressAction = (sector) => {
     navigation.navigate('SOPPage3',{title:sector});
   };
-
-  const sendAudio = async (uri) => {
+  const uploadAudio = async () => {
+    const uri = recording.getURI();
+    try {
+      const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+          try {
+            resolve(xhr.response);
+          } catch (error) {
+            console.log("error in uploadAudio when trying to resolve:", error);
+          }
+        };
+        xhr.onerror = (e) => {
+          console.log(e);
+          reject(new TypeError("Network request failed in uploadAudio"));
+        };
+        xhr.responseType = "blob";
+        xhr.open("GET", uri, true);
+        xhr.send(null);
+      });
+      if (blob != null) {
+        sendAudio(blob)
+      } else {
+        console.log("erroor with blob");
+      }
+    } catch (error) {
+      console.log("error in uploadAudio:", error);
+    }
+  };
+  const sendAudio = async (blob) => {
     // Example of uri:
     // "file:///data/user/0/host.exp.exponent/cache/ExperienceData/UNVERIFIED-192.168.0.180-AwesomeProject/Audio/recording-2c3ad50d-6dab-4b61-912c-62d5ce4662df.m4a"
     // get audio file
@@ -48,51 +76,39 @@ const SOPPage2 = ({navigation}) => {
     //     console.log(err);
     // });
 
-    formData = new FormData();
-    // formData.append('api_key', CLOUDINARY_API_KEY);
-    formData.append('file', {
-      uri: recording.getURI(),
-      name: recording.getURI().split('/').pop(),
-      type: "audio/mpeg"
-    });
+    console.log(blob);
+    // const formData = new FormData();
+    // // formData.append('api_key', CLOUDINARY_API_KEY);
+    // formData.append('file', {
+    //   uri: recording.getURI(),
+    //   // uri: blob,
+    //   name: recording.getURI().split('/').pop(),
+    //   type: "audio/mpeg"
+    // });
     fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
       method: 'POST',
+      // headers: {
+      //   Accept: "application/json",
+      //   "Content-Type": "multipart/form-data",
+      // },
       headers: {
-        Accept: "application/json",
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'application/octet-stream'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: formData, // send the audio file
+      body: blob, // send the audio file
     })
     .then(response => {
       console.log('Get response from Functions.');
       console.log(typeof response);
       return response.text();
     }).then(res => {
-      console.log(res);
+      console.log(JSON.stringify(res));
     }).catch(err => {
-      console.log(err);
-    }).finally(smtg => {
-      setRecording(undefined); 
+      console.log('Error caught in app=>',err);
+    }).finally(() => {
+      setRecording(undefined);
+      console.log('in finally');
     });
-
-    // var myHeaders = new Headers();
-    // myHeaders.append("Content-Type", "application/json");
-
-    // var raw = JSON.stringify({
-    //   "uri": "uri from postman"
-    // });
-
-    // var requestOptions = {
-    //   method: 'POST',
-    //   headers: myHeaders,
-    //   body: raw,
-    //   redirect: 'follow'
-    // };
-
-    // fetch("https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test", requestOptions)
-    //   .then(response => response.text())
-    //   .then(result => console.log(result))
-    //   .catch(error => console.log('error', error));
   }
 
   async function startRecording() {
@@ -109,11 +125,17 @@ const SOPPage2 = ({navigation}) => {
         {
           isMeteringEnabled: true,
           android: {
-            extension: '.mp3',
-            outputFormat: 2,
-            audioEncoder: 3,
-            sampleRate: 44100,
-            numberOfChannels: 2,
+            // extension: '.mp3',
+            // outputFormat: 2,
+            // audioEncoder: 3,
+            // sampleRate: 44100,
+            // numberOfChannels: 2,
+            // bitRate: 128000,
+            extension: '.amr',
+            outputFormat: 3,
+            audioEncoder: 1,
+            sampleRate: 8000,
+            numberOfChannels: 1,
             bitRate: 128000,
           },
           ios: {
@@ -148,7 +170,8 @@ const SOPPage2 = ({navigation}) => {
 
     const uri = recording.getURI(); 
     console.log('Recording stopped and stored at', uri);
-    sendAudio(uri);
+    // sendAudio();
+    uploadAudio();
   }
   
   return (
