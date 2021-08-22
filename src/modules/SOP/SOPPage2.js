@@ -1,36 +1,50 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  SafeAreaView,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { Searchbar, List, Menu, Button } from "react-native-paper";
-import { useRoute } from '@react-navigation/native';
-import info from '@mock/sop.json';
-import { Audio } from 'expo-av';
-import * as MediaLibrary from 'expo-media-library';
-import * as FileSystem from 'expo-file-system';
+import { useRoute } from "@react-navigation/native";
+import info from "@mock/sop.json";
+import { Audio } from "expo-av";
+import * as MediaLibrary from "expo-media-library";
+import * as FileSystem from "expo-file-system";
 
-const SOPPage2 = ({navigation}) => {
+const SOPPage2 = ({ navigation }) => {
+  const icon = "chevron-right";
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSectors, setActiveSectors] = useState(info.sectors);
   const [recording, setRecording] = React.useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [sound, setSound] = React.useState();
 
-  const icon = 'chevron-right';
+  async function playSound(uri) {
+    console.log("Loading Sound");
+    const { sound } = await Audio.Sound.createAsync({ uri });
+    setSound(sound);
+
+    console.log("Playing Sound");
+    await sound.playAsync();
+  }
+  React.useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading Sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
-    if(query === ''){setActiveSectors(info.sectors); return;}
-    const sectorsResult = info.sectors.filter(s => {
+    if (query === "") {
+      setActiveSectors(info.sectors);
+      return;
+    }
+    const sectorsResult = info.sectors.filter((s) => {
       return s.toLowerCase().includes(query.toLowerCase());
     });
     setActiveSectors(sectorsResult);
   };
-
   const onPressAction = (sector) => {
-    navigation.navigate('SOPPage3',{title:sector});
+    navigation.navigate("SOPPage3", { title: sector });
   };
   const uploadAudio = async () => {
     const uri = recording.getURI();
@@ -53,7 +67,7 @@ const SOPPage2 = ({navigation}) => {
         xhr.send(null);
       });
       if (blob != null) {
-        sendAudio(blob)
+        sendAudio(blob);
       } else {
         console.log("erroor with blob");
       }
@@ -61,66 +75,83 @@ const SOPPage2 = ({navigation}) => {
       console.log("error in uploadAudio:", error);
     }
   };
+
   const sendAudio = async (blob) => {
-    // Example of uri:
-    // "file:///data/user/0/host.exp.exponent/cache/ExperienceData/UNVERIFIED-192.168.0.180-AwesomeProject/Audio/recording-2c3ad50d-6dab-4b61-912c-62d5ce4662df.m4a"
-    // get audio file
-    // const { recordingObj } = await Audio.Recording.createAsync(require(uri));
-    // console.log(recordingObj);
-    console.log('start sending audio file');
+    console.log("start sending audio file");
 
-    // Use expo File system to call API - failed
-    // FileSystem.uploadAsync('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test', uri).then(res => {
-    //   console.log(res);
-    // }).catch(err => {
-    //     console.log(err);
-    // });
-
-    console.log(blob);
-    // const formData = new FormData();
-    // // formData.append('api_key', CLOUDINARY_API_KEY);
-    // formData.append('file', {
-    //   uri: recording.getURI(),
-    //   // uri: blob,
-    //   name: recording.getURI().split('/').pop(),
-    //   type: "audio/mpeg"
-    // });
-    fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
+    // sending blob
+    // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
+    fetch('http://192.168.0.180:8080/',{
       method: 'POST',
-      // headers: {
-      //   Accept: "application/json",
-      //   "Content-Type": "multipart/form-data",
-      // },
       headers: {
-        'Content-Type': 'application/octet-stream'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/octet-stream'
+        // 'Content-Type': 'audio/AMR'
+        'Content-Type': 'audio/mpeg'
       },
       body: blob, // send the audio file
     })
     .then(response => {
       console.log('Get response from Functions.');
       console.log(typeof response);
+      // console.log(Object.keys(response));
+      // console.log(Object.keys(response).map(key => {
+      //   return response[key];
+      // }));
+      console.log(JSON.stringify(response));
       return response.text();
-    }).then(res => {
-      console.log(JSON.stringify(res));
-    }).catch(err => {
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
       console.log('Error caught in app=>',err);
     }).finally(() => {
       setRecording(undefined);
-      console.log('in finally');
+      console.log('finally');
     });
-  }
+    
+    // send FormData
+    // const { uri } = await FileSystem.getInfoAsync(recording.getURI())
+    // const formData = new FormData();
+    // // formData.append('api_key', CLOUDINARY_API_KEY);
+    // formData.append("file", {
+    //   // uri: recording.getURI(),
+    //   uri: recording.getURI(),
+    //   name: recording.getURI().split("/").pop(),
+    //   type: "audio/mpeg",
+    // });
+    // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data'
+    //   },
+    //   body: formData, // send the audio file
+    // })
+    // .then(response => {
+    //   console.log('Get response from Functions.');
+    //   return response.text();
+    // })
+    // .then(res => {
+    //   console.log(JSON.stringify(res));
+    // })
+    // .catch(err => {
+    //   console.log('Error caught in app=>',err);
+    // }).finally(() => {
+    //   setRecording(undefined);
+    //   console.log('in finally');
+    // });
+  };
 
   async function startRecording() {
     setIsRecording(true);
     try {
-      console.log('Requesting permissions..');
+      console.log("Requesting permissions..");
       await Audio.requestPermissionsAsync();
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: true,
         playsInSilentModeIOS: true,
-      }); 
-      console.log('Starting recording..');
+      });
+      console.log("Starting recording..");
       const { recording } = await Audio.Recording.createAsync(
         {
           isMeteringEnabled: true,
@@ -131,15 +162,15 @@ const SOPPage2 = ({navigation}) => {
             // sampleRate: 44100,
             // numberOfChannels: 2,
             // bitRate: 128000,
-            extension: '.amr',
-            outputFormat: 3,
-            audioEncoder: 1,
-            sampleRate: 8000,
+            extension: ".awb",
+            outputFormat: 4,
+            audioEncoder: 2,
+            sampleRate: 16000,
             numberOfChannels: 1,
-            bitRate: 128000,
+            bitRate: 128000,    // TODO: check
           },
           ios: {
-            extension: '.caf',
+            extension: ".caf",
             audioQuality: 0x7f,
             sampleRate: 44100,
             numberOfChannels: 2,
@@ -154,56 +185,55 @@ const SOPPage2 = ({navigation}) => {
       );
       setRecording(recording);
       // console.log(recording);
-      console.log('Recording started');
+      console.log("Recording started");
     } catch (err) {
-      console.error('Failed to start recording', err);
+      console.error("Failed to start recording", err);
       setIsRecording(false);
     }
   }
   async function stopRecording() {
-    console.log('Stopping recording..');
-    // setRecording(undefined); 
+    console.log("Stopping recording..");
+    // setRecording(undefined);
     setIsRecording(false);
 
     await recording.stopAndUnloadAsync();
-    console.log(recording);
+    // console.log(recording);
 
-    const uri = recording.getURI(); 
-    console.log('Recording stopped and stored at', uri);
+    const uri = recording.getURI();
+    // console.log('Recording stopped and stored at', uri);
+    playSound(uri);
     // sendAudio();
     uploadAudio();
   }
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-      <Button onPress={isRecording ? stopRecording : startRecording}>{isRecording ? 'Stop Recording' : 'Start Recording'}</Button>
-      {/* <Button onPress={sendAudio}
+        <Button onPress={isRecording ? stopRecording : startRecording}>
+          {isRecording ? "Stop Recording" : "Start Recording"}
+        </Button>
+        {/* <Button onPress={sendAudio}
       >{recording ? 'Stop Recording' : 'Start Recording'}
       </Button> */}
-      <View>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-          style={styles.searchBar}
-        />
-      </View>
-      {activeSectors.map((sector, index) => (
+        <View>
+          <Searchbar
+            placeholder="Search"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+            style={styles.searchBar}
+          />
+        </View>
+        {activeSectors.map((sector, index) => (
           <List.Item
             key={index}
             style={styles.actionItem}
-            onPress={()=>onPressAction(sector)}
+            onPress={() => onPressAction(sector)}
             title={sector}
             right={(props) => (
-              <List.Icon
-                {...props}
-                style={{ marginRight: 0 }}
-                icon={icon}
-              />
+              <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />
             )}
           />
-      ))}
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

@@ -11,3 +11,5 @@ venv\Scripts\activate.ps1
 ```
 $env:GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
 ```
+
+functions-framework --target=parse_multipart --debug

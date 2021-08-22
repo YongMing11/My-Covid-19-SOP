@@ -2,6 +2,12 @@ from google.cloud import speech
 import os
 import tempfile
 from werkzeug.utils import secure_filename
+import base64
+
+# Pass the audio data to an encoding function.
+def encode_audio(audio_content):
+#   audio_content = audio.read()
+  return base64.b64encode(audio_content)
 
 def speech_to_text(file_content):
     print('start converting speech to text')
@@ -19,10 +25,10 @@ def speech_to_text(file_content):
     audio = speech.RecognitionAudio(content=file_content)
 
     config = speech.RecognitionConfig(
-        # encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-        # sample_rate_hertz=44100,
+        encoding=speech.RecognitionConfig.AudioEncoding.AMR,
+        sample_rate_hertz=8000,
         language_code="en-US",
-        audio_channel_count=2,
+        audio_channel_count=1,
     )
 
     # Detects speech in the audio file
@@ -30,7 +36,7 @@ def speech_to_text(file_content):
 
     for result in response.results:
         print("Transcript: {}".format(result.alternatives[0].transcript))
-    return str(result)
+    return str(response.results)
 
 # Helper function that computes the filepath to save files to
 def get_file_path(filename):
@@ -66,7 +72,7 @@ def parse_multipart(request):
         the_file.save(get_file_path(file_name)) 
         print('Processed file: %s' % file_name)
         # call speech to text
-        content = the_file.read()
+        content = encode_audio(the_file.read())
         print(speech_to_text(content))
 
     # Clear temporary directory
