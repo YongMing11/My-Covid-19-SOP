@@ -164,7 +164,7 @@ const SOPPage2 = ({ navigation }) => {
     formData.append('file', {
       uri,
       name: `recording.${fileType}`,
-      type: `audio/flac`,
+      type: `audio/m4a`,
     });
     formData.append('name', "Ng Yong Ming");
 
@@ -186,8 +186,8 @@ const SOPPage2 = ({ navigation }) => {
       const formData = new FormData();
       formData.append('file', {
         uri,
-        type: 'audio/flac',
-        name: 'speech2text.flac'
+        type: 'audio/m4a',
+        name: 'speech2text.m4a'
       });
       console.log("DONE FETCHING")
       // formData.append('user', "NAMENAMENAME");
@@ -205,7 +205,6 @@ const SOPPage2 = ({ navigation }) => {
       });
       // const data = await response.json();
       // console.log(data)
-      // this.setState({ query: data.transcript });
     } catch (error) {
       console.log('There was an error', error);
       // this.stopRecording();
@@ -239,12 +238,12 @@ const SOPPage2 = ({ navigation }) => {
         {
           isMeteringEnabled: true,
           android: {
-            extension: ".flac",
-            outputFormat: 3,
-            audioEncoder: 1,
-            sampleRate: 8000,
-            numberOfChannels: 1,
-            bitRate: 122000,    // TODO: check
+            extension: '.m4a',
+            outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
+            audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
+            sampleRate: 44100,
+            numberOfChannels: 2,
+            bitRate: 128000,
           },
           ios: {
             extension: ".caf",

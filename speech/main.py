@@ -46,7 +46,7 @@ def parse_multipart(request):
     print("request",request.data)
     print("request",request.files['file'])
     # request.files['file'].save('./haha12200.amr')
-    request.files['file'].save('./haha12200.flac')
+    request.files['file'].save('./haha12200.m4a')
     print("request",dir(request))
     return "OK"
     content_type = request.headers['content-type']
