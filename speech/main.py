@@ -6,9 +6,18 @@ from werkzeug.utils import secure_filename
 from flask import jsonify
 # Import the base64 encoding library.
 import base64
+from flask import Flask, request
+from flask import Response
 
+app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
 def main(request):
-    upload_blob('ozone-audio-17263', './work.m4a', 'test.m4a')
+    print('FUck')
+    r = Response(response="TEST OK", status=200, mimetype="application/xml")
+    r.headers["Content-Type"] = "text/xml; charset=utf-8"
+    return r
+    # upload_blob('ozone-audio-17263', './work.m4a', 'test.m4a')
 
 # Pass the audio data to an encoding function.
 def encode_audio(audio_content):
@@ -32,6 +41,14 @@ def parse_multipart(request):
          Response object using `make_response`
         <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
     """
+    print("GANINE")
+    print("request",request.form)
+    print("request",request.data)
+    print("request",request.files['file'])
+    # request.files['file'].save('./haha12200.amr')
+    request.files['file'].save('./haha12200.flac')
+    print("request",dir(request))
+    return "OK"
     content_type = request.headers['content-type']
     if content_type == 'application/json':
         request_json = request.get_json(silent=True)

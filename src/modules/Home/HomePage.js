@@ -2,6 +2,7 @@ import React from 'react'
 import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import { FAB } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
+import { Audio } from 'expo-av';
 
 function HomePage({ navigation }) {
     const actionButtons = [
@@ -16,6 +17,30 @@ function HomePage({ navigation }) {
         navigation.navigate('AssistancePage', { title: selectedAction })
     }
 
+    // TESTING AUDIO
+    const [sound, setSound] = React.useState();
+
+    async function playSound() {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync(
+            // require('../SOP/5_pengagihan.mp3')
+            require('../SOP/5_pengagihan.m4a')
+        );
+        setSound(sound);
+
+        console.log('Playing Sound');
+        await sound.playAsync();
+    }
+
+    React.useEffect(() => {
+        return sound
+            ? () => {
+                console.log('Unloading Sound');
+                sound.unloadAsync();
+            }
+            : undefined;
+    }, [sound]);
+    // 
     return (
         <View style={styles.scene}>
             <ScrollView style={styles.scrollView}>
@@ -43,7 +68,7 @@ function HomePage({ navigation }) {
                 style={styles.fab}
                 small
                 icon="microphone"
-                onPress={() => console.log('Pressed')}
+                onPress={() => playSound()}
             />
         </View>
     )

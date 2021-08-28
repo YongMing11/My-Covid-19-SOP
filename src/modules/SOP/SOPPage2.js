@@ -17,7 +17,9 @@ const SOPPage2 = ({ navigation }) => {
 
   async function playSound(uri) {
     console.log("Loading Sound");
+    console.log(uri)
     const { sound } = await Audio.Sound.createAsync({ uri });
+    // const { sound } = await Audio.Sound.createAsync(require('./5_pengagihan.mp3'));
     setSound(sound);
 
     console.log("Playing Sound");
@@ -26,9 +28,9 @@ const SOPPage2 = ({ navigation }) => {
   React.useEffect(() => {
     return sound
       ? () => {
-          console.log("Unloading Sound");
-          sound.unloadAsync();
-        }
+        console.log("Unloading Sound");
+        sound.unloadAsync();
+      }
       : undefined;
   }, [sound]);
 
@@ -48,6 +50,7 @@ const SOPPage2 = ({ navigation }) => {
   };
   const uploadAudio = async () => {
     const uri = recording.getURI();
+    // getTranscription(uri);
     try {
       const blob = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
@@ -67,7 +70,10 @@ const SOPPage2 = ({ navigation }) => {
         xhr.send(null);
       });
       if (blob != null) {
-        sendAudio(blob);
+        // sendAudio(uri);
+        uploadAudioAsync(uri)
+        getTranscription(blob)
+        console.log('fuckelite')
       } else {
         console.log("erroor with blob");
       }
@@ -76,73 +82,150 @@ const SOPPage2 = ({ navigation }) => {
     }
   };
 
-  const sendAudio = async (blob) => {
-    console.log("start sending audio file");
+  // const sendAudio = async (uri) => {
+  //   console.log("start sending audio file");
+  //   const formData = new FormData();
+  //   formData.append('file', {
+  //     uri,
+  //     type: 'audio/flac',
+  //     // could be anything 
+  //     name: 'speech2text'
+  //   });
+  //   // sending blob
+  //   // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
+  //   fetch('http://192.168.0.180:8080/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'content-type': 'multipart/form-data'
+  //       //   // 'Content-Type': 'application/octet-stream'
+  //       //   // 'Content-Type': 'audio/flac'
+  //       // 'Content-Type': 'audio/flac'
+  //     },
+  //     body: formData, // send the audio file
+  //   })
+  //     .then(response => {
+  //       console.log('Get response from Functions.');
+  //       console.log(typeof response);
+  //       // console.log(Object.keys(response));
+  //       // console.log(Object.keys(response).map(key => {
+  //       //   return response[key];
+  //       // }));
+  //       console.log(JSON.stringify(response));
+  //       return response.text();
+  //     })
+  //     .then(res => {
+  //       console.log(res);
+  //     })
+  //     .catch(err => {
+  //       console.log('Error caught in app=>', err);
+  //     }).finally(() => {
+  //       setRecording(undefined);
+  //       console.log('finally');
+  //     });
 
-    // sending blob
-    // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
-    fetch('http://192.168.0.180:8080/',{
-      method: 'POST',
-      headers: {
-        // 'Content-Type': 'application/octet-stream'
-        // 'Content-Type': 'audio/AMR'
-        'Content-Type': 'audio/mpeg'
-      },
-      body: blob, // send the audio file
-    })
-    .then(response => {
-      console.log('Get response from Functions.');
-      console.log(typeof response);
-      // console.log(Object.keys(response));
-      // console.log(Object.keys(response).map(key => {
-      //   return response[key];
-      // }));
-      console.log(JSON.stringify(response));
-      return response.text();
-    })
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log('Error caught in app=>',err);
-    }).finally(() => {
-      setRecording(undefined);
-      console.log('finally');
+  //   // send FormData
+  //   // const { uri } = await FileSystem.getInfoAsync(recording.getURI())
+  //   // const formData = new FormData();
+  //   // // formData.append('api_key', CLOUDINARY_API_KEY);
+  //   // formData.append("file", {
+  //   //   // uri: recording.getURI(),
+  //   //   uri: recording.getURI(),
+  //   //   name: recording.getURI().split("/").pop(),
+  //   //   type: "audio/mpeg",
+  //   // });
+  //   // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
+  //   //   method: 'POST',
+  //   //   headers: {
+  //   //     'Content-Type': 'multipart/form-data'
+  //   //   },
+  //   //   body: formData, // send the audio file
+  //   // })
+  //   // .then(response => {
+  //   //   console.log('Get response from Functions.');
+  //   //   return response.text();
+  //   // })
+  //   // .then(res => {
+  //   //   console.log(JSON.stringify(res));
+  //   // })
+  //   // .catch(err => {
+  //   //   console.log('Error caught in app=>',err);
+  //   // }).finally(() => {
+  //   //   setRecording(undefined);
+  //   //   console.log('in finally');
+  //   // });
+  // };
+  async function uploadAudioAsync(uri) {
+    console.log("Uploading " + uri);
+    let apiUrl = 'http://192.168.1.205:8080';
+    let uriParts = uri.split('.');
+    let fileType = uriParts[uriParts.length - 1];
+
+    let formData = new FormData();
+    formData.append('file', {
+      uri,
+      name: `recording.${fileType}`,
+      type: `audio/flac`,
     });
-    
-    // send FormData
-    // const { uri } = await FileSystem.getInfoAsync(recording.getURI())
-    // const formData = new FormData();
-    // // formData.append('api_key', CLOUDINARY_API_KEY);
-    // formData.append("file", {
-    //   // uri: recording.getURI(),
-    //   uri: recording.getURI(),
-    //   name: recording.getURI().split("/").pop(),
-    //   type: "audio/mpeg",
-    // });
-    // fetch('https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test',{
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   },
-    //   body: formData, // send the audio file
-    // })
-    // .then(response => {
-    //   console.log('Get response from Functions.');
-    //   return response.text();
-    // })
-    // .then(res => {
-    //   console.log(JSON.stringify(res));
-    // })
-    // .catch(err => {
-    //   console.log('Error caught in app=>',err);
-    // }).finally(() => {
-    //   setRecording(undefined);
-    //   console.log('in finally');
-    // });
-  };
+    formData.append('name', "Ng Yong Ming");
+
+    let options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
+    console.log("POSTing " + uri + " to " + apiUrl);
+    return fetch(apiUrl, options);
+  }
+
+  const getTranscription = async (uri) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', {
+        uri,
+        type: 'audio/flac',
+        name: 'speech2text.flac'
+      });
+      console.log("DONE FETCHING")
+      // formData.append('user', "NAMENAMENAME");
+      // formData.append('file', uri);
+      const response = fetch('http://192.168.1.205:8080/', {
+        method: 'POST',
+        body: formData
+      }).then((res) => {
+        console.log("TING WEI JING")
+        console.log(JSON.stringify(res))
+      }).catch(() => {
+        console.log("CHOOI HE L:IN")
+      }).finally(() => {
+        console.log("FINALLY")
+      });
+      // const data = await response.json();
+      // console.log(data)
+      // this.setState({ query: data.transcript });
+    } catch (error) {
+      console.log('There was an error', error);
+      // this.stopRecording();
+      // this.resetRecording();
+    }
+    // this.setState({ isFetching: false });
+  }
 
   async function startRecording() {
+    // const formData = new FormData();
+    // formData.append("username", "Groucho");
+    // console.log(formData)
+    // const response = await fetch('http://192.168.0.180:8080/', {
+    //   mode: 'no-cors',
+    //   method: 'POST',
+    //   body: formData
+    // });
+    // const data = await response.json();
+    // console.log(data)
+    // return;
     setIsRecording(true);
     try {
       console.log("Requesting permissions..");
@@ -156,18 +239,12 @@ const SOPPage2 = ({ navigation }) => {
         {
           isMeteringEnabled: true,
           android: {
-            // extension: '.mp3',
-            // outputFormat: 2,
-            // audioEncoder: 3,
-            // sampleRate: 44100,
-            // numberOfChannels: 2,
-            // bitRate: 128000,
-            extension: ".awb",
-            outputFormat: 4,
-            audioEncoder: 2,
-            sampleRate: 16000,
+            extension: ".flac",
+            outputFormat: 3,
+            audioEncoder: 1,
+            sampleRate: 8000,
             numberOfChannels: 1,
-            bitRate: 128000,    // TODO: check
+            bitRate: 122000,    // TODO: check
           },
           ios: {
             extension: ".caf",
@@ -193,14 +270,11 @@ const SOPPage2 = ({ navigation }) => {
   }
   async function stopRecording() {
     console.log("Stopping recording..");
-    // setRecording(undefined);
     setIsRecording(false);
 
     await recording.stopAndUnloadAsync();
-    // console.log(recording);
-
     const uri = recording.getURI();
-    // console.log('Recording stopped and stored at', uri);
+    console.log('Recording stopped and stored at', uri);
     playSound(uri);
     // sendAudio();
     uploadAudio();

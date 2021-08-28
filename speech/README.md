@@ -9,7 +9,7 @@ venv\Scripts\activate.ps1
 ```
 ## Setup Auth credential for current session, run
 ```
-$env:GOOGLE_APPLICATION_CREDENTIALS="KEY_PATH"
+$env:GOOGLE_APPLICATION_CREDENTIALS="AIzaSyBn_7fDz9GCaSt422496rBe8XXuNhg59E0"
 ```
 
 functions-framework --target=parse_multipart --debug
