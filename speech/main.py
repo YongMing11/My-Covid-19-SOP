@@ -1,10 +1,14 @@
 from google.cloud import speech
+from google.cloud import storage
 import os
 import tempfile
 from werkzeug.utils import secure_filename
 from flask import jsonify
 # Import the base64 encoding library.
 import base64
+
+def main(request):
+    upload_blob('ozone-audio-17263', './work.m4a', 'test.m4a')
 
 # Pass the audio data to an encoding function.
 def encode_audio(audio_content):
@@ -59,3 +63,24 @@ def parse_multipart(request):
     for result in response.results:
         print("Transcript: {}".format(result.alternatives[0].transcript))
     return str(response.results)
+
+def upload_blob(bucket_name, source_file_name, destination_blob_name):
+    """Uploads a file to the bucket."""
+    # The ID of your GCS bucket
+    # bucket_name = "your-bucket-name"
+    # The path to your file to upload
+    # source_file_name = "local/path/to/file"
+    # The ID of your GCS object
+    # destination_blob_name = "storage-object-name"
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    blob.upload_from_filename(source_file_name)
+
+    print(
+        "File {} uploaded to {}.".format(
+            source_file_name, destination_blob_name
+        )
+    )
