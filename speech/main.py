@@ -1,6 +1,7 @@
 from google.cloud import speech
 from google.cloud import storage
 import os
+import io
 import tempfile
 from werkzeug.utils import secure_filename
 from flask import jsonify
@@ -20,57 +21,53 @@ def main(request):
     # upload_blob('ozone-audio-17263', './work.m4a', 'test.m4a')
 
 # Pass the audio data to an encoding function.
-def encode_audio(audio_content):
-#   audio_content = audio.read()
+def encode_audio(audio):
+  audio_content = audio.read()
+  print(audio_content)
   return base64.b64encode(audio_content)
 
-# Helper function that computes the filepath to save files to
-def get_file_path(filename):
-    # Note: tempfile.gettempdir() points to an in-memory file system
-    # on GCF. Thus, any files in it must fit in the instance's memory.
-    file_name = secure_filename(filename)
-    return os.path.join(tempfile.gettempdir(), file_name)
-
 def parse_multipart(request):
-    print('v45')
-    """ Parses a 'multipart/form-data' upload request
-    Args:
-        request (flask.Request): The request object.
-    Returns:
-        The response text, or any set of values that can be turned into a
-         Response object using `make_response`
-        <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>.
-    """
-    print("GANINE")
     print("request",request.form)
     print("request",request.data)
     print("request",request.files['file'])
     # request.files['file'].save('./haha12200.amr')
-    request.files['file'].save('./haha12200.m4a')
-    print("request",dir(request))
-    return "OK"
+    request.files['file'].save('./helin1channel.m4a')
+    # print("request",dir(request))
+    # return "OK"
     content_type = request.headers['content-type']
-    if content_type == 'application/json':
-        request_json = request.get_json(silent=True)
-        print('The request is application/json')
     print('content-type is',content_type)
-    # return speech_to_text(request.data)
-    file_content = encode_audio(request.data)
+
+    file_storage = request.files['file']
+    # in_file = open(file_storage, "rb")
+    # file_content = encode_audio(in_file)
+    print(type(file_storage))
+    content = file_storage.read()
+
+    # with io.open(request.files['file'], "rb") as audio_file:
+    #     content = audio_file.read()
 
     client = speech.SpeechClient()
 
-    # audio = speech.RecognitionAudio(uri=gcs_uri)
-    print('below is the content of the file')
-    print(file_content)
-
-    audio = speech.RecognitionAudio(content=file_content)
-
+    # Our audio file
+    audio = speech.RecognitionAudio(content=content)
     config = speech.RecognitionConfig(
-        # encoding=speech.RecognitionConfig.AudioEncoding.AMR,
-        # sample_rate_hertz=8000,
+        encoding=speech.RecognitionConfig.AudioEncoding.AMR,
+        sample_rate_hertz=8000,
         language_code="en-US",
-        # audio_channel_count=1,
+        audio_channel_count=1,
     )
+
+    # working Google audio sample
+    # gcs_uri = "gs://cloud-samples-data/speech/brooklyn_bridge.raw"
+    # audio = speech.RecognitionAudio(uri=gcs_uri)
+    # config = speech.RecognitionConfig(
+    #     encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
+    #     sample_rate_hertz=16000,
+    #     language_code="en-US",
+    # )
+
+    # print('below is the content of the file')
+    # print(file_content)
 
     # Detects speech in the audio file
     response = client.recognize(config=config, audio=audio)
