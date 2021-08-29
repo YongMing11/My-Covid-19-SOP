@@ -1,10 +1,102 @@
-import React from 'react'
-import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native';
-import { FAB } from 'react-native-paper';
+import React, { useState, useEffect } from 'react'
+import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, ActivityIndicator } from 'react-native';
+import { FAB, Portal, Modal, Title, IconButton, DataTable, Colors } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
-import { Audio } from 'expo-av';
+import * as Location from 'expo-location';
+import { useLocationContext } from '../../contexts/location-context';
+import Geocoder from 'react-native-geocoding';
+import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
+import { getDurationString } from '@services/timer.service';
+import info from '@mock/sop.json';
+import ModalComponent from '../../shared/components/modalComponent';
+import { getStateAndPhase } from '../../shared/services/location.service';
 
-function HomePage({ navigation }) {
+function HomePage({ navigation, route }) {
+    // === FOR TESTING PURPOSE ===
+    // console.log(route.params)
+    // route.params = {
+    //     "destination": {
+    //         "address": "Yong Peng, Johor, Malaysia",
+    //         "coordinates": {
+    //             "latitude": 2.01196,
+    //             "longitude": 103.0581698,
+    //         },
+    //         "name": "Yong Peng",
+    //     },
+    //     "duration": 3009,
+    //     "location": {
+    //         "address": "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA",
+    //         "coordinates": {
+    //             "latitude": 37.4220002,
+    //             "longitude": -122.0840167,
+    //         },
+    //         "name": "",
+    //         "state": "",
+    //     },
+    // }
+    const states = ['JOHOR', 'KEDAH', 'KELANTAN', 'MALACCA', 'NEGERI SEMBILAN', 'PAHANG', 'PENANG', 'PERAK', 'PERLIS', 'SABAH', 'SARAWAK', 'SELANGOR', 'TERANGGANU', 'KUALA LUMPUR', 'LABUAN', 'PUTRAJAYA'];
+    const { setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, getUserLocation } = useLocationContext();
+    const [visible, setVisible] = useState(true);
+    const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
+    const [networkStatus, setNetworkStatus] = useState(true);
+    Geocoder.init(GOOGLE_MAPS_APIKEY);
+
+    useEffect(() => {
+        setVisible(true);
+
+        const timeOut = setTimeout(() => {
+            if (route.params) {
+                setVisible(false);
+            }
+        }, 7000)
+        permissionFlow();
+        return () => clearTimeout(timeOut);
+    }, [route.params])
+
+    const permissionFlow = async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync().catch(error => {
+            console.log("Failed to get location permission")
+        });
+        if (status !== 'granted') {
+            //If permission is not granted, pop out a modal to ask changing permission manually in setting
+            setLocationPermissionStatus(false);
+            setErrorMsg('Permission to access location was denied');
+            return;
+        } else {
+            setLocationPermissionStatus(true);
+        }
+
+        let location = await Location.getCurrentPositionAsync({})
+            .then(data => {
+                setUserLocationCoordinates({ latitude: data.coords.latitude, longitude: data.coords.longitude })
+                return data;
+            }).catch(error => {
+                //Failed to get device location coordinates
+                console.log('Failed to get coordinate')
+                const defaultLatitude = 3.11111;
+                const defaultLongitude = 255.11111;
+                setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
+            });
+
+        getFullAddressBasedOnLocation(location);
+    }
+
+    const getFullAddressBasedOnLocation = (location) => {
+        if (location) {
+            // Reverse Geocode to get the full address of the user coordinates
+            Geocoder.from(location.coords.latitude, location.coords.longitude)
+                .then(json => {
+                    var address = json.results[0].formatted_address;
+                    const { currentState, currentPhase } = getStateAndPhase(address);
+                    setUserLocationAddress(address);
+                    setUserLocationState(currentState);
+                    setUserLocationPhase(currentPhase);
+                    setNetworkStatus(true);
+                })
+                .catch(error => setNetworkStatus(false));
+        }
+    }
+
     const actionButtons = [
         { label: 'I want to go out to eat', shortLabel: 'Go out to eat' },
         { label: 'I want to go out to buy things', shortLabel: 'Go out to buy things' },
@@ -17,38 +109,49 @@ function HomePage({ navigation }) {
         navigation.navigate('AssistancePage', { title: selectedAction })
     }
 
-    // TESTING AUDIO
-    const [sound, setSound] = React.useState();
-
-    async function playSound() {
-        console.log('Loading Sound');
-        const { sound } = await Audio.Sound.createAsync(
-            // require('../SOP/5_pengagihan.mp3')
-            require('../SOP/5_pengagihan.m4a')
-        );
-        setSound(sound);
-
-        console.log('Playing Sound');
-        await sound.playAsync();
-    }
-
-    React.useEffect(() => {
-        return sound
-            ? () => {
-                console.log('Unloading Sound');
-                sound.unloadAsync();
-            }
-            : undefined;
-    }, [sound]);
-    // 
     return (
         <View style={styles.scene}>
+            {/* Display Modal when user finish activity */}
+            {route.params &&
+                <ModalComponent
+                    visible={visible}
+                    onDismiss={() => setVisible(false)}
+                    icon="check-circle"
+                    iconColor="green"
+                    title="You have completed your activity!"
+                    text={"Duration: " + getDurationString(route.params.duration)}
+                    location={route.params.location}
+                    destination={route.params.destination}
+                />
+            }
+
+            {/* Modal pop out if user location permission is not granted, user needs to turn on in settings manually */}
+            <ModalComponent
+                visible={!locationPermissionStatus}
+                onDismiss={() => permissionFlow()}
+                icon="map-marker-radius"
+                iconColor="red"
+                title="Location is required for My COVID-19 SOP to work properly"
+                text="Please allow location access in settings"
+            />
+            <ModalComponent
+                visible={!networkStatus}
+                onDismiss={() => console.log("Close Network Modal")}
+                icon="wifi-off"
+                iconColor="black"
+                title="No internet connection"
+                text="Please make sure that WI-FI or mobile data is turned on."
+            />
+
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
                     <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
                         <View style={styles.areaStatusBar}>
                             <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
-                            <Text style={styles.areaStatusBar_phase}>PPN Phase 1</Text>
+                            {getUserLocation().phase !== "" ?
+                                <Text style={styles.areaStatusBar_phase}>{getUserLocation().phase}</Text> :
+                                <ActivityIndicator animating={true} color={Colors.amber100} />
+                            }
                         </View>
                     </TouchableOpacity>
                 </ImageBackground>
@@ -68,15 +171,21 @@ function HomePage({ navigation }) {
                 style={styles.fab}
                 small
                 icon="microphone"
-                onPress={() => playSound()}
+                onPress={() => console.log('Pressed')}
             />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    modal: {
+        backgroundColor: 'white',
+        padding: 25,
+        margin: 25
+    },
     scene: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        alignItems: 'center'
     },
     container: {
         flex: 1,

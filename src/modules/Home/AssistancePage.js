@@ -1,24 +1,43 @@
 import React, { createRef, useEffect, useRef, useState } from 'react'
 import { StyleSheet, View, Text, Dimensions, Keyboard } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button, Paragraph } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
 import MapView, { Marker, Callout, Circle } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
+import { useLocationContext } from '../../contexts/location-context';
+import { getStateAndPhase } from '../../shared/services/location.service';
 
 const AssistancePage = ({ navigation, route }) => {
+    const { location, setUserLocation } = useLocationContext();
     const placesAPI_query = {
         key: GOOGLE_MAPS_APIKEY,
         language: 'en',
         components: "country:MY"
     }
     const mapRef = useRef(null);
+    const locationInputRef = useRef();
 
-    const [location, setLocation] = useState({
-        latitude: 3.1192,
-        longitude: 101.6538
+    // const [location, setLocation] = useState({
+    //     name: "Example Location",
+    //     address: "Example Location 1, Jalan Example, Taman Example,Example Location 1, Jalan Example, Taman ExampleExample Location 1, Jalan Example, Taman Example",
+    //     coordinates: {
+    //         latitude: 3.16854,
+    //         longitude: 101.53666
+    //     }
+    // });
+    const [destination, setDestination] = useState({
+        name: "",
+        address: "",
+        coordinates: {
+            latitude: 3.16854,
+            longitude: 101.53666
+        }
     });
-    const [destination, setDestination] = useState(null);
+
+    useEffect(() => {
+        locationInputRef.current?.setAddressText(location.address);
+    }, [])
 
     useEffect(() => {
         onUserLocationChange();
@@ -31,8 +50,8 @@ const AssistancePage = ({ navigation, route }) => {
     }
 
     const onUserLocationChange = () => {
-        mapRef.current.fitToCoordinates([
-            location, destination
+        mapRef.current?.fitToCoordinates([
+            location.coordinates, destination.coordinates
         ], {
             edgePadding: {
                 top: 100,
@@ -41,6 +60,7 @@ const AssistancePage = ({ navigation, route }) => {
                 left: 100
             }
         })
+        console.log(destination)
     }
 
     const navigateToAssistancePage2 = () => {
@@ -52,6 +72,7 @@ const AssistancePage = ({ navigation, route }) => {
     return (
         <View style={styles.container}>
             <GooglePlacesAutocomplete
+                ref={locationInputRef}
                 placeholder='Enter your location'
                 fetchDetails={true}
                 GooglePlacesDetailsQuery={{
@@ -59,10 +80,13 @@ const AssistancePage = ({ navigation, route }) => {
                 }}
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
-                    console.log(data, details);
-                    setLocation({
-                        latitude: details.geometry.location.lat,
-                        longitude: details.geometry.location.lng
+                    setUserLocation({
+                        name: details.name,
+                        address: data.description,
+                        coordinates: {
+                            latitude: details.geometry.location.lat,
+                            longitude: details.geometry.location.lng
+                        }
                     })
                 }}
                 query={placesAPI_query}
@@ -75,9 +99,16 @@ const AssistancePage = ({ navigation, route }) => {
                     rankby: "distance"
                 }}
                 onPress={(data, details = null) => {
+                    const { currentState, currentPhase } = getStateAndPhase(data.description);
                     setDestination({
-                        latitude: details.geometry.location.lat,
-                        longitude: details.geometry.location.lng
+                        name: details.name,
+                        address: data.description,
+                        coordinates: {
+                            latitude: details.geometry.location.lat,
+                            longitude: details.geometry.location.lng
+                        },
+                        state: currentState,
+                        phase: currentPhase
                     })
                 }}
                 query={placesAPI_query}
@@ -89,28 +120,29 @@ const AssistancePage = ({ navigation, route }) => {
                     onUserLocationChange={onUserLocationChange}
                     onMapReady={onUserLocationChange}
                     initialRegion={{
-                        ...location,
+                        ...location.coordinates,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}>
                     {location &&
-                        <Marker coordinate={location} pinColor={theme.colors.primaryBlue}>
+                        <Marker coordinate={location.coordinates} pinColor={theme.colors.primaryBlue}>
                             <Callout>
-                                <Text>Your Location</Text>
+                                <Text style={{ fontWeight: 'bold' }}>Your Location</Text>
+                                <Paragraph>{location.address}</Paragraph>
                             </Callout>
                         </Marker>}
                     {destination &&
-                        <Marker coordinate={destination}>
+                        <Marker coordinate={destination.coordinates}>
                             <Callout>
-                                <Text>Your Destination</Text>
+                                <Text style={{ fontWeight: 'bold' }}>Your Destination</Text>
+                                <Text>{destination.address}</Text>
                             </Callout>
                         </Marker>}
-                    <Circle center={location} radius={1000} />
+                    <Circle center={location.coordinates} radius={1000} />
                 </MapView>
                 <Button style={styles.actionButton} mode="contained" onPress={navigateToAssistancePage2}
                 // disabled={!location || !destination}
-                >
-                    Confirm
+                >Confirm
                 </Button>
             </View>
         </View>
