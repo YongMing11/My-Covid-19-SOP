@@ -43,6 +43,7 @@ function HomePage({ navigation, route }) {
     const [recording, setRecording] = React.useState(false);
     const [isRecording, setIsRecording] = useState(false);
     const [sound, setSound] = React.useState();
+    const [openModal, setOpenModal] = React.useState(false);
 
     Geocoder.init(GOOGLE_MAPS_APIKEY);
 
@@ -147,7 +148,7 @@ function HomePage({ navigation, route }) {
         formData.append('file', {
           uri,
           name: `recording.${fileType}`,
-          type: `audio/wav`,
+          type: `audio/wav`,       // TODO: is this correct?
         });
     
         let options = {
@@ -165,6 +166,7 @@ function HomePage({ navigation, route }) {
     
       async function startRecording() {
         setIsRecording(true);
+        setOpenModal(true);
         try {
           console.log("Requesting permissions..");
           await Audio.requestPermissionsAsync();
@@ -211,15 +213,19 @@ function HomePage({ navigation, route }) {
         const uri = recording.getURI();
         console.log('Recording stopped and stored at', uri);
         playSound(uri);
-        // sendAudio();
-        uploadAudioAsync(uri)
-        .then(res => res.json())
-        .then(res => {
-          console.log(res);
-        }).catch(err => {
-          console.log(err);
-          return err;
-        });
+
+        // code to navigate
+        // navigation.navigate('AssistancePage', { title: selectedAction })
+
+        // TODO: add above block to below
+        // uploadAudioAsync(uri)
+        // .then(res => res.json())
+        // .then(res => {
+        //   console.log(res);
+        // }).catch(err => {
+        //   console.log(err);
+        //   return err;
+        // });
       }
     return (
         <View style={styles.scene}>
@@ -245,6 +251,15 @@ function HomePage({ navigation, route }) {
                 iconColor="red"
                 title="Location is required for My COVID-19 SOP to work properly"
                 text="Please allow location access in settings"
+            />
+            {/* Modal pop out if user click recording button */}
+            <ModalComponent
+                visible={openModal}
+                onDismiss={() => {setOpenModal(false);}}
+                icon="emoticon-outline"
+                iconColor="blue"
+                title={'Reminder:\nmention action and destination with the word "at" in between'}
+                text={'Example: I want go out to work at Subang,\nI want to go somewhere at Shah Alam'}
             />
             <ModalComponent
                 visible={!networkStatus}
