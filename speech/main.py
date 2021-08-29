@@ -10,16 +10,6 @@ import base64
 from flask import Flask, request
 from flask import Response
 
-app = Flask(__name__)
-
-@app.route('/', methods=['GET'])
-def main(request):
-    print('FUck')
-    r = Response(response="TEST OK", status=200, mimetype="application/xml")
-    r.headers["Content-Type"] = "text/xml; charset=utf-8"
-    return r
-    # upload_blob('ozone-audio-17263', './work.m4a', 'test.m4a')
-
 # Pass the audio data to an encoding function.
 def encode_audio(audio):
   audio_content = audio.read()
@@ -27,11 +17,11 @@ def encode_audio(audio):
   return base64.b64encode(audio_content)
 
 def parse_multipart(request):
-    print("request",request.form)
-    print("request",request.data)
+    # print("request",request.form)
+    # print("request",request.data)
     print("request",request.files['file'])
-    # request.files['file'].save('./haha12200.amr')
-    # request.files['file'].save('./helin1channel.wav')
+    # request.files['file'].save('./sister.amr')
+    # request.files['file'].save('./helin1channel.m4a')
     # print("request",dir(request))
     # return "OK"
     content_type = request.headers['content-type']
@@ -83,6 +73,8 @@ def parse_multipart(request):
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
     """Uploads a file to the bucket."""
+    app = Flask(__name__)
+    # upload_blob('ozone-audio-17263', './work.m4a', 'test.m4a')
     # The ID of your GCS bucket
     # bucket_name = "your-bucket-name"
     # The path to your file to upload
