@@ -31,7 +31,7 @@ def parse_multipart(request):
     print("request",request.data)
     print("request",request.files['file'])
     # request.files['file'].save('./haha12200.amr')
-    request.files['file'].save('./helin1channel.m4a')
+    # request.files['file'].save('./helin1channel.wav')
     # print("request",dir(request))
     # return "OK"
     content_type = request.headers['content-type']
@@ -39,9 +39,10 @@ def parse_multipart(request):
 
     file_storage = request.files['file']
     # in_file = open(file_storage, "rb")
+    in_file = (file_storage.read())
     # file_content = encode_audio(in_file)
-    print(type(file_storage))
-    content = file_storage.read()
+    print(type(in_file))
+    # content = file_storage.read()
 
     # with io.open(request.files['file'], "rb") as audio_file:
     #     content = audio_file.read()
@@ -49,7 +50,9 @@ def parse_multipart(request):
     client = speech.SpeechClient()
 
     # Our audio file
-    audio = speech.RecognitionAudio(content=content)
+    audio = speech.RecognitionAudio(content=in_file)
+    # audio = speech.RecognitionAudio(uri="gs://ozone-audio-17263/brother.amr")
+    # audio = speech.RecognitionAudio(content=content)
     config = speech.RecognitionConfig(
         encoding=speech.RecognitionConfig.AudioEncoding.AMR,
         sample_rate_hertz=8000,

@@ -164,7 +164,7 @@ const SOPPage2 = ({ navigation }) => {
     formData.append('file', {
       uri,
       name: `recording.${fileType}`,
-      type: `audio/m4a`,
+      type: `audio/wav`,
     });
     formData.append('name', "Ng Yong Ming");
 
@@ -186,8 +186,8 @@ const SOPPage2 = ({ navigation }) => {
       const formData = new FormData();
       formData.append('file', {
         uri,
-        type: 'audio/m4a',
-        name: 'speech2text.m4a'
+        type: 'audio/wav',
+        name: 'speech2text.wav'
       });
       console.log("DONE FETCHING")
       // formData.append('user', "NAMENAMENAME");
@@ -238,9 +238,9 @@ const SOPPage2 = ({ navigation }) => {
         {
           isMeteringEnabled: true,
           android: {
-            extension: '.m4a',
-            outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
-            audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
+            extension: '.wav',
+            // outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
+            // audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
             sampleRate: 44100,
             numberOfChannels: 2,
             bitRate: 128000,
