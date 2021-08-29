@@ -1,4 +1,5 @@
 from google.cloud import speech
+import json
 
 def parse_multipart(request):
     print("request",request.files['file'])
@@ -24,4 +25,4 @@ def parse_multipart(request):
 
     for result in response.results:
         print("Transcript: {}".format(result.alternatives[0].transcript))
-    return str(response.results)
+    return json.dumps(str(response.results)), 200, {'Content-Type': 'application/json'}
