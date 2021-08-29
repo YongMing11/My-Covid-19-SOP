@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native'
 import theme from '../../shared/constants/Theme'
 import { DataTable, Checkbox, Button } from 'react-native-paper';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import MapViewDirections from 'react-native-maps-directions';
+import { useLocationContext } from '../../contexts/location-context';
 
 function Timer({ startTime }) {
     const [duration, setDuration] = useState("0 MIN 0 SEC");
@@ -38,7 +39,7 @@ function Timer({ startTime }) {
     )
 }
 
-function TaskChecklists() {
+function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist }) {
     const initialTask = {
         "Before starting your journey": {
             'Wear mask': false,
@@ -58,6 +59,18 @@ function TaskChecklists() {
         currentTasks[taskCategory][taskTitle] = !tasks[taskCategory][taskTitle]
         setTasks(currentTasks)
     }
+
+    useEffect(() => {
+        for (let checklistObject of Object.values(tasks)) {
+            for (let status of Object.values(checklistObject)) {
+                if (!status) {
+                    setIncompleteChecklist();
+                    return;
+                }
+            }
+        }
+        setCompleteChecklist();
+    }, [tasks])
 
     return (
         Object.entries(tasks).map(([taskCategory, value], index) => {
@@ -87,14 +100,16 @@ function TaskChecklists() {
 
 
 function AssistancePage2({ navigation, route }) {
-    const startTime = new Date();
+    const [startTime] = useState(new Date());
     const mapRef = useRef(null);
-    const { location, destination } = route.params;
+    const { location, destination, setUserLocation, setUserDestination } = useLocationContext();
+    const [checklistStatus, setChecklistStatus] = useState(false);
 
     const onUserLocationChange = () => {
-        mapRef.current.fitToCoordinates([
-            location.coordinates || null, destination.coordinates || null
-        ], {
+        const coordinatesRange = [];
+        if (location && location.coordinates) coordinatesRange.push(location.coordinates)
+        if (destination && destination.coordinates) coordinatesRange.push(destination.coordinates)
+        mapRef.current?.fitToCoordinates(coordinatesRange, {
             edgePadding: {
                 top: 100,
                 right: 100,
@@ -104,9 +119,22 @@ function AssistancePage2({ navigation, route }) {
         })
     }
 
+    const setCompleteChecklist = useCallback(() => {
+        setChecklistStatus(true)
+    }, [])
+
+    const setIncompleteChecklist = useCallback(() => {
+        setChecklistStatus(false)
+    }, [])
+
     const finishActivity = () => {
         const finalDuration = new Date().getTime() - startTime.getTime();
-        navigation.navigate('HomePage', { duration: finalDuration, location, destination })
+        const finalLocation = location;
+        const finalDestination = destination;
+        setUserLocation(null);
+        setUserDestination(null);
+        navigation.navigate('HomePage',
+            { duration: finalDuration, location: finalLocation, destination: finalDestination })
     }
 
 
@@ -117,22 +145,23 @@ function AssistancePage2({ navigation, route }) {
                 <MapView style={styles.map}
                     ref={mapRef}
                     onMapReady={onUserLocationChange}>
-                    <MapViewDirections
-                        origin={location.coordinates}
-                        destination={destination.coordinates}
-                        apikey={GOOGLE_MAPS_APIKEY}
-                        strokeWidth={5}
-                        strokeColor={theme.colors.secondaryBlue}
-                        lineDashPattern={[1]}
-                    />
-                    {location &&
+                    {location && destination &&
+                        <MapViewDirections
+                            origin={location.coordinates}
+                            destination={destination.coordinates}
+                            apikey={GOOGLE_MAPS_APIKEY}
+                            strokeWidth={5}
+                            strokeColor={theme.colors.secondaryBlue}
+                            lineDashPattern={[1]}
+                        />}
+                    {location && location.coordinates &&
                         <Marker coordinate={location.coordinates} pinColor={theme.colors.primaryBlue}>
                             <Callout>
                                 <Text>Your Location</Text>
                                 <Text>{location.address}</Text>
                             </Callout>
                         </Marker>}
-                    {destination &&
+                    {destination && destination.coordinates &&
                         <Marker coordinate={destination.coordinates}>
                             <Callout>
                                 <Text>Your Destination</Text>
@@ -143,8 +172,10 @@ function AssistancePage2({ navigation, route }) {
 
 
                 <View style={styles.container}>
-                    <TaskChecklists />
-                    <Button style={styles.actionButton} mode="contained" onPress={finishActivity}>Done
+                    <TaskChecklists setCompleteChecklist={setCompleteChecklist}
+                        setIncompleteChecklist={setIncompleteChecklist} />
+                    {checklistStatus}
+                    <Button style={checklistStatus ? styles.actionButton : styles.disabledButton} mode="contained" onPress={finishActivity} disabled={!checklistStatus}>Done
                     </Button>
                 </View>
             </ScrollView>
@@ -183,6 +214,12 @@ const styles = StyleSheet.create({
     },
     actionButton: {
         backgroundColor: theme.colors.primaryBlue,
+        width: '80%',
+        marginVertical: 20
+    },
+    disabledButton: {
+        backgroundColor: theme.colors.secondaryGrey,
+        color: 'black',
         width: '80%',
         marginVertical: 20
     }

@@ -20,7 +20,7 @@ function ModalComponent({ visible, onDismiss, icon, iconColor, title, text, loca
                             <DataTable.Row>
                                 <DataTable.Cell style={{ flex: 2 }}>From</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 8 }}>
-                                    {location && location.name !== "" ?
+                                    {location && location.name && location.name !== "" ?
                                         location.name : location.address}
                                 </DataTable.Cell>
                             </DataTable.Row>

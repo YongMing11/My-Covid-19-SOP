@@ -1,21 +1,33 @@
 {
   "phases": [
     {
-      "areas": ["Selangor", "Kuala Lumpur", "Sarawak", "Malacca", "Johor"],
+      "areas": [
+        "Selangor",
+        "Kuala Lumpur",
+        "Putrajaya",
+        "Kedah",
+        "Melaka",
+        "Johor"
+      ],
       "title": "PNN Phase 1"
     },
     {
       "areas": [
         "Penang",
-        "Perlis",
+        "Pulau Pinang",
         "Pahang",
         "Terengganu",
-        "Kelantan"
+        "Kelantan",
+        "Negeri Sembilan",
+        "Sabah"
       ],
       "title": "PNN Phase 2"
     },
     {
-      "areas": [],
+      "areas": [
+        "Perlis",
+        "Sarawak"
+      ],
       "title": "PNN Phase 3"
     },
     {
@@ -23,11 +35,14 @@
       "title": "PNN Phase 4"
     },
     {
-      "areas": ["Kampuing Murni", "Taman Air Condo Block A"],
+      "areas": [
+        "Kampuing Murni",
+        "Taman Air Condo Block A"
+      ],
       "title": "EMCO"
     }
   ],
-  "activities":[
+  "activities": [
     {
       "title": "Area Invovled",
       "content": [
@@ -38,7 +53,9 @@
     },
     {
       "title": "Effective Period",
-      "content": ["8 Aug until 9 Sept"]
+      "content": [
+        "8 Aug until 9 Sept"
+      ]
     }
   ],
   "sectors": [

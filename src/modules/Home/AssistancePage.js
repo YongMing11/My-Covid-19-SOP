@@ -9,7 +9,7 @@ import { useLocationContext } from '../../contexts/location-context';
 import { getStateAndPhase } from '../../shared/services/location.service';
 
 const AssistancePage = ({ navigation, route }) => {
-    const { location, setUserLocation } = useLocationContext();
+    const { location, setUserLocation, destination, setUserDestination } = useLocationContext();
     const placesAPI_query = {
         key: GOOGLE_MAPS_APIKEY,
         language: 'en',
@@ -17,6 +17,7 @@ const AssistancePage = ({ navigation, route }) => {
     }
     const mapRef = useRef(null);
     const locationInputRef = useRef();
+    const destinationInputRef = useRef();
 
     // const [location, setLocation] = useState({
     //     name: "Example Location",
@@ -26,20 +27,24 @@ const AssistancePage = ({ navigation, route }) => {
     //         longitude: 101.53666
     //     }
     // });
-    const [destination, setDestination] = useState({
-        name: "",
-        address: "",
-        coordinates: {
-            latitude: 3.16854,
-            longitude: 101.53666
-        }
-    });
+    // const [destination, setDestination] = useState({
+    //     name: "",
+    //     address: "",
+    //     coordinates: {
+    //         latitude: 3.16854,
+    //         longitude: 101.53666
+    //     }
+    // });
 
     useEffect(() => {
         locationInputRef.current?.setAddressText(location.address);
+        if (destination && destination.address && destination.address.length !== 0) {
+            destinationInputRef.current?.setAddressText(location.address);
+        }
     }, [])
 
     useEffect(() => {
+        console.log(destination)
         onUserLocationChange();
     }, [location, destination])
 
@@ -50,9 +55,10 @@ const AssistancePage = ({ navigation, route }) => {
     }
 
     const onUserLocationChange = () => {
-        mapRef.current?.fitToCoordinates([
-            location.coordinates, destination.coordinates
-        ], {
+        const coordinatesRange = [];
+        if (location && location.coordinates) coordinatesRange.push(location.coordinates)
+        if (destination && destination.coordinates) coordinatesRange.push(destination.coordinates)
+        mapRef.current?.fitToCoordinates(coordinatesRange, {
             edgePadding: {
                 top: 100,
                 right: 100,
@@ -60,7 +66,6 @@ const AssistancePage = ({ navigation, route }) => {
                 left: 100
             }
         })
-        console.log(destination)
     }
 
     const navigateToAssistancePage2 = () => {
@@ -93,6 +98,7 @@ const AssistancePage = ({ navigation, route }) => {
                 styles={searchBoxStyle}
             />
             <GooglePlacesAutocomplete
+                ref={destinationInputRef}
                 placeholder='Enter your destination'
                 fetchDetails={true}
                 GooglePlacesDetailsQuery={{
@@ -100,7 +106,7 @@ const AssistancePage = ({ navigation, route }) => {
                 }}
                 onPress={(data, details = null) => {
                     const { currentState, currentPhase } = getStateAndPhase(data.description);
-                    setDestination({
+                    setUserDestination({
                         name: details.name,
                         address: data.description,
                         coordinates: {
@@ -124,14 +130,14 @@ const AssistancePage = ({ navigation, route }) => {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}>
-                    {location &&
+                    {location && location.coordinates &&
                         <Marker coordinate={location.coordinates} pinColor={theme.colors.primaryBlue}>
                             <Callout>
                                 <Text style={{ fontWeight: 'bold' }}>Your Location</Text>
                                 <Paragraph>{location.address}</Paragraph>
                             </Callout>
                         </Marker>}
-                    {destination &&
+                    {destination && destination.coordinates &&
                         <Marker coordinate={destination.coordinates}>
                             <Callout>
                                 <Text style={{ fontWeight: 'bold' }}>Your Destination</Text>
@@ -140,8 +146,8 @@ const AssistancePage = ({ navigation, route }) => {
                         </Marker>}
                     <Circle center={location.coordinates} radius={1000} />
                 </MapView>
-                <Button style={styles.actionButton} mode="contained" onPress={navigateToAssistancePage2}
-                // disabled={!location || !destination}
+                <Button style={(!location || !destination) ? styles.disabledButton : styles.actionButton} mode="contained" onPress={navigateToAssistancePage2}
+                    disabled={!location || !destination}
                 >Confirm
                 </Button>
             </View>
@@ -163,6 +169,22 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 150,
         backgroundColor: theme.colors.primaryBlue,
+        width: '80%',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+        elevation: 4,
+        zIndex: 2
+    },
+    disabledButton: {
+        position: 'absolute',
+        bottom: 150,
+        backgroundColor: theme.colors.secondaryGrey,
+        color: 'black',
         width: '80%',
         shadowColor: "#000",
         shadowOffset: {
