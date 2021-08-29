@@ -12,7 +12,6 @@ import { title } from "../constants/config";
 import AssistancePage from "../../modules/Home/AssistancePage";
 import ProfilePage from "../../modules/Profile/ProfilePage";
 import AssistancePage2 from "../../modules/Home/AssistancePage2";
-import theme from "../constants/Theme";
 
 const Stack = createStackNavigator();
 
