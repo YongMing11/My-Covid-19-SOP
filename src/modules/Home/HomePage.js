@@ -97,9 +97,8 @@ function HomePage({ navigation, route }) {
         }
     }
 
-    // Action Object, Origin Address String, Destination Address String
-    const speechAction = (selectedAction, originAddress, destinationAddress) => {
-        setUserLocation(getLocationByAddress(originAddress))
+    // Action Object (mock/action.js), Destination Address String
+    const speechAction = (selectedAction, destinationAddress) => {
         setUserDestination(getLocationByAddress(destinationAddress))
         onPressAction(selectedAction)
     }
