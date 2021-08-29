@@ -39,6 +39,10 @@ function HomePage({ navigation, route }) {
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const [networkStatus, setNetworkStatus] = useState(true);
+    const [recording, setRecording] = React.useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [sound, setSound] = React.useState();
+
     Geocoder.init(GOOGLE_MAPS_APIKEY);
 
     useEffect(() => {
@@ -109,6 +113,108 @@ function HomePage({ navigation, route }) {
         navigation.navigate('AssistancePage', { title: selectedAction })
     }
 
+    async function playSound(uri) {
+        console.log("Loading Sound");
+        console.log(uri);
+        const { sound } = await Audio.Sound.createAsync({ uri });
+        // const { sound } = await Audio.Sound.createAsync(require('./5_pengagihan.mp3'));
+        setSound(sound);
+    
+        console.log("Playing Sound");
+        await sound.playAsync();
+      }
+      React.useEffect(() => {
+        return sound
+          ? () => {
+            console.log("Unloading Sound");
+            sound.unloadAsync();
+          }
+          : undefined;
+      }, [sound]);
+    async function uploadAudioAsync(uri) {
+        let apiUrl = 'http://192.168.0.180:8080';
+        // let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
+        let uriParts = uri.split('.');
+        let fileType = uriParts[uriParts.length - 1];
+    
+        let formData = new FormData();
+        formData.append('file', {
+          uri,
+          name: `recording.${fileType}`,
+          type: `audio/wav`,
+        });
+    
+        let options = {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+        };
+    
+        console.log("POSTing " + uri + " to " + apiUrl);
+        return fetch(apiUrl, options);
+      }
+    
+      async function startRecording() {
+        setIsRecording(true);
+        try {
+          console.log("Requesting permissions..");
+          await Audio.requestPermissionsAsync();
+          await Audio.setAudioModeAsync({
+            allowsRecordingIOS: true,
+            playsInSilentModeIOS: true,
+          });
+          console.log("Starting recording..");
+          const { recording } = await Audio.Recording.createAsync(
+            {
+              isMeteringEnabled: true,
+              android: {
+                extension: '.amr',
+                outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_AMR_NB,
+                audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AMR_NB,
+                sampleRate: 8000,
+                numberOfChannels: 1,
+                bitRate: 12200,
+              },
+              ios: {
+                extension: ".caf",
+                audioQuality: 0x7f,
+                sampleRate: 44100,
+                numberOfChannels: 2,
+                bitRate: 128000,
+                linearPCMBitDepth: 16,
+                linearPCMIsBigEndian: false,
+                linearPCMIsFloat: false,
+              },
+            }
+          );
+          setRecording(recording);
+          console.log("Recording started");
+        } catch (err) {
+          console.error("Failed to start recording", err);
+          setIsRecording(false);
+        }
+      }
+      async function stopRecording() {
+        console.log("Stopping recording..");
+        setIsRecording(false);
+    
+        await recording.stopAndUnloadAsync().catch(err => console.log);
+        const uri = recording.getURI();
+        console.log('Recording stopped and stored at', uri);
+        playSound(uri);
+        // sendAudio();
+        uploadAudioAsync(uri)
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+        }).catch(err => {
+          console.log(err);
+          return err;
+        });
+      }
     return (
         <View style={styles.scene}>
             {/* Display Modal when user finish activity */}
@@ -171,7 +277,7 @@ function HomePage({ navigation, route }) {
                 style={styles.fab}
                 small
                 icon="microphone"
-                onPress={() => console.log('Pressed')}
+                onPress={isRecording ? stopRecording : startRecording}
             />
         </View>
     )
