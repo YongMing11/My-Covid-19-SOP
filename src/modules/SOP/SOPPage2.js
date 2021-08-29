@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { Searchbar, List, Menu, Button } from "react-native-paper";
 import info from "@mock/sop.json";
-import { Audio } from "expo-av";
 
 const SOPPage2 = ({ navigation }) => {
   const icon = "chevron-right";

@@ -10,6 +10,7 @@ import { getDurationString } from '@services/timer.service';
 import info from '@mock/sop.json';
 import ModalComponent from '../../shared/components/modalComponent';
 import { getStateAndPhase } from '../../shared/services/location.service';
+import { Audio } from "expo-av";
 
 function HomePage({ navigation, route }) {
     // === FOR TESTING PURPOSE ===
@@ -97,7 +98,11 @@ function HomePage({ navigation, route }) {
                     setUserLocationPhase(currentPhase);
                     setNetworkStatus(true);
                 })
-                .catch(error => setNetworkStatus(false));
+                .catch(error => {
+                    // below line commented for dev purpose
+                    // setNetworkStatus(false);
+                    setNetworkStatus(true);
+                });
         }
     }
 
@@ -110,7 +115,8 @@ function HomePage({ navigation, route }) {
     ]
 
     const onPressAction = (selectedAction) => {
-        navigation.navigate('AssistancePage', { title: selectedAction })
+        console.log('onPressAction');
+        // navigation.navigate('AssistancePage', { title: selectedAction })
     }
 
     async function playSound(uri) {
@@ -274,7 +280,8 @@ function HomePage({ navigation, route }) {
                 </View>
             </ScrollView>
             <FAB
-                style={styles.fab}
+                // style={styles.fab}
+                style={[styles.fab, isRecording? styles.fabRecording: styles.fabNotRecording]}
                 small
                 icon="microphone"
                 onPress={isRecording ? stopRecording : startRecording}
@@ -370,11 +377,15 @@ const styles = StyleSheet.create({
         margin: 16,
         right: 0,
         bottom: 0,
-        backgroundColor: theme.colors.primaryBlue,
         color: 'white',
         padding: 5
-    }
-
+    }, 
+    fabRecording: {
+        backgroundColor: theme.colors.warning,
+    },
+    fabNotRecording: {
+        backgroundColor: theme.colors.primaryBlue,
+    },
 });
 
 export default HomePage;
