@@ -10,6 +10,7 @@ import { getDurationString } from '@services/timer.service';
 import action from '@mock/action.json';
 import ModalComponent from '../../shared/components/modalComponent';
 import { getLocationByAddress, getStateAndPhase } from '../../shared/services/location.service';
+import { useIsFocused } from '@react-navigation/native';
 
 function HomePage({ navigation, route }) {
     // === FOR TESTING PURPOSE ===
@@ -40,17 +41,21 @@ function HomePage({ navigation, route }) {
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const [networkStatus, setNetworkStatus] = useState(true);
     Geocoder.init(GOOGLE_MAPS_APIKEY);
+    const isFocused = useIsFocused();
 
     useEffect(() => {
-        setVisible(true);
-        const timeOut = setTimeout(() => {
-            if (route.params) {
-                setVisible(false);
-            }
-        }, 7000)
-        permissionFlow();
-        return () => clearTimeout(timeOut);
-    }, [route.params])
+        if (isFocused) {
+            console.log(isFocused)
+            setVisible(true);
+            const timeOut = setTimeout(() => {
+                if (route.params) {
+                    setVisible(false);
+                }
+            }, 7000)
+            permissionFlow();
+            return () => clearTimeout(timeOut);
+        }
+    }, [isFocused])
 
     const permissionFlow = async () => {
         let { status } = await Location.requestForegroundPermissionsAsync().catch(error => {
@@ -108,6 +113,11 @@ function HomePage({ navigation, route }) {
         navigation.navigate('AssistancePage', { title: selectedAction.shortLabel })
     }
 
+    const navigationAction = (pageName) => {
+        setNetworkStatus(true);
+        navigation.navigate(pageName)
+    }
+
     return (
         <View style={styles.scene}>
             {/* Display Modal when user finish activity */}
@@ -141,20 +151,22 @@ function HomePage({ navigation, route }) {
                 icon="wifi-off"
                 iconColor="black"
                 title="No internet connection"
-                text="Please make sure that WI-FI or mobile data is turned on."
+                text="Please make sure that WI-FI or mobile data is turned on. You can visit other page while offline."
+                showPageButton={true}
+                navigationAction={navigationAction}
             />
 
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
-                    <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
-                        <View style={styles.areaStatusBar}>
-                            <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
-                            {location && location.phase && location.phase !== "" ?
-                                <Text style={styles.areaStatusBar_phase}>{location.phase}</Text> :
-                                <ActivityIndicator animating={true} color={Colors.amber100} />
-                            }
-                        </View>
-                    </TouchableOpacity>
+                    {/* <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}> */}
+                    <View style={styles.areaStatusBar}>
+                        <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
+                        {location && location.phase && location.phase !== "" ?
+                            <Text style={styles.areaStatusBar_phase}>{location.phase}</Text> :
+                            <ActivityIndicator animating={true} color={Colors.amber100} />
+                        }
+                    </View>
+                    {/* </TouchableOpacity> */}
                 </ImageBackground>
                 <Image source={require('../../../assets/HomePage_car.png')} style={styles.carImg}></Image>
                 <View style={styles.actionButton_Group}>
