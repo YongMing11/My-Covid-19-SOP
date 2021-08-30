@@ -7,10 +7,11 @@ import { useLocationContext } from '../../contexts/location-context';
 import Geocoder from 'react-native-geocoding';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import { getDurationString } from '@services/timer.service';
-import info from '@mock/sop.json';
+import action from '@mock/action.json';
 import ModalComponent from '../../shared/components/modalComponent';
-import { getStateAndPhase } from '../../shared/services/location.service';
 import { Audio } from "expo-av";
+import { getLocationByAddress, getStateAndPhase } from '../../shared/services/location.service';
+import { useIsFocused } from '@react-navigation/native';
 
 function HomePage({ navigation, route }) {
     // === FOR TESTING PURPOSE ===
@@ -36,7 +37,7 @@ function HomePage({ navigation, route }) {
     //     },
     // }
     const states = ['JOHOR', 'KEDAH', 'KELANTAN', 'MALACCA', 'NEGERI SEMBILAN', 'PAHANG', 'PENANG', 'PERAK', 'PERLIS', 'SABAH', 'SARAWAK', 'SELANGOR', 'TERANGGANU', 'KUALA LUMPUR', 'LABUAN', 'PUTRAJAYA'];
-    const { setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, getUserLocation } = useLocationContext();
+    const { setUserAction, location, setUserLocation, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, setUserDestination } = useLocationContext();
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const [networkStatus, setNetworkStatus] = useState(true);
@@ -46,18 +47,21 @@ function HomePage({ navigation, route }) {
     const [openModal, setOpenModal] = React.useState(false);
 
     Geocoder.init(GOOGLE_MAPS_APIKEY);
+    const isFocused = useIsFocused();
 
     useEffect(() => {
-        setVisible(true);
-
-        const timeOut = setTimeout(() => {
-            if (route.params) {
-                setVisible(false);
-            }
-        }, 7000)
-        permissionFlow();
-        return () => clearTimeout(timeOut);
-    }, [route.params])
+        if (isFocused) {
+            console.log(isFocused)
+            setVisible(true);
+            const timeOut = setTimeout(() => {
+                if (route.params) {
+                    setVisible(false);
+                }
+            }, 7000)
+            permissionFlow();
+            return () => clearTimeout(timeOut);
+        }
+    }, [isFocused])
 
     const permissionFlow = async () => {
         let { status } = await Location.requestForegroundPermissionsAsync().catch(error => {
@@ -72,26 +76,27 @@ function HomePage({ navigation, route }) {
             setLocationPermissionStatus(true);
         }
 
-        let location = await Location.getCurrentPositionAsync({})
+        let currentLocation = await Location.getCurrentPositionAsync({})
             .then(data => {
                 setUserLocationCoordinates({ latitude: data.coords.latitude, longitude: data.coords.longitude })
                 return data;
             }).catch(error => {
                 //Failed to get device location coordinates
                 console.log('Failed to get coordinate')
-                const defaultLatitude = 3.11111;
-                const defaultLongitude = 255.11111;
+                // const defaultLatitude = 3.11111;
+                // const defaultLongitude = 255.11111;
                 setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
             });
 
-        getFullAddressBasedOnLocation(location);
+        getFullAddressBasedOnLocation(currentLocation);
     }
 
-    const getFullAddressBasedOnLocation = (location) => {
-        if (location) {
+    const getFullAddressBasedOnLocation = (currentLocation) => {
+        if (currentLocation) {
             // Reverse Geocode to get the full address of the user coordinates
-            Geocoder.from(location.coords.latitude, location.coords.longitude)
+            Geocoder.from(currentLocation.coords.latitude, currentLocation.coords.longitude)
                 .then(json => {
+                    // console.log(json)
                     var address = json.results[0].formatted_address;
                     const { currentState, currentPhase } = getStateAndPhase(address);
                     setUserLocationAddress(address);
@@ -107,17 +112,22 @@ function HomePage({ navigation, route }) {
         }
     }
 
-    const actionButtons = [
-        { label: 'I want to go out to eat', shortLabel: 'Go out to eat' },
-        { label: 'I want to go out to buy things', shortLabel: 'Go out to buy things' },
-        { label: 'I want to open my store', shortLabel: 'Open my store' },
-        { label: 'I want to go somewhere else', shortLabel: 'Go somewhere else' },
-        { label: 'I have emergency', shortLabel: 'Emergency' },
-    ]
+    // Action Object (mock/action.js), Destination Address String
+    const speechAction = (selectedAction, destinationAddress) => {
+        setUserDestination(getLocationByAddress(destinationAddress))
+        onPressAction(selectedAction)
+    }
 
     const onPressAction = (selectedAction) => {
         console.log('onPressAction');
         // navigation.navigate('AssistancePage', { title: selectedAction })
+        setUserAction(selectedAction)
+        navigation.navigate('AssistancePage', { title: selectedAction.shortLabel })
+    }
+
+    const navigationAction = (pageName) => {
+        setNetworkStatus(true);
+        navigation.navigate(pageName)
     }
 
     async function playSound(uri) {
@@ -259,8 +269,10 @@ function HomePage({ navigation, route }) {
                     iconColor="green"
                     title="You have completed your activity!"
                     text={"Duration: " + getDurationString(route.params.duration)}
-                    location={route.params.location}
-                    destination={route.params.destination}
+                    location={route.params.location && route.params.location.name
+                        && route.params.location.name !== "" ?
+                        route.params.location.name : route.params.location.address}
+                    destination={route.params.destination.name || route.params.destination.address}
                 />
             }
 
@@ -288,26 +300,28 @@ function HomePage({ navigation, route }) {
                 icon="wifi-off"
                 iconColor="black"
                 title="No internet connection"
-                text="Please make sure that WI-FI or mobile data is turned on."
+                text="Please make sure that WI-FI or mobile data is turned on. You can visit other page while offline."
+                showPageButton={true}
+                navigationAction={navigationAction}
             />
 
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
-                    <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
-                        <View style={styles.areaStatusBar}>
-                            <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
-                            {getUserLocation().phase !== "" ?
-                                <Text style={styles.areaStatusBar_phase}>{getUserLocation().phase}</Text> :
-                                <ActivityIndicator animating={true} color={Colors.amber100} />
-                            }
-                        </View>
-                    </TouchableOpacity>
+                    {/* <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}> */}
+                    <View style={styles.areaStatusBar}>
+                        <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
+                        {location && location.phase && location.phase !== "" ?
+                            <Text style={styles.areaStatusBar_phase}>{location.phase}</Text> :
+                            <ActivityIndicator animating={true} color={Colors.amber100} />
+                        }
+                    </View>
+                    {/* </TouchableOpacity> */}
                 </ImageBackground>
                 <Image source={require('../../../assets/HomePage_car.png')} style={styles.carImg}></Image>
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
-                    {actionButtons.map((buttonContent, index) =>
-                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent.shortLabel)}>
+                    {action.data.map((buttonContent, index) =>
+                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent)}>
                             <View style={styles.actionButton}>
                                 <Text style={styles.actionButton_text}>{buttonContent.label}</Text>
                             </View>

@@ -2,6 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Appbar, Dialog, Paragraph, Portal, Button } from 'react-native-paper';
+import { useLocationContext } from '../../contexts/location-context';
 import theme from '../constants/Theme';
 
 const HeaderComponent = ({ options, navigation, route }) => {

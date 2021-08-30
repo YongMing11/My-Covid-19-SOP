@@ -1,0 +1,29 @@
+{
+    "data": [
+        {
+            "id": "EAT",
+            "label": "I want to go out to eat",
+            "shortLabel": "Go out to eat"
+        },
+        {
+            "id": "BUY",
+            "label": "I want to go out to buy things",
+            "shortLabel": "Go out to buy things"
+        },
+        {
+            "id": "OPEN_STORE",
+            "label": "I want to open my store",
+            "shortLabel": "Open my store"
+        },
+        {
+            "id": "SOMEWHERE",
+            "label": "I want to go somewhere else",
+            "shortLabel": "Go somewhere else"
+        },
+        {
+            "id": "EMERGENCY",
+            "label": "I have emergency",
+            "shortLabel": "Emergency"
+        }
+    ]
+}
