@@ -119,8 +119,10 @@ function HomePage({ navigation, route }) {
                     iconColor="green"
                     title="You have completed your activity!"
                     text={"Duration: " + getDurationString(route.params.duration)}
-                    location={route.params.location}
-                    destination={route.params.destination}
+                    location={route.params.location && route.params.location.name
+                        && route.params.location.name !== "" ?
+                        route.params.location.name : route.params.location.address}
+                    destination={route.params.destination.name || route.params.destination.address}
                 />
             }
 

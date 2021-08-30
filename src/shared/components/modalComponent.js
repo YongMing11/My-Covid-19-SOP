@@ -20,14 +20,16 @@ function ModalComponent({ visible, onDismiss, icon, iconColor, title, text, loca
                             <DataTable.Row>
                                 <DataTable.Cell style={{ flex: 2 }}>From</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 8 }}>
-                                    {location && location.name && location.name !== "" ?
-                                        location.name : location.address}
+                                    {/* {location && location.name && location.name !== "" ?
+                                        location.name : location.address} */}
+                                    {location}
                                 </DataTable.Cell>
                             </DataTable.Row>
                             <DataTable.Row>
                                 <DataTable.Cell style={{ flex: 2 }}>To</DataTable.Cell>
                                 <DataTable.Cell style={{ flex: 8 }}>
-                                    {destination.name || destination.address}
+                                    {/* {destination.name || destination.address} */}
+                                    {destination}
                                 </DataTable.Cell>
                             </DataTable.Row>
                         </DataTable>}

@@ -6,6 +6,7 @@ import MapView, { Callout, Marker } from 'react-native-maps';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import MapViewDirections from 'react-native-maps-directions';
 import { useLocationContext } from '../../contexts/location-context';
+import ModalComponent from '../../shared/components/modalComponent';
 
 function Timer({ startTime }) {
     const [duration, setDuration] = useState("0 MIN 0 SEC");
@@ -104,6 +105,11 @@ function AssistancePage2({ navigation, route }) {
     const mapRef = useRef(null);
     const { location, destination, setUserLocation, setUserDestination } = useLocationContext();
     const [checklistStatus, setChecklistStatus] = useState(false);
+    const [isDifferentStateModalVisible, setIsDifferentStateModalVisible] = useState(false);
+
+    useEffect(() => {
+        setIsDifferentStateModalVisible(true);
+    }, [])
 
     const onUserLocationChange = () => {
         const coordinatesRange = [];
@@ -140,6 +146,18 @@ function AssistancePage2({ navigation, route }) {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
+            {location && destination && location.state !== destination.state &&
+                < ModalComponent
+                    visible={isDifferentStateModalVisible}
+                    onDismiss={() => setIsDifferentStateModalVisible(false)}
+                    icon="alert-circle"
+                    iconColor="#721d50"
+                    title="Cross state action"
+                    text={"Please make sure you fulfill the requirements to cross state"}
+                    location={location.state}
+                    destination={destination.state}
+                />
+            }
             <Timer startTime={startTime} />
             <ScrollView>
                 <MapView style={styles.map}
