@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, ActivityIndicator } from 'react-native';
 import { FAB, Portal, Modal, Title, IconButton, DataTable, Colors } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
@@ -163,10 +163,52 @@ function HomePage({ navigation, route }) {
         console.log("POSTing " + uri + " to " + apiUrl);
         return fetch(apiUrl, options);
       }
+
+      const isRecordingRef = useRef(isRecording);
+      isRecordingRef.current = isRecording;
+      const recordingRef = useRef(recording);
+      recordingRef.current = recording;
+      
+      async function stopRecording() {
+        if(isRecordingRef.current){
+            console.log("Stopping recording..");
+            setIsRecording(false);
+        
+            await recordingRef.current.stopAndUnloadAsync().catch(err => console.log);
+            const uri = recordingRef.current.getURI();
+            console.log('Recording stopped and stored at', uri);
+            playSound(uri);
     
+            // code to navigate
+            // navigation.navigate('AssistancePage', { title: selectedAction })
+    
+            // TODO: add above block to below
+            // uploadAudioAsync(uri)
+            // .then(res => res.json())
+            // .then(res => {
+            //   console.log(res);
+            // }).catch(err => {
+            //   console.log(err);
+            //   return err;
+            // });
+        }else{
+            // console.log('isRecording is', isRecording)
+            console.log('isRecordingRef is', isRecording)
+        }
+      }
+
+      const checkRecordingStatus = () => {
+          setTimeout(()=>{
+              console.log('call setTimeout');
+              setOpenModal(false);
+              stopRecording();
+          }, 2000)
+      }
+
       async function startRecording() {
         setIsRecording(true);
         setOpenModal(true);
+        checkRecordingStatus();
         try {
           console.log("Requesting permissions..");
           await Audio.requestPermissionsAsync();
@@ -205,28 +247,7 @@ function HomePage({ navigation, route }) {
           setIsRecording(false);
         }
       }
-      async function stopRecording() {
-        console.log("Stopping recording..");
-        setIsRecording(false);
-    
-        await recording.stopAndUnloadAsync().catch(err => console.log);
-        const uri = recording.getURI();
-        console.log('Recording stopped and stored at', uri);
-        playSound(uri);
-
-        // code to navigate
-        // navigation.navigate('AssistancePage', { title: selectedAction })
-
-        // TODO: add above block to below
-        // uploadAudioAsync(uri)
-        // .then(res => res.json())
-        // .then(res => {
-        //   console.log(res);
-        // }).catch(err => {
-        //   console.log(err);
-        //   return err;
-        // });
-      }
+      
     return (
         <View style={styles.scene}>
             {/* Display Modal when user finish activity */}
@@ -259,7 +280,7 @@ function HomePage({ navigation, route }) {
                 icon="emoticon-outline"
                 iconColor="blue"
                 title={'Reminder:\nmention action and destination with the word "at" in between'}
-                text={'Example: I want go out to work at Subang,\nI want to go somewhere at Shah Alam'}
+                text={'Example: I want go out to work at Subang,\nI want to go somewhere at Shah Alam\nThe recording will be stopped after 10 second'}
             />
             <ModalComponent
                 visible={!networkStatus}
@@ -295,7 +316,6 @@ function HomePage({ navigation, route }) {
                 </View>
             </ScrollView>
             <FAB
-                // style={styles.fab}
                 style={[styles.fab, isRecording? styles.fabRecording: styles.fabNotRecording]}
                 small
                 icon="microphone"
