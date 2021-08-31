@@ -1,0 +1,67 @@
+{
+    "Note": {
+        "NotVaccinated": {
+            "EAT": [
+                "Only takeaways and deliveries are allowed"
+            ],
+            "BUY": [
+                "Only 2 family members are allowed",
+                "Within 10km radius"
+            ],
+            "WORK": [
+                "Public sector limited to 40% capacity",
+                "Private sector limited to 60% capacity",
+                "Agricultural and commodities sector may operate at full capacity"
+            ],
+            "SOMEWHERE": [
+                "No travelling between districts / states / country"
+            ]
+        },
+        "Vaccinated": {
+            "EAT": [
+                "Full Vaccinated Individuals are allowed to dine-in"
+            ],
+            "BUY": [
+                "Only 2 family members are allowed",
+                "Within 10km radius"
+            ],
+            "WORK": [
+                "Public sector limited to 40% capacity",
+                "Private sector limited to 60% capacity",
+                "Agricultural and commodities sector may operate at full capacity"
+            ],
+            "SOMEWHERE": [
+                "Vehicles may carry passengers at full capacity",
+                "Crossing states / districts allowed for married couples and parents to children below 18 years old, with permission from PDRM"
+            ]
+        }
+    },
+    "Before starting your journey": [
+        {
+            "task": "Wear mask",
+            "status": false
+        },
+        {
+            "task": "Make sure phone battery is enough",
+            "status": false
+        },
+        {
+            "task": "Have only 2 passenger",
+            "status": false
+        }
+    ],
+    "At destination": [
+        {
+            "task": "Record temperature",
+            "status": false
+        },
+        {
+            "task": "Scan MySejahtera QR code",
+            "status": false
+        },
+        {
+            "task": "Practice social distancing at least 1-metre",
+            "status": false
+        }
+    ]
+}

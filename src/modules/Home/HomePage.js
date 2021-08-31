@@ -36,10 +36,11 @@ function HomePage({ navigation, route }) {
     //         "state": "",
     //     },
     // }
-    const states = ['JOHOR', 'KEDAH', 'KELANTAN', 'MALACCA', 'NEGERI SEMBILAN', 'PAHANG', 'PENANG', 'PERAK', 'PERLIS', 'SABAH', 'SARAWAK', 'SELANGOR', 'TERANGGANU', 'KUALA LUMPUR', 'LABUAN', 'PUTRAJAYA'];
-    const { setUserAction, location, setUserLocation, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, setUserDestination } = useLocationContext();
+
+    const { setUserAction, location, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, resetUserLocation, setUserDestination, resetUserDestination } = useLocationContext();
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
+    const [gettingLocation, setGettingLocation] = useState(false);
     const [networkStatus, setNetworkStatus] = useState(true);
     const [recording, setRecording] = React.useState(false);
     const [isRecording, setIsRecording] = useState(false);
@@ -51,7 +52,6 @@ function HomePage({ navigation, route }) {
 
     useEffect(() => {
         if (isFocused) {
-            console.log(isFocused)
             setVisible(true);
             const timeOut = setTimeout(() => {
                 if (route.params) {
@@ -60,10 +60,14 @@ function HomePage({ navigation, route }) {
             }, 7000)
             permissionFlow();
             return () => clearTimeout(timeOut);
+        } else {
+            setGettingLocation(false);
         }
     }, [isFocused])
 
     const permissionFlow = async () => {
+        resetUserLocation();
+        resetUserDestination();
         let { status } = await Location.requestForegroundPermissionsAsync().catch(error => {
             console.log("Failed to get location permission")
         });
@@ -74,6 +78,7 @@ function HomePage({ navigation, route }) {
             return;
         } else {
             setLocationPermissionStatus(true);
+            setGettingLocation(true);
         }
 
         let currentLocation = await Location.getCurrentPositionAsync({})
@@ -96,13 +101,13 @@ function HomePage({ navigation, route }) {
             // Reverse Geocode to get the full address of the user coordinates
             Geocoder.from(currentLocation.coords.latitude, currentLocation.coords.longitude)
                 .then(json => {
-                    // console.log(json)
                     var address = json.results[0].formatted_address;
                     const { currentState, currentPhase } = getStateAndPhase(address);
                     setUserLocationAddress(address);
                     setUserLocationState(currentState);
                     setUserLocationPhase(currentPhase);
                     setNetworkStatus(true);
+                    setGettingLocation(false);
                 })
                 .catch(error => {
                     // below line commented for dev purpose
@@ -325,6 +330,12 @@ function HomePage({ navigation, route }) {
                 showPageButton={true}
                 navigationAction={navigationAction}
             />
+            <ModalComponent
+                visible={gettingLocation && networkStatus}
+                onDismiss={() => console.log("Close Network Modal")}
+                title="Accessing your location"
+                text="Please make sure your location is turned on"
+            />
 
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
@@ -342,7 +353,8 @@ function HomePage({ navigation, route }) {
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
                     {action.data.map((buttonContent, index) =>
-                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent)}>
+                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent)}
+                            disabled={gettingLocation || !networkStatus}>
                             <View style={styles.actionButton}>
                                 <Text style={styles.actionButton_text}>{buttonContent.label}</Text>
                             </View>
@@ -355,6 +367,7 @@ function HomePage({ navigation, route }) {
                 small
                 icon="microphone"
                 onPress={isRecording ? stopRecording : startRecording}
+                disabled={gettingLocation || !networkStatus}
             />
         </View>
     )
