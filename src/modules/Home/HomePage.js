@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, ActivityIndicator } from 'react-native';
-import { FAB, Portal, Modal, Title, IconButton, DataTable, Colors } from 'react-native-paper';
+import { FAB, Colors } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
 import * as Location from 'expo-location';
 import { useLocationContext } from '../../contexts/location-context';
@@ -96,6 +96,7 @@ function HomePage({ navigation, route }) {
     }
 
     const getFullAddressBasedOnLocation = (currentLocation) => {
+        console.log(currentLocation)
         if (currentLocation) {
             // Reverse Geocode to get the full address of the user coordinates
             Geocoder.from(currentLocation.coords.latitude, currentLocation.coords.longitude)
@@ -107,11 +108,12 @@ function HomePage({ navigation, route }) {
                     setUserLocationPhase(currentPhase);
                     setNetworkStatus(true);
                     setGettingLocation(false);
+                    console.log(address)
                 })
                 .catch(error => {
                     // below line commented for dev purpose
-                    // setNetworkStatus(false);
-                    setNetworkStatus(true);
+                    setNetworkStatus(false);
+                    console.log('address')
                 });
         } else {
             console.log('currentLocation is falsy', currentLocation);
@@ -154,6 +156,7 @@ function HomePage({ navigation, route }) {
             }
             : undefined;
     }, [sound]);
+
     async function uploadAudioAsync(uri) {
         let apiUrl = 'http://192.168.0.180:8080';
         // let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';

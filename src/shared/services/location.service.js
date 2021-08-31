@@ -1,4 +1,4 @@
-import info from '@mock/sop.json';
+import sop_index from "@mock/sop_index.json";
 import { GOOGLE_MAPS_APIKEY } from "../constants/config";
 
 const getLocationByAddress = async (address) => {
@@ -32,16 +32,18 @@ const getLocationByAddress = async (address) => {
 
 const getStateAndPhase = (address) => {
     let currentState, currentPhase = null;
-    for (let phase of info.phases) {
-        for (let area of phase.areas) {
-            if (address.toUpperCase().includes(area.toUpperCase())) {
-                currentState = area.toUpperCase();
-                currentPhase = phase.title;
+    for (let phase of sop_index.phases) {
+        if (phase.title === "PKPD") break;
+        for (let areaIndex = 0; areaIndex < phase.areas.length; areaIndex++) {
+            if (address.toUpperCase().includes(phase.areas[areaIndex].toUpperCase()) ||
+                address.toUpperCase().includes(phase.areas_en[areaIndex].toUpperCase())) {
+                currentState = phase.areas_en[areaIndex].toUpperCase();
+                currentPhase = phase.title_en;
                 break;
             }
         }
-        if (currentState && currentState !== "") break;
     }
+
     return { currentState, currentPhase }
 }
 
