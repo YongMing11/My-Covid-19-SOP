@@ -265,6 +265,7 @@ const styles = StyleSheet.create({
       padding: 0
     },
     review:{
+      top: 8,
       fontWeight: 'bold',
       color: 'blue',
     }
