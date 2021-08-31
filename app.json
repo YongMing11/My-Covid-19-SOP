@@ -25,7 +25,11 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.My_COVID_SOP",
-      
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDd4kNZrYkaZnh-3FLE27MZ3QaXiazlSck"
+        }
+      },
       "permissions": [
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION",
