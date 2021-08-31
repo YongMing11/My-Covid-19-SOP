@@ -1,0 +1,66 @@
+{
+  "phases": [
+    {
+      "title": "Fasa 1",
+      "subtitle": "Pelan Pemulihan Negara",
+      "areas": [
+        "Selangor",
+        "Kuala Lumpur",
+        "Putrajaya",
+        "Kedah",
+        "Melaka",
+        "Johor"
+      ],
+      "sectors": [
+        "MKN - Pelan Pemulihan Negara SOP Fasa 1"
+      ]
+    },
+    {
+      "title": "Fasa 2",
+      "subtitle": "Pelan Pemulihan Negara",
+      "areas": [
+        "Pulau Pinang",
+        "Pahang",
+        "Terengganu",
+        "Kelantan",
+        "Negeri Sembilan",
+        "Sabah"
+      ],
+      "sectors": [
+        "MKN - Pelan Pemulihan Negara SOP Fasa 2"
+      ]
+    },
+    {
+      "title": "Fasa 3",
+      "subtitle": "Pelan Pemulihan Negara",
+      "areas": [
+        "Perlis",
+        "Sarawak"
+      ],
+      "sectors": [
+        "MKN - Pelan Pemulihan Negara SOP Fasa 3"
+      ]
+    },
+    {
+      "title": "Fasa 4",
+      "subtitle": "Pelan Pemulihan Negara",
+      "areas": [
+        "Labuan"
+      ],
+      "sectors": [
+        "MKN - Pelan Pemulihan Negara SOP Fasa 4"
+      ]
+    },
+    {
+      "title": "PKPD",
+      "subtitle": "Perintah Kawalan Pergerakan Diperketatkan",
+      "areas": [
+        "Kampuing Murni",
+        "Taman Air Condo Block A"
+      ],
+      "sectors": [
+        "MKN - Pelan Pemulihan Negara SOP Fasa 4"
+      ]
+    }
+  ]
+}
