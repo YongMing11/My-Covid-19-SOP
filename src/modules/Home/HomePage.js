@@ -183,7 +183,8 @@ function HomePage({ navigation, route }) {
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
                     {action.data.map((buttonContent, index) =>
-                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent)} disabled={gettingLocation || !networkStatus}>
+                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent)}
+                            disabled={gettingLocation || !networkStatus}>
                             <View style={styles.actionButton}>
                                 <Text style={styles.actionButton_text}>{buttonContent.label}</Text>
                             </View>
@@ -196,6 +197,7 @@ function HomePage({ navigation, route }) {
                 small
                 icon="microphone"
                 onPress={() => console.log('Pressed')}
+                disabled={gettingLocation || !networkStatus}
             />
         </View>
     )

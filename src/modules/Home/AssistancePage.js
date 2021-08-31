@@ -20,6 +20,11 @@ const AssistancePage = ({ navigation, route }) => {
     const locationInputRef = useRef();
     const destinationInputRef = useRef();
     const [isDifferentStateModalVisible, setIsDifferentStateModalVisible] = useState(false);
+
+    const DEFAULT_COORDINATES = {
+        latitude: 3.0111,
+        longitude: 101.012211
+    }
     // const [location, setLocation] = useState({
     //     name: "Example Location",
     //     address: "Example Location 1, Jalan Example, Taman Example,Example Location 1, Jalan Example, Taman ExampleExample Location 1, Jalan Example, Taman Example",
@@ -40,7 +45,9 @@ const AssistancePage = ({ navigation, route }) => {
     // });
 
     useEffect(() => {
-        locationInputRef.current?.setAddressText(location.address || "");
+        if (location && location.phase && location.address) {
+            locationInputRef.current?.setAddressText(location.address);
+        }
         if (destination && destination.address && destination.address.length !== 0) {
             destinationInputRef.current?.setAddressText(destination.address);
         }
@@ -56,7 +63,7 @@ const AssistancePage = ({ navigation, route }) => {
     }, [location, destination])
 
     const resetDestination = () => {
-        setIsDifferentStateModalVisible(false);
+        setIsDifferentStateModalVisible(false)
         resetUserDestination();
         destinationInputRef.current?.setAddressText("");
     }
@@ -89,19 +96,18 @@ const AssistancePage = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
-            {action.id != "SOMEWHERE" && location && destination && location.state && destination.state &&
-                location.state !== destination.state &&
-                <ModalComponent
-                    visible={isDifferentStateModalVisible}
-                    onDismiss={() => resetDestination()}
-                    icon="alert-circle"
-                    iconColor="#721d50"
-                    title="Crossing state is not allowed"
-                    text="Please choose another destination to proceed"
-                    location={location.state}
-                    destination={destination.state}
-                />
-            }
+
+            <ModalComponent
+                visible={isDifferentStateModalVisible}
+                onDismiss={() => resetDestination()}
+                icon="alert-circle"
+                iconColor="#721d50"
+                title="Crossing state is not allowed"
+                text="Please choose another destination to proceed"
+                location={location.state}
+                destination={destination.state}
+            />
+
             <GooglePlacesAutocomplete
                 ref={locationInputRef}
                 placeholder='Enter your location'
@@ -155,7 +161,8 @@ const AssistancePage = ({ navigation, route }) => {
                     onUserLocationChange={onUserLocationChange}
                     onMapReady={onUserLocationChange}
                     initialRegion={{
-                        ...location.coordinates,
+                        latitude: location.coordinates ? location.coordinates.latitude : DEFAULT_COORDINATES.latitude,
+                        longitude: location.coordinates ? location.coordinates.longitude : DEFAULT_COORDINATES.longitude,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}>
@@ -173,7 +180,8 @@ const AssistancePage = ({ navigation, route }) => {
                                 <Text>{destination.address}</Text>
                             </Callout>
                         </Marker>}
-                    <Circle center={location.coordinates} radius={1000} />
+                    {location && (location.phase === "PPN Phase 1" || location.phase === "PPN Phase 2") &&
+                        <Circle center={location.coordinates} radius={10000} />}
                 </MapView>
                 <Button style={(!location.address || !destination.address) ? styles.disabledButton : styles.actionButton} mode="contained" onPress={navigateToAssistancePage2}
                     disabled={!location.address || !destination.address}
