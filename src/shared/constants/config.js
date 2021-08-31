@@ -5,6 +5,7 @@ const title = {
     HospitalPage: "Nearby Clinic & Hospital",
     ProfilePage: "Profile",
     SOPPage1: "SOP Information",
+    ReviewPage: "SOP Reviews and Rating",
 };
 
 const GOOGLE_MAPS_APIKEY = 'AIzaSyBmnCNCFqgwbDSuiLTtEnS7b3BOb3bDitA';       // HL

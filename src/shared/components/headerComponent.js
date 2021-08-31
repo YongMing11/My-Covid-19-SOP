@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { Appbar, Dialog, Paragraph, Portal, Button } from 'react-native-paper';
+import { Appbar, Dialog, Paragraph, Portal, Button, Text } from 'react-native-paper';
 import { useLocationContext } from '../../contexts/location-context';
 import theme from '../constants/Theme';
 
@@ -24,7 +24,7 @@ const HeaderComponent = ({ options, navigation, route }) => {
         navigation.goBack();
     }
 
-    const _handleSearch = () => console.log('Searching');
+    const handleIconClicked = () => navigation.navigate('Helpdesk');
 
     const _handleMore = () => console.log('Shown more');
 
@@ -42,8 +42,11 @@ const HeaderComponent = ({ options, navigation, route }) => {
             <Appbar.Header style={styles.header}>
                 {backButtonEnabled && <Appbar.BackAction onPress={_goBack} color={color} />}
                 {title && <Appbar.Content title={title} subtitle={subtitle} color={color} />}
-                {/* <Appbar.Action icon="magnify" onPress={_handleSearch} color={color} />
-                <Appbar.Action icon="dots-vertical" onPress={_handleMore} color={color}/> */}
+                {
+                  title === "SOP Information"?
+                <Appbar.Action icon="comment-question-outline" onPress={handleIconClicked} color={color} /> :<></>
+                }
+                {/* <Appbar.Action icon="dots-vertical" onPress={_handleMore} color={color}/> */}
             </Appbar.Header>
             <Portal>
                 <Dialog visible={visible} onDismiss={hideDialog}>

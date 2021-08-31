@@ -34,6 +34,7 @@ const theme = {
     primaryGrey: '#979797',
     secondaryGrey: '#F0F0F0',
     warning: '#FFC107',
+    white: '#FFFFFF',
   },
   bottomNavigation: {
     height: 60

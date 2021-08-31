@@ -86,7 +86,7 @@ function HomePage({ navigation, route }) {
                 return data;
             }).catch(error => {
                 //Failed to get device location coordinates
-                console.log('Failed to get coordinate')
+                console.log('Failed to get coordinate', error)
                 // const defaultLatitude = 3.11111;
                 // const defaultLongitude = 255.11111;
                 setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
@@ -159,8 +159,8 @@ function HomePage({ navigation, route }) {
             : undefined;
     }, [sound]);
     async function uploadAudioAsync(uri) {
-        let apiUrl = 'http://192.168.0.180:8080';
-        // let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
+        // let apiUrl = 'http://192.168.0.180:8080';
+        let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
         let uriParts = uri.split('.');
         let fileType = uriParts[uriParts.length - 1];
 
@@ -203,15 +203,7 @@ function HomePage({ navigation, route }) {
           uploadAudioAsync(uri)
           .then(res => res.json())
           .then(res => {
-            // sample response
-            // [alternatives {
-            //   transcript: "I want to go office Subang"
-            //   confidence: 0.8372671008110046
-            // }
-            // ]
             console.log('response from speech to text:',res);
-            // "[alternatives {\n  transcript: \"I want to work at the kinjaz\"\n  confidence: 0.850742518901825\n}\n]"
-            // filter
             // const transcript = 'I want to go out to work at Subang';
             const transcript = res;
             const idx = transcript.indexOf('at');
@@ -231,7 +223,6 @@ function HomePage({ navigation, route }) {
               return err;
           });
         }else{
-            // console.log('isRecording is', isRecording)
             console.log('isRecordingRef is', isRecordingRef.current)
         }
     }
