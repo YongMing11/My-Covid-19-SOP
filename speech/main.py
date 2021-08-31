@@ -70,7 +70,7 @@ def parse_multipart(request):
         #   "phrases":["to eat", "buy things", "work at", "go somewhere", "have emergency"],
         #   "boost": 5.0
         # }]
-        # speech_contexts=[{ "phrases": ["eat", "buy", "work", "somewhere", "emergency"] }]
+        speech_contexts=[{ "phrases": ["at","eat at", "buy things", "work at", "go somewhere", "emergency"] }]
     )
 
     response = client.recognize(config=config, audio=audio)
