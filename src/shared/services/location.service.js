@@ -67,6 +67,10 @@ const checkCrossState = (locationState, destinationState) => {
     if (locationHitSpecialState && destinationHitSpecialState) {
         return false;
     }
+    // LABUAN PHASE 4 CAN CROSS STATE
+    if (locationState === "LABUAN" || destinationState === "LABUAN") {
+        return false;
+    }
     return locationState !== destinationState;
 }
 

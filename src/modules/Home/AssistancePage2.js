@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native'
 import theme from '../../shared/constants/Theme'
-import { DataTable, Checkbox, Button, Portal, Dialog, Paragraph } from 'react-native-paper';
+import { DataTable, Checkbox, Button, Portal, Dialog, Paragraph, Divider } from 'react-native-paper';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import MapViewDirections from 'react-native-maps-directions';
@@ -9,6 +9,7 @@ import { useLocationContext } from '../../contexts/location-context';
 import GeneralPhase1 from '@mock/checklist/generalChecklist-Phase1.json'
 import GeneralPhase2 from '@mock/checklist/generalChecklist-Phase2.json'
 import GeneralPhase3 from '@mock/checklist/generalChecklist-Phase3.json'
+import GeneralPhase4 from '@mock/checklist/generalChecklist-Phase4.json'
 import { useHistoryContext } from '../../contexts/history-context';
 import moment from 'moment-timezone';
 
@@ -55,19 +56,24 @@ function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist, isfullyV
         "PPN Phase 1": GeneralPhase1,
         "PPN Phase 2": GeneralPhase2,
         "PPN Phase 3": GeneralPhase3,
+        "PPN Phase 4": GeneralPhase4
     }
     // SET CHECKLIST TASKS BY CHECKING VACCINATION STATUS, LOCATION PHASE, DESTINATION PHASE
     useEffect(() => {
-        console.log(isfullyVaccinated)
-        console.log(action.id)
-        console.log(location)
-        console.log(destination.phase)
         const vaccinationStatusKey = isfullyVaccinated ? "Vaccinated" : "NotVaccinated";
+        let specialBeforeEnteringList = [];
+        if (location.phase !== destination.phase) {
+            specialBeforeEnteringList = generalPhase[destination.phase]["Before starting your journey_destination"]
+        }
         const initialTask = action.id && location.phase && destination.phase ? {
             "Note": generalPhase[location.phase]["Note"][vaccinationStatusKey][action.id],
-            "Before starting your journey": generalPhase[location.phase]["Before starting your journey"],
+            "Before starting your journey": [
+                ...generalPhase[location.phase]["Before starting your journey"],
+                ...specialBeforeEnteringList
+            ],
             "At destination": generalPhase[destination.phase]["At destination"]
         } : { "Note": ["No SOP information"] }
+
         setTasks(JSON.parse(JSON.stringify(initialTask)))
     }, [isfullyVaccinated])
 
@@ -100,9 +106,12 @@ function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist, isfullyV
                         {taskCategory === "Note" &&
                             value.map((taskTitle) => {
                                 return (
-                                    <DataTable.Row key={taskTitle} style={{ width: '100%', borderBottomWidth: 1, backgroundColor: 'white' }}>
-                                        <DataTable.Cell>{taskTitle}</DataTable.Cell>
-                                    </DataTable.Row>
+                                    <React.Fragment key={taskTitle}>
+                                        <View style={styles.note}>
+                                            <Text>{taskTitle}</Text>
+                                        </View>
+                                        <Divider style={{ height: 2 }} />
+                                    </React.Fragment>
                                 )
                             })
                         }
@@ -281,6 +290,12 @@ const styles = StyleSheet.create({
         color: 'black',
         width: '80%',
         marginVertical: 20
+    },
+    note: {
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingTop: 10,
+        paddingBottom: 10,
     }
 })
 
