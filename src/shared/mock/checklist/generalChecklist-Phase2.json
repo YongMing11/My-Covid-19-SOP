@@ -1,6 +1,6 @@
 {
     "Note": {
-        "Vaccinated": {
+        "NotVaccinated": {
             "EAT": [
                 "Only takeaways and deliveries are allowed"
             ],
@@ -17,7 +17,7 @@
                 "No travelling between districts / states / country"
             ]
         },
-        "NotVaccinated": {
+        "Vaccinated": {
             "EAT": [
                 "Full Vaccinated Individuals are allowed to dine-in"
             ],

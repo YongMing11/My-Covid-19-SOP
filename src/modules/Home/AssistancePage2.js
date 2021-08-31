@@ -1,19 +1,23 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native'
 import theme from '../../shared/constants/Theme'
-import { DataTable, Checkbox, Button } from 'react-native-paper';
+import { DataTable, Checkbox, Button, Portal, Dialog, Paragraph } from 'react-native-paper';
 import MapView, { Callout, Marker } from 'react-native-maps';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import MapViewDirections from 'react-native-maps-directions';
 import { useLocationContext } from '../../contexts/location-context';
-// import GeneralPhase1 from './generalChecklist-Phase1.json'
-// import GeneralPhase2 from './generalChecklist-Phase1.json'
-// import GeneralPhase3 from './generalChecklist-Phase1.json'
+import GeneralPhase1 from '@mock/checklist/generalChecklist-Phase1.json'
+import GeneralPhase2 from '@mock/checklist/generalChecklist-Phase2.json'
+import GeneralPhase3 from '@mock/checklist/generalChecklist-Phase3.json'
+import { useHistoryContext } from '../../contexts/history-context';
+import moment from 'moment-timezone';
 
+moment.tz.setDefault("Asia/Kuala_Lumpur")
 
 function Timer({ startTime }) {
     const [duration, setDuration] = useState("0 MIN 0 SEC");
     useEffect(() => {
+        // UPDATE THE TIMER DISPLAY EVERY SECOND BY CALCULATING (CURRENT TIME - START TIME)
         const timerUpdateInterval = setInterval(() => {
             const currentTime = new Date();
             let difference = currentTime.getTime() - startTime.getTime();
@@ -43,40 +47,40 @@ function Timer({ startTime }) {
     )
 }
 
-function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist }) {
-    // const { action, location, destination, setUserLocation, setUserDestination } = useLocationContext();
-    const initialTask = {
-        "Before starting your journey": {
-            'Wear mask': false,
-            'Make sure phone battery is enough': false,
-            'Bring MITI letter': false,
-            'Bring Employer letter/Staff Pass': false,
-            'Have only one passenger': false
-        },
-        "At destination": {
-            'Record temperature': false,
-            'Scan MySejahtera QR code': false
-        }
+function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist, isfullyVaccinated }) {
+    const { action, location, destination } = useLocationContext();
+    const [tasks, setTasks] = useState({});
+
+    const generalPhase = {
+        "PPN Phase 1": GeneralPhase1,
+        "PPN Phase 2": GeneralPhase2,
+        "PPN Phase 3": GeneralPhase3,
     }
-    // const generalPhase = {
-    //     "PPN Phase 1": GeneralPhase1,
-    //     "PPN Phase 2": GeneralPhase2,
-    //     "PPN Phase 3": GeneralPhase3,
-    // }
-    // const initialTask = {
-    //     "Note": [...generalPhase[location.phase]["Note"][action.id]],
-    //     "Before starting your journey": [...generalPhase[location.phase]["Before starting your journey"]],
-    //     "At destination": [...generalPhase[destination.phase]["At destination"]]
-    // }
-    const [tasks, setTasks] = useState(initialTask);
-    const onPressCheckBox = (taskCategory, taskTitle) => {
+    // SET CHECKLIST TASKS BY CHECKING VACCINATION STATUS, LOCATION PHASE, DESTINATION PHASE
+    useEffect(() => {
+        console.log(isfullyVaccinated)
+        console.log(action.id)
+        console.log(location)
+        console.log(destination.phase)
+        const vaccinationStatusKey = isfullyVaccinated ? "Vaccinated" : "NotVaccinated";
+        const initialTask = action.id && location.phase && destination.phase ? {
+            "Note": generalPhase[location.phase]["Note"][vaccinationStatusKey][action.id],
+            "Before starting your journey": generalPhase[location.phase]["Before starting your journey"],
+            "At destination": generalPhase[destination.phase]["At destination"]
+        } : { "Note": ["No SOP information"] }
+        setTasks(JSON.parse(JSON.stringify(initialTask)))
+    }, [isfullyVaccinated])
+
+    // UPDATE THE CHECKBOX STATUS OF THE TASKS TO TRUE OR FALSE
+    const onPressCheckBox = (taskCategory, index) => {
         const currentTasks = JSON.parse(JSON.stringify(tasks));
-        currentTasks[taskCategory][taskTitle] = !tasks[taskCategory][taskTitle]
+        currentTasks[taskCategory][index]['status'] = !tasks[taskCategory][index]['status']
         setTasks(currentTasks)
     }
 
     useEffect(() => {
-        for (let checklistObject of Object.values(tasks)) {
+        for (let [taskCategory, checklistObject] of Object.entries(tasks)) {
+            if (taskCategory === "Note") continue;
             for (let status of Object.values(checklistObject)) {
                 if (!status) {
                     setIncompleteChecklist();
@@ -88,25 +92,34 @@ function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist }) {
     }, [tasks])
 
     return (
-        Object.entries(tasks).map(([taskCategory, value], index) => {
-            console.log(index)
+        Object.entries(tasks).map(([taskCategory, value]) => {
             return (
                 <React.Fragment key={taskCategory}>
                     <Text style={styles.checklistHeader}>{taskCategory}</Text>
                     <DataTable style={{ width: '100%' }}>
-                        {Object.entries(value).map(([taskTitle, checked], index) => {
-                            return (
-                                <DataTable.Row key={taskTitle} style={{ width: '100%', borderBottomWidth: 1, backgroundColor: checked ? theme.colors.primaryGreen : 'white' }}>
-                                    <DataTable.Cell style={styles.task}>{taskTitle}</DataTable.Cell>
-                                    <DataTable.Cell style={{ flex: 1 }}>
-                                        <Checkbox
-                                            status={checked ? 'checked' : 'unchecked'}
-                                            onPress={() => onPressCheckBox(taskCategory, taskTitle)}
-                                        />
-                                    </DataTable.Cell>
-                                </DataTable.Row>
-                            )
-                        })}
+                        {taskCategory === "Note" &&
+                            value.map((taskTitle) => {
+                                return (
+                                    <DataTable.Row key={taskTitle} style={{ width: '100%', borderBottomWidth: 1, backgroundColor: 'white' }}>
+                                        <DataTable.Cell>{taskTitle}</DataTable.Cell>
+                                    </DataTable.Row>
+                                )
+                            })
+                        }
+                        {taskCategory !== "Note" &&
+                            value.map(({ task, status }, index) => {
+                                return (
+                                    <DataTable.Row key={task} style={{ width: '100%', borderBottomWidth: 1, backgroundColor: status ? theme.colors.primaryGreen : 'white' }}>
+                                        <DataTable.Cell style={styles.task}>{task}</DataTable.Cell>
+                                        <DataTable.Cell style={{ flex: 1 }}>
+                                            <Checkbox
+                                                status={status ? 'checked' : 'unchecked'}
+                                                onPress={() => onPressCheckBox(taskCategory, index)}
+                                            />
+                                        </DataTable.Cell>
+                                    </DataTable.Row>
+                                )
+                            })}
                     </DataTable>
                 </React.Fragment>
             )
@@ -117,8 +130,20 @@ function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist }) {
 function AssistancePage2({ navigation, route }) {
     const [startTime] = useState(new Date());
     const mapRef = useRef(null);
-    const { location, destination, setUserLocation, setUserDestination } = useLocationContext();
+    const { location, destination } = useLocationContext();
+    const { addHistory } = useHistoryContext();
     const [checklistStatus, setChecklistStatus] = useState(false);
+    const [isfullyVaccinated, setIsfullyVaccinated] = useState(false);
+    const [visible, setVisible] = React.useState(true);
+
+    const setFullyVaccinated = () => {
+        setIsfullyVaccinated(true);
+        setVisible(false)
+    };
+    const setNotFullyVaccinated = () => {
+        setIsfullyVaccinated(true);
+        setVisible(false)
+    };
 
     const onUserLocationChange = () => {
         const coordinatesRange = [];
@@ -143,11 +168,19 @@ function AssistancePage2({ navigation, route }) {
     }, [])
 
     const finishActivity = () => {
+        // SAVE THE VISITED LOCATION AS HISTORY TO CONTEXT STATE
+        const history = {
+            location: destination.name ? destination.name : destination.address,
+            date: moment(startTime).format("DD/MM/YY"),
+            time: moment(startTime).format("hh:mma"),
+            duration: moment().diff(moment(startTime), "minutes")
+        }
+        addHistory(history);
+
+        // PASS INFO AND NAVIGATE TO HOME PAGE
         const finalDuration = new Date().getTime() - startTime.getTime();
         const finalLocation = location;
         const finalDestination = destination;
-        setUserLocation(null);
-        setUserDestination(null);
         navigation.navigate('HomePage',
             { duration: finalDuration, location: finalLocation, destination: finalDestination })
     }
@@ -155,6 +188,18 @@ function AssistancePage2({ navigation, route }) {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
+            <Portal>
+                <Dialog visible={visible}>
+                    <Dialog.Title>Vaccination status</Dialog.Title>
+                    <Dialog.Content>
+                        <Paragraph>Have you been fully vaccinated?</Paragraph>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button onPress={setNotFullyVaccinated}>No</Button>
+                        <Button onPress={setFullyVaccinated}>Yes</Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
             <Timer startTime={startTime} />
             <ScrollView>
                 <MapView style={styles.map}
@@ -188,8 +233,7 @@ function AssistancePage2({ navigation, route }) {
 
                 <View style={styles.container}>
                     <TaskChecklists setCompleteChecklist={setCompleteChecklist}
-                        setIncompleteChecklist={setIncompleteChecklist} />
-                    {checklistStatus}
+                        setIncompleteChecklist={setIncompleteChecklist} isfullyVaccinated={isfullyVaccinated} />
                     <Button style={checklistStatus ? styles.actionButton : styles.disabledButton} mode="contained" onPress={finishActivity} disabled={!checklistStatus}>Done
                     </Button>
                 </View>

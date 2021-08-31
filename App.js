@@ -3,6 +3,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import Main from './src/shared/components/main';
 import { LocationProvider } from './src/contexts/location-context';
+import { HistoryProvider } from './src/contexts/history-context';
 
 export default function App() {
 
@@ -10,7 +11,9 @@ export default function App() {
     <PaperProvider>
       <NavigationContainer>
         <LocationProvider>
-          <Main></Main>
+          <HistoryProvider>
+            <Main></Main>
+          </HistoryProvider>
         </LocationProvider>
       </NavigationContainer>
     </PaperProvider>

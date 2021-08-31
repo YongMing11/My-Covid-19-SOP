@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 
+const locationTemplate = {
+  coordinates: null,
+  name: null,
+  address: null,
+  state: null,
+  phase: null
+}
+
 const LocationContext = React.createContext({
   action: {
     id: "",
     label: "",
     shortLabel: ""
   },
-  location: {
-    coordinates: {
-      latitude: null,
-      longitude: null,
-    },
-    name: "",
-    address: "",
-    state: "",
-    phase: ""
-  },
+  location: JSON.parse(JSON.stringify(locationTemplate)),
   setUserAction: (newAction) => { },
   getUserLocation: () => { },
   getUserLocationCoordinates: () => { },
@@ -24,23 +23,16 @@ const LocationContext = React.createContext({
   setUserLocationAddress: (address) => { },
   setUserLocationState: (state) => { },
   setUserLocationPhase: (phase) => { },
-  destination: {
-    coordinates: {
-      latitude: null,
-      longitude: null,
-    },
-    name: "",
-    address: "",
-    state: "",
-    phase: ""
-  },
+  resetUserLocation: () => { },
+  destination: JSON.parse(JSON.stringify(locationTemplate)),
   getUserDestination: () => { },
   getUserDestinationCoordinates: () => { },
   setUserDestination: (newDestination) => { },
   setUserDestinationCoordinates: (coordinates) => { },
   setUserDestinationAddress: (address) => { },
   setUserDestinationState: (state) => { },
-  setUserDestinationPhase: (phase) => { }
+  setUserDestinationPhase: (phase) => { },
+  resetUserDestination: () => { }
 });
 
 const LocationProvider = ({ children }) => {
@@ -92,6 +84,10 @@ const LocationProvider = ({ children }) => {
     setLocation((loc) => ({ ...loc, phase }))
   }, [location]);
 
+  const resetUserLocation = React.useCallback(() => {
+    setLocation(JSON.parse(JSON.stringify(locationTemplate)))
+  }, [location]);
+
   // DESTINATION
   const setUserDestination = React.useCallback((newDestination) => {
     setDestination(newDestination);
@@ -113,10 +109,14 @@ const LocationProvider = ({ children }) => {
     setDestination((loc) => ({ ...loc, phase }))
   }, [destination]);
 
+  const resetUserDestination = React.useCallback(() => {
+    setDestination(JSON.parse(JSON.stringify(locationTemplate)))
+  }, [destination]);
+
   return (<LocationContext.Provider value={{
     action, setUserAction,
-    location, getUserLocation, getUserLocationCoordinates, setUserLocation, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase,
-    destination, setUserDestination, setUserDestinationAddress, setUserDestinationCoordinates, setUserDestinationPhase, setUserDestinationState
+    location, getUserLocation, getUserLocationCoordinates, setUserLocation, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, resetUserLocation,
+    destination, setUserDestination, setUserDestinationAddress, setUserDestinationCoordinates, setUserDestinationPhase, setUserDestinationState, resetUserDestination
   }}>
     {children}
   </LocationContext.Provider>)
