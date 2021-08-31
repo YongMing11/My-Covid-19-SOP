@@ -75,13 +75,13 @@ function HomePage({ navigation, route }) {
             setLocationPermissionStatus(true);
         }
 
-        let currentLocation = await Location.getCurrentPositionAsync({})
+        let currentLocation = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High})
             .then(data => {
                 setUserLocationCoordinates({ latitude: data.coords.latitude, longitude: data.coords.longitude })
                 return data;
             }).catch(error => {
                 //Failed to get device location coordinates
-                console.log('Failed to get coordinate')
+                console.log('Failed to get coordinate', error)
                 // const defaultLatitude = 3.11111;
                 // const defaultLongitude = 255.11111;
                 setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
@@ -222,8 +222,7 @@ function HomePage({ navigation, route }) {
               return err;
           });
         }else{
-            // console.log('isRecording is', isRecording)
-            console.log('isRecordingRef is', isRecording)
+            console.log('isRecordingRef is', isRecordingRef.current)
         }
       }
 
