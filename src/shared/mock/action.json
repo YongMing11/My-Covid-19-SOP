@@ -11,9 +11,9 @@
             "shortLabel": "Go out to buy things"
         },
         {
-            "id": "OPEN_STORE",
-            "label": "I want to open my store",
-            "shortLabel": "Open my store"
+            "id": "WORK",
+            "label": "I want to go out to work",
+            "shortLabel": "Go our to work"
         },
         {
             "id": "SOMEWHERE",

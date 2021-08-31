@@ -109,6 +109,8 @@ function HomePage({ navigation, route }) {
                     // setNetworkStatus(false);
                     setNetworkStatus(true);
                 });
+        }else{
+          console.log('currentLocation is falsy',currentLocation);
         }
     }
 
@@ -181,26 +183,45 @@ function HomePage({ navigation, route }) {
       
       async function stopRecording() {
         if(isRecordingRef.current){
-            console.log("Stopping recording..");
-            setIsRecording(false);
-        
-            await recordingRef.current.stopAndUnloadAsync().catch(err => console.log);
-            const uri = recordingRef.current.getURI();
-            console.log('Recording stopped and stored at', uri);
-            playSound(uri);
-    
-            // code to navigate
-            // navigation.navigate('AssistancePage', { title: selectedAction })
-    
-            // TODO: add above block to below
-            // uploadAudioAsync(uri)
-            // .then(res => res.json())
-            // .then(res => {
-            //   console.log(res);
-            // }).catch(err => {
-            //   console.log(err);
-            //   return err;
-            // });
+          console.log("Stopping recording..");
+          setIsRecording(false);
+      
+          await recordingRef.current.stopAndUnloadAsync().catch(err => console.log('err',err));
+          const uri = recordingRef.current.getURI();
+          console.log('Recording stopped and stored at', uri);
+          playSound(uri);
+  
+          // TODO: add above block to below
+          uploadAudioAsync(uri)
+          .then(res => res.json())
+          .then(res => {
+            console.log('response from speech to text');
+            // sample response
+            // [alternatives {
+            //   transcript: "I want to go office Subang"
+            //   confidence: 0.8372671008110046
+            // }
+            // ]
+            console.log(res);
+            // filter
+            const transcript = 'I want to go out to work at Subang';
+            // const transcript = res.alternative[0].transcript;
+            const idx = transcript.indexOf('at');
+            const destination = transcript.substr(idx+3);
+            const actionText = transcript.substring(0, idx);
+            const actionKeys = action.data.map(a => {
+              return a.id.toLowerCase();
+            })
+            const actionIdx = actionKeys.findIndex((key) => {
+              return actionText.includes(key);
+            })
+            console.log(action.data[actionIdx], destination);
+            // uncomment below to complete the whole flow
+            speechAction(action.data[actionIdx], destination);
+          }).catch(err => {
+              console.log('err at uploadAudioAsync',err);
+              return err;
+          });
         }else{
             // console.log('isRecording is', isRecording)
             console.log('isRecordingRef is', isRecording)
@@ -212,7 +233,7 @@ function HomePage({ navigation, route }) {
               console.log('call setTimeout');
               setOpenModal(false);
               stopRecording();
-          }, 2000)
+          }, 10000)
       }
 
       async function startRecording() {
