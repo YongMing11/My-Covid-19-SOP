@@ -1,25 +1,56 @@
 import React, { useState } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView, Linking } from "react-native";
 import { Searchbar, List, Menu, Button } from "react-native-paper";
 import sop_index from "@mock/sop_index.json";
+import pkpd_sectors from "@mock/PKPD.json";
+
+const browseURL = (URL) => {
+    Linking.canOpenURL(URL)
+        .then((supported) => {
+            if (!supported) {
+                Alert.alert("Unable to view the file.");
+            } else {
+                return Linking.openURL(URL);
+            }
+        })
+        .catch((err) => console.log(err));
+};
 
 const SOPPage2 = ({ route, navigation }) => {
     const index = route.params.index;
     const icon = "chevron-right";
     const [searchQuery, setSearchQuery] = useState("");
-    const [activeSectors, setActiveSectors] = useState(sop_index.phases[index].sectors);
+    const onChangeSearch = (query) => setSearchQuery(query);
 
-    const onChangeSearch = (query) => {
-        setSearchQuery(query);
-        if (query === "") {
-            setActiveSectors(sop_index.sectors);
-            return;
+    let filteredListComponent = React.useMemo(() => {
+        if (index === 4) {
+            // generate normalized list
+            let sectors = pkpd_sectors;
+            // query filter
+            if (searchQuery != null && searchQuery.trim() !== "") {
+                sectors = sectors.filter((sector) => {
+                    return sector.title.toLowerCase().includes(searchQuery.toLowerCase());
+                });
+            }
+            // generate list components
+            sectors = sectors.map((sector, index) => {
+                return <List.Item key={index} style={styles.actionItem} titleNumberOfLines={4} onPress={() => browseURL(sector.link)} title={sector.title} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />;
+            });
+            return sectors;
+        } else {
+            // generate normalized list
+            let sectors = sop_index.phases[index].sectors;
+            // query filter
+            if (searchQuery != null && searchQuery.trim() !== "") {
+                sectors = sectors.filter((sector) => {
+                    return sector.toLowerCase().includes(searchQuery.toLowerCase());
+                });
+            }
+            // generate list components
+            sectors = sectors.map((sector, index) => <List.Item key={index} style={styles.actionItem} titleNumberOfLines={4} onPress={() => onPressAction(sector)} title={sector} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />);
+            return sectors;
         }
-        const sectorsResult = sop_index.sectors.filter((s) => {
-            return s.toLowerCase().includes(query.toLowerCase());
-        });
-        setActiveSectors(sectorsResult);
-    };
+    }, [index, searchQuery]);
 
     const onPressAction = (sector) => {
         navigation.navigate("SOPPage3", { title: sector });
@@ -31,9 +62,7 @@ const SOPPage2 = ({ route, navigation }) => {
                 <View>
                     <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} style={styles.searchBar} />
                 </View>
-                {activeSectors.map((sector, index) => (
-                    <List.Item key={index} style={styles.actionItem} onPress={() => onPressAction(sector)} title={sector} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />
-                ))}
+                {filteredListComponent}
             </ScrollView>
         </SafeAreaView>
     );
