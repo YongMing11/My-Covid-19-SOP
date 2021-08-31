@@ -6,9 +6,10 @@ import MapView, { Callout, Marker } from 'react-native-maps';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import MapViewDirections from 'react-native-maps-directions';
 import { useLocationContext } from '../../contexts/location-context';
-import ModalComponent from '../../shared/components/modalComponent';
+// import GeneralPhase1 from './generalChecklist-Phase1.json'
+// import GeneralPhase2 from './generalChecklist-Phase1.json'
+// import GeneralPhase3 from './generalChecklist-Phase1.json'
 
-const { action,location, destination, setUserLocation, setUserDestination } = useLocationContext();
 
 function Timer({ startTime }) {
     const [duration, setDuration] = useState("0 MIN 0 SEC");
@@ -43,6 +44,7 @@ function Timer({ startTime }) {
 }
 
 function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist }) {
+    // const { action, location, destination, setUserLocation, setUserDestination } = useLocationContext();
     const initialTask = {
         "Before starting your journey": {
             'Wear mask': false,
@@ -56,6 +58,16 @@ function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist }) {
             'Scan MySejahtera QR code': false
         }
     }
+    // const generalPhase = {
+    //     "PPN Phase 1": GeneralPhase1,
+    //     "PPN Phase 2": GeneralPhase2,
+    //     "PPN Phase 3": GeneralPhase3,
+    // }
+    // const initialTask = {
+    //     "Note": [...generalPhase[location.phase]["Note"][action.id]],
+    //     "Before starting your journey": [...generalPhase[location.phase]["Before starting your journey"]],
+    //     "At destination": [...generalPhase[destination.phase]["At destination"]]
+    // }
     const [tasks, setTasks] = useState(initialTask);
     const onPressCheckBox = (taskCategory, taskTitle) => {
         const currentTasks = JSON.parse(JSON.stringify(tasks));
@@ -105,12 +117,8 @@ function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist }) {
 function AssistancePage2({ navigation, route }) {
     const [startTime] = useState(new Date());
     const mapRef = useRef(null);
-    // const { location, destination, setUserLocation, setUserDestination } = useLocationContext();
+    const { location, destination, setUserLocation, setUserDestination } = useLocationContext();
     const [checklistStatus, setChecklistStatus] = useState(false);
-
-    useEffect(() => {
-        setIsDifferentStateModalVisible(true);
-    }, [])
 
     const onUserLocationChange = () => {
         const coordinatesRange = [];
