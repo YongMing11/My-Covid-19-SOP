@@ -204,17 +204,17 @@ function HomePage({ navigation, route }) {
           uploadAudioAsync(uri)
           .then(res => res.json())
           .then(res => {
-            console.log('response from speech to text');
             // sample response
             // [alternatives {
             //   transcript: "I want to go office Subang"
             //   confidence: 0.8372671008110046
             // }
             // ]
-            console.log('response:',res);
+            console.log('response from speech to text:',res);
+            // "[alternatives {\n  transcript: \"I want to work at the kinjaz\"\n  confidence: 0.850742518901825\n}\n]"
             // filter
-            const transcript = 'I want to go out to work at Subang';
-            // const transcript = res.alternative[0].transcript;
+            // const transcript = 'I want to go out to work at Subang';
+            const transcript = res;
             const idx = transcript.indexOf('at');
             const destination = transcript.substr(idx+3);
             const actionText = transcript.substring(0, idx);

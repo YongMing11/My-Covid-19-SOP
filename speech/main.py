@@ -1,4 +1,5 @@
 from google.cloud import speech
+from google.cloud import speech_v1p1beta1
 import json
 
 def parse_multipart(request):
@@ -59,10 +60,21 @@ def parse_multipart(request):
         language_code="ms-MY",
         audio_channel_count=1,
         # speechContexts=speech_adaptation,
+        # speech_contexts=[{
+        #   "phrases":["at"],
+        #   "boost": 10.0
+        # },{
+        #   "phrases":["eat", "buy", "work", "somewhere", "emergency"],
+        #   "boost": 7.0
+        # },{
+        #   "phrases":["to eat", "buy things", "work at", "go somewhere", "have emergency"],
+        #   "boost": 5.0
+        # }]
+        # speech_contexts=[{ "phrases": ["eat", "buy", "work", "somewhere", "emergency"] }]
     )
 
     response = client.recognize(config=config, audio=audio)
 
     for result in response.results:
         print("Transcript: {}".format(result.alternatives[0].transcript))
-    return json.dumps(str(response.results)), 200, {'Content-Type': 'application/json'}
+    return json.dumps(str(response.results[0].alternatives[0].transcript)), 200, {'Content-Type': 'application/json'}
