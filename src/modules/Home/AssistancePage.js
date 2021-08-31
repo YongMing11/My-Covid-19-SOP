@@ -54,7 +54,7 @@ const AssistancePage = ({ navigation, route }) => {
     }, [])
 
     useEffect(() => {
-        console.log(destination)
+        console.log('destination:',destination);
         onUserLocationChange();
         // OPEN THE ALERT MODAL TO TELL USER THAT CROSS STATE IS NOT ALLOWED
         if (location && destination && location.state && destination.state && location.state !== destination.state && !isDifferentStateModalVisible) {

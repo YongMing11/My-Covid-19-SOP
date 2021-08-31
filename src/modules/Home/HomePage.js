@@ -81,7 +81,7 @@ function HomePage({ navigation, route }) {
             setGettingLocation(true);
         }
 
-        let currentLocation = await Location.getCurrentPositionAsync({})
+        let currentLocation = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High})
             .then(data => {
                 setUserLocationCoordinates({ latitude: data.coords.latitude, longitude: data.coords.longitude })
                 return data;
@@ -112,6 +112,7 @@ function HomePage({ navigation, route }) {
                 .catch(error => {
                     // below line commented for dev purpose
                     // setNetworkStatus(false);
+                    console.log('getFullAddressBasedOnLocation error', error)
                     setNetworkStatus(true);
                 });
         }else{
@@ -120,9 +121,12 @@ function HomePage({ navigation, route }) {
     }
 
     // Action Object (mock/action.js), Destination Address String
-    const speechAction = (selectedAction, destinationAddress) => {
-        setUserDestination(getLocationByAddress(destinationAddress))
-        onPressAction(selectedAction)
+    const speechAction = async (selectedAction, destinationAddress) => {
+      console.log(`selectedAction: ${selectedAction}, destinationAddress: ${destinationAddress}`)
+      const location = await getLocationByAddress(destinationAddress);
+      console.log('location', location)
+      setUserDestination(location);
+      onPressAction(selectedAction);
     }
 
     const onPressAction = (selectedAction) => {
@@ -207,7 +211,7 @@ function HomePage({ navigation, route }) {
             //   confidence: 0.8372671008110046
             // }
             // ]
-            console.log(res);
+            console.log('response:',res);
             // filter
             const transcript = 'I want to go out to work at Subang';
             // const transcript = res.alternative[0].transcript;
@@ -222,14 +226,14 @@ function HomePage({ navigation, route }) {
             })
             console.log(action.data[actionIdx], destination);
             // uncomment below to complete the whole flow
-            speechAction(action.data[actionIdx], destination);
+            return speechAction(action.data[actionIdx], destination);
           }).catch(err => {
               console.log('err at uploadAudioAsync',err);
               return err;
           });
         }else{
             // console.log('isRecording is', isRecording)
-            console.log('isRecordingRef is', isRecording)
+            console.log('isRecordingRef is', isRecordingRef.current)
         }
       }
 
