@@ -33,6 +33,7 @@ const theme = {
     primaryGreen: "#d0e7da",
     primaryGrey: '#979797',
     secondaryGrey: '#F0F0F0',
+    warning: '#FFC107',
   },
   bottomNavigation: {
     height: 60
