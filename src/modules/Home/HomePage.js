@@ -45,7 +45,6 @@ function HomePage({ navigation, route }) {
 
     useEffect(() => {
         if (isFocused) {
-            console.log(isFocused)
             setVisible(true);
             const timeOut = setTimeout(() => {
                 if (route.params) {

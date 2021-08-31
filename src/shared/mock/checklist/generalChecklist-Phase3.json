@@ -1,0 +1,66 @@
+{
+    "Note": {
+        "Vaccinated": {
+            "EAT": [
+                "Only takeaways and deliveries are allowed"
+            ],
+            "BUY": [
+                "Only 3 family members are allowed"
+            ],
+            "WORK": [
+                "Public sector limited to 80% capacity",
+                "Private sector limited to 80% capacity",
+                "Agricultural and commodities sector may operate at full capacity"
+            ],
+            "SOMEWHERE": [
+                "Travelling between districts of the same state are allowed"
+            ]
+        },
+        "NotVaccinated": {
+            "EAT": [
+                "Full Vaccinated Individuals are allowed to dine-in"
+            ],
+            "BUY": [
+                "Only 3 family members are allowed"
+            ],
+            "WORK": [
+                "Public sector limited to 80% capacity",
+                "Private sector limited to 80% capacity",
+                "Agricultural and commodities sector may operate at full capacity"
+            ],
+            "SOMEWHERE": [
+                "Vehicles may carry passengers at full capacity",
+                "Crossing states allowed for married couples and parents to children below 18 years old, with permission from PDRM",
+                "Citizens and non-citizens who have a residence in Malaysia and arrived from abroad, may have their compulsory quarantine at home"
+            ]
+        }
+    },
+    "Before starting your journey": [
+        {
+            "task": "Wear mask",
+            "status": false
+        },
+        {
+            "task": "Make sure phone battery is enough",
+            "status": false
+        },
+        {
+            "task": "Have only 3 passenger",
+            "status": false
+        }
+    ],
+    "At destination": [
+        {
+            "task": "Record temperature",
+            "status": false
+        },
+        {
+            "task": "Scan MySejahtera QR code",
+            "status": false
+        },
+        {
+            "task": "Practice social distancing at least 1-metre",
+            "status": false
+        }
+    ]
+}

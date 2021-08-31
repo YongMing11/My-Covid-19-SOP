@@ -7,9 +7,10 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import { useLocationContext } from '../../contexts/location-context';
 import { getStateAndPhase } from '../../shared/services/location.service';
+import ModalComponent from '../../shared/components/modalComponent';
 
 const AssistancePage = ({ navigation, route }) => {
-    const { location, setUserLocation, destination, setUserDestination } = useLocationContext();
+    const { action, location, setUserLocation, destination, setUserDestination } = useLocationContext();
     const placesAPI_query = {
         key: GOOGLE_MAPS_APIKEY,
         language: 'en',
@@ -18,7 +19,7 @@ const AssistancePage = ({ navigation, route }) => {
     const mapRef = useRef(null);
     const locationInputRef = useRef();
     const destinationInputRef = useRef();
-
+    const [isDifferentStateModalVisible, setIsDifferentStateModalVisible] = useState(false);
     // const [location, setLocation] = useState({
     //     name: "Example Location",
     //     address: "Example Location 1, Jalan Example, Taman Example,Example Location 1, Jalan Example, Taman ExampleExample Location 1, Jalan Example, Taman Example",
@@ -39,21 +40,31 @@ const AssistancePage = ({ navigation, route }) => {
     useEffect(() => {
         locationInputRef.current?.setAddressText(location.address);
         if (destination && destination.address && destination.address.length !== 0) {
-            destinationInputRef.current?.setAddressText(location.address);
+            destinationInputRef.current?.setAddressText(destination.address);
         }
     }, [])
 
     useEffect(() => {
         console.log(destination)
         onUserLocationChange();
+        // OPEN THE ALERT MODAL TO TELL USER THAT CROSS STATE IS NOT ALLOWED
+        if (location && destination && location.state !== destination.state && !isDifferentStateModalVisible) {
+            setIsDifferentStateModalVisible(true);
+        }
     }, [location, destination])
 
+    const resetDestination = () => {
+        setIsDifferentStateModalVisible(false);
+        setUserDestination(null);
+        destinationInputRef.current?.setAddressText("");
+    }
 
     const searchBoxStyle = {
         container: { flex: 0, width: '100%', zIndex: 1 },
         listView: { backgroundColor: 'white' }
     }
 
+    // SET THE MAP TO FIT THE COORDINATES OF LOCATION AND DESTINATION
     const onUserLocationChange = () => {
         const coordinatesRange = [];
         if (location && location.coordinates) coordinatesRange.push(location.coordinates)
@@ -76,6 +87,18 @@ const AssistancePage = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
+            {action.id != "SOMEWHERE" && location && destination && location.state !== destination.state &&
+                <ModalComponent
+                    visible={isDifferentStateModalVisible}
+                    onDismiss={() => resetDestination()}
+                    icon="alert-circle"
+                    iconColor="#721d50"
+                    title="Crossing state is not allowed"
+                    text="Please choose another destination to proceed"
+                    location={location.state}
+                    destination={destination.state}
+                />
+            }
             <GooglePlacesAutocomplete
                 ref={locationInputRef}
                 placeholder='Enter your location'

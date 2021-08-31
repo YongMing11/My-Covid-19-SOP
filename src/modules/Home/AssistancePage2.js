@@ -8,6 +8,8 @@ import MapViewDirections from 'react-native-maps-directions';
 import { useLocationContext } from '../../contexts/location-context';
 import ModalComponent from '../../shared/components/modalComponent';
 
+const { action,location, destination, setUserLocation, setUserDestination } = useLocationContext();
+
 function Timer({ startTime }) {
     const [duration, setDuration] = useState("0 MIN 0 SEC");
     useEffect(() => {
@@ -103,9 +105,8 @@ function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist }) {
 function AssistancePage2({ navigation, route }) {
     const [startTime] = useState(new Date());
     const mapRef = useRef(null);
-    const { location, destination, setUserLocation, setUserDestination } = useLocationContext();
+    // const { location, destination, setUserLocation, setUserDestination } = useLocationContext();
     const [checklistStatus, setChecklistStatus] = useState(false);
-    const [isDifferentStateModalVisible, setIsDifferentStateModalVisible] = useState(false);
 
     useEffect(() => {
         setIsDifferentStateModalVisible(true);
@@ -146,18 +147,6 @@ function AssistancePage2({ navigation, route }) {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            {location && destination && location.state !== destination.state &&
-                < ModalComponent
-                    visible={isDifferentStateModalVisible}
-                    onDismiss={() => setIsDifferentStateModalVisible(false)}
-                    icon="alert-circle"
-                    iconColor="#721d50"
-                    title="Cross state action"
-                    text={"Please make sure you fulfill the requirements to cross state"}
-                    location={location.state}
-                    destination={destination.state}
-                />
-            }
             <Timer startTime={startTime} />
             <ScrollView>
                 <MapView style={styles.map}
