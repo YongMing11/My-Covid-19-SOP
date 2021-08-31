@@ -94,13 +94,13 @@ const HelpdeskScreenNavigator = () => {
 const ReviewScreenNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName="Review"
+            initialRouteName="ReviewPage"
             screenOptions={{
                 header: ({ options, navigation }) => <HeaderComponent options={options} navigation={navigation} />,
             }}
         >
             <Stack.Screen
-                name="Review"
+                name="ReviewPage"
                 component={ReviewPage}
                 options={{
                     title: title.ReviewPage,

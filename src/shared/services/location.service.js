@@ -26,13 +26,10 @@ const getLocationByAddress = async (address) => {
                     phase: currentPhase,
                     state: currentState
                 }
-                console.log('location in the then method getLocationByAddress', JSON.stringify(location));
-
             }
         }).catch(err => {
             console.log("Geocoding failed : " + err)
         })
-        console.log('location returned in getLocationByAddress', location);
     return location;
 }
 

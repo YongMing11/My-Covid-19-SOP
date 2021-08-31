@@ -40,6 +40,7 @@ function HomePage({ navigation, route }) {
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const [gettingLocation, setGettingLocation] = useState(false);
+    const [gettingTextFromSpeech, setGettingTextFromSpeech] = useState(false);
     const [networkStatus, setNetworkStatus] = useState(true);
     const [recording, setRecording] = React.useState(false);
     const [isRecording, setIsRecording] = useState(false);
@@ -193,16 +194,17 @@ function HomePage({ navigation, route }) {
         if(isRecordingRef.current){
           console.log("Stopping recording..");
           setIsRecording(false);
+          setGettingTextFromSpeech(true);
           
           await recordingRef.current.stopAndUnloadAsync().catch(err => console.log('err at stopAndUnloadAsync',err));
           const uri = recordingRef.current.getURI();
           console.log('Recording stopped and stored at', uri);
           playSound(uri);
   
-          // TODO: add above block to below
           uploadAudioAsync(uri)
           .then(res => res.json())
           .then(res => {
+            setGettingTextFromSpeech(false);
             console.log('response from speech to text:',res);
             // const transcript = 'I want to go out to work at Subang';
             const transcript = res;
@@ -221,6 +223,8 @@ function HomePage({ navigation, route }) {
           }).catch(err => {
               console.log('err at uploadAudioAsync',err);
               return err;
+          }).finally(()=>{
+              setGettingTextFromSpeech(false);
           });
         }else{
             console.log('isRecordingRef is', isRecordingRef.current)
@@ -329,6 +333,12 @@ function HomePage({ navigation, route }) {
                 onDismiss={() => console.log("Close Network Modal")}
                 title="Accessing your location"
                 text="Please make sure your location is turned on"
+            />
+            <ModalComponent
+                visible={gettingTextFromSpeech}
+                onDismiss={() => console.log("Close Speech-to-Text Runing Modal")}
+                title="Converting speech to text"
+                text="Please wait a while"
             />
 
             <ScrollView style={styles.scrollView}>
