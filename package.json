@@ -16,8 +16,10 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.2",
     "expo": "~42.0.1",
+    "expo-av": "^9.2.3",
     "expo-linear-gradient": "~9.2.0",
     "expo-location": "~12.1.2",
+    "expo-network": "~3.2.0",
     "expo-permissions": "~12.1.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
@@ -36,7 +38,7 @@
     "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "^0.17.1",
-    "expo-network": "~3.2.0"
+    "expo-clipboard": "~1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

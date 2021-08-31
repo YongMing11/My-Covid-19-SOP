@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, ActivityIndicator } from 'react-native';
 import { FAB, Portal, Modal, Title, IconButton, DataTable, Colors } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
@@ -9,6 +9,7 @@ import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import { getDurationString } from '@services/timer.service';
 import action from '@mock/action.json';
 import ModalComponent from '../../shared/components/modalComponent';
+import { Audio } from "expo-av";
 import { getLocationByAddress, getStateAndPhase } from '../../shared/services/location.service';
 import { useIsFocused } from '@react-navigation/native';
 
@@ -40,6 +41,11 @@ function HomePage({ navigation, route }) {
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const [networkStatus, setNetworkStatus] = useState(true);
+    const [recording, setRecording] = React.useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [sound, setSound] = React.useState();
+    const [openModal, setOpenModal] = React.useState(false);
+
     Geocoder.init(GOOGLE_MAPS_APIKEY);
     const isFocused = useIsFocused();
 
@@ -97,7 +103,13 @@ function HomePage({ navigation, route }) {
                     setUserLocationPhase(currentPhase);
                     setNetworkStatus(true);
                 })
-                .catch(error => setNetworkStatus(false));
+                .catch(error => {
+                    // below line commented for dev purpose
+                    // setNetworkStatus(false);
+                    setNetworkStatus(true);
+                });
+        }else{
+          console.log('currentLocation is falsy',currentLocation);
         }
     }
 
@@ -108,6 +120,8 @@ function HomePage({ navigation, route }) {
     }
 
     const onPressAction = (selectedAction) => {
+        console.log('onPressAction');
+        // navigation.navigate('AssistancePage', { title: selectedAction })
         setUserAction(selectedAction)
         navigation.navigate('AssistancePage', { title: selectedAction.shortLabel })
     }
@@ -117,6 +131,153 @@ function HomePage({ navigation, route }) {
         navigation.navigate(pageName)
     }
 
+    async function playSound(uri) {
+        console.log("Loading Sound");
+        console.log(uri);
+        const { sound } = await Audio.Sound.createAsync({ uri });
+        // const { sound } = await Audio.Sound.createAsync(require('./5_pengagihan.mp3'));
+        setSound(sound);
+    
+        console.log("Playing Sound");
+        await sound.playAsync();
+      }
+      React.useEffect(() => {
+        return sound
+          ? () => {
+            console.log("Unloading Sound");
+            sound.unloadAsync();
+          }
+          : undefined;
+      }, [sound]);
+    async function uploadAudioAsync(uri) {
+        let apiUrl = 'http://192.168.0.180:8080';
+        // let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
+        let uriParts = uri.split('.');
+        let fileType = uriParts[uriParts.length - 1];
+    
+        let formData = new FormData();
+        formData.append('file', {
+          uri,
+          name: `recording.${fileType}`,
+          type: `audio/wav`,       // TODO: is this correct?
+        });
+    
+        let options = {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+        };
+    
+        console.log("POSTing " + uri + " to " + apiUrl);
+        return fetch(apiUrl, options);
+      }
+
+      const isRecordingRef = useRef(isRecording);
+      isRecordingRef.current = isRecording;
+      const recordingRef = useRef(recording);
+      recordingRef.current = recording;
+      
+      async function stopRecording() {
+        if(isRecordingRef.current){
+          console.log("Stopping recording..");
+          setIsRecording(false);
+      
+          await recordingRef.current.stopAndUnloadAsync().catch(err => console.log('err',err));
+          const uri = recordingRef.current.getURI();
+          console.log('Recording stopped and stored at', uri);
+          playSound(uri);
+  
+          // TODO: add above block to below
+          uploadAudioAsync(uri)
+          .then(res => res.json())
+          .then(res => {
+            console.log('response from speech to text');
+            // sample response
+            // [alternatives {
+            //   transcript: "I want to go office Subang"
+            //   confidence: 0.8372671008110046
+            // }
+            // ]
+            console.log(res);
+            // filter
+            const transcript = 'I want to go out to work at Subang';
+            // const transcript = res.alternative[0].transcript;
+            const idx = transcript.indexOf('at');
+            const destination = transcript.substr(idx+3);
+            const actionText = transcript.substring(0, idx);
+            const actionKeys = action.data.map(a => {
+              return a.id.toLowerCase();
+            })
+            const actionIdx = actionKeys.findIndex((key) => {
+              return actionText.includes(key);
+            })
+            console.log(action.data[actionIdx], destination);
+            // uncomment below to complete the whole flow
+            speechAction(action.data[actionIdx], destination);
+          }).catch(err => {
+              console.log('err at uploadAudioAsync',err);
+              return err;
+          });
+        }else{
+            // console.log('isRecording is', isRecording)
+            console.log('isRecordingRef is', isRecording)
+        }
+      }
+
+      const checkRecordingStatus = () => {
+          setTimeout(()=>{
+              console.log('call setTimeout');
+              setOpenModal(false);
+              stopRecording();
+          }, 10000)
+      }
+
+      async function startRecording() {
+        setIsRecording(true);
+        setOpenModal(true);
+        checkRecordingStatus();
+        try {
+          console.log("Requesting permissions..");
+          await Audio.requestPermissionsAsync();
+          await Audio.setAudioModeAsync({
+            allowsRecordingIOS: true,
+            playsInSilentModeIOS: true,
+          });
+          console.log("Starting recording..");
+          const { recording } = await Audio.Recording.createAsync(
+            {
+              isMeteringEnabled: true,
+              android: {
+                extension: '.amr',
+                outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_AMR_NB,
+                audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AMR_NB,
+                sampleRate: 8000,
+                numberOfChannels: 1,
+                bitRate: 12200,
+              },
+              ios: {
+                extension: ".caf",
+                audioQuality: 0x7f,
+                sampleRate: 44100,
+                numberOfChannels: 2,
+                bitRate: 128000,
+                linearPCMBitDepth: 16,
+                linearPCMIsBigEndian: false,
+                linearPCMIsFloat: false,
+              },
+            }
+          );
+          setRecording(recording);
+          console.log("Recording started");
+        } catch (err) {
+          console.error("Failed to start recording", err);
+          setIsRecording(false);
+        }
+      }
+      
     return (
         <View style={styles.scene}>
             {/* Display Modal when user finish activity */}
@@ -143,6 +304,15 @@ function HomePage({ navigation, route }) {
                 iconColor="red"
                 title="Location is required for My COVID-19 SOP to work properly"
                 text="Please allow location access in settings"
+            />
+            {/* Modal pop out if user click recording button */}
+            <ModalComponent
+                visible={openModal}
+                onDismiss={() => {setOpenModal(false);}}
+                icon="emoticon-outline"
+                iconColor="blue"
+                title={'Reminder:\nmention action and destination with the word "at" in between'}
+                text={'Example: I want go out to work at Subang,\nI want to go somewhere at Shah Alam\nThe recording will be stopped after 10 second'}
             />
             <ModalComponent
                 visible={!networkStatus}
@@ -180,10 +350,10 @@ function HomePage({ navigation, route }) {
                 </View>
             </ScrollView>
             <FAB
-                style={styles.fab}
+                style={[styles.fab, isRecording? styles.fabRecording: styles.fabNotRecording]}
                 small
                 icon="microphone"
-                onPress={() => console.log('Pressed')}
+                onPress={isRecording ? stopRecording : startRecording}
             />
         </View>
     )
@@ -276,11 +446,15 @@ const styles = StyleSheet.create({
         margin: 16,
         right: 0,
         bottom: 0,
-        backgroundColor: theme.colors.primaryBlue,
         color: 'white',
         padding: 5
-    }
-
+    }, 
+    fabRecording: {
+        backgroundColor: theme.colors.warning,
+    },
+    fabNotRecording: {
+        backgroundColor: theme.colors.primaryBlue,
+    },
 });
 
 export default HomePage;
