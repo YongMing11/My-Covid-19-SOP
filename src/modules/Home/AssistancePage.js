@@ -10,7 +10,7 @@ import { getStateAndPhase } from '../../shared/services/location.service';
 import ModalComponent from '../../shared/components/modalComponent';
 
 const AssistancePage = ({ navigation, route }) => {
-    const { action, location, setUserLocation, destination, setUserDestination } = useLocationContext();
+    const { action, location, setUserLocation, destination, setUserDestination, resetUserDestination } = useLocationContext();
     const placesAPI_query = {
         key: GOOGLE_MAPS_APIKEY,
         language: 'en',
@@ -26,7 +26,8 @@ const AssistancePage = ({ navigation, route }) => {
     //     coordinates: {
     //         latitude: 3.16854,
     //         longitude: 101.53666
-    //     }
+    //     },
+    //  state: "SELANGOR", phase: "PPN Phase 1"
     // });
     // const [destination, setDestination] = useState({
     //     name: "",
@@ -34,11 +35,12 @@ const AssistancePage = ({ navigation, route }) => {
     //     coordinates: {
     //         latitude: 3.16854,
     //         longitude: 101.53666
-    //     }
+    //     },
+    //  state: "SELANGOR", phase: "PPN Phase 1"
     // });
 
     useEffect(() => {
-        locationInputRef.current?.setAddressText(location.address);
+        locationInputRef.current?.setAddressText(location.address || "");
         if (destination && destination.address && destination.address.length !== 0) {
             destinationInputRef.current?.setAddressText(destination.address);
         }
@@ -48,14 +50,14 @@ const AssistancePage = ({ navigation, route }) => {
         console.log(destination)
         onUserLocationChange();
         // OPEN THE ALERT MODAL TO TELL USER THAT CROSS STATE IS NOT ALLOWED
-        if (location && destination && location.state !== destination.state && !isDifferentStateModalVisible) {
+        if (location && destination && location.state && destination.state && location.state !== destination.state && !isDifferentStateModalVisible) {
             setIsDifferentStateModalVisible(true);
         }
     }, [location, destination])
 
     const resetDestination = () => {
         setIsDifferentStateModalVisible(false);
-        setUserDestination(null);
+        resetUserDestination();
         destinationInputRef.current?.setAddressText("");
     }
 
@@ -87,7 +89,8 @@ const AssistancePage = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
-            {action.id != "SOMEWHERE" && location && destination && location.state !== destination.state &&
+            {action.id != "SOMEWHERE" && location && destination && location.state && destination.state &&
+                location.state !== destination.state &&
                 <ModalComponent
                     visible={isDifferentStateModalVisible}
                     onDismiss={() => resetDestination()}
@@ -108,13 +111,16 @@ const AssistancePage = ({ navigation, route }) => {
                 }}
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
+                    const { currentState, currentPhase } = getStateAndPhase(data.description);
                     setUserLocation({
                         name: details.name,
                         address: data.description,
                         coordinates: {
                             latitude: details.geometry.location.lat,
                             longitude: details.geometry.location.lng
-                        }
+                        },
+                        state: currentState,
+                        phase: currentPhase
                     })
                 }}
                 query={placesAPI_query}
@@ -169,8 +175,8 @@ const AssistancePage = ({ navigation, route }) => {
                         </Marker>}
                     <Circle center={location.coordinates} radius={1000} />
                 </MapView>
-                <Button style={(!location || !destination) ? styles.disabledButton : styles.actionButton} mode="contained" onPress={navigateToAssistancePage2}
-                    disabled={!location || !destination}
+                <Button style={(!location.address || !destination.address) ? styles.disabledButton : styles.actionButton} mode="contained" onPress={navigateToAssistancePage2}
+                    disabled={!location.address || !destination.address}
                 >Confirm
                 </Button>
             </View>
