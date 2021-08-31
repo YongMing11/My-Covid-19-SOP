@@ -38,17 +38,7 @@ const LocationContext = React.createContext({
 const LocationProvider = ({ children }) => {
   const [action, setAction] = useState(null);
   const [location, setLocation] = useState(null);
-  // const [destination, setDestination] = useState(null);
-  const [destination, setDestination] = useState({
-    "address": "UM Specialist Centre (UMSC), Lorong Universiti, Lembah Pantai, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
-    "coordinates": {
-      "latitude": 3.1161527,
-      "longitude": 101.6507157,
-    },
-    "name": "UM Specialist Centre (UMSC)",
-    "phase": "PNN Phase 1",
-    "state": "KUALA LUMPUR",
-  });
+  const [destination, setDestination] = useState(null);
 
   // ACTION
   const setUserAction = React.useCallback((newAction) => {

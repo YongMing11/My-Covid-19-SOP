@@ -12,6 +12,7 @@ import { title } from "../constants/config";
 import AssistancePage from "../../modules/Home/AssistancePage";
 import ProfilePage from "../../modules/Profile/ProfilePage";
 import AssistancePage2 from "../../modules/Home/AssistancePage2";
+import ReviewPage from "../../modules/Review/ReviewPage";
 
 const Stack = createStackNavigator();
 
@@ -90,6 +91,24 @@ const HelpdeskScreenNavigator = () => {
         </Stack.Navigator>
     );
 };
+const ReviewScreenNavigator = () => {
+    return (
+        <Stack.Navigator
+            initialRouteName="Review"
+            screenOptions={{
+                header: ({ options, navigation }) => <HeaderComponent options={options} navigation={navigation} />,
+            }}
+        >
+            <Stack.Screen
+                name="Review"
+                component={ReviewPage}
+                options={{
+                    title: title.ReviewPage,
+                }}
+            />
+        </Stack.Navigator>
+    );
+};
 
 const HospitalScreenNavigator = () => {
     return (
@@ -162,4 +181,4 @@ const ProfileScreenNavigator = () => {
     );
 };
 
-export { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator, ProfileScreenNavigator };
+export { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator, ProfileScreenNavigator, ReviewScreenNavigator };
