@@ -116,12 +116,7 @@ function ProfilePage({ navigation }) {
                         <DataTable.Title style={styles.locationColumn}>Location</DataTable.Title>
                         <DataTable.Title style={styles.dateColumn}>Date</DataTable.Title>
                         <DataTable.Title style={styles.timeColumn}>Time</DataTable.Title>
-                        <DataTable.Title style={styles.durationHeader} numberOfLines={1} numeric>
-                            <View style={styles.nestedDurationHeader}>
-                                <Caption style={styles.caption}>Duration</Caption>
-                                <Caption style={styles.caption}>(min)</Caption>
-                            </View>
-                        </DataTable.Title>
+                        <DataTable.Title style={styles.durationHeader} numeric>min.</DataTable.Title>
                     </DataTable.Header>
                 </DataTable>
                 <ScrollView style={styles.rowScrollView}>{historiesRows}</ScrollView>
@@ -210,10 +205,7 @@ const styles = StyleSheet.create({
     },
     durationHeader: {
         flex: 0.6,
-        paddingRight: 6,
-        height: "100%",
-        paddingTop: 10,
-        marginVertical: 0,
+        paddingRight: 6
     },
     nestedDurationHeader: {
         flex: 1,

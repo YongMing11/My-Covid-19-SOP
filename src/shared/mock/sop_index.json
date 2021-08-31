@@ -2,6 +2,7 @@
   "phases": [
     {
       "title": "Fasa 1",
+      "title_en": "PPN Phase 1",
       "subtitle": "Pelan Pemulihan Negara",
       "areas": [
         "Selangor",
@@ -11,15 +12,32 @@
         "Melaka",
         "Johor"
       ],
+      "areas_en": [
+        "Selangor",
+        "Kuala Lumpur",
+        "Putrajaya",
+        "Kedah",
+        "Malacca",
+        "Johor"
+      ],
       "sectors": [
         "MKN - Pelan Pemulihan Negara SOP Fasa 1"
       ]
     },
     {
       "title": "Fasa 2",
+      "title_en": "PPN Phase 2",
       "subtitle": "Pelan Pemulihan Negara",
       "areas": [
         "Pulau Pinang",
+        "Pahang",
+        "Terengganu",
+        "Kelantan",
+        "Negeri Sembilan",
+        "Sabah"
+      ],
+      "areas_en": [
+        "Penang",
         "Pahang",
         "Terengganu",
         "Kelantan",
@@ -32,8 +50,13 @@
     },
     {
       "title": "Fasa 3",
+      "title_en": "PPN Phase 3",
       "subtitle": "Pelan Pemulihan Negara",
       "areas": [
+        "Perlis",
+        "Sarawak"
+      ],
+      "areas_en": [
         "Perlis",
         "Sarawak"
       ],
@@ -43,8 +66,12 @@
     },
     {
       "title": "Fasa 4",
+      "title_en": "PPN Phase 4",
       "subtitle": "Pelan Pemulihan Negara",
       "areas": [
+        "Labuan"
+      ],
+      "areas_en": [
         "Labuan"
       ],
       "sectors": [

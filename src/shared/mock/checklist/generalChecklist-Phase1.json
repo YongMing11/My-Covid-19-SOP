@@ -50,6 +50,7 @@
             "status": false
         }
     ],
+    "Before starting your journey_destination": [],
     "At destination": [
         {
             "task": "Record temperature",

@@ -6,7 +6,7 @@ import MapView, { Marker, Callout, Circle } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import { useLocationContext } from '../../contexts/location-context';
-import { getStateAndPhase } from '../../shared/services/location.service';
+import { checkCrossState, getStateAndPhase } from '../../shared/services/location.service';
 import ModalComponent from '../../shared/components/modalComponent';
 
 const AssistancePage = ({ navigation, route }) => {
@@ -54,10 +54,11 @@ const AssistancePage = ({ navigation, route }) => {
     }, [])
 
     useEffect(() => {
-        console.log('destination:',destination);
+        console.log('destination:', destination);
         onUserLocationChange();
         // OPEN THE ALERT MODAL TO TELL USER THAT CROSS STATE IS NOT ALLOWED
-        if (location && destination && location.state && destination.state && location.state !== destination.state && !isDifferentStateModalVisible) {
+        if (location && destination && location.state && destination.state &&
+            checkCrossState(location.state, destination.state) && !isDifferentStateModalVisible) {
             setIsDifferentStateModalVisible(true);
         }
     }, [location, destination])
@@ -75,6 +76,10 @@ const AssistancePage = ({ navigation, route }) => {
 
     // SET THE MAP TO FIT THE COORDINATES OF LOCATION AND DESTINATION
     const onUserLocationChange = () => {
+        if (location && destination && location.state && destination.state &&
+            checkCrossState(location.state, destination.state)) {
+            return;
+        }
         const coordinatesRange = [];
         if (location && location.coordinates) coordinatesRange.push(location.coordinates)
         if (destination && destination.coordinates) coordinatesRange.push(destination.coordinates)

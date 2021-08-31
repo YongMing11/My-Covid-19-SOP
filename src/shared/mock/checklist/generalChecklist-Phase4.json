@@ -2,35 +2,34 @@
     "Note": {
         "NotVaccinated": {
             "EAT": [
-                "Only takeaways and deliveries are allowed"
+                "Dine-in allowed subject to physical distancing"
             ],
             "BUY": [
-                "Only 3 family members are allowed"
+                "Number of people in a car is determined by the car's capacity"
             ],
             "WORK": [
-                "Public sector limited to 80% capacity",
-                "Private sector limited to 80% capacity",
-                "Agricultural and commodities sector may operate at full capacity"
+                "Public sector is allowed to operate 100% capacity",
+                "Private sector is allowed to operate 100% capacity"
             ],
             "SOMEWHERE": [
-                "Travelling between districts of the same state are allowed"
+                "Inter-state travel is allowed with revelant documents verified by PDRM",
+                "Travelling across countries subject to risk assessment and agreement between countries"
             ]
         },
         "Vaccinated": {
             "EAT": [
-                "Full Vaccinated Individuals are allowed to dine-in"
+                "Dine-in allowed subject to physical distancing"
             ],
             "BUY": [
-                "Only 3 family members are allowed"
+                "Number of people in a car is determined by the car's capacity"
             ],
             "WORK": [
-                "Public sector limited to 80% capacity",
-                "Private sector limited to 80% capacity",
-                "Agricultural and commodities sector may operate at full capacity"
+                "Public sector is allowed to operate 100% capacity",
+                "Private sector is allowed to operate 100% capacity"
             ],
             "SOMEWHERE": [
-                "Vehicles may carry passengers at full capacity",
-                "Crossing states allowed for married couples and parents to children below 18 years old, with permission from PDRM",
+                "Inter-state travel is allowed with revelant documents verified by PDRM",
+                "Travelling across countries subject to risk assessment and agreement between countries",
                 "Citizens and non-citizens who have a residence in Malaysia and arrived from abroad, may have their compulsory quarantine at home"
             ]
         }
@@ -43,13 +42,14 @@
         {
             "task": "Make sure phone battery is enough",
             "status": false
-        },
+        }
+    ],
+    "Before starting your journey_destination": [
         {
-            "task": "Have only 3 passenger",
+            "task": "Perform RT PCR 3 days before entering",
             "status": false
         }
     ],
-    "Before starting your journey_destination": [],
     "At destination": [
         {
             "task": "Record temperature",
