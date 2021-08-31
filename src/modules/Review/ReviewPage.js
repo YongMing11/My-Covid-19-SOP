@@ -33,6 +33,9 @@ class ReviewPage extends Component {
                             <Card style={styles.card} key={index} onPress={() => onPressAction(place.title, index)}>
                                 <Card.Cover source={{ uri: place.uri }} />
                                 <Card.Title title={place.title} subtitle={place.subtitle} />
+                                <Card.Content style={styles.bg}>
+                                  <Text style={styles.whiteText}>Overall SOP Rating</Text>
+                                </Card.Content>
                                 <Card.Actions style={styles.flexSpaceBetween}>
                                   <View style={styles.icons}>
                                     {
@@ -46,7 +49,7 @@ class ReviewPage extends Component {
                                       })
                                     }
                                   </View>
-                                  <Button>View Reviews</Button>
+                                  <Button color="blue">View Reviews</Button>
                                 </Card.Actions>
                             </Card>
                         ))}
@@ -86,8 +89,10 @@ const styles = StyleSheet.create({
     },
     rating:{
       fontWeight: 'bold',
+      height: 20,
       width: 20,
-      padding: 0
+      padding: 0,
+      color: '#3677D9'
     },
     flexSpaceBetween:{
       // flex:1,
@@ -96,5 +101,12 @@ const styles = StyleSheet.create({
     },
     icons:{
       flex:1,
+      flexDirection: "row"
+    },
+    bg:{
+      backgroundColor: '#3677D9',
+    },
+    whiteText:{
+      color: 'white'
     }
 });

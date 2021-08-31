@@ -158,6 +158,14 @@ const SOPScreenNavigator = () => {
                     backButtonEnabled: "true",
                 }}
             />
+            <Stack.Screen
+                name="Helpdesk"
+                component={HelpdeskPage}
+                options={{
+                    title: title.HelpdeskPage,
+                    backButtonEnabled: "true",
+                }}
+            />
         </Stack.Navigator>
     );
 };

@@ -8,7 +8,7 @@ const Tab = createMaterialBottomTabNavigator();
 const Main = () => {
     return (
         <Tab.Navigator
-            initialRouteName="Assistance"
+            initialRouteName="Review"
             shifting={false}
             activeColor={theme.colors.primaryBlue}
             inactiveColor={theme.colors.primaryGrey}
@@ -30,7 +30,7 @@ const Main = () => {
                 // component={HelpdeskScreenNavigator}
                 component={ReviewScreenNavigator}
                 options={{
-                    tabBarIcon: "comment-question-outline",
+                    tabBarIcon: "account-edit",
                 }}
             />
             <Tab.Screen
