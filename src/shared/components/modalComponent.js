@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
-import { Portal, Modal, Title, IconButton, DataTable, Button, Avatar } from 'react-native-paper';
+import { Portal, Modal, Title, IconButton, DataTable, Button, ActivityIndicator, Colors } from 'react-native-paper';
 import theme from '../constants/Theme';
 
 function ModalComponent({ visible, onDismiss, icon, iconColor, title, text, location = null, destination = null, showPageButton = false, navigationAction = null }) {
@@ -9,11 +9,13 @@ function ModalComponent({ visible, onDismiss, icon, iconColor, title, text, loca
             <Modal visible={visible}
                 onDismiss={onDismiss} contentContainerStyle={styles.modal}>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <IconButton
+                    {icon && <IconButton
                         icon={icon}
                         color={iconColor}
                         size={40}
-                    />
+                    />}
+                    {!icon && <ActivityIndicator animating={true}
+                        color={theme.colors.primaryBlue} />}
                     <Title style={styles.title}>{title}</Title>
                     <Text style={styles.text}>{text}</Text>
                     {location && destination &&

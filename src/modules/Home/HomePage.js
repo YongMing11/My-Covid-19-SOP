@@ -36,10 +36,10 @@ function HomePage({ navigation, route }) {
     //         "state": "",
     //     },
     // }
-    const states = ['JOHOR', 'KEDAH', 'KELANTAN', 'MALACCA', 'NEGERI SEMBILAN', 'PAHANG', 'PENANG', 'PERAK', 'PERLIS', 'SABAH', 'SARAWAK', 'SELANGOR', 'TERANGGANU', 'KUALA LUMPUR', 'LABUAN', 'PUTRAJAYA'];
-    const { setUserAction, location, setUserLocation, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, setUserDestination } = useLocationContext();
+    const { setUserAction, location, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, resetUserLocation, setUserDestination, resetUserDestination } = useLocationContext();
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
+    const [gettingLocation, setGettingLocation] = useState(false);
     const [networkStatus, setNetworkStatus] = useState(true);
     const [recording, setRecording] = React.useState(false);
     const [isRecording, setIsRecording] = useState(false);
@@ -51,7 +51,6 @@ function HomePage({ navigation, route }) {
 
     useEffect(() => {
         if (isFocused) {
-            console.log(isFocused)
             setVisible(true);
             const timeOut = setTimeout(() => {
                 if (route.params) {
@@ -60,10 +59,14 @@ function HomePage({ navigation, route }) {
             }, 7000)
             permissionFlow();
             return () => clearTimeout(timeOut);
+        } else {
+            setGettingLocation(false);
         }
     }, [isFocused])
 
     const permissionFlow = async () => {
+        resetUserLocation();
+        resetUserDestination();
         let { status } = await Location.requestForegroundPermissionsAsync().catch(error => {
             console.log("Failed to get location permission")
         });
@@ -74,6 +77,7 @@ function HomePage({ navigation, route }) {
             return;
         } else {
             setLocationPermissionStatus(true);
+            setGettingLocation(true);
         }
 
         let currentLocation = await Location.getCurrentPositionAsync({})
@@ -96,21 +100,21 @@ function HomePage({ navigation, route }) {
             // Reverse Geocode to get the full address of the user coordinates
             Geocoder.from(currentLocation.coords.latitude, currentLocation.coords.longitude)
                 .then(json => {
-                    // console.log(json)
                     var address = json.results[0].formatted_address;
                     const { currentState, currentPhase } = getStateAndPhase(address);
                     setUserLocationAddress(address);
                     setUserLocationState(currentState);
                     setUserLocationPhase(currentPhase);
                     setNetworkStatus(true);
+                    setGettingLocation(false);
                 })
                 .catch(error => {
                     // below line commented for dev purpose
                     // setNetworkStatus(false);
                     setNetworkStatus(true);
                 });
-        }else{
-          console.log('currentLocation is falsy',currentLocation);
+        } else {
+            console.log('currentLocation is falsy', currentLocation);
         }
     }
 
@@ -138,147 +142,147 @@ function HomePage({ navigation, route }) {
         const { sound } = await Audio.Sound.createAsync({ uri });
         // const { sound } = await Audio.Sound.createAsync(require('./5_pengagihan.mp3'));
         setSound(sound);
-    
+
         console.log("Playing Sound");
         await sound.playAsync();
-      }
-      React.useEffect(() => {
+    }
+    React.useEffect(() => {
         return sound
-          ? () => {
-            console.log("Unloading Sound");
-            sound.unloadAsync();
-          }
-          : undefined;
-      }, [sound]);
+            ? () => {
+                console.log("Unloading Sound");
+                sound.unloadAsync();
+            }
+            : undefined;
+    }, [sound]);
     async function uploadAudioAsync(uri) {
         let apiUrl = 'http://192.168.0.180:8080';
         // let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
         let uriParts = uri.split('.');
         let fileType = uriParts[uriParts.length - 1];
-    
+
         let formData = new FormData();
         formData.append('file', {
-          uri,
-          name: `recording.${fileType}`,
-          type: `audio/wav`,       // TODO: is this correct?
+            uri,
+            name: `recording.${fileType}`,
+            type: `audio/wav`,       // TODO: is this correct?
         });
-    
+
         let options = {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data',
-          },
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'multipart/form-data',
+            },
         };
-    
+
         console.log("POSTing " + uri + " to " + apiUrl);
         return fetch(apiUrl, options);
-      }
+    }
 
-      const isRecordingRef = useRef(isRecording);
-      isRecordingRef.current = isRecording;
-      const recordingRef = useRef(recording);
-      recordingRef.current = recording;
-      
-      async function stopRecording() {
-        if(isRecordingRef.current){
-          console.log("Stopping recording..");
-          setIsRecording(false);
-      
-          await recordingRef.current.stopAndUnloadAsync().catch(err => console.log('err',err));
-          const uri = recordingRef.current.getURI();
-          console.log('Recording stopped and stored at', uri);
-          playSound(uri);
-  
-          // TODO: add above block to below
-          uploadAudioAsync(uri)
-          .then(res => res.json())
-          .then(res => {
-            console.log('response from speech to text');
-            // sample response
-            // [alternatives {
-            //   transcript: "I want to go office Subang"
-            //   confidence: 0.8372671008110046
-            // }
-            // ]
-            console.log(res);
-            // filter
-            const transcript = 'I want to go out to work at Subang';
-            // const transcript = res.alternative[0].transcript;
-            const idx = transcript.indexOf('at');
-            const destination = transcript.substr(idx+3);
-            const actionText = transcript.substring(0, idx);
-            const actionKeys = action.data.map(a => {
-              return a.id.toLowerCase();
-            })
-            const actionIdx = actionKeys.findIndex((key) => {
-              return actionText.includes(key);
-            })
-            console.log(action.data[actionIdx], destination);
-            // uncomment below to complete the whole flow
-            speechAction(action.data[actionIdx], destination);
-          }).catch(err => {
-              console.log('err at uploadAudioAsync',err);
-              return err;
-          });
-        }else{
+    const isRecordingRef = useRef(isRecording);
+    isRecordingRef.current = isRecording;
+    const recordingRef = useRef(recording);
+    recordingRef.current = recording;
+
+    async function stopRecording() {
+        if (isRecordingRef.current) {
+            console.log("Stopping recording..");
+            setIsRecording(false);
+
+            await recordingRef.current.stopAndUnloadAsync().catch(err => console.log('err', err));
+            const uri = recordingRef.current.getURI();
+            console.log('Recording stopped and stored at', uri);
+            playSound(uri);
+
+            // TODO: add above block to below
+            uploadAudioAsync(uri)
+                .then(res => res.json())
+                .then(res => {
+                    console.log('response from speech to text');
+                    // sample response
+                    // [alternatives {
+                    //   transcript: "I want to go office Subang"
+                    //   confidence: 0.8372671008110046
+                    // }
+                    // ]
+                    console.log(res);
+                    // filter
+                    const transcript = 'I want to go out to work at Subang';
+                    // const transcript = res.alternative[0].transcript;
+                    const idx = transcript.indexOf('at');
+                    const destination = transcript.substr(idx + 3);
+                    const actionText = transcript.substring(0, idx);
+                    const actionKeys = action.data.map(a => {
+                        return a.id.toLowerCase();
+                    })
+                    const actionIdx = actionKeys.findIndex((key) => {
+                        return actionText.includes(key);
+                    })
+                    console.log(action.data[actionIdx], destination);
+                    // uncomment below to complete the whole flow
+                    speechAction(action.data[actionIdx], destination);
+                }).catch(err => {
+                    console.log('err at uploadAudioAsync', err);
+                    return err;
+                });
+        } else {
             // console.log('isRecording is', isRecording)
             console.log('isRecordingRef is', isRecording)
         }
-      }
+    }
 
-      const checkRecordingStatus = () => {
-          setTimeout(()=>{
-              console.log('call setTimeout');
-              setOpenModal(false);
-              stopRecording();
-          }, 10000)
-      }
+    const checkRecordingStatus = () => {
+        setTimeout(() => {
+            console.log('call setTimeout');
+            setOpenModal(false);
+            stopRecording();
+        }, 10000)
+    }
 
-      async function startRecording() {
+    async function startRecording() {
         setIsRecording(true);
         setOpenModal(true);
         checkRecordingStatus();
         try {
-          console.log("Requesting permissions..");
-          await Audio.requestPermissionsAsync();
-          await Audio.setAudioModeAsync({
-            allowsRecordingIOS: true,
-            playsInSilentModeIOS: true,
-          });
-          console.log("Starting recording..");
-          const { recording } = await Audio.Recording.createAsync(
-            {
-              isMeteringEnabled: true,
-              android: {
-                extension: '.amr',
-                outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_AMR_NB,
-                audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AMR_NB,
-                sampleRate: 8000,
-                numberOfChannels: 1,
-                bitRate: 12200,
-              },
-              ios: {
-                extension: ".caf",
-                audioQuality: 0x7f,
-                sampleRate: 44100,
-                numberOfChannels: 2,
-                bitRate: 128000,
-                linearPCMBitDepth: 16,
-                linearPCMIsBigEndian: false,
-                linearPCMIsFloat: false,
-              },
-            }
-          );
-          setRecording(recording);
-          console.log("Recording started");
+            console.log("Requesting permissions..");
+            await Audio.requestPermissionsAsync();
+            await Audio.setAudioModeAsync({
+                allowsRecordingIOS: true,
+                playsInSilentModeIOS: true,
+            });
+            console.log("Starting recording..");
+            const { recording } = await Audio.Recording.createAsync(
+                {
+                    isMeteringEnabled: true,
+                    android: {
+                        extension: '.amr',
+                        outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_AMR_NB,
+                        audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AMR_NB,
+                        sampleRate: 8000,
+                        numberOfChannels: 1,
+                        bitRate: 12200,
+                    },
+                    ios: {
+                        extension: ".caf",
+                        audioQuality: 0x7f,
+                        sampleRate: 44100,
+                        numberOfChannels: 2,
+                        bitRate: 128000,
+                        linearPCMBitDepth: 16,
+                        linearPCMIsBigEndian: false,
+                        linearPCMIsFloat: false,
+                    },
+                }
+            );
+            setRecording(recording);
+            console.log("Recording started");
         } catch (err) {
-          console.error("Failed to start recording", err);
-          setIsRecording(false);
+            console.error("Failed to start recording", err);
+            setIsRecording(false);
         }
-      }
-      
+    }
+
     return (
         <View style={styles.scene}>
             {/* Display Modal when user finish activity */}
@@ -309,7 +313,7 @@ function HomePage({ navigation, route }) {
             {/* Modal pop out if user click recording button */}
             <ModalComponent
                 visible={openModal}
-                onDismiss={() => {setOpenModal(false);}}
+                onDismiss={() => { setOpenModal(false); }}
                 icon="emoticon-outline"
                 iconColor="blue"
                 title={'Reminder:\nmention action and destination with the word "at" in between'}
@@ -324,6 +328,12 @@ function HomePage({ navigation, route }) {
                 text="Please make sure that WI-FI or mobile data is turned on. You can visit other page while offline."
                 showPageButton={true}
                 navigationAction={navigationAction}
+            />
+            <ModalComponent
+                visible={gettingLocation && networkStatus}
+                onDismiss={() => console.log("Close Network Modal")}
+                title="Accessing your location"
+                text="Please make sure your location is turned on"
             />
 
             <ScrollView style={styles.scrollView}>
@@ -342,7 +352,8 @@ function HomePage({ navigation, route }) {
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
                     {action.data.map((buttonContent, index) =>
-                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent)}>
+                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent)}
+                            disabled={gettingLocation || !networkStatus}>
                             <View style={styles.actionButton}>
                                 <Text style={styles.actionButton_text}>{buttonContent.label}</Text>
                             </View>
@@ -351,10 +362,11 @@ function HomePage({ navigation, route }) {
                 </View>
             </ScrollView>
             <FAB
-                style={[styles.fab, isRecording? styles.fabRecording: styles.fabNotRecording]}
+                style={[styles.fab, isRecording ? styles.fabRecording : styles.fabNotRecording]}
                 small
                 icon="microphone"
                 onPress={isRecording ? stopRecording : startRecording}
+                disabled={gettingLocation || !networkStatus}
             />
         </View>
     )
@@ -449,7 +461,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         color: 'white',
         padding: 5
-    }, 
+    },
     fabRecording: {
         backgroundColor: theme.colors.warning,
     },

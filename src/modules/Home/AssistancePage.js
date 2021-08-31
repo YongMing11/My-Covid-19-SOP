@@ -7,9 +7,10 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import { useLocationContext } from '../../contexts/location-context';
 import { getStateAndPhase } from '../../shared/services/location.service';
+import ModalComponent from '../../shared/components/modalComponent';
 
 const AssistancePage = ({ navigation, route }) => {
-    const { location, setUserLocation, destination, setUserDestination } = useLocationContext();
+    const { action, location, setUserLocation, destination, setUserDestination, resetUserDestination } = useLocationContext();
     const placesAPI_query = {
         key: GOOGLE_MAPS_APIKEY,
         language: 'en',
@@ -18,14 +19,20 @@ const AssistancePage = ({ navigation, route }) => {
     const mapRef = useRef(null);
     const locationInputRef = useRef();
     const destinationInputRef = useRef();
+    const [isDifferentStateModalVisible, setIsDifferentStateModalVisible] = useState(false);
 
+    const DEFAULT_COORDINATES = {
+        latitude: 3.0111,
+        longitude: 101.012211
+    }
     // const [location, setLocation] = useState({
     //     name: "Example Location",
     //     address: "Example Location 1, Jalan Example, Taman Example,Example Location 1, Jalan Example, Taman ExampleExample Location 1, Jalan Example, Taman Example",
     //     coordinates: {
     //         latitude: 3.16854,
     //         longitude: 101.53666
-    //     }
+    //     },
+    //  state: "SELANGOR", phase: "PPN Phase 1"
     // });
     // const [destination, setDestination] = useState({
     //     name: "",
@@ -33,27 +40,40 @@ const AssistancePage = ({ navigation, route }) => {
     //     coordinates: {
     //         latitude: 3.16854,
     //         longitude: 101.53666
-    //     }
+    //     },
+    //  state: "SELANGOR", phase: "PPN Phase 1"
     // });
 
     useEffect(() => {
-        locationInputRef.current?.setAddressText(location.address);
+        if (location && location.phase && location.address) {
+            locationInputRef.current?.setAddressText(location.address);
+        }
         if (destination && destination.address && destination.address.length !== 0) {
-            destinationInputRef.current?.setAddressText(location.address);
+            destinationInputRef.current?.setAddressText(destination.address);
         }
     }, [])
 
     useEffect(() => {
         console.log(destination)
         onUserLocationChange();
+        // OPEN THE ALERT MODAL TO TELL USER THAT CROSS STATE IS NOT ALLOWED
+        if (location && destination && location.state && destination.state && location.state !== destination.state && !isDifferentStateModalVisible) {
+            setIsDifferentStateModalVisible(true);
+        }
     }, [location, destination])
 
+    const resetDestination = () => {
+        setIsDifferentStateModalVisible(false)
+        resetUserDestination();
+        destinationInputRef.current?.setAddressText("");
+    }
 
     const searchBoxStyle = {
         container: { flex: 0, width: '100%', zIndex: 1 },
         listView: { backgroundColor: 'white' }
     }
 
+    // SET THE MAP TO FIT THE COORDINATES OF LOCATION AND DESTINATION
     const onUserLocationChange = () => {
         const coordinatesRange = [];
         if (location && location.coordinates) coordinatesRange.push(location.coordinates)
@@ -76,6 +96,18 @@ const AssistancePage = ({ navigation, route }) => {
 
     return (
         <View style={styles.container}>
+
+            <ModalComponent
+                visible={isDifferentStateModalVisible}
+                onDismiss={() => resetDestination()}
+                icon="alert-circle"
+                iconColor="#721d50"
+                title="Crossing state is not allowed"
+                text="Please choose another destination to proceed"
+                location={location.state}
+                destination={destination.state}
+            />
+
             <GooglePlacesAutocomplete
                 ref={locationInputRef}
                 placeholder='Enter your location'
@@ -85,13 +117,16 @@ const AssistancePage = ({ navigation, route }) => {
                 }}
                 onPress={(data, details = null) => {
                     // 'details' is provided when fetchDetails = true
+                    const { currentState, currentPhase } = getStateAndPhase(data.description);
                     setUserLocation({
                         name: details.name,
                         address: data.description,
                         coordinates: {
                             latitude: details.geometry.location.lat,
                             longitude: details.geometry.location.lng
-                        }
+                        },
+                        state: currentState,
+                        phase: currentPhase
                     })
                 }}
                 query={placesAPI_query}
@@ -126,7 +161,8 @@ const AssistancePage = ({ navigation, route }) => {
                     onUserLocationChange={onUserLocationChange}
                     onMapReady={onUserLocationChange}
                     initialRegion={{
-                        ...location.coordinates,
+                        latitude: location.coordinates ? location.coordinates.latitude : DEFAULT_COORDINATES.latitude,
+                        longitude: location.coordinates ? location.coordinates.longitude : DEFAULT_COORDINATES.longitude,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}>
@@ -144,10 +180,11 @@ const AssistancePage = ({ navigation, route }) => {
                                 <Text>{destination.address}</Text>
                             </Callout>
                         </Marker>}
-                    <Circle center={location.coordinates} radius={1000} />
+                    {location && (location.phase === "PPN Phase 1" || location.phase === "PPN Phase 2") &&
+                        <Circle center={location.coordinates} radius={10000} />}
                 </MapView>
-                <Button style={(!location || !destination) ? styles.disabledButton : styles.actionButton} mode="contained" onPress={navigateToAssistancePage2}
-                    disabled={!location || !destination}
+                <Button style={(!location.address || !destination.address) ? styles.disabledButton : styles.actionButton} mode="contained" onPress={navigateToAssistancePage2}
+                    disabled={!location.address || !destination.address}
                 >Confirm
                 </Button>
             </View>
