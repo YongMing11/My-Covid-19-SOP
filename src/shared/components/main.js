@@ -1,7 +1,7 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import * as React from "react";
 import theme from "../constants/Theme";
-import { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator, ProfileScreenNavigator } from "./customNavigation";
+import { AssistanceScreenNavigator, FakeScreenNavigator, HelpdeskScreenNavigator, HospitalScreenNavigator, SOPScreenNavigator, ProfileScreenNavigator, ReviewScreenNavigator } from "./customNavigation";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -25,10 +25,10 @@ const Main = () => {
                 }}
             />
             <Tab.Screen
-                name="Helpdesk"
-                component={HelpdeskScreenNavigator}
+                name="Review"
+                component={ReviewScreenNavigator}
                 options={{
-                    tabBarIcon: "comment-question-outline",
+                    tabBarIcon: "account-edit",
                 }}
             />
             <Tab.Screen

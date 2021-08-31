@@ -40,6 +40,7 @@ function HomePage({ navigation, route }) {
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const [gettingLocation, setGettingLocation] = useState(false);
+    const [gettingTextFromSpeech, setGettingTextFromSpeech] = useState(false);
     const [networkStatus, setNetworkStatus] = useState(true);
     const [recording, setRecording] = React.useState(false);
     const [isRecording, setIsRecording] = useState(false);
@@ -86,7 +87,7 @@ function HomePage({ navigation, route }) {
                 return data;
             }).catch(error => {
                 //Failed to get device location coordinates
-                console.log('Failed to get coordinate')
+                console.log('Failed to get coordinate', error)
                 // const defaultLatitude = 3.11111;
                 // const defaultLongitude = 255.11111;
                 setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
@@ -162,8 +163,8 @@ function HomePage({ navigation, route }) {
     }, [sound]);
 
     async function uploadAudioAsync(uri) {
-        let apiUrl = 'http://192.168.0.180:8080';
-        // let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
+        // let apiUrl = 'http://192.168.0.180:8080';
+        let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
         let uriParts = uri.split('.');
         let fileType = uriParts[uriParts.length - 1];
 
@@ -196,25 +197,18 @@ function HomePage({ navigation, route }) {
         if(isRecordingRef.current){
           console.log("Stopping recording..");
           setIsRecording(false);
+          setGettingTextFromSpeech(true);
           
           await recordingRef.current.stopAndUnloadAsync().catch(err => console.log('err at stopAndUnloadAsync',err));
           const uri = recordingRef.current.getURI();
           console.log('Recording stopped and stored at', uri);
           playSound(uri);
   
-          // TODO: add above block to below
           uploadAudioAsync(uri)
           .then(res => res.json())
           .then(res => {
-            // sample response
-            // [alternatives {
-            //   transcript: "I want to go office Subang"
-            //   confidence: 0.8372671008110046
-            // }
-            // ]
+            setGettingTextFromSpeech(false);
             console.log('response from speech to text:',res);
-            // "[alternatives {\n  transcript: \"I want to work at the kinjaz\"\n  confidence: 0.850742518901825\n}\n]"
-            // filter
             // const transcript = 'I want to go out to work at Subang';
             const transcript = res;
             const idx = transcript.indexOf('at');
@@ -232,9 +226,10 @@ function HomePage({ navigation, route }) {
           }).catch(err => {
               console.log('err at uploadAudioAsync',err);
               return err;
+          }).finally(()=>{
+              setGettingTextFromSpeech(false);
           });
         }else{
-            // console.log('isRecording is', isRecording)
             console.log('isRecordingRef is', isRecordingRef.current)
         }
     }
@@ -341,6 +336,12 @@ function HomePage({ navigation, route }) {
                 onDismiss={() => console.log("Close Network Modal")}
                 title="Accessing your location"
                 text="Please make sure your location is turned on"
+            />
+            <ModalComponent
+                visible={gettingTextFromSpeech}
+                onDismiss={() => console.log("Close Speech-to-Text Runing Modal")}
+                title="Converting speech to text"
+                text="Please wait a while"
             />
 
             <ScrollView style={styles.scrollView}>

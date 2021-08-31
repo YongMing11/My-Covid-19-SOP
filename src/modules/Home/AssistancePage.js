@@ -1,6 +1,6 @@
 import React, { createRef, useEffect, useRef, useState } from 'react'
-import { StyleSheet, View, Text, Dimensions, Keyboard } from 'react-native';
-import { Button, Paragraph } from 'react-native-paper';
+import { StyleSheet, View, Text, Dimensions, Keyboard, Image } from 'react-native';
+import { Button, Paragraph, IconButton, List } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
 import MapView, { Marker, Callout, Circle } from 'react-native-maps';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -180,9 +180,26 @@ const AssistancePage = ({ navigation, route }) => {
                         </Marker>}
                     {destination && destination.coordinates &&
                         <Marker coordinate={destination.coordinates}>
-                            <Callout>
+                            <Callout style={styles.bubble}>
+                              {/* <View style={styles.bubble}> */}
                                 <Text style={{ fontWeight: 'bold' }}>Your Destination</Text>
-                                <Text>{destination.address}</Text>
+                                <Text style={styles.destinationText}>
+                                  {destination.address}</Text>
+                                  <Text style={styles.review}>Review</Text>
+                                  <View style={{ flex: 1, flexDirection:'row' }}>
+                                  {
+                                    [1,2,3,4].map(star => {
+                                      return <List.Icon key={star} style={styles.rating} icon="star" color="blue" />
+                                    })
+                                  }
+                                  {
+                                    [5].map(star => {
+                                      return <List.Icon key={star} style={styles.rating} icon="star-outline" color="blue" />
+                                    })
+                                  }
+                                  </View>
+                                <Text style={styles.viewMoreButton}>View More</Text>
+                              {/* </View> */}
                             </Callout>
                         </Marker>}
                     {location && (location.phase === "PPN Phase 1" || location.phase === "PPN Phase 2") &&
@@ -237,6 +254,38 @@ const styles = StyleSheet.create({
         shadowRadius: 2.62,
         elevation: 4,
         zIndex: 2
+    },
+    viewMoreButton: {
+        // position: 'absolute',
+        // bottom: 50,
+        // backgroundColor: theme.colors.warning,
+        color: 'blue',
+        // width: '80%',
+        // elevation: 4,
+        // zIndex: 2
+    },
+    bubble:{
+      flexDirection: 'column',
+      alignSelf: 'flex-start',
+      width: 250,
+      padding: 15,
+      borderWidth: 0.5,
+      borderColor: '#ccc',
+      borderRadius: 6,
+    },
+    destinationText :{
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
+    rating:{
+      fontWeight: 'bold',
+      width: 20,
+      padding: 0
+    },
+    review:{
+      top: 8,
+      fontWeight: 'bold',
+      color: 'blue',
     }
 })
 
