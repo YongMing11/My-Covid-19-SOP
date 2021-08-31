@@ -22,8 +22,6 @@ const SOPPage2 = ({ route, navigation }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const onChangeSearch = (query) => setSearchQuery(query);
 
-    console.log("Redering");
-
     let filteredListComponent = React.useMemo(() => {
         if (index === 4) {
             // generate normalized list
@@ -34,8 +32,6 @@ const SOPPage2 = ({ route, navigation }) => {
                     return sector.title.toLowerCase().includes(searchQuery.toLowerCase());
                 });
             }
-            // sort by title
-            // sectors = sectors.sort((a, b) => a.title >= b.title);
             // generate list components
             sectors = sectors.map((sector, index) => {
                 return <List.Item key={index} style={styles.actionItem} onPress={() => browseURL(sector.link)} title={sector.title} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />;
