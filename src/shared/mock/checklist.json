@@ -1,6 +1,7 @@
 {
     "PPN Phase 1-PPN Phase 2": {
         "eat": {
+            "Cross state requirements": [],
             "Before travel": [],
             "At destination": []
         },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, ActivityIndicator } from 'react-native';
 import { FAB, Portal, Modal, Title, IconButton, DataTable, Colors } from 'react-native-paper';
 import theme from '../../shared/constants/Theme';
@@ -7,9 +7,11 @@ import { useLocationContext } from '../../contexts/location-context';
 import Geocoder from 'react-native-geocoding';
 import { GOOGLE_MAPS_APIKEY } from '../../shared/constants/config';
 import { getDurationString } from '@services/timer.service';
-import info from '@mock/sop.json';
+import action from '@mock/action.json';
 import ModalComponent from '../../shared/components/modalComponent';
-import { getStateAndPhase } from '../../shared/services/location.service';
+import { Audio } from "expo-av";
+import { getLocationByAddress, getStateAndPhase } from '../../shared/services/location.service';
+import { useIsFocused } from '@react-navigation/native';
 
 function HomePage({ navigation, route }) {
     // === FOR TESTING PURPOSE ===
@@ -35,23 +37,31 @@ function HomePage({ navigation, route }) {
     //     },
     // }
     const states = ['JOHOR', 'KEDAH', 'KELANTAN', 'MALACCA', 'NEGERI SEMBILAN', 'PAHANG', 'PENANG', 'PERAK', 'PERLIS', 'SABAH', 'SARAWAK', 'SELANGOR', 'TERANGGANU', 'KUALA LUMPUR', 'LABUAN', 'PUTRAJAYA'];
-    const { setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, getUserLocation } = useLocationContext();
+    const { setUserAction, location, setUserLocation, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, setUserDestination } = useLocationContext();
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const [networkStatus, setNetworkStatus] = useState(true);
+    const [recording, setRecording] = React.useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const [sound, setSound] = React.useState();
+    const [openModal, setOpenModal] = React.useState(false);
+
     Geocoder.init(GOOGLE_MAPS_APIKEY);
+    const isFocused = useIsFocused();
 
     useEffect(() => {
-        setVisible(true);
-
-        const timeOut = setTimeout(() => {
-            if (route.params) {
-                setVisible(false);
-            }
-        }, 7000)
-        permissionFlow();
-        return () => clearTimeout(timeOut);
-    }, [route.params])
+        if (isFocused) {
+            console.log(isFocused)
+            setVisible(true);
+            const timeOut = setTimeout(() => {
+                if (route.params) {
+                    setVisible(false);
+                }
+            }, 7000)
+            permissionFlow();
+            return () => clearTimeout(timeOut);
+        }
+    }, [isFocused])
 
     const permissionFlow = async () => {
         let { status } = await Location.requestForegroundPermissionsAsync().catch(error => {
@@ -66,26 +76,27 @@ function HomePage({ navigation, route }) {
             setLocationPermissionStatus(true);
         }
 
-        let location = await Location.getCurrentPositionAsync({})
+        let currentLocation = await Location.getCurrentPositionAsync({})
             .then(data => {
                 setUserLocationCoordinates({ latitude: data.coords.latitude, longitude: data.coords.longitude })
                 return data;
             }).catch(error => {
                 //Failed to get device location coordinates
                 console.log('Failed to get coordinate')
-                const defaultLatitude = 3.11111;
-                const defaultLongitude = 255.11111;
+                // const defaultLatitude = 3.11111;
+                // const defaultLongitude = 255.11111;
                 setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
             });
 
-        getFullAddressBasedOnLocation(location);
+        getFullAddressBasedOnLocation(currentLocation);
     }
 
-    const getFullAddressBasedOnLocation = (location) => {
-        if (location) {
+    const getFullAddressBasedOnLocation = (currentLocation) => {
+        if (currentLocation) {
             // Reverse Geocode to get the full address of the user coordinates
-            Geocoder.from(location.coords.latitude, location.coords.longitude)
+            Geocoder.from(currentLocation.coords.latitude, currentLocation.coords.longitude)
                 .then(json => {
+                    // console.log(json)
                     var address = json.results[0].formatted_address;
                     const { currentState, currentPhase } = getStateAndPhase(address);
                     setUserLocationAddress(address);
@@ -93,22 +104,181 @@ function HomePage({ navigation, route }) {
                     setUserLocationPhase(currentPhase);
                     setNetworkStatus(true);
                 })
-                .catch(error => setNetworkStatus(false));
+                .catch(error => {
+                    // below line commented for dev purpose
+                    // setNetworkStatus(false);
+                    setNetworkStatus(true);
+                });
+        }else{
+          console.log('currentLocation is falsy',currentLocation);
         }
     }
 
-    const actionButtons = [
-        { label: 'I want to go out to eat', shortLabel: 'Go out to eat' },
-        { label: 'I want to go out to buy things', shortLabel: 'Go out to buy things' },
-        { label: 'I want to open my store', shortLabel: 'Open my store' },
-        { label: 'I want to go somewhere else', shortLabel: 'Go somewhere else' },
-        { label: 'I have emergency', shortLabel: 'Emergency' },
-    ]
-
-    const onPressAction = (selectedAction) => {
-        navigation.navigate('AssistancePage', { title: selectedAction })
+    // Action Object (mock/action.js), Destination Address String
+    const speechAction = (selectedAction, destinationAddress) => {
+        setUserDestination(getLocationByAddress(destinationAddress))
+        onPressAction(selectedAction)
     }
 
+    const onPressAction = (selectedAction) => {
+        console.log('onPressAction');
+        // navigation.navigate('AssistancePage', { title: selectedAction })
+        setUserAction(selectedAction)
+        navigation.navigate('AssistancePage', { title: selectedAction.shortLabel })
+    }
+
+    const navigationAction = (pageName) => {
+        setNetworkStatus(true);
+        navigation.navigate(pageName)
+    }
+
+    async function playSound(uri) {
+        console.log("Loading Sound");
+        console.log(uri);
+        const { sound } = await Audio.Sound.createAsync({ uri });
+        // const { sound } = await Audio.Sound.createAsync(require('./5_pengagihan.mp3'));
+        setSound(sound);
+    
+        console.log("Playing Sound");
+        await sound.playAsync();
+      }
+      React.useEffect(() => {
+        return sound
+          ? () => {
+            console.log("Unloading Sound");
+            sound.unloadAsync();
+          }
+          : undefined;
+      }, [sound]);
+    async function uploadAudioAsync(uri) {
+        let apiUrl = 'http://192.168.0.180:8080';
+        // let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
+        let uriParts = uri.split('.');
+        let fileType = uriParts[uriParts.length - 1];
+    
+        let formData = new FormData();
+        formData.append('file', {
+          uri,
+          name: `recording.${fileType}`,
+          type: `audio/wav`,       // TODO: is this correct?
+        });
+    
+        let options = {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data',
+          },
+        };
+    
+        console.log("POSTing " + uri + " to " + apiUrl);
+        return fetch(apiUrl, options);
+      }
+
+      const isRecordingRef = useRef(isRecording);
+      isRecordingRef.current = isRecording;
+      const recordingRef = useRef(recording);
+      recordingRef.current = recording;
+      
+      async function stopRecording() {
+        if(isRecordingRef.current){
+          console.log("Stopping recording..");
+          setIsRecording(false);
+      
+          await recordingRef.current.stopAndUnloadAsync().catch(err => console.log('err',err));
+          const uri = recordingRef.current.getURI();
+          console.log('Recording stopped and stored at', uri);
+          playSound(uri);
+  
+          // TODO: add above block to below
+          uploadAudioAsync(uri)
+          .then(res => res.json())
+          .then(res => {
+            console.log('response from speech to text');
+            // sample response
+            // [alternatives {
+            //   transcript: "I want to go office Subang"
+            //   confidence: 0.8372671008110046
+            // }
+            // ]
+            console.log(res);
+            // filter
+            const transcript = 'I want to go out to work at Subang';
+            // const transcript = res.alternative[0].transcript;
+            const idx = transcript.indexOf('at');
+            const destination = transcript.substr(idx+3);
+            const actionText = transcript.substring(0, idx);
+            const actionKeys = action.data.map(a => {
+              return a.id.toLowerCase();
+            })
+            const actionIdx = actionKeys.findIndex((key) => {
+              return actionText.includes(key);
+            })
+            console.log(action.data[actionIdx], destination);
+            // uncomment below to complete the whole flow
+            speechAction(action.data[actionIdx], destination);
+          }).catch(err => {
+              console.log('err at uploadAudioAsync',err);
+              return err;
+          });
+        }else{
+            // console.log('isRecording is', isRecording)
+            console.log('isRecordingRef is', isRecording)
+        }
+      }
+
+      const checkRecordingStatus = () => {
+          setTimeout(()=>{
+              console.log('call setTimeout');
+              setOpenModal(false);
+              stopRecording();
+          }, 10000)
+      }
+
+      async function startRecording() {
+        setIsRecording(true);
+        setOpenModal(true);
+        checkRecordingStatus();
+        try {
+          console.log("Requesting permissions..");
+          await Audio.requestPermissionsAsync();
+          await Audio.setAudioModeAsync({
+            allowsRecordingIOS: true,
+            playsInSilentModeIOS: true,
+          });
+          console.log("Starting recording..");
+          const { recording } = await Audio.Recording.createAsync(
+            {
+              isMeteringEnabled: true,
+              android: {
+                extension: '.amr',
+                outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_AMR_NB,
+                audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AMR_NB,
+                sampleRate: 8000,
+                numberOfChannels: 1,
+                bitRate: 12200,
+              },
+              ios: {
+                extension: ".caf",
+                audioQuality: 0x7f,
+                sampleRate: 44100,
+                numberOfChannels: 2,
+                bitRate: 128000,
+                linearPCMBitDepth: 16,
+                linearPCMIsBigEndian: false,
+                linearPCMIsFloat: false,
+              },
+            }
+          );
+          setRecording(recording);
+          console.log("Recording started");
+        } catch (err) {
+          console.error("Failed to start recording", err);
+          setIsRecording(false);
+        }
+      }
+      
     return (
         <View style={styles.scene}>
             {/* Display Modal when user finish activity */}
@@ -120,8 +290,10 @@ function HomePage({ navigation, route }) {
                     iconColor="green"
                     title="You have completed your activity!"
                     text={"Duration: " + getDurationString(route.params.duration)}
-                    location={route.params.location}
-                    destination={route.params.destination}
+                    location={route.params.location && route.params.location.name
+                        && route.params.location.name !== "" ?
+                        route.params.location.name : route.params.location.address}
+                    destination={route.params.destination.name || route.params.destination.address}
                 />
             }
 
@@ -134,32 +306,43 @@ function HomePage({ navigation, route }) {
                 title="Location is required for My COVID-19 SOP to work properly"
                 text="Please allow location access in settings"
             />
+            {/* Modal pop out if user click recording button */}
+            <ModalComponent
+                visible={openModal}
+                onDismiss={() => {setOpenModal(false);}}
+                icon="emoticon-outline"
+                iconColor="blue"
+                title={'Reminder:\nmention action and destination with the word "at" in between'}
+                text={'Example: I want go out to work at Subang,\nI want to go somewhere at Shah Alam\nThe recording will be stopped after 10 second'}
+            />
             <ModalComponent
                 visible={!networkStatus}
                 onDismiss={() => console.log("Close Network Modal")}
                 icon="wifi-off"
                 iconColor="black"
                 title="No internet connection"
-                text="Please make sure that WI-FI or mobile data is turned on."
+                text="Please make sure that WI-FI or mobile data is turned on. You can visit other page while offline."
+                showPageButton={true}
+                navigationAction={navigationAction}
             />
 
             <ScrollView style={styles.scrollView}>
                 <ImageBackground source={require('../../../assets/HomePage_bg.png')} style={styles.imgBackground}>
-                    <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}>
-                        <View style={styles.areaStatusBar}>
-                            <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
-                            {getUserLocation().phase !== "" ?
-                                <Text style={styles.areaStatusBar_phase}>{getUserLocation().phase}</Text> :
-                                <ActivityIndicator animating={true} color={Colors.amber100} />
-                            }
-                        </View>
-                    </TouchableOpacity>
+                    {/* <TouchableOpacity onPress={() => console.log('Area Status Bar tapped')}> */}
+                    <View style={styles.areaStatusBar}>
+                        <Text style={styles.areaStatusBar_description}>Your area is currently under</Text>
+                        {location && location.phase && location.phase !== "" ?
+                            <Text style={styles.areaStatusBar_phase}>{location.phase}</Text> :
+                            <ActivityIndicator animating={true} color={Colors.amber100} />
+                        }
+                    </View>
+                    {/* </TouchableOpacity> */}
                 </ImageBackground>
                 <Image source={require('../../../assets/HomePage_car.png')} style={styles.carImg}></Image>
                 <View style={styles.actionButton_Group}>
                     <Text style={styles.actionTitle}>What do you want to do?</Text>
-                    {actionButtons.map((buttonContent, index) =>
-                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent.shortLabel)}>
+                    {action.data.map((buttonContent, index) =>
+                        <TouchableOpacity key={index} onPress={() => onPressAction(buttonContent)}>
                             <View style={styles.actionButton}>
                                 <Text style={styles.actionButton_text}>{buttonContent.label}</Text>
                             </View>
@@ -168,10 +351,10 @@ function HomePage({ navigation, route }) {
                 </View>
             </ScrollView>
             <FAB
-                style={styles.fab}
+                style={[styles.fab, isRecording? styles.fabRecording: styles.fabNotRecording]}
                 small
                 icon="microphone"
-                onPress={() => console.log('Pressed')}
+                onPress={isRecording ? stopRecording : startRecording}
             />
         </View>
     )
@@ -264,11 +447,15 @@ const styles = StyleSheet.create({
         margin: 16,
         right: 0,
         bottom: 0,
-        backgroundColor: theme.colors.primaryBlue,
         color: 'white',
         padding: 5
-    }
-
+    }, 
+    fabRecording: {
+        backgroundColor: theme.colors.warning,
+    },
+    fabNotRecording: {
+        backgroundColor: theme.colors.primaryBlue,
+    },
 });
 
 export default HomePage;
