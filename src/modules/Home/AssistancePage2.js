@@ -9,7 +9,10 @@ import { useLocationContext } from '../../contexts/location-context';
 import GeneralPhase1 from '@mock/checklist/generalChecklist-Phase1.json'
 import GeneralPhase2 from '@mock/checklist/generalChecklist-Phase2.json'
 import GeneralPhase3 from '@mock/checklist/generalChecklist-Phase3.json'
+import { useHistoryContext } from '../../contexts/history-context';
+import moment from 'moment-timezone';
 
+moment.tz.setDefault("Asia/Kuala_Lumpur")
 
 function Timer({ startTime }) {
     const [duration, setDuration] = useState("0 MIN 0 SEC");
@@ -128,6 +131,7 @@ function AssistancePage2({ navigation, route }) {
     const [startTime] = useState(new Date());
     const mapRef = useRef(null);
     const { location, destination } = useLocationContext();
+    const { addHistory } = useHistoryContext();
     const [checklistStatus, setChecklistStatus] = useState(false);
     const [isfullyVaccinated, setIsfullyVaccinated] = useState(false);
     const [visible, setVisible] = React.useState(true);
@@ -164,6 +168,16 @@ function AssistancePage2({ navigation, route }) {
     }, [])
 
     const finishActivity = () => {
+        // SAVE THE VISITED LOCATION AS HISTORY TO CONTEXT STATE
+        const history = {
+            location: destination.name ? destination.name : destination.address,
+            date: moment(startTime).format("DD/MM/YY"),
+            time: moment(startTime).format("hh:mma"),
+            duration: moment().diff(moment(startTime), "minutes")
+        }
+        addHistory(history);
+
+        // PASS INFO AND NAVIGATE TO HOME PAGE
         const finalDuration = new Date().getTime() - startTime.getTime();
         const finalLocation = location;
         const finalDestination = destination;

@@ -2,7 +2,7 @@ import info from '@mock/sop.json';
 import { GOOGLE_MAPS_APIKEY } from "../constants/config";
 
 const getLocationByAddress = async (address) => {
-    const geocode_API_URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_MAPS_APIKEY}`;
+    const geocode_API_URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_MAPS_APIKEY}&components=country:MY`;
     const location = {};
 
     // CALL GOOGLE MAPS GEOCODING API

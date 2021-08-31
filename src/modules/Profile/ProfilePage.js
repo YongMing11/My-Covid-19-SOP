@@ -1,7 +1,9 @@
-import React from "react";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Dimensions, Text, ScrollView } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { Avatar, Caption, DataTable, Headline, IconButton, Surface, Colors } from "react-native-paper";
+import { useHistoryContext } from "../../contexts/history-context";
 
 function ProfilePage({ navigation }) {
     const profileDetails = {
@@ -9,6 +11,8 @@ function ProfilePage({ navigation }) {
         email: "johntemp@gmail.com",
         area: "Kuala Lumpur",
     };
+
+    const { histories } = useHistoryContext();
 
     const chartWidth = Dimensions.get("window").width * 1.14;
 
@@ -26,7 +30,7 @@ function ProfilePage({ navigation }) {
         },
     };
 
-    const data = {
+    const [chartData, setChartData] = useState({
         labels: ["04/07", "05/07", "06/07", "07/07", "08/07", "09/07", "10/07"],
         datasets: [
             {
@@ -35,15 +39,31 @@ function ProfilePage({ navigation }) {
                 strokeWidth: 2,
             },
         ],
-    };
+    });
 
-    const histories = [
-        { location: "Lot 10 Hutong Food Court", date: "09/07/21", time: "12:00pm", duration: 30 },
-        { location: "TNG Digital Sdn Bhd", date: "08/07/21", time: "09:00am", duration: 30 },
-        { location: "Bank Islam Kota Damansara", date: "07/07/21", time: "12:00pm", duration: 10 },
-        { location: "Medan Selera Mutiara Damansara", date: "07/07/21", time: "08:00am", duration: 50 },
-        { location: "Bank Islam Kota Damansara", date: "06/07/21", time: "07:00pm", duration: 90 },
-    ];
+    useEffect(() => {
+        const today = moment();
+        const labels = [];
+        const durations = [];
+        for (let numberOfDayFromToday = 6; numberOfDayFromToday >= 0; numberOfDayFromToday--) {
+            const previousDate = today.clone().subtract(numberOfDayFromToday, 'day');
+            const totalDuration = histories.reduce((total, history) => {
+                if (previousDate.isSame(moment(history.date, "DD/MM/YY"), 'day')) {
+                    return total + history.duration;
+                }
+                return total;
+            }, 0)
+            labels.push(previousDate.format("DD/MM"))
+            durations.push(totalDuration)
+        }
+        setChartData((data) => ({
+            labels,
+            datasets: [{
+                ...data['datasets'][0],
+                data: durations
+            }]
+        }))
+    }, [histories])
 
     const historiesRows = histories.map((element, index) => (
         <DataTable.Row style={{ paddingHorizontal: 0 }} key={index}>
@@ -83,7 +103,7 @@ function ProfilePage({ navigation }) {
                         setViewHeight(height * 0.8);
                     }}
                 >
-                    <LineChart style={styles.lineChart} data={data} width={chartWidth} height={viewHeight} chartConfig={chartConfig} formatYLabel={(label) => Math.trunc(label)} />
+                    <LineChart style={styles.lineChart} data={chartData} width={chartWidth} height={viewHeight} chartConfig={chartConfig} formatYLabel={(label) => Math.trunc(label)} />
                 </View>
             </Surface>
             <Surface style={styles.durationSurface}>

@@ -35,7 +35,6 @@ function HomePage({ navigation, route }) {
     //         "state": "",
     //     },
     // }
-
     const { setUserAction, location, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, resetUserLocation, setUserDestination, resetUserDestination } = useLocationContext();
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
