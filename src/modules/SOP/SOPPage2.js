@@ -34,7 +34,7 @@ const SOPPage2 = ({ route, navigation }) => {
             }
             // generate list components
             sectors = sectors.map((sector, index) => {
-                return <List.Item key={index} style={styles.actionItem} onPress={() => browseURL(sector.link)} title={sector.title} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />;
+                return <List.Item key={index} style={styles.actionItem} titleNumberOfLines={4} onPress={() => browseURL(sector.link)} title={sector.title} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />;
             });
             return sectors;
         } else {
@@ -47,7 +47,7 @@ const SOPPage2 = ({ route, navigation }) => {
                 });
             }
             // generate list components
-            sectors = sectors.map((sector, index) => <List.Item key={index} style={styles.actionItem} onPress={() => onPressAction(sector)} title={sector} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />);
+            sectors = sectors.map((sector, index) => <List.Item key={index} style={styles.actionItem} titleNumberOfLines={4} onPress={() => onPressAction(sector)} title={sector} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />);
             return sectors;
         }
     }, [index, searchQuery]);

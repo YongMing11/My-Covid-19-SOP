@@ -6,25 +6,23 @@ import sop_details from "@mock/sop_details.json";
 const SOPPage3 = ({ route, navigation }) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [activeAccordions, setActiveAccordions] = useState(sop_details[route.params.title]);
-    // console.log(sop_details[route.params.title]);
 
     const onChangeSearch = (query) => {
-        // setSearchQuery(query);
-        // if (query === "") {
-        //     setActiveAccordions(info.activities);
-        //     return;
-        // }
-        // const result = info.activities.filter((s) => {
-        //     let isIncluded = s.title.toLowerCase().includes(query.toLowerCase());
-        //     isIncluded =
-        //         isIncluded ||
-        //         s.content.filter((c) => {
-        //             return c.toLowerCase().includes(query.toLowerCase());
-        //         }).length !== 0;
-        //     return isIncluded;
-        // });
-        // console.log(result);
-        // setActiveAccordions(result);
+        setSearchQuery(query);
+        if (query === "") {
+            setActiveAccordions(sop_details[route.params.title]);
+            return;
+        }
+        const result = sop_details[route.params.title].filter((s) => {
+            let isIncluded = s.title.toLowerCase().includes(query.toLowerCase());
+            // isIncluded =
+            //     isIncluded ||
+            //     s.content.filter((c) => {
+            //         return c.toLowerCase().includes(query.toLowerCase());
+            //     }).length !== 0;
+            return isIncluded;
+        });
+        setActiveAccordions(result);
     };
 
     return (
@@ -35,7 +33,7 @@ const SOPPage3 = ({ route, navigation }) => {
                 </View>
                 <List.Section>
                     {activeAccordions.map((item, index) => (
-                        <List.Accordion title={item.title} titleStyle={styles.accordianTitle} style={styles.header} key={index}>
+                        <List.Accordion title={item.title} titleStyle={styles.accordianTitle} titleNumberOfLines={4} style={styles.header} key={index}>
                             <View style={styles.activity}>
                                 {item.content.map((detail_item, index) => {
                                     if (typeof detail_item === "string") {
