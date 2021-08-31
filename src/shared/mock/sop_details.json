@@ -3,7 +3,7 @@
         {
             "title": "1. Kawasan Terlibat",
             "content": [
-                "KEDAH, SELANGOR, NEGERI SEMBILAN, MELAKA, JOHOR, W.P. KUALA LUMPUR DAN W.P. PUTRAJAYA",
+                "KEDAH, SELANGOR, MELAKA, JOHOR, W.P. KUALA LUMPUR DAN W.P. PUTRAJAYA",
                 "*Bagi kawasan yang dikuatkuasakan PKPD, SOP PKPD di kawasan berkenaan adalah berkuatkuasa sehingga tarikh tamat PKPD tersebut."
             ]
         },
@@ -16,8 +16,7 @@
         {
             "title": "3. Vaksinasi Lengkap",
             "content": [
-                "Individu yang telah lengkap divaksin adalah individu yang telah memenuhi kriteria- kriteria berikut:\n- Bagi jenis vaksin yang memerlukan dua dos suntikan (Pfizer, AstraZeneca, dan Sinovac), individu berkenaan mestilah telah melepasi hari ke-14 dari tarikh suntikan dos kedua; atau",
-                "Bagi jenis vaksin yang hanya memerlukan satu dos suntikan (Johnson & Johnson dan CanSino), individu berkenaan mestilah telah melepasi hari ke-28 dari tarikh suntikan."
+                "Individu yang telah lengkap divaksin adalah individu yang telah memenuhi kriteria- kriteria berikut:\n- Bagi jenis vaksin yang memerlukan dua dos suntikan (seperti Cormirnaty (Pfizer-BioNTech), COVID-19 AstraZeneca (Oxford-AstraZeneca), CoronaVac (Sinovac), Spikevax (Moderna) dan Covilo (Sinopharm)), individu berkenaan mestilah telah melepasi hari ke-14 dari tarikh suntikan dos kedua; atau\n- Bagi jenis vaksin yang hanya memerlukan satu dos suntikan (seperti COVID-19 Janssen (Johnson & Johnson) dan Convidecia (CanSino)), individu berkenaan mestilah telah melepasi hari ke-28 dari tarikh suntikan."
             ]
         },
         {
@@ -31,7 +30,7 @@
                 "Majikan, pekerja, pelanggan dan pengunjung diwajibkan check in MySejahtera atau menulis secara manual nama dan nombor telefon yang boleh dibaca (sekiranya tiada liputan internet) sebelum memasuki premis termasuk di pejabat Kerajaan, swasta dan persendirian.",
                 "Bagi kompleks membeli belah, pasar raya atau departmental store, pelanggan hanya perlu menjalankan imbasan suhu badan sekali sahaja di pintu masuk kompleks dan bukan di setiap premis perniagaan bawah satu kompleks.",
                 "Suhu badan melebihi 37.5 darjah Celcius adalah tidak dibenarkan memasuki kompleks dan premis.",
-                "Pihak pemilik kompleks dan premis di luar kompleks perlu memastikan hanya pelanggan dengan status \u201cLow Risk\u201d termasuk \u201cCasual Contact Low Risk\u201d dalam MySejahtera dibenarkan masuk ke kompleks atau premis masing-masing.",
+                "Pihak pemilik kompleks dan premis di luar kompleks perlu memastikan hanya pelanggan dengan status \"Low Risk\" termasuk \"Casual Contact Low Risk\" dalam MySejahtera dibenarkan masuk ke kompleks atau premis masing-masing.",
                 "Pemegang lesen dan pemilik premis memastikan kawalan keluar masuk pelanggan ke premis dengan penjarakan fizikal sekurang-kurangnya 1 meter.",
                 "Kanak-kanak berumur 17 tahun dan ke bawah tidak digalakkan untuk berada di tempat dan kemudahan awam.",
                 "Pemegang lesen dan pemilik premis menghadkan bilangan pelanggan berada di premis dengan penjarakan fizikal sekurang-kurangnya 1 meter dalam sesuatu masa.",
@@ -48,28 +47,25 @@
                 {
                     "title": "5. Rentas Daerah dan Negeri bagi Pasangan Suami Isteri Jarak Jauh (PJJ)",
                     "content": [
-                        "Pasangan suami isteri jarak jauh dibenarkan untuk merentas daerah dan negeri bagi tujuan berjumpa pasangan masing-masing dengan syarat kedua-duanya mesti telah lengkap divaksin dengan pengesahan PDRM dan mengemukakan;\n- Salinan kad pengenalan suami dan isteri\n- Salinan sijil/ kad pernikahan\n- Salinan Kad/ Sijil Digital Vaksinasi COVID-19 suami dan isteri\n- Salinan dokumen bukti tempat tinggal suami/ isteri atau surat pengesahan majikan.",
-                        "Menunjukkan surat kebenaran yang telah diluluskan oleh PDRM apabila melalui",
-                        "Sekatan Jalan Raya (SJR)."
+                        "Pasangan suami isteri jarak jauh dibenarkan untuk merentas daerah dan negeri bagi tujuan berjumpa pasangan masing-masing dengan syarat kedua-duanya mesti telah lengkap divaksin dengan pengesahan PDRM dan mengemukakan;\n- Salinan kad pengenalan suami dan isteri\n- Salinan sijil/ kad pernikahan\n- Salinan Kad/ Sijil Digital Vaksinasi COVID-19 suami dan isteri\n- Salinan dokumen bukti tempat tinggal suami/ isteri atau surat pengesahan majikan",
+                        "Menunjukkan surat kebenaran yang telah diluluskan oleh PDRM apabila melalui Sekatan Jalan Raya (SJR)."
                     ]
                 },
                 {
                     "title": "6. Rentas Daerah dan Negeri bagi Ibu Bapa/ Penjaga yang Mempunyai Anak (Di Bawah 18 Tahun) Jarak Jauh (AJJ)",
                     "content": [
-                        "Ibu bapa/ penjaga yang mempunyai anak di bawah umur 18 tahun serta menetap di daerah atau negeri berlainan dibenarkan merentas daerah dan negeri untuk berjumpa anak masing-masing dengan syarat kedua-dua ibu bapa / penjaga mesti telah lengkap divaksin dengan pengesahan PDRM dan mengemukakan;\n- Salinan kad pengenalan ibu, bapa dan sijil/ dokumen kelahiran anak\n- Salinan Kad/ Sijil Digital Vaksinasi COVID-19 ibu dan bapa / penjaga\n- Maklumat persekolahan anak (sekiranya berkaitan)\n- Menunjukkan surat kebenaran yang telah diluluskan oleh PDRM apabila melalui Sekatan Jalan Raya (SJR). "
+                        "Ibu bapa/ penjaga yang mempunyai anak di bawah umur 18 tahun serta menetap di daerah atau negeri berlainan dibenarkan merentas daerah dan negeri untuk berjumpa anak masing-masing dengan syarat kedua-dua ibu bapa / penjaga mesti telah lengkap divaksin dengan pengesahan PDRM dan mengemukakan;\n- Salinan kad pengenalan ibu, bapa dan sijil/ dokumen kelahiran anak\n- Salinan Kad/ Sijil Digital Vaksinasi COVID-19 ibu dan bapa / penjaga\n- Maklumat persekolahan anak (sekiranya berkaitan)",
+                        "Menunjukkan surat kebenaran yang telah diluluskan oleh PDRM apabila melalui Sekatan Jalan Raya (SJR). "
                     ]
                 },
                 {
                     "title": "7. Warganegara dan Bukan Warganegara yang Pulang/ Tiba dari Luar Negara",
                     "content": [
-                        "Pengembara warganegara dan bukan warganegara yang mempunyai kediaman di Malaysia (termasuk PR dan Malaysia MY Second Home) yang pulang atau tiba dari luar negara dan telah lengkap divaksin, dibenarkan menjalani kuarantin wajib di rumah dan diberikan Perintah Pengawasan dan Pemerhatian di Rumah (HSO) digital tertakluk kepada perincian yang dikeluarkan oleh Kementerian Kesihatan Malaysia (KKM).",
-                        "Menunjukkan bukti laporan ujian RT PCR negatif yang sah serta dijalankan 3 hari sebelum berlepas.",
-                        "Mempunyai sijil sah vaksinasi COVID-19 yang lengkap (bergantung kepada jenis vaksin).",
-                        "Tiada gejala semasa saringan kesihatan dilakukan di Pintu Masuk Antarabangsa",
-                        "Negara.",
-                        "Mempunyai tempat kediaman yang sesuai untuk dijalankan kuarantin.",
+                        "Pengembara warganegara dan bukan warganegara yang mempunyai kediaman di Malaysia (termasuk PR dan Malaysia MY Second Home) yang pulang atau tiba dari luar negara dan telah lengkap divaksin, dibenarkan menjalani kuarantin wajib di rumah dan diberikan Perintah Pengawasan dan Pemerhatian di Rumah (HSO) digital tertakluk kepada penilaian risiko Kementerian Kesihatan Malaysia (KKM) dan perincian yang dikeluarkan oleh KKM.\n- Menunjukkan bukti laporan ujian RT PCR dengan keputusan negatif yang dijalankan 3 hari sebelum berlepas.\n- Mempunyai sijil sah vaksinasi COVID-19 dos lengkap (bergantung kepada jenis vaksin).\n- Tiada gejala semasa saringan kesihatan di Pintu Masuk Antarabangsa Negara (PMA).\n- Mempunyai tempat kediaman yang sesuai untuk dijalankan kuarantin.",
                         "Individu yang pulang / tiba dari luar negara dan belum lengkap divaksin atau tidak divaksin perlu menjalani kuarantin di pusat kuarantin yang ditetapkan serta tertakluk kepada perincian yang dikeluarkan oleh Kementerian Kesihatan Malaysia (KKM).",
-                        "Tempoh kuarantin wajib bagi pengembara dari semua negara adalah 14 hari dan boleh dilanjutkan selama 7 hari lagi sekiranya terdapat keperluan berdasarkan hasil penilaian risiko yang dijalankan pada hari ke-14."
+                        "Tempoh kuarantin wajib bagi pengembara dari semua negara adalah 14 hari dan boleh dilanjutkan selama 7 hari lagi sekiranya terdapat keperluan berdasarkan hasil penilaian risiko yang dijalankan pada hari ke-14.",
+                        "Pengembara dikehendaki membuat penilaian kendiri setiap hari melalui Home Assessment Tool (HAT) dalam aplikasi MySejahtera dan aktiviti ini perlu diteruskan sehingga tamat tempoh kuarantin (sama ada 14 hari atau 21 hari dari tarikh ketibaan).",
+                        "Pengembara dikehendaki menjalani saringan ujian pengesanan jangkitan COVID-19 iaitu ujian RT-PCR COVID-19 semasa ketibaan di PMA. Ujian ulangan saringan ujian pengesanan jangkitan COVID-19, RT-PCR COVID-19 dilakukan pada hari ke 10 atau hari ke 18 (bagi pengembara yang perlu menjalani kuarantin selama 21 hari). "
                     ]
                 },
                 {
@@ -82,37 +78,27 @@
                 {
                     "title": "9. Sektor Pembuatan dan Pembinaan",
                     "content": [
-                        "Bagi aktiviti yang tidak disenaraikan dalam Senarai Perkhidmatan Perlu Sektor Pembuatan dan Pembinaan yang mencapai kadar vaksinasi lengkap bagi pekerja dibenarkan beroperasi seperti berikut:\n- 40% : Dibenarkan beroperasi dengan kapasiti 60% pekerja.\n- 60% : Dibenarkan beroperasi dengan kapasiti 80% pekerja.\n- 80% : Dibenarkan beroperasi dengan kapasiti 100% pekerja.",
+                        "Bagi aktiviti yang tidak disenaraikan dalam Senarai Perkhidmatan Perlu Sektor Pembuatan dan Pembinaan yang mencapai kadar vaksinasi lengkap bagi pekerja dibenarkan beroperasi seperti berikut:\n- 40% : Dibenarkan beroperasi dengan kapasiti 60% pekerja\n- 60% : Dibenarkan beroperasi dengan kapasiti 80% pekerja\n- 80% : Dibenarkan beroperasi dengan kapasiti 100% pekerja",
                         "Ujian RTK Antigen ke atas pekerja dilaksanakan setiap 2 minggu dengan kos ditanggung majikan."
                     ]
                 },
                 {
                     "title": "10. Perlombongan dan Pengkuarian",
                     "content": [
-                        "Bagi sektor perlombongan dan pengkuarian yang mencapai kadar vaksinasi lengkap bagi pekerja dibenarkan beroperasi seperti berikut:\n- Kurang 60% : Dibenarkan beroperasi dengan kapasiti 60% pekerja.\n- 60% : Dibenarkan beroperasi dengan kapasiti 80% pekerja.\n- 80% : Dibenarkan beroperasi dengan kapasiti 100% pekerja.",
+                        "Bagi sektor perlombongan dan pengkuarian yang mencapai kadar vaksinasi lengkap bagi pekerja dibenarkan beroperasi seperti berikut:\n- Kurang 60% : Dibenarkan beroperasi dengan kapasiti 60% pekerja\n- 60% : Dibenarkan beroperasi dengan kapasiti 80% pekerja\n- 80% : Dibenarkan beroperasi dengan kapasiti 100% pekerja",
                         "Ujian RTK Antigen ke atas pekerja dilaksanakan setiap 2 minggu dengan kos ditanggung majikan."
                     ]
                 },
                 {
                     "title": "11. Sektor Perdagangan dan Pengedaran",
                     "content": [
-                        "Pelanggan yang mendapat kemudahan ini mestilah telah menerima vaksinasi lengkap.",
-                        "Kedai cuci kenderaan",
-                        "Kedai elektrik dan elektronik",
-                        "Kedai barangan rumah dan peralatan dapur",
-                        "Kedai perabot",
-                        "Kedai peralatan sukan",
-                        "Kedai aksesori kenderaan",
-                        "Pusat pengedaran dan jualan kenderaan",
-                        "Kedai pakaian, fesyen dan aksesori",
-                        "Kedai barang kemas",
-                        "Kedai gunting rambut dan pusat/ salun kecantikan (perkhidmatan gunting rambut asas sahaja)",
+                        "Pelanggan yang mendapat kemudahan ini mestilah telah menerima vaksinasi lengkap.\n- Kedai cuci kenderaan\n- Kedai elektrik dan elektronik\n- Kedai barangan rumah dan peralatan dapur\n- Kedai perabot\n- Kedai peralatan sukan\n- Kedai aksesori kenderaan\n- Pusat pengedaran dan jualan kenderaan\n- Kedai pakaian, fesyen dan aksesori\n- Kedai barang kemas\n- Kedai gunting rambut dan pusat/ salun kecantikan (perkhidmatan gunting rambut asas sahaja)",
                         "Pemilik premis perlu memastikan pelanggan yang ingin memasuki premis MESTI menunjukkan Kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksin lengkap.",
                         "Bagi ibu bapa/ penjaga yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah ke premis tersebut dengan mematuhi protokol kesihatan umum."
                     ]
                 },
                 {
-                    "title": "12. Pasar",
+                    "title": "12. Pasar Pagi, Pasar Tani, Pasar Malam dan Pasar Minggu",
                     "content": [
                         "Pelanggan yang mendapat kemudahan ini mestilah telah menerima vaksinasi lengkap.",
                         "Pasar pagi, pasar tani, pasar malam dan pasar minggu dibenarkan beroperasi dengan memastikan pelanggan yang ingin memasuki kawasan pasar pagi, pasar tani, pasar malam dan pasar minggu MESTI menunjukkan Kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksin lengkap."
@@ -121,7 +107,8 @@
                 {
                     "title": "13. Dine-in",
                     "content": [
-                        "Pengusaha restoran termasuk di hotel, rumah kelab sukan dan rekreasi, kedai makan, gerai makan, kenderaan bersaji, penjaja tepi jalan, penjaja beredar, medan selera, pusat penjaja, gerai makan tepi jalan dan kiosk dibenarkan menyediakan perkhidmatan dine- in dengan mematuhi syarat berikut:\n- Hanya menerima pelanggan yang telah lengkap divaksin dan tidak bergejala\n- Pemilik premis perniagaan MESTI memaparkan notis penerimaan pelanggan yang telah lengkap divaksin dan tidak bergejala sahaja di pintu masuk premis.\n- Pekerja yang telah menerima vaksin dos lengkap dan tidak bergejala sahaja dibenarkan bekerja dengan kadar vaksinasi berikut:\n  - 40% : Dibenarkan beroperasi dengan kapasiti 60% pekerja.\n  - 60% : Dibenarkan beroperasi dengan kapasiti 80% pekerja.\n  - 80% : Dibenarkan beroperasi dengan kapasiti 100% pekerja.\n  - Pemilik premis perniagaan perlu memastikan susun atur meja mengikut penjarakan dan premis mempunyai sistem pengudaraan (ventilation) yang baik.\n  - Aktiviti dine-in dengan kapasiti 50% setiap meja dan penjarakan fizikal sekurang- kurangnya 1 meter tertakluk kepada SOP KPDNHEP PPN Fasa 1 - Perdagangan Pengedaran.\n- Bagi individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah untuk dine-in di premis tersebut dengan mematuhi protokol kesihatan umum."
+                        "Pengusaha restoran termasuk di hotel, rumah kelab sukan dan rekreasi, kedai makan, gerai makan, kenderaan bersaji, penjaja tepi jalan, penjaja beredar, medan selera, pusat penjaja, gerai makan tepi jalan dan kiosk dibenarkan menyediakan perkhidmatan dine- in dengan mematuhi syarat berikut:\n- Hanya menerima pelanggan yang telah lengkap divaksin dan tidak bergejala\n- Pemilik premis perniagaan MESTI memaparkan notis penerimaan pelanggan yang telah lengkap divaksin dan tidak bergejala sahaja di pintu masuk premis.\n- Pekerja yang telah menerima vaksin dos lengkap dan tidak bergejala sahaja dibenarkan bekerja dengan kadar vaksinasi berikut:\n  - 40% : Dibenarkan beroperasi dengan kapasiti 60% pekerja.\n  - 60% : Dibenarkan beroperasi dengan kapasiti 80% pekerja.\n  - 80% : Dibenarkan beroperasi dengan kapasiti 100% pekerja.\n- Pemilik premis perniagaan perlu memastikan susun atur meja mengikut penjarakan dan premis mempunyai sistem pengudaraan (ventilation) yang baik.\n- Aktiviti dine-in dengan kapasiti 50% setiap meja dan penjarakan fizikal sekurang- kurangnya 1 meter tertakluk kepada SOP KPDNHEP PPN Fasa 1 - Perdagangan Pengedaran.",
+                        "Bagi individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah untuk dine-in di premis tersebut dengan mematuhi protokol kesihatan umum."
                     ]
                 },
                 {
@@ -136,7 +123,8 @@
                 {
                     "title": "15. Perkelahan dan Perkhemahan",
                     "content": [
-                        "Aktiviti perkelahan dan perkhemahan adalah dibenarkan dalam daerah yang sama. Individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah bagi aktiviti tersebut dengan pematuhan SOP yang ketat."
+                        "Aktiviti perkelahan dan perkhemahan adalah dibenarkan dalam daerah yang sama.",
+                        "Individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah bagi aktiviti tersebut dengan pematuhan SOP yang ketat."
                     ]
                 }
             ]
@@ -147,23 +135,30 @@
                 "Rentas daerah (berdasarkan sempadan daerah ditetapkan Kerajaan Negeri) dan negeri tidak dibenarkan kecuali pasangan jarak jauh, anak jarak jauh dan individu yang telah diluluskan pergerakan oleh KKM dan PDRM.",
                 "PDRM bertanggungjawab melaksanakan kawalan ke atas kawasan tempatan jangkitan dengan bantuan ATM, APM & RELA. Laluan keluar masuk kawasan PPN ditutup dan dikawal kemasukan oleh PDRM.",
                 "Pergerakan bagi individu yang telah lengkap divaksin dibenarkan berdasarkan jumlah kapasiti kenderaan.",
-                "Manakala, bagi yang belum mendapat vaksin lengkap:\n- Hanya dua (2) orang sahaja wakil isi rumah dibenarkan keluar hanya untuk mendapatkan bekalan makanan, ubat, penokok diet dan keperluan asas.\n- Maksimum tiga (3) orang sahaja termasuk pesakit dibenarkan keluar untuk mendapatkan perkhidmatan jagaan kesihatan, perubatan, ujian saringan, program vaksinasi, keselamatan atau kecemasan.\n- Bilangan penumpang dalam teksi dan e-hailing dihadkan kepada dua (2) orang sahaja termasuk pemandu, penumpang mesti duduk di belakang.\n- Bilangan orang yang dibenarkan di dalam kenderaan membawa barangan serta rantaian aktiviti ekonomi atau industri (kecuali pengangkutan pekerja) bergantung kepada lesen pendaftaran kenderaan.\n- Bilangan orang yang dibenarkan di dalam Kenderaan Jabatan atau Kereta Rasmi Jawatan adalah berdasarkan kapasiti kenderaan.\n- Aktiviti dan perkhidmatan di semua lapangan terbang dan pelabuhan dibenarkan beroperasi 24 jam.",
-                "Aktiviti pemunggahan melibatkan barangan non-essential di kilang - kilang terhad kepada penghantaran dan penerimaan barangan atau kargo dalam simpanan stok (stockpile) sedia ada dengan tujuan import dan eksport sahaja dengan jumlah pekerja yang terhad. Waktu pemunggahan adalah dari jam 8.00 pagi hingga 8.00 malam pada Isnin, Rabu dan Jumaat.",
+                "Manakala, bagi yang belum mendapat vaksin lengkap:\n- Hanya dua (2) orang sahaja wakil isi rumah dibenarkan keluar hanya untuk mendapatkan bekalan makanan, ubat, penokok diet dan keperluan asas.\n- Maksimum tiga (3) orang sahaja termasuk pesakit dibenarkan keluar untuk mendapatkan perkhidmatan jagaan kesihatan, perubatan, ujian saringan, program vaksinasi, keselamatan atau kecemasan.",
+                "Bilangan penumpang dalam teksi dan e-hailing dihadkan kepada dua (2) orang sahaja termasuk pemandu, penumpang mesti duduk di belakang.",
+                "Bilangan orang yang dibenarkan di dalam kenderaan membawa barangan serta rantaian aktiviti ekonomi atau industri (kecuali pengangkutan pekerja) bergantung kepada lesen pendaftaran kenderaan.",
+                "Bilangan orang yang dibenarkan di dalam Kenderaan Jabatan atau Kereta Rasmi Jawatan adalah berdasarkan kapasiti kenderaan.",
+                "Aktiviti dan perkhidmatan di semua lapangan terbang dan pelabuhan dibenarkan beroperasi 24 jam.",
+                "Aktiviti pemunggahan melibatkan barangan non-essential di kilang - kilang terhad kepada penghantaran dan penerimaan barangan atau kargo dalam simpanan stok (stockpile) sedia ada dengan tujuan import dan eksport sahaja dengan jumlah pekerja yang terhad. Waktu pemunggahan adalah dari jam 8.00 pagi hingga 8.00 malam pada Isnin, Rabu dan Jumaat dengan kebenaran PDRM.",
                 "Aktiviti pemunggahan melibatkan barangan essential tidak tertakluk kepada sekatan ini dan berjalan seperti biasa.",
                 "Perkhidmatan pengangkutan awam laut dan darat seperti pengangkutan pekerja, bas henti- henti, bas ekspres, LRT, MRT, ERL, Monorel, feri dan lain-lain pengangkutan awam dibenarkan beroperasi berdasarkan 50% kapasiti kenderaan (waktu operasi dan frekuensi tertakluk kepada Kementerian Pengangkutan).",
                 "Pergerakan bagi kes kematian dan bencana alam dibenarkan setelah mendapatkan kebenaran daripada PDRM.",
                 "Pergerakan bantuan bencana atau kemanusiaan oleh NGO perlu mendapatkan kebenaran dari Jawatankuasa Pengurusan Bencana Negeri atau Jawatankuasa Pengurusan Bencana Daerah di kawasan yang terjejas dengan bencana dan bantuan tersebut disalurkan melalui Pusat Kawalan Operasi Bencana (PKOB) di kawasan tersebut.",
                 "Pergerakan merentas daerah dan negeri bagi tujuan vaksinasi COVID-19 di Pusat Pemberian Vaksin (PPV) di luar daerah atau negeri tempat tinggal dibenarkan dengan menunjukkan butiran janji temu di aplikasi MySejahtera, laman sesawang atau SMS.",
                 "Ahli Parlimen dan Ahli Dewan Undangan Negeri dibenarkan merentas daerah dan negeri untuk melawat kawasan masing-masing tanpa melaksanakan sebarang majlis.",
-                "Pergerakan bagi Pelawat Perniagaan Jangka Pendek di bawah kelulusan Inisiatif One Stop Centre (OSC) untuk tujuan rasmi atau perniagaan dibenarkan setelah mendapat kebenaran PDRM."
+                "Pergerakan bagi Pelawat Perniagaan Jangka Pendek di bawah kelulusan Inisiatif One Stop",
+                "Centre (OSC) untuk tujuan rasmi atau perniagaan dibenarkan setelah mendapat kebenaran PDRM. "
             ]
         },
         {
             "title": "17. Perkhidmatan Awam",
             "content": [
+                "Tertakluk kepada arahan semasa Ketua Setiausaha Negara.",
                 "Melaksanakan kaedah Bekerja Dari Rumah (BDR) sepenuhnya tidak termasuk perkhidmatan frontliners, keselamatan, pertahanan dan penguatkuasaan",
                 "Kehadiran di Pejabat hanya dibenarkan bagi perkhidmatan perlu dan tidak melebihi 40% pada satu-satu masa berdasarkan keutamaan kepada proses kerja yang tidak boleh dilaksanakan secara BDR seperti pembayaran kontrak / invois / gaji, pembayaran / pengagihan bantuan bulanan / berkala kepada rakyat, penyelenggaraan / keselamatan premis, pengurusan teknikal ICT bagi tujuan penyelenggaraan sistem dan mesyuarat atas talian dan penyediaan dokumen melibatkan Jemaah Menteri.",
-                "Kaunter perkhidmatan Kerajaan dibenarkan beroperasi secara fizikal mulai 1 Julai 2021 melibatkan:\n- Perkhidmatan yang tidak boleh dilaksanakan secara dalam talian;\n  - Kapasiti petugas kaunter tidak melebihi 50%; dan\n  - Kehadiran pelanggan secara fizikal hanya melalui janji temu berjadual.\n  - Kehadiran ke pejabat perlu disertai dengan dokumen arahan rasmi dan pas pekerja."
+                "Kaunter perkhidmatan Kerajaan dibenarkan beroperasi secara fizikal mulai 1 Julai 2021 melibatkan:\n- Perkhidmatan yang tidak boleh dilaksanakan secara dalam talian;\n- Kapasiti petugas kaunter tidak melebihi 50%; dan\n- Kehadiran pelanggan secara fizikal hanya melalui janji temu berjadual.",
+                "Kehadiran ke pejabat perlu disertai dengan dokumen arahan rasmi dan pas pekerja."
             ]
         },
         {
@@ -183,16 +178,16 @@
             "title": "20. Seminar, Bengkel, Kursus, Latihan dan Ceramah",
             "content": [
                 "Seminar, bengkel, kursus, latihan dan ceramah tidak dibenarkan kecuali latihan dalam perkhidmatan yang sedang berjalan boleh dilaksanakan dalam kawasan latihan menerusi kaedah Camp Based Training.",
-                "Seminar, bengkel, kursus, latihan dan ceramah yang dilaksanakan secara dalam talian",
-                "(online) adalah dibenarkan.",
+                "Seminar, bengkel, kursus, latihan dan ceramah yang dilaksanakan secara dalam talian (online) adalah dibenarkan.",
                 "Temuduga kritikal yang perlu dilaksanakan adalah dibenarkan secara bersemuka dan dalam talian."
             ]
         },
         {
             "title": "21. Perniagaan dan Perkhidmatan",
             "content": [
-                "Pengusaha restoran termasuk di hotel, rumah kelab sukan dan rekreasi, kedai makan, gerai makan, kenderaan bersaji (food truck), penjaja tepi jalan, penjaja beredar, medan selera, pusat penjaja, gerai makan tepi jalan atau kiosk dibenarkan beroperasi antara 6.00 pagi hingga 10.00 malam secara bawa pulang, pandu lalu atau penghantaran.",
-                "Dine-in dan perkhidmatan park & dine tidak dibenarkan.",
+                "Pengusaha restoran termasuk di hotel, rumah kelab sukan dan rekreasi, kedai makan, gerai makan, kenderaan bersaji (food truck), penjaja tepi jalan, penjaja beredar, medan selera, pusat penjaja, gerai makan tepi jalan atau kiosk dibenarkan beroperasi antara 6.00 pagi hingga 10.00 malam.",
+                "Aktiviti jualan makanan adalah secara bawa pulang, pandu lalu atau penghantaran KECUALI perkhidmatan dine-in bagi pelanggan yang telah menerima vaksinasi lengkap.",
+                "Perkhidmatan park & dine tidak dibenarkan.",
                 "Kedai runcit, kedai serbaneka, kedai penjagaan diri dan mini mart dibenarkan beroperasi antara 8.00 pagi hingga 8.00 malam.",
                 "Kedai keperluan harian seperti kedai hardware, bengkel kenderaan, kedai barangan bayi dan barangan keagamaan dibenarkan beroperasi antara 8.00 pagi hingga 8.00 malam.",
                 "Perkhidmatan kesihatan seperti hospital, klinik dan makmal perubatan boleh beroperasi sehingga 24 jam atau mengikut lesen kebenaran beroperasi.",
@@ -200,9 +195,8 @@
                 "Stesen minyak boleh beroperasi dari jam 6.00 pagi hingga 8.00 malam kecuali stesen minyak di lebuh raya bertol boleh beroperasi sehingga 24 jam.",
                 "Pasar raya, pasar raya besar dan departmental store dibuka dari jam 8.00 pagi hingga 8.00 malam.",
                 "Kedai buku dan alat tulis, kedai komputer dan telekomunikasi dibenarkan beroperasi dari jam 8.00 pagi hingga 8.00 malam.",
-                "Klinik haiwan dan kedai makanan haiwan dibenarkan beroperasi dari jam 8.00 pagi hingga",
-                "8.00 malam.",
-                "Kedai dobi, dobi layan diri dan kedai cermin mata dibenarkan beroperasi dari jam 8.00 pagi hingga 8.00 malam. Kedai dobi layan diri perlu memastikan pekerja berada di premis dengan mematuhi SOP yang ditetapkan."
+                "Klinik haiwan dan kedai makanan haiwan dibenarkan beroperasi dari jam 8.00 pagi hingga 8.00 malam.",
+                "Kedai dobi, dobi layan diri dan kedai cermin mata dibenarkan beroperasi dari jam 8.00 pagi hingga 8.00 malam. Kedai dobi layan diri perlu memastikan pekerja berada di premis dengan mematuhi SOP yang ditetapkan. "
             ]
         },
         {
@@ -214,7 +208,7 @@
                 "Pasar borong dibenarkan beroperasi dari jam 12.01 pagi sehingga 6.00 pagi dan 11.00 pagi sehingga 4.00 petang tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
                 "Pasar pagi dan pasar tani dibenarkan beroperasi dari jam 7.00 pagi hingga 11.00 pagi dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
                 "Pasar malam dan pasar minggu dibenarkan beroperasi tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
-                "Pelanggan yang ingin memasuki kawasan pasar pagi, pasar tani, pasar malam dan pasar minggu MESTI menunjukkan kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksinasi lengkap."
+                "Pelanggan yang ingin memasuki kawasan pasar pagi, pasar tani, pasar malam dan pasar minggu MESTI menunjukkan Kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksinasi lengkap."
             ]
         },
         {
@@ -269,8 +263,7 @@
             "title": "28. Sukan dan Riadah",
             "content": [
                 "Bagi individu yang masih belum melengkapkan atau menerima vaksinasi lengkap, aktiviti sukan dan rekreasi secara individu boleh dilakukan di kawasan terbuka (outdoor) termasuk taman terbuka awam dengan mematuhi penjarakan fizikal sekurang-kurangnya 2 hingga 3 meter dan dilakukan dalam daerah yang sama bermula jam 6.00 pagi hingga 8.00 malam. Aktiviti adalah seperti joging, senaman, berbasikal, skateboarding, inline skating dan seumpamanya.",
-                "Pengoperasian taman terbuka awam TERTAKLUK kepada Pihak Berkuasa Tempatan",
-                "(PBT).",
+                "Pengoperasian taman terbuka awam TERTAKLUK kepada Pihak Berkuasa Tempatan (PBT).",
                 "Pengoperasian semua fasiliti sukan dan rekreasi tertutup (indoor) adalah TERHAD bagi tujuan pengurusan perlu (kewangan, penyelenggaraan dan seumpamanya) sahaja dengan pematuhan tidak melebihi 30% tenaga kerja termasuk pengurusan dan operasi.",
                 "Program latihan berpusat termasuk kejohanan atau pertandingan tertutup secara kuarantin yang dilaksanakan oleh Majlis Sukan Negara (MSN) menggunakan konsep Camp Based Training.",
                 "Program latihan berpusat secara kuarantin yang dilaksanakan oleh Majlis-Majlis Sukan Negeri (MSN Negeri) menggunakan konsep Camp Based Training.",
@@ -290,10 +283,6 @@
             "content": [
                 "Aktiviti perkelahan dan perkhemahan bagi individu yang tidak lengkap divaksinasi adalah tidak dibenarkan."
             ]
-        },
-        {
-            "title": "MANA-MANA AKTIVITI YANG TIDAK DINYATAKAN DALAM SOP INI ADALAH TIDAK DIBENARKAN.",
-            "content": []
         },
         {
             "title": "SENARAI PERKHIDMATAN PERLU YANG DIBENARKAN BEROPERASI",
@@ -354,19 +343,19 @@
                         "Kerja-kerja penyelenggaraan dan pembaikan kritikal.",
                         "Kerja-kerja pembinaan infrastruktur awam.",
                         "Kerja kerja pembinaan yang menyediakan penginapan pekerja yang diluluskan di tapak bina atau yang menempatkan pekerja di Kuarters Pekerja Berpusat (CLQ) yang diluluskan.",
-                        "Kerja-kerja pembinaan yang dilaksanakan oleh kontraktor G1, G2, G3 dan G4.",
+                        "Kerja-kerja pembinaan yang dilaksanakan oleh kontraktor G1, G2, G3 atau G4.",
                         "Kerja-kerja pengubahsuaian rumah kediaman perseorangan.",
                         "Kerja-kerja pembinaan projek Kerajaan (Government Funded Project).",
                         "Kerja-kerja penyiasatan tanah.",
-                        "Perkhidmatan profesional/ perunding yang terlibat bagi kerja-kerja pembinaan yang dibenarkan beroperasi.",
-                        "Perkhidmatan dalam rantaian bekalan yang terlibat bagi kerja-kerja pembinaan yang dibenarkan beroperasi."
+                        "Perkhidmatan profesional/ perunding yang terlibat dengan sektor pembinaan.",
+                        "Perkhidmatan dalam rantaian bekalan yang terlibat bagi kerja-kerja pembinaan yang dibenarkan"
                     ]
                 },
                 {
                     "title": "D. Perdagangan Pengedaran Tanpa Syarat Vaksin",
                     "content": [
-                        "Kompleks membeli belah DITUTUP kecuali pasar raya, pasar raya besar dan departmental stores",
-                        "TERMASUK semua perkhidmatan perlu yang disenaraikan.",
+                        "Kompleks membeli belah DIBUKA hanya bagi pasar raya, pasar raya besar dan departmental stores",
+                        "TERMASUK semua perkhidmatan perlu yang disenaraikan",
                         "Pasar raya dan pasar raya besar",
                         "Departmental store",
                         "Kedai farmasi, penjagaan diri, kedai serbaneka dan mini mart.",
@@ -375,7 +364,7 @@
                         "Kedai penjagaan haiwan dan makanan haiwan",
                         "Kedai cermin mata dan barang optik",
                         "Kedai hardware",
-                        "10. E-dagang (semua kategori produk)",
+                        "E-dagang (semua kategori produk)",
                         "Pemborongan dan pengedaran (semua kategori produk perkhidmatan perlu sahaja)",
                         "Bengkel kenderaan, penyelenggaraan dan alat ganti",
                         "Other Specialty Retail Stores (stesen minyak)",
@@ -384,9 +373,8 @@
                     ]
                 },
                 {
-                    "title": "D. Perdagangan Pengedaran",
+                    "title": "D. Perdagangan Pengedaran Dengan Syarat Pelanggan telah Lengkap Divaksinasi",
                     "content": [
-                        "Dengan Syarat Pelanggan telah Lengkap Divaksinasi",
                         "Kedai cuci kenderaan",
                         "Kedai elektrik dan elektronik",
                         "Kedai barangan rumah dan peralatan dapur",
@@ -394,7 +382,6 @@
                         "Kedai peralatan sukan",
                         "Kedai aksesori kenderaan",
                         "Pusat pengedaran dan jualan kenderaan",
-                        "Pasar pagi dan pasar tani sahaja",
                         "Kedai pakaian, fesyen dan aksesori",
                         "Kedai barang kemas",
                         "Kedai gunting rambut dan pusat/ salun kecantikan (perkhidmatan gunting rambut asas sahaja)"
@@ -407,10 +394,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "title": "MANA-MANA AKTIVITI YANG TIDAK DINYATAKAN DALAM SOP INI ADALAH TIDAK DIBENARKAN.",
-            "content": []
         },
         {
             "title": "SENARAI AKTIVITI YANG TIDAK DIBENARKAN (NEGATIVE LIST)",
@@ -479,23 +462,22 @@
         {
             "title": "1. Kawasan Terlibat",
             "content": [
-                "KELANTAN, TERENGGANU, PAHANG, PERAK, PULAU PINANG DAN SABAH",
-                "*Bagi Sabah, sila rujuk Pelan Pemulihan Negara \u2013 SOP Fasa 2 Sabah.",
+                "KELANTAN, TERENGGANU, PAHANG, PERAK, PULAU PINANG, SABAH DAN NEGERI SEMBILAN",
+                "*Bagi Sabah, sila rujuk Pelan Pemulihan Negara - SOP Fasa 2 Sabah.",
                 "**Bagi kawasan yang dikuatkuasakan PKPD, SOP PKPD di kawasan berkenaan adalah berkuatkuasa sehingga tarikh tamat PKPD tersebut."
             ]
         },
         {
             "title": "2. Tempoh Kuat Kuasa",
             "content": [
-                "Bermula pada 20 Ogos 2021 (mulai 12.01 pagi)"
+                "Bermula pada 20 Ogos 2021 (mulai 12.01 pagi)",
+                "*Bagi Negeri Sembilan bermula pada 26 Ogos 2021 (mulai 12.01)"
             ]
         },
         {
             "title": "3. Vaksinasi Lengkap",
             "content": [
-                "Individu yang telah lengkap divaksin adalah individu yang telah memenuhi kriteria-kriteria berikut:\n- Bagi jenis vaksin yang memerlukan dua dos suntikan (Pfizer, AstraZeneca, dan Sinovac), individu berkenaan mestilah telah melepasi hari ke-14 dari tarikh suntikan dos kedua; atau",
-                "Bagi jenis vaksin yang hanya memerlukan satu dos suntikan (Johnson",
-                "& Johnson dan CanSino), individu berkenaan mestilah telah melepasi hari ke-28 dari tarikh suntikan."
+                "Individu yang telah lengkap divaksin adalah individu yang telah memenuhi kriteria-kriteria berikut:\n- Bagi jenis vaksin yang memerlukan dua dos suntikan (seperti Cormirnaty (Pfizer-BioNTech), COVID-19 AstraZeneca (Oxford-AstraZeneca), CoronaVac (Sinovac), Spikevax (Moderna) dan Covilo (Sinopharm)), individu berkenaan mestilah telah melepasi hari ke-14 dari tarikh suntikan dos kedua; atau\n- Bagi jenis vaksin yang hanya memerlukan satu dos suntikan (seperti COVID-19 Janssen (Johnson & Johnson) dan Convidecia (CanSino)), individu berkenaan mestilah telah melepasi hari ke-28 dari tarikh suntikan. "
             ]
         },
         {
@@ -516,7 +498,9 @@
                 {
                     "title": "5. Rentas Daerah",
                     "content": [
-                        "Rentas daerah dibenarkan bagi individu yang telah lengkap menerima vaksin dengan mengemukakan Kad/ Sijil Digital Vaksinasi COVID-19 dan kad pengenalan/ pasport sebagai pembuktian."
+                        "Rentas daerah dibenarkan bagi individu yang telah lengkap menerima vaksin dengan mengemukakan Kad/ Sijil Digital Vaksinasi COVID-19 dan kad pengenalan/ pasport sebagai pembuktian.",
+                        "Bagi individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia",
+                        "17 tahun dan ke bawah dengan mematuhi protokol kesihatan umum."
                     ]
                 },
                 {
@@ -536,26 +520,22 @@
                 {
                     "title": "8. Warganegara dan Bukan Warganegara yang Pulang/ Tiba dari Luar Negara",
                     "content": [
-                        "Pengembara warganegara dan bukan warganegara yang mempunyai kediaman di Malaysia (termasuk PR dan Malaysia MY Second Home) yang pulang atau tiba dari luar negara dan telah lengkap divaksin, dibenarkan menjalani kuarantin wajib di rumah dan diberikan Perintah Pengawasan dan Pemerhatian di Rumah (HSO) digital tertakluk kepada perincian yang dikeluarkan oleh Kementerian Kesihatan Malaysia (KKM).",
-                        "Menunjukkan bukti laporan ujian RT PCR negatif yang sah serta dijalankan 3 hari sebelum berlepas.",
-                        "Mempunyai sijil sah vaksinasi COVID-19 yang lengkap (bergantung kepada jenis vaksin).",
-                        "Tiada gejala semasa saringan kesihatan dilakukan di Pintu Masuk Antarabangsa Negara.",
-                        "Mempunyai tempat kediaman yang sesuai untuk dijalankan kuarantin.",
+                        "Pengembara warganegara dan bukan warganegara yang mempunyai kediaman di Malaysia (termasuk PR dan Malaysia MY Second Home) yang pulang atau tiba dari luar negara dan telah lengkap divaksin, dibenarkan menjalani kuarantin wajib di rumah dan diberikan Perintah Pengawasan dan Pemerhatian di Rumah (HSO) digital tertakluk kepada penilaian risiko Kementerian Kesihatan Malaysia (KKM) dan perincian yang dikeluarkan oleh KKM.\n- Menunjukkan bukti laporan ujian RT PCR dengan keputusan negatif yang dijalankan 3 hari sebelum berlepas.\n- Mempunyai sijil sah vaksinasi COVID-19 dos lengkap (bergantung kepada jenis vaksin).\n- Tiada gejala semasa saringan kesihatan di Pintu Masuk Antarabangsa Negara (PMA).\n- Mempunyai tempat kediaman yang sesuai untuk dijalankan kuarantin.",
                         "Individu yang pulang / tiba dari luar negara dan belum lengkap divaksin atau tidak divaksin perlu menjalani kuarantin di pusat kuarantin yang ditetapkan serta tertakluk kepada perincian yang dikeluarkan oleh Kementerian Kesihatan Malaysia (KKM).",
-                        "Tempoh kuarantin wajib bagi pengembara dari semua negara adalah 14 hari dan boleh dilanjutkan selama 7 hari lagi sekiranya terdapat keperluan berdasarkan hasil penilaian risiko yang dijalankan pada hari ke-14."
+                        "Tempoh kuarantin wajib bagi pengembara dari semua negara adalah 14 hari dan boleh dilanjutkan selama 7 hari lagi sekiranya terdapat keperluan berdasarkan hasil penilaian risiko yang dijalankan pada hari ke-14.",
+                        "Pengembara dikehendaki membuat penilaian kendiri setiap hari melalui Home Assessment Tool (HAT) dalam aplikasi MySejahtera dan aktiviti ini perlu diteruskan sehingga tamat tempoh kuarantin (sama ada 14 hari atau 21 hari dari tarikh ketibaan).",
+                        "Pengembara dikehendaki menjalani saringan ujian pengesanan jangkitan COVID-19 iaitu ujian RT-PCR COVID-19 semasa ketibaan di PMA. Ujian ulangan saringan ujian pengesanan jangkitan COVID-19, RT-PCR COVID-19 dilakukan pada hari ke 10 atau hari ke 18 (bagi pengembara yang perlu menjalani kuarantin selama 21 hari)."
                     ]
                 },
                 {
                     "title": "9. Keagamaan",
-                    "content": [
-                        "Aktiviti solat di masjid dan surau bagi individu  yang telah divaksin lengkap dibenarkan tertakluk kepada ketetapan dan SOP oleh Pihak Berkuasa Agama Negeri.",
-                        "Aktiviti sembahyang di Rumah Ibadat Selain Islam (RISI) bagi individu yang telah divaksin lengkap dibenarkan tertakluk kepada ketetapan dan SOP oleh Kementerian Perpaduan Negara (KPN)."
-                    ]
+                    "content": []
                 },
                 {
                     "title": "10. Dine-in",
                     "content": [
-                        "Pengusaha restoran termasuk di hotel, rumah kelab sukan dan rekreasi, kedai makan, gerai makan, kenderaan bersaji, penjaja tepi jalan, penjaja beredar, medan selera, pusat penjaja, gerai makan tepi jalan dan kiosk dibenarkan menyediakan perkhidmatan dine-in dengan mematuhi syarat berikut:\n- Hanya menerima pelanggan yang telah lengkap divaksin dan tidak bergejala\n- Pemilik premis perniagaan MESTI memaparkan notis penerimaan pelanggan yang telah lengkap divaksin dan tidak bergejala sahaja di pintu masuk premis.\n- Pekerja yang telah menerima vaksin dos lengkap dan tidak bergejala sahaja dibenarkan bekerja dengan kadar vaksinasi berikut:\n  - 40% : Dibenarkan beroperasi dengan kapasiti 60% pekerja.\n  - 60% : Dibenarkan beroperasi dengan kapasiti 80% pekerja.\n  - 80% : Dibenarkan beroperasi dengan kapasiti 100% pekerja.\n  - Pemilik premis perniagaan perlu memastikan susun atur meja mengikut penjarakan dan premis mempunyai sistem pengudaraan (ventilation) yang baik.\n  - Aktiviti dine-in dengan kapasiti 50% setiap meja dan penjarakan fizikal sekurang- kurangnya 1 meter tertakluk kepada SOP KPDNHEP PPN Fasa 1 - Perdagangan Pengedaran.\n  - Bagi individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak- anak berusia 17 tahun dan ke bawah untuk dine-in di premis tersebut dengan mematuhi protokol kesihatan umum."
+                        "Pengusaha restoran termasuk di hotel, rumah kelab sukan dan rekreasi, kedai makan, gerai makan, kenderaan bersaji, penjaja tepi jalan, penjaja beredar, medan selera, pusat penjaja, gerai makan tepi jalan dan kiosk dibenarkan menyediakan perkhidmatan dine-in dengan mematuhi syarat berikut:\n- Hanya menerima pelanggan yang telah lengkap divaksin dan tidak bergejala\n- Pemilik premis perniagaan MESTI memaparkan notis penerimaan pelanggan yang telah lengkap divaksin dan tidak bergejala sahaja di pintu masuk premis.\n- Pekerja yang telah menerima vaksin dos lengkap dan tidak bergejala sahaja dibenarkan bekerja dengan kadar vaksinasi berikut:\n  - (a)\t40%\t: Dibenarkan beroperasi dengan kapasiti 60% pekerja.\n  - (b)\t60%\t: Dibenarkan beroperasi dengan kapasiti 80% pekerja.\n  - (c)\t80%\t: Dibenarkan beroperasi dengan kapasiti 100% pekerja.\n- Pemilik premis perniagaan perlu memastikan susun atur meja mengikut penjarakan dan premis mempunyai sistem pengudaraan (ventilation) yang baik.\n- Aktiviti dine-in dengan kapasiti 50% setiap meja dan penjarakan fizikal sekurang-kurangnya 1 meter tertakluk kepada SOP KPDNHEP PPN Fasa 2 - Perdagangan Pengedaran.",
+                        "Bagi individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah untuk dine-in di premis tersebut dengan mematuhi protokol kesihatan umum."
                     ]
                 },
                 {
@@ -567,7 +547,8 @@
                 {
                     "title": "12. Perkelahan dan Perkhemahan",
                     "content": [
-                        "Aktiviti perkelahan dan perkhemahan adalah dibenarkan dalam daerah yang sama. Bagi Individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah bagi aktiviti tersebut dengan pematuhan SOP yang ketat."
+                        "Aktiviti perkelahan dan perkhemahan adalah dibenarkan dalam daerah yang sama.",
+                        "Individu yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah bagi aktiviti tersebut dengan pematuhan SOP yang ketat."
                     ]
                 },
                 {
@@ -596,34 +577,16 @@
                 {
                     "title": "16. Sektor Perdagangan dan Pengedaran",
                     "content": [
-                        "Pelanggan yang mendapat kemudahan ini mestilah telah menerima vaksinasi lengkap.",
-                        "Kedai barang fotografi dan perkhidmatan fotografi",
-                        "Kedai barangan terpakai",
-                        "Kedai bunga dan nurseri",
-                        "Kedai kraftangan dan cenderahati",
-                        "Kedai antik",
-                        "Kedai alat permainan",
-                        "Kedai permaidani",
-                        "Kedai kandungan kreatif dan peralatan industri kreatif",
-                        "Kedai peralatan outdoor (termasuk peralatan perkhemahan, memancing dan lain-lain)",
-                        "Kedai kosmetik, penjagaan kulit dan minyak wangi",
-                        "Kedai tembakau (termasuk vape dan rokok elektronik)",
-                        "Kedai barangan rumah dan peralatan dapur",
-                        "Kedai perabot",
-                        "Kedai peralatan sukan",
-                        "Kedai aksesori kenderaan",
-                        "Pusat pengedaran dan jualan kenderaan",
-                        "Kedai pakaian, fesyen dan aksesori",
-                        "Kedai barang kemas",
+                        "Pelanggan yang mendapat kemudahan ini mestilah telah menerima vaksinasi lengkap.\n- Kedai barang fotografi dan perkhidmatan fotografi\n- Kedai barangan terpakai\n- Kedai bunga dan nurseri\n- Kedai kraftangan dan cenderahati\n- Kedai antik\n- Kedai alat permainan\n- Kedai permaidani\n- Kedai kandungan kreatif dan peralatan industri kreatif\n- Kedai peralatan outdoor (termasuk peralatan perkhemahan, memancing dan lain-lain)\n- Kedai kosmetik, penjagaan kulit dan minyak wangi\n- Kedai tembakau (termasuk vape dan rokok elektronik)\n- Kedai barangan rumah dan peralatan dapur\n- Kedai perabot\n- Kedai peralatan sukan\n- Kedai aksesori kenderaan\n- Pusat pengedaran dan jualan kenderaan\n- Kedai pakaian, fesyen dan aksesori\n- Kedai barang kemas",
                         "Pemilik premis perlu memastikan pelanggan yang ingin memasuki premis MESTI menunjukkan Kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksin lengkap.",
                         "Bagi ibu bapa/ penjaga yang telah menerima vaksinasi lengkap dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah ke premis tersebut dengan mematuhi protokol kesihatan umum."
                     ]
                 },
                 {
-                    "title": "17. Pasar",
+                    "title": "17. Pasar Malam dan Pasar Minggu",
                     "content": [
                         "Pelanggan yang mendapat kemudahan ini mestilah telah menerima vaksinasi lengkap.",
-                        "Pasar pagi, pasar tani, pasar malam dan pasar minggu dibenarkan beroperasi dengan memastikan pelanggan yang ingin memasuki kawasan pasar pagi dan pasar tani MESTI menunjukkan Kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksin lengkap."
+                        "Pasar malam dan pasar minggu dibenarkan beroperasi dengan memastikan pelanggan yang ingin memasuki kawasan pasar malam dan pasar minggu MESTI menunjukkan Kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksin lengkap."
                     ]
                 }
             ]
@@ -631,7 +594,23 @@
         {
             "title": "18. Kawalan Pergerakan",
             "content": [
-                "Rentas daerah dan negeri (berdasarkan sempadan daerah ditetapkan Kerajaan Negeri) tidak dibenarkan kecuali:\n- Individu yang telah lengkap divaksin untuk tujuan merentas daerah sahaja.\n- Pasangan jarak jauh, anak jarak jauh dan individu yang telah diluluskan pergerakan oleh KKM dan PDRM untuk tujuan merentas negeri.\n- PDRM bertanggungjawab melaksanakan kawalan ke atas kawasan tempatan jangkitan dengan bantuan ATM, APM & RELA. Laluan keluar masuk kawasan PPN ditutup dan dikawal kemasukan oleh PDRM.\n- Pergerakan bagi individu yang telah lengkap divaksin dibenarkan berdasarkan jumlah kapasiti kenderaan.\n- Manakala, bagi yang belum mendapat vaksin lengkap:\n  - Hanya dua (2) orang sahaja wakil isi rumah dibenarkan keluar hanya untuk mendapatkan bekalan makanan, ubat, penokok diet dan keperluan asas.\n  - Maksimum tiga (3) orang sahaja termasuk pesakit dibenarkan keluar untuk mendapatkan perkhidmatan jagaan kesihatan, perubatan, ujian saringan, program vaksinasi, keselamatan atau kecemasan.\n  - Bilangan penumpang dalam teksi dan e-hailing dihadkan kepada dua (2) orang sahaja termasuk pemandu, penumpang mesti duduk di belakang.\n  - Bilangan orang yang dibenarkan di dalam kenderaan membawa barangan serta rantaian aktiviti ekonomi atau industri (kecuali pengangkutan pekerja) bergantung kepada lesen pendaftaran kenderaan.\n  - Bilangan orang yang dibenarkan di dalam Kenderaan Jabatan atau Kereta Rasmi Jawatan adalah berdasarkan kapasiti kenderaan.\n  - Aktiviti dan perkhidmatan di semua lapangan terbang dan pelabuhan dibenarkan beroperasi 24 jam.\n  - Perkhidmatan pengangkutan awam laut dan darat seperti pengangkutan pekerja, bas henti-henti, bas ekspres, feri dan lain-lain pengangkutan awam dibenarkan beroperasi berdasarkan 50% kapasiti kenderaan. "
+                "Rentas daerah dan negeri (berdasarkan sempadan daerah ditetapkan Kerajaan Negeri) tidak dibenarkan kecuali:\n- Individu yang telah lengkap divaksin untuk tujuan merentas daerah sahaja.\n- Pasangan jarak jauh, anak jarak jauh dan individu yang telah diluluskan pergerakan oleh KKM dan PDRM untuk tujuan merentas negeri.",
+                "PDRM bertanggungjawab melaksanakan kawalan ke atas kawasan tempatan jangkitan dengan bantuan ATM, APM & RELA. Laluan keluar masuk kawasan PPN ditutup dan dikawal kemasukan oleh PDRM.",
+                "Pergerakan bagi individu yang telah lengkap divaksin dibenarkan berdasarkan jumlah kapasiti kenderaan.",
+                "Manakala, bagi yang belum mendapat vaksin lengkap:\n- Hanya dua (2) orang sahaja wakil isi rumah dibenarkan keluar hanya untuk mendapatkan bekalan makanan, ubat, penokok diet dan keperluan asas.\n- Maksimum tiga (3) orang sahaja termasuk pesakit dibenarkan keluar untuk mendapatkan perkhidmatan jagaan kesihatan, perubatan, ujian saringan, program vaksinasi, keselamatan atau kecemasan.",
+                "Bilangan penumpang dalam teksi dan e-hailing dihadkan kepada dua (2) orang sahaja termasuk pemandu, penumpang mesti duduk di belakang.",
+                "Bilangan orang yang dibenarkan di dalam kenderaan membawa barangan serta rantaian aktiviti ekonomi atau industri (kecuali pengangkutan pekerja) bergantung kepada lesen pendaftaran kenderaan.",
+                "Bilangan orang yang dibenarkan di dalam Kenderaan Jabatan atau Kereta Rasmi Jawatan adalah berdasarkan kapasiti kenderaan.",
+                "Aktiviti dan perkhidmatan di semua lapangan terbang dan pelabuhan dibenarkan beroperasi 24 jam.",
+                "Perkhidmatan pengangkutan awam laut dan darat seperti pengangkutan pekerja, bas henti-henti, bas ekspres, feri dan lain-lain pengangkutan awam dibenarkan beroperasi berdasarkan 50% kapasiti kenderaan. ",
+                "Aktiviti pemunggahan melibatkan barangan non-essential di kilang - kilang terhad kepada penghantaran dan penerimaan barangan atau kargo dalam simpanan stok (stockpile) sedia ada dengan tujuan import dan eksport sahaja dengan jumlah pekerja yang terhad. Waktu pemunggahan adalah dari jam 8.00 pagi hingga 8.00 malam pada Isnin, Rabu dan Jumaat dengan kebenaran PDRM.",
+                "Aktiviti pemunggahan melibatkan barangan essential tidak tertakluk kepada sekatan ini dan berjalan seperti biasa.",
+                "Pergerakan bagi kes kematian dan bencana alam dibenarkan setelah mendapatkan kebenaran daripada PDRM.",
+                "Pergerakan bantuan bencana atau kemanusiaan oleh NGO perlu mendapatkan kebenaran dari Jawatankuasa Pengurusan Bencana Negeri atau Jawatankuasa Pengurusan Bencana Daerah di kawasan yang terjejas dengan bencana dan bantuan tersebut disalurkan melalui Pusat Kawalan Operasi Bencana (PKOB) di kawasan tersebut.",
+                "Pergerakan merentas daerah dan negeri bagi tujuan vaksinasi COVID-19 di Pusat Pemberian Vaksin (PPV) di luar daerah atau negeri tempat tinggal dibenarkan dengan menunjukkan butiran janji temu di aplikasi MySejahtera, laman sesawang atau SMS.",
+                "Ahli Parlimen dan Ahli Dewan Undangan Negeri dibenarkan merentas daerah dan negeri untuk melawat kawasan masing-masing tanpa melaksanakan sebarang majlis.",
+                "Pergerakan bagi Pelawat Perniagaan Jangka Pendek di bawah kelulusan Inisiatif One Stop Centre (OSC) untuk tujuan rasmi atau perniagaan dibenarkan setelah mendapat kebenaran PDRM.",
+                "Rentas daerah dan negeri bagi pasangan suami isteri jarak jauh yang belum menerima vaksin lengkap adalah dibenarkan antara negeri-negeri Fasa 2 dengan kebenaran PDRM dan mengemukakan;\n- Salinan kad pengenalan suami dan isteri\n- Salinan sijil/ kad pernikahan\n- Salinan dokumen bukti tempat tinggal suami/ isteri atau surat pengesahan majikan. "
             ]
         },
         {
@@ -658,9 +637,25 @@
             "title": "22. Seminar, Bengkel, Kursus, Latihan dan Ceramah",
             "content": [
                 "Seminar, bengkel, kursus, latihan dan ceramah tidak dibenarkan kecuali latihan dalam perkhidmatan yang sedang berjalan boleh dilaksanakan dalam kawasan latihan menerusi kaedah Camp Based Training.",
-                "Seminar, bengkel, kursus, latihan dan ceramah yang dilaksanakan secara dalam talian",
-                "(online) adalah dibenarkan.",
+                "Seminar, bengkel, kursus, latihan dan ceramah yang dilaksanakan secara dalam talian (online) adalah dibenarkan.",
                 "Temuduga kritikal yang perlu dilaksanakan adalah dibenarkan secara bersemuka dan dalam talian. "
+            ]
+        },
+        {
+            "title": "23. Perniagaan dan Perkhidmatan",
+            "content": [
+                "Pengusaha restoran termasuk di hotel, rumah kelab sukan dan rekreasi, kedai makan, gerai makan, kenderaan bersaji (food truck), penjaja tepi jalan, penjaja beredar, medan selera, pusat penjaja, gerai makan tepi jalan atau kiosk dibenarkan beroperasi dari jam 6.00 pagi hingga 10.00 malam.",
+                "Aktiviti jualan makanan adalah secara bawa pulang, pandu lalu atau penghantaran KECUALI",
+                "Perkhidmatan park & dine tidak dibenarkan.",
+                "Kedai runcit, kedai farmasi, kedai penjagaan diri, kedai serbaneka dan mini mart dibenarkan",
+                "Kedai keperluan harian seperti kedai hardware, bengkel kenderaan, kedai barangan bayi dan barangan keagamaan dibenarkan beroperasi dari jam 6.00 pagi hingga 10.00 malam.",
+                "Perkhidmatan kesihatan seperti hospital, klinik dan makmal perubatan boleh beroperasi sehingga 24 jam atau mengikut lesen kebenaran beroperasi.",
+                "Stesen minyak dibenarkan beroperasi dari jam 6.00 pagi hingga 10.00 malam kecuali stesen minyak di lebuh raya bertol boleh beroperasi sehingga 24 jam.",
+                "Pasar raya, pasar raya besar dan departmental store dibenarkan beroperasi dari jam 6.00 pagi",
+                "Kedai buku dan alat tulis, kedai komputer dan telekomunikasi serta kedai barangan elektrik",
+                "Kedai\tgunting\trambut\t(perkhidmatan\tgunting\trambut\tasas\tsahaja)\tdan\tsalun\tkecantikan (perkhidmatan gunting rambut asas sahaja) dibenarkan beroperasi dari jam 6.00 pagi hingga",
+                "Klinik haiwan dan kedai makanan haiwan dibenarkan beroperasi dari jam 6.00 pagi hingga 10.00",
+                "Kedai dobi, dobi layan diri, kedai cuci kenderaan dan kedai cermin mata dibenarkan beroperasi dari jam 6.00 pagi hingga 10.00 malam. Kedai dobi layan diri perlu memastikan pekerja berada di premis dengan mematuhi SOP yang ditetapkan."
             ]
         },
         {
@@ -668,11 +663,12 @@
             "content": [
                 "Pasar harian dan pasar awam dibenarkan beroperasi dari jam 6.00 pagi hingga 4.00 petang tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
                 "Pasar Segar Terkawal (PST) dibenarkan beroperasi dari jam 7.00 pagi sehingga 2.00 petang.",
-                "Pasar Tani Kekal (PTK), MyFarm Outlet (MFO) dan Komplek Pertubuhan Peladang Kawasan (PPK) dibenarkan beroperasi dari jam 6.00 pagi hingga 4.00 petang.",
+                "Pasar Tani Kekal (PTK), MyFarm Outlet (MFO) dan Komplek Pertubuhan Peladang",
+                "Kawasan (PPK) dibenarkan beroperasi dari jam 6.00 pagi hingga 4.00 petang.",
                 "Pasar borong dibenarkan beroperasi dari jam 12.01 pagi sehingga 6.00 pagi dan 11.00 pagi sehingga 4.00 petang tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
-                "Pasar pagi dan pasar tani dibenarkan beroperasi dari jam 7.00 pagi hingga 11.00 pagi dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
+                "Pasar tani dan pasar pagi dibenarkan beroperasi dari jam 7.00 pagi hingga 11.00 pagi terhad kepada komoditi utama yang ditetapkan oleh Kementerian Pertanian dan Industri Makanan (MAFI) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
                 "Pasar malam dan pasar minggu dibenarkan beroperasi tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
-                "Pelanggan yang ingin memasuki kawasan pasar pagi, pasar tani, pasar malam dan pasar minggu MESTI menunjukkan kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksinasi lengkap."
+                "Pelanggan yang ingin memasuki kawasan pasar malam dan pasar minggu MESTI menunjukkan kad/ Sijil Digital Vaksinasi COVID-19 yang membuktikan pelanggan tersebut telah divaksinasi lengkap."
             ]
         },
         {
@@ -691,12 +687,12 @@
         {
             "title": "27. Pendidikan",
             "content": [
-                "Semua sekolah bawah Kementerian Pendidikan Malaysia (KPM) dan institusi pendidikan yang berdaftar bawah KPM dibuka bagi menjalankan sesi Pengajaran dan Pembelajaran (PdP) secara bersemuka terhad kepada murid/pelajar yang menduduki peperiksaan tahun 2021 yang melibatkan peperiksaan Sijil Pelajaran Malaysia (SPM), Sijil Tinggi Persekolahan Malaysia (STPM), Sijil Vokasional Malaysia (SVM), Sijil Tinggi Agama Malaysia (STAM), Sijil Kemahiran Malaysia (SKM), Diploma Vokasional Malaysia (DVM) dan peperiksaan antarabangsa yang setara mengikut takwim persekolahan yang ditetapkan oleh KPM.",
-                "Murid/Pelajar dibenarkan merentasi daerah dan negeri untuk ke sekolah dengan menggunakan surat pengesahan daripada KPM, MARA atau kementerian/agensi yang berkaitan.",
-                "Pergerakan murid/pelajar pergi dan balik ke sekolah boleh ditemani oleh seorang penjaga.",
-                "Pergerakan guru atau tenaga pengajar ke sekolah/institusi pendidikan bagi tujuan PdP kelas- kelas yang terlibat dalam peperiksaan dibenarkan dengan surat pengesahan daripada KPM, MARA atau kementerian/ agensi yang berkaitan.",
-                "Pergerakan bagi kemasukan murid/pelajar ke asrama bagi kelas-kelas peperiksaan yang ditetapkan oleh KPM adalah dibenarkan dengan surat pengesahan daripada KPM, MARA atau kementerian/agensi yang berkaitan.",
-                "Murid/Pelajar yang merentas negeri daripada Semenanjung Malaysia ke Negeri Sabah, Sarawak dan Wilayah Persekutuan Labuan atau sebaliknya perlu mematuhi peraturan yang berkaitan saringan COVID-19 dan kuarantin yang dilaksanakan.",
+                "Semua sekolah bawah KPM dan institusi pendidikan yang berdaftar bawah KPM dibuka bagi menjalankan sesi PdP secara bersemuka terhad kepada murid Tingkatan Enam Semester 2 sahaja.",
+                "Murid Tingkatan Enam Semester 2 dibenarkan merentasi daerah dan negeri untuk ke sekolah dengan menggunakan surat pengesahan daripada KPM.",
+                "Pergerakan murid Tingkatan Enam Semester 2 pergi dan balik ke sekolah boleh ditemani oleh seorang penjaga.",
+                "Pergerakan guru atau tenaga pengajar ke sekolah/institusi pendidikan untuk merentas daerah dan negeri bagi tujuan PdP kelas-kelas yang terlibat dalam peperiksaan dibenarkan dengan surat pengesahan daripada KPM.",
+                "Pergerakan bagi kemasukan murid Tingkatan Enam Semester 2 ke asrama adalah dibenarkan dengan surat pengesahan daripada KPM.",
+                "Murid Tingkatan Enam Semester 2 yang merentas negeri daripada Semenanjung Malaysia ke Negeri Sabah, Sarawak dan Wilayah Persekutuan Labuan atau sebaliknya perlu mematuhi peraturan yang berkaitan saringan COVID-19 dan kuarantin yang dilaksanakan.",
                 "Murid/Pelajar sekolah antarabangsa dan sekolah ekspatriat yang terlibat dengan peperiksaan antarabangsa dibenarkan hadir untuk menduduki peperiksaan mengikut jadual peperiksaan yang telah ditetapkan oleh badan peperiksaan antarabangsa.",
                 "Semua Institut Pengajian Tinggi Awam dan Swasta, Institut Latihan Kemahiran, sekolah selain di bawah KPM, pusat tahfiz dan institusi-institusi pendidikan lain ditutup. IPT di bawah kawal selia KPT diteruskan secara dalam talian.",
                 "Semua aktiviti Pengajaran dan Pembelajaran (PdP) secara bersemuka adalah tidak dibenarkan kecuali kepada pelajar IPT yang berkeperluan.",
@@ -730,8 +726,7 @@
                 "Pengoperasian semua fasiliti sukan dan rekreasi komersial terbuka (outdoor) dan separa terbuka termasuk kolam renang/ premis sukan & rekreasi air (terbuka/ separa terbuka) dengan pematuhan kepada 60% kapasiti penggunaan/ kawasan DENGAN kawalan penyeliaan. Kehadiran pekerja adalah tidak melebihi 60% tenaga kerja merangkumi pengurusan dan operasi.",
                 "Pengoperasian semua fasiliti sukan dan rekreasi komersial terbuka (outdoor) dan separa terbuka termasuk kolam renang/ premis sukan & rekreasi air (terbuka/ separa terbuka) awam adalah tertakluk kepada Pihak Berkuasa Tempatan (PBT).",
                 "Pengoperasian semua fasiliti sukan dan rekreasi tertutup (indoor) adalah TERHAD bagi tujuan pengurusan perlu (kewangan, penyelenggaraan dan seumpamanya) sahaja dengan pematuhan tidak melebihi 30% tenaga kerja termasuk pengurusan dan operasi.",
-                "Penganjuran kejohanan atau pertandingan secara kuarantin dan tertutup TANPA kehadiran penonton/ penyokong mengikut Model Gelembung Sukan TERHAD kepada anjuran Kementerian Belia dan Sukan (KBS), Liga Bola Sepak Malaysia (Malaysian Football League), Kejuaraan Petronas Cub Prix dan mana-mana DENGAN KEBENARAN KHAS",
-                "KBS sahaja. ",
+                "Penganjuran kejohanan atau pertandingan secara kuarantin dan tertutup TANPA kehadiran penonton/ penyokong mengikut Model Gelembung Sukan TERHAD kepada anjuran Kementerian Belia dan Sukan (KBS), Liga Bola Sepak Malaysia (Malaysian Football League), Kejuaraan Petronas Cub Prix dan mana-mana DENGAN KEBENARAN KHAS KBS sahaja. ",
                 "Program latihan berpusat secara kuarantin yang dilaksanakan oleh Majlis Sukan Negara (MSN) dan Majlis-Majlis Sukan Negeri (MSN Negeri) menggunakan konsep Camp Based Training.",
                 "Program latihan berpusat termasuk perlawanan latihan secara kuarantin bagi pasukan- pasukan dalam Malaysian Football League (MFL) dan mana-mana DENGAN KEBENARAN KHAS KBS sahaja menggunakan Model Gelembung Sukan (Camp Based Training).",
                 "Penyertaan atlet/ jurulatih/ pegawai/ teknikal Malaysia ke kejohanan atau pertandingan atau perlawanan di luar negara TERTAKLUK kepada kelulusan Jabatan Imigresen Malaysia (JIM) DENGAN sokongan KBS/ MSN."
@@ -750,10 +745,6 @@
             "content": [
                 "Aktiviti perkelahan dan perkhemahan bagi individu yang tidak lengkap divaksinasi adalah tidak dibenarkan."
             ]
-        },
-        {
-            "title": "MANA-MANA AKTIVITI YANG TIDAK DINYATAKAN DALAM SOP INI ADALAH TIDAK DIBENARKAN.",
-            "content": []
         },
         {
             "title": "SENARAI PERKHIDMATAN PERLU YANG DIBENARKAN BEROPERASI",
@@ -826,7 +817,7 @@
                         "Kerja- kerja pengubahsuaian rumah kediaman perseorangan / bangunan.",
                         "Kerja-kerja penyiasatan tanah.",
                         "Kerja-kerja pembinaan projek Kerajaan (Government Funded Project).",
-                        "Perkhidmatan profesional/ perunding yang terlibat bagi kerja-kerja pembinaan yang dibenarkan beroperasi.",
+                        "Perkhidmatan profesional/ perunding yang terlibat dengan sektor pembinaan",
                         "Perkhidmatan dalam rantaian bekalan yang terlibat bagi kerja-kerja pembinaan yang dibenarkan beroperasi.",
                         "Kerja-kerja penyediaan tapak seperti ukur tanah, kerja-kerja tanah (earthworks), penandaan dan pembersihan tapak.",
                         "Kerja-kerja pembinaan jalan raya dan lebuh raya."
@@ -835,16 +826,16 @@
                 {
                     "title": "D. Perdagangan Pengedaran Tanpa Syarat Vaksin",
                     "content": [
-                        "Kompleks membeli belah TERMASUK pasar raya, pasar raya besar dan departmental stores DAN semua perkhidmatan perlu yang disenaraikan.",
-                        "Pasar raya dan pasar raya besar.",
-                        "Departmental store KECUALI seksyen pakaian, perhiasan, kosmetik dan alat permainan kanak-kanak.",
+                        "Kompleks membeli belah TERMASUK pasar raya, pasar raya besar dan departmental stores DAN semua perkhidmatan perlu yang disenaraikan",
+                        "Pasar raya dan pasar raya besar",
+                        "Departmental store",
                         "Kedai farmasi, penjagaan diri, kedai serbaneka dan mini mart",
                         "Restoran",
                         "Dobi (termasuk layan diri)",
                         "Kedai penjagaan haiwan dan makanan haiwan",
                         "Kedai cermin mata dan barang optik",
                         "Kedai hardware",
-                        "10. E-dagang (semua kategori produk)",
+                        "E-dagang (semua kategori produk)",
                         "Pemborongan dan pengedaran (semua kategori produk perkhidmatan perlu sahaja)",
                         "Kedai buku dan alat tulis",
                         "Kedai komputer dan telekomunikasi",
@@ -857,9 +848,8 @@
                     ]
                 },
                 {
-                    "title": "D. Perdagangan Pengedaran",
+                    "title": "D. Perdagangan Pengedaran Dengan Syarat Pelanggan telah Lengkap Divaksinasi",
                     "content": [
-                        "Dengan Syarat Pelanggan telah Lengkap Divaksinasi",
                         "Kedai barang fotografi dan perkhidmatan fotografi",
                         "Kedai barangan terpakai",
                         "Kedai bunga dan nurseri",
@@ -876,7 +866,6 @@
                         "Kedai peralatan sukan",
                         "Kedai aksesori kenderaan",
                         "Pusat pengedaran dan jualan kenderaan",
-                        "Pasar pagi dan pasar tani sahaja",
                         "Kedai pakaian, fesyen dan aksesori",
                         "Kedai barang kemas"
                     ]
@@ -888,10 +877,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "title": "MANA-MANA AKTIVITI YANG TIDAK DINYATAKAN DALAM SOP INI ADALAH TIDAK DIBENARKAN",
-            "content": []
         },
         {
             "title": "SENARAI AKTIVITI YANG TIDAK DIBENARKAN (NEGATIVE LIST)",
@@ -960,10 +945,9 @@
         {
             "title": "1. Kawasan Terlibat",
             "content": [
-                "PERLIS, SARAWAK DAN WILAYAH PERSEKUTUAN LABUAN.",
-                "*Bagi Sarawak, sila rujuk Pelan Pemulihan Negara \u2013 SOP Fasa 3 Sarawak.",
-                "**Bagi W. P. Labuan, SOP ini perlu dibaca bersama PPN Fasa 3 \u2013 SOP Khusus Wilayah Persekutuan Labuan.",
-                "***Bagi kawasan yang dikuatkuasakan PKPD, SOP PKPD di kawasan berkenaan adalah berkuatkuasa sehingga tarikh tamat PKPD tersebut."
+                "PERLIS DAN SARAWAK.",
+                "*Bagi Sarawak, sila rujuk Pelan Pemulihan Negara - SOP Fasa 3 Sarawak.",
+                "**Bagi kawasan yang dikuatkuasakan PKPD, SOP PKPD di kawasan berkenaan adalah berkuatkuasa sehingga tarikh tamat PKPD tersebut."
             ]
         },
         {
@@ -975,14 +959,13 @@
         {
             "title": "3. Vaksinasi Lengkap",
             "content": [
-                "Individu yang telah lengkap divaksin adalah individu yang telah memenuhi kriteria- kriteria berikut:\n- Bagi jenis vaksin yang memerlukan dua dos suntikan (Pfizer, AstraZeneca, dan Sinovac), individu berkenaan mestilah telah melepasi hari ke-14 dari tarikh suntikan dos kedua; atau",
-                "Bagi jenis vaksin yang hanya memerlukan satu dos suntikan (Johnson & Johnson dan CanSino), individu berkenaan mestilah telah melepasi hari ke-28 dari tarikh suntikan."
+                "Individu yang telah lengkap divaksin adalah individu yang telah memenuhi kriteria- kriteria berikut:\n- Bagi jenis vaksin yang memerlukan dua dos suntikan (seperti Cormirnaty (Pfizer-BioNTech), COVID-19 AstraZeneca (Oxford-AstraZeneca), CoronaVac (Sinovac), Spikevax (Moderna) dan Covilo (Sinopharm)), individu berkenaan mestilah telah melepasi hari ke-14 dari tarikh suntikan dos kedua; atau\n- Bagi jenis vaksin yang hanya memerlukan satu dos suntikan (seperti COVID-19 Janssen (Johnson & Johnson) dan Convidecia (CanSino)), individu berkenaan mestilah telah melepasi hari ke-28 dari tarikh suntikan."
             ]
         },
         {
             "title": "4. Protokol Kesihatan Umum",
             "content": [
-                "Pemegang lesen   dan pemilik premis   diwajibkan   menyediakan kemudahan   Kod   QR",
+                "Pemegang lesen dan pemilik premis diwajibkan menyediakan kemudahan Kod QR",
                 "MySejahtera dan menyediakan buku pendaftaran kehadiran pelanggan.",
                 "Hand sanitizer disediakan di pintu masuk dan dipastikan penggunaannya sebelum masuk.",
                 "Penggunaan aplikasi MySejahtera diwajibkan di kawasan capaian internet yang luas. Penggunaan buku pendaftaran kehadiran pelanggan hanya dibenarkan di kawasan yang tiada liputan internet atau lain-lain alasan yang munasabah (warga emas, ketiadaan telefon pintar dan lain-lain).",
@@ -990,7 +973,7 @@
                 "Majikan, pekerja, pelanggan dan pengunjung diwajibkan check in MySejahtera atau menulis secara manual nama dan nombor telefon yang boleh dibaca (sekiranya tiada liputan internet) sebelum memasuki premis termasuk di pejabat Kerajaan, swasta dan persendirian.",
                 "Bagi kompleks membeli belah, pasar raya atau departmental store, pelanggan hanya perlu menjalankan imbasan suhu badan sekali sahaja di pintu masuk kompleks dan bukan di setiap premis perniagaan bawah satu kompleks.",
                 "Suhu badan melebihi 37.5 darjah Celcius adalah tidak dibenarkan memasuki kompleks dan premis.",
-                "Pihak pemilik kompleks dan premis di luar kompleks perlu memastikan hanya pelanggan dengan status \u201cLow Risk\u201d termasuk \u201cCasual Contact Low Risk\u201d dalam MySejahtera dibenarkan masuk ke kompleks atau premis masing-masing.",
+                "Pihak pemilik kompleks dan premis di luar kompleks perlu memastikan hanya pelanggan dengan status \"Low Risk\" termasuk \"Casual Contact Low Risk\" dalam MySejahtera dibenarkan masuk ke kompleks atau premis masing-masing.",
                 "Pemegang lesen dan pemilik premis memastikan kawalan keluar masuk pelanggan ke premis dengan penjarakan fizikal sekurang-kurangnya 1 meter.",
                 "Individu berumur 17 tahun dan ke bawah tidak digalakkan untuk berada di tempat dan kemudahan awam.",
                 "Pemegang lesen dan pemilik premis menghadkan bilangan pelanggan berada di premis dengan penjarakan fizikal sekurang-kurangnya 1 meter dalam sesuatu masa.",
@@ -1015,20 +998,17 @@
                     "title": "6. Rentas Negeri bagi Ibu Bapa/ Penjaga yang Mempunyai Anak (Di Bawah 18 Tahun) Jarak Jauh (AJJ)",
                     "content": [
                         "Ibu bapa/ penjaga yang mempunyai anak di bawah umur 18 tahun serta menetap di negeri berlainan dibenarkan merentas negeri untuk berjumpa anak masing-masing dengan syarat kedua-dua ibu bapa/ penjaga mesti telah lengkap divaksin dengan pengesahan PDRM dan mengemukakan:\n- Salinan kad pengenalan ibu, bapa dan sijil/ dokumen kelahiran anak\n- Salinan Kad/ Sijil Digital Vaksinasi COVID-19 ibu dan bapa/ penjaga\n- Maklumat persekolahan anak (sekiranya berkaitan)",
-                        "Menunjukkan surat kebenaran yang telah diluluskan oleh PDRM apabila melalui Sekatan",
-                        "Jalan Raya (SJR)."
+                        "Menunjukkan surat kebenaran yang telah diluluskan oleh PDRM apabila melalui Sekatan Jalan Raya (SJR)."
                     ]
                 },
                 {
                     "title": "7. Warganegara dan Bukan Warganegara yang Pulang/ Tiba dari Luar Negara",
                     "content": [
-                        "Pengembara warganegara dan bukan warganegara yang mempunyai kediaman di Malaysia (termasuk PR dan Malaysia MY Second Home) yang pulang atau tiba dari luar negara dan telah lengkap divaksin, dibenarkan menjalani kuarantin wajib di rumah dan diberikan Perintah Pengawasan dan Pemerhatian di Rumah (HSO) digital tertakluk kepada perincian yang dikeluarkan oleh Kementerian Kesihatan Malaysia (KKM).",
-                        "Menunjukkan bukti laporan ujian RT PCR negatif yang sah serta dijalankan 3 hari sebelum berlepas.",
-                        "Mempunyai sijil sah vaksinasi COVID-19 yang lengkap (bergantung kepada jenis vaksin).",
-                        "Tiada gejala semasa saringan kesihatan dilakukan di pintu masuk antarabangsa negara.",
-                        "Mempunyai tempat kediaman yang sesuai untuk dijalankan kuarantin.",
+                        "Pengembara warganegara dan bukan warganegara yang mempunyai kediaman di Malaysia (termasuk PR dan Malaysia MY Second Home) yang pulang atau tiba dari luar negara dan telah lengkap divaksin, dibenarkan menjalani kuarantin wajib di rumah dan diberikan Perintah Pengawasan dan Pemerhatian di Rumah (HSO) digital tertakluk kepada penilaian risiko Kementerian Kesihatan Malaysia (KKM) dan perincian yang dikeluarkan oleh KKM.\n- Menunjukkan bukti laporan ujian RT PCR dengan keputusan negatif yang dijalankan 3 hari sebelum berlepas.\n- Mempunyai sijil sah vaksinasi COVID-19 dos lengkap (bergantung kepada jenis vaksin).\n- Tiada gejala semasa saringan kesihatan di Pintu Masuk Antarabangsa Negara (PMA).\n- Mempunyai tempat kediaman yang sesuai untuk dijalankan kuarantin.",
                         "Individu yang pulang / tiba dari luar negara dan belum lengkap divaksin atau tidak divaksin perlu menjalani kuarantin di pusat kuarantin yang ditetapkan serta tertakluk kepada perincian yang dikeluarkan oleh Kementerian Kesihatan Malaysia (KKM).",
-                        "Tempoh kuarantin wajib bagi pengembara dari semua negara adalah 14 hari dan boleh dilanjutkan selama 7 hari lagi sekiranya terdapat keperluan berdasarkan hasil penilaian risiko yang dijalankan pada hari ke-14."
+                        "Tempoh kuarantin wajib bagi pengembara dari semua negara adalah 14 hari dan boleh dilanjutkan selama 7 hari lagi sekiranya terdapat keperluan berdasarkan hasil penilaian risiko yang dijalankan pada hari ke-14.",
+                        "Pengembara dikehendaki membuat penilaian kendiri setiap hari melalui Home Assessment Tool (HAT) dalam aplikasi MySejahtera dan aktiviti ini perlu diteruskan sehingga tamat tempoh kuarantin (sama ada 14 hari atau 21 hari dari tarikh ketibaan).",
+                        "Pengembara dikehendaki menjalani saringan ujian pengesanan jangkitan COVID-19 iaitu ujian RT-PCR COVID-19 semasa ketibaan di PMA. Ujian ulangan saringan ujian pengesanan jangkitan COVID-19, RT-PCR COVID-19 dilakukan pada hari ke 10 atau hari ke 18 (bagi pengembara yang perlu menjalani kuarantin selama 21 hari)."
                     ]
                 },
                 {
@@ -1050,7 +1030,8 @@
                 {
                     "title": "10. Sektor Pembuatan, Pembinaan, Perlombongan dan Pengkuarian",
                     "content": [
-                        "Bagi sektor pembuatan, pembinaan, perlombongan dan pengkuarian yang mencapai kadar vaksinasi lengkap bagi pekerja seperti berikut:\n- 80% hingga 100% : Dibenarkan beroperasi dengan kapasiti 100% pekerja.\n- Kurang 80% : Dibenarkan beroperasi dengan kapasiti sehingga 80% pekerja sahaja.\n- Ujian RTK Antigen ke atas pekerja dilaksanakan setiap 2 minggu dengan kos ditanggung majikan."
+                        "Bagi sektor pembuatan, pembinaan, perlombongan dan pengkuarian yang mencapai kadar vaksinasi lengkap bagi pekerja seperti berikut:\n- 80% hingga 100% : Dibenarkan beroperasi dengan kapasiti 100% pekerja.\n- Kurang 80% : Dibenarkan beroperasi dengan kapasiti sehingga 80% pekerja sahaja.",
+                        "Ujian RTK Antigen ke atas pekerja dilaksanakan setiap 2 minggu dengan kos ditanggung majikan."
                     ]
                 }
             ]
@@ -1061,8 +1042,12 @@
                 "Rentas daerah dalam negeri yang sama dibenarkan.",
                 "Rentas negeri (berdasarkan sempadan daerah ditetapkan Kerajaan Negeri) tidak dibenarkan kecuali pasangan jarak jauh, anak jarak jauh dan individu yang telah diluluskan pergerakan oleh KKM dan PDRM.",
                 "PDRM bertanggungjawab melaksanakan kawalan ke atas kawasan tempatan jangkitan dengan bantuan ATM, APM & RELA. Laluan keluar masuk kawasan PPN ditutup dan dikawal kemasukan oleh PDRM.",
-                "Pergerakan bagi individu yang telah lengkap divaksin dibenarkan berdasarkan jumlah kapasiti kenderaan.",
-                "Manakala, bagi yang belum mendapat vaksin lengkap:\n- Hanya tiga (3) orang sahaja wakil isi rumah dibenarkan keluar hanya untuk mendapatkan bekalan makanan, ubat, penokok diet dan keperluan asas.\n- Maksimum tiga (3) orang sahaja termasuk pesakit dibenarkan keluar untuk mendapatkan perkhidmatan jagaan kesihatan, perubatan, ujian saringan, program vaksinasi, keselamatan atau kecemasan.\n- Bilangan penumpang dalam teksi dan e-hailing dihadkan kepada tiga (3) orang sahaja termasuk pemandu, penumpang mesti duduk di belakang.\n- Bilangan orang yang dibenarkan di dalam kenderaan membawa barangan serta rantaian aktiviti ekonomi atau industri termasuk pengangkutan pekerja bergantung kepada lesen pendaftaran kenderaan.\n- Bilangan orang yang dibenarkan di dalam Kenderaan Jabatan atau Kereta Rasmi Jawatan adalah berdasarkan kapasiti kenderaan.\n- Aktiviti dan perkhidmatan di semua lapangan terbang dan pelabuhan dibenarkan beroperasi 24 jam.",
+                "Pergerakan bagi individu yang telah lengkap divaksin dibenarkan berdasarkan jumlah kapasiti kenderaan. Individu dibenarkan membawa anak-anak berusia 17 tahun dan ke bawah dengan mematuhi protokol kesihatan umum.",
+                "Manakala, bagi yang belum mendapat vaksin lengkap:\n- Hanya tiga (3) orang sahaja wakil isi rumah dibenarkan keluar hanya untuk mendapatkan bekalan makanan, ubat, penokok diet dan keperluan asas.\n- Maksimum tiga (3) orang sahaja termasuk pesakit dibenarkan keluar untuk mendapatkan perkhidmatan jagaan kesihatan, perubatan, ujian saringan, program vaksinasi, keselamatan atau kecemasan.",
+                "Bilangan penumpang dalam teksi dan e-hailing dihadkan kepada tiga (3) orang sahaja termasuk pemandu, penumpang mesti duduk di belakang.",
+                "Bilangan orang yang dibenarkan di dalam kenderaan membawa barangan serta rantaian aktiviti ekonomi atau industri termasuk pengangkutan pekerja bergantung kepada lesen pendaftaran kenderaan.",
+                "Bilangan orang yang dibenarkan di dalam Kenderaan Jabatan atau Kereta Rasmi Jawatan adalah berdasarkan kapasiti kenderaan.",
+                "Aktiviti dan perkhidmatan di semua lapangan terbang dan pelabuhan dibenarkan beroperasi 24 jam.",
                 "Perkhidmatan pengangkutan awam laut dan darat seperti bas henti-henti, bas ekspres, feri dan lain-lain pengangkutan awam dibenarkan beroperasi berdasarkan kapasiti penuh kenderaan.",
                 "Aktiviti pemunggahan di premis, kilang-kilang dan pelabuhan dibenarkan.",
                 "Pergerakan bagi kes kematian dan bencana alam dibenarkan setelah mendapatkan kebenaran daripada PDRM.",
@@ -1077,7 +1062,7 @@
             "title": "12. Perkhidmatan Awam",
             "content": [
                 "Tertakluk kepada arahan semasa Ketua Setiausaha Negara.",
-                "Pengoperasian pejabat Kerajaan dilaksanakan secara hibrid melalui keberadaan di pejabat dan Bekerja Dari Rumah (BDR) menggunakan pendekatan berikut:\n- Kehadiran di pejabat tidak melebihi 80% bagi keseluruhan (tidak termasuk perkhidmatan frontliners, keselamatan, pertahanan dan penguatkuasaan) dan 20% BDR secara penggiliran.\n- Perkhidmatan kaunter dibuka tertakluk kepada arahan semasa Ketua Setiausaha\n- Negara.\n- Kehadiran ke pejabat perlu disertai dengan dokumen arahan rasmi dan pas pekerja."
+                "Pengoperasian pejabat Kerajaan dilaksanakan secara hibrid melalui keberadaan di pejabat dan Bekerja Dari Rumah (BDR) menggunakan pendekatan berikut:\n- Kehadiran di pejabat tidak melebihi 80% bagi keseluruhan (tidak termasuk perkhidmatan frontliners, keselamatan, pertahanan dan penguatkuasaan) dan 20% BDR secara penggiliran.\n- Perkhidmatan kaunter dibuka tertakluk kepada arahan semasa Ketua Setiausaha Negara.\n- Kehadiran ke pejabat perlu disertai dengan dokumen arahan rasmi dan pas pekerja."
             ]
         },
         {
@@ -1125,15 +1110,13 @@
             "title": "18. Pasar",
             "content": [
                 "Pasar harian dan pasar awam dibenarkan beroperasi dari jam 6.00 pagi hingga",
-                "4.00 petang tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan",
-                "SOP dan pengawasan anggota RELA atau PBT.",
+                "4.00 petang tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
                 "Pasar Segar Terkawal (PST) dibenarkan beroperasi dari jam 7.00 pagi sehingga",
                 "2.00 petang.",
-                "Pasar Tani Kekal (PTK), MyFarm Outlet (MFO) dan Komplek Pertubuhan Peladang",
-                "Kawasan (PPK) dibenarkan beroperasi dari jam 6.00 pagi hingga 6.00 petang.",
+                "Pasar Tani Kekal (PTK), MyFarm Outlet (MFO) dan Komplek Pertubuhan Peladang Kawasan (PPK) dibenarkan beroperasi dari jam 6.00 pagi hingga 6.00 petang.",
                 "Pasar borong dibenarkan beroperasi dari jam 12.01 pagi sehingga 6.00 pagi dan",
                 "11.00 pagi sehingga 4.00 petang tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT.",
-                "Pasar tani dan pasar pagi dibenarkan beroperasi dari jam 7.00 pagi hingga 1.00 tengah hari.",
+                "Pasar tani dan pasar pagi dibenarkan beroperasi dari jam 7.00 pagi hingga 1. tengah hari.",
                 "Pasar malam dan pasar minggu dibenarkan beroperasi mengikut lesen/ permit sehingga 12.00 tengah malam dengan pematuhan SOP dan pengawasan pihak berkuasa serta anggota RELA/ PBT."
             ]
         },
@@ -1151,10 +1134,25 @@
             ]
         },
         {
+            "title": "21. Pendidikan",
+            "content": [
+                "Semua Institut Pengajian Tinggi (IPT) Awam dan Swasta, Institut Latihan Kemahiran, sekolah selain bawah Kementerian Pendidikan Malaysia (KPM), pusat tahfiz dan institusi-institusi pendidikan lain dibuka.",
+                "Semua sekolah dan institusi pendidikan bawah KPM dan institusi pendidikan yang berdaftar bawah KPM dibuka dengan kemasukan murid/pelajar secara berperingkat tertakluk kepada ketetapan KPM dengan mengambil kira penilaian risiko oleh KKM dan MKN.",
+                "Pergerakan bagi kemasukan murid/ pelajar ke asrama adalah dibenarkan dengan menggunakan surat pengesahan daripada KPM/MARA atau Kementerian/ agensi yang berkaitan untuk tujuan merentas daerah dan negeri.",
+                "Murid/ Pelajar yang merentas negeri daripada Semenanjung Malaysia ke Negeri Sabah, Sarawak dan Wilayah Persekutuan (WP) Labuan atau sebaliknya perlu mematuhi peraturan yang berkaitan saringan COVID-19 dan kuarantin yang dilaksanakan.",
+                "Sekolah antarabangsa dan sekolah ekspatriat dibenarkan dibuka.",
+                "Pergerakan guru atau tenaga pengajar ke sekolah/institusi pendidikan untuk tujuan merentas daerah dan negeri bagi melaksanakan Pengajaran dan Pembelajaran (PdP) dibenarkan dengan dokumen pengesahan daripada sekolah/ institusi pendidikan bawah KPM/ MARA atau kementerian/ agensi yang berkaitan.",
+                "Semua Institut Pengajian Tinggi (IPT) Awam dan Swasta, Institut Latihan Kemahiran, sekolah selain bawah Kementerian Pendidikan Malaysia (KPM), pusat tahfiz dan institusi-institusi pendidikan lain dibuka.",
+                "Semua aktiviti Pengajaran dan Pembelajaran (PdP) secara bersemuka/ berkumpulan/ berkelompok adalah dibenarkan dengan mematuhi SOP yang ditetapkan terhad kepada 70% kapasiti pelajar di institusi pendidikan tinggi.",
+                "Peperiksaan antarabangsa dan badan profesional serta aktiviti penyelidikan yang memerlukan kemudahan makmal di IPT dibenarkan mengikut SOP IPT berkenaan dan pergerakan perlu disertai dengan pengesahan oleh Kementerian Pengajian Tinggi (KPT) atau IPT berkaitan.",
+                "Latihan Industri adalah dibenarkan mengikut SOP yang berkuatkuasa.",
+                "Pelajar yang berada di asrama, universiti atau institusi pendidikan dibenarkan untuk berada di asrama, universiti atau institusi pendidikan tersebut dan meneruskan pembelajaran secara hibrid."
+            ]
+        },
+        {
             "title": "22. Tabika, Taska, Tadika, Pusat Jagaan Harian dan Pusat Jagaan Berkediaman",
             "content": [
-                "Taska dan Pusat Jagaan Harian di bawah Jabatan Kebajikan Masyarakat",
-                "(JKM) dibenarkan beroperasi mengikut SOP yang ditetapkan.",
+                "Taska dan Pusat Jagaan Harian di bawah Jabatan Kebajikan Masyarakat (JKM) dibenarkan beroperasi mengikut SOP yang ditetapkan.",
                 "Tabika, tadika swasta, tadika di sekolah swasta, antarabangsa dan ekspatriat serta pusat perkembangan minda bagi kanak-kanak berusia 4 hingga 6 tahun dibenarkan beroperasi mengikut SOP yang ditetapkan.",
                 "Pusat jagaan berkediaman atau pusat rehabilitasi bagi kanak-kanak, Orang Kurang Upaya (OKU), warga emas, wanita dan pusat jagaan pelbagai dibenarkan beroperasi mengikut SOP yang ditetapkan di bawah Kementerian, Jabatan atau Agensi berkaitan."
             ]
@@ -1166,8 +1164,7 @@
                 "Upacara pernikahan (akad nikah) Islam dibenarkan mengikut ketetapan pihak",
                 "Berkuasa Agama Negeri.",
                 "Pengurusan pengebumian jenazah orang Islam adalah dibenarkan dengan mengikut ketetapan pihak Berkuasa Agama Negeri.",
-                "Aktiviti Rumah Ibadat Selain Islam adalah dibenarkan mengikut ketetapan pihak",
-                "Kementerian Perpaduan Negara (KPN).",
+                "Aktiviti Rumah Ibadat Selain Islam adalah dibenarkan mengikut ketetapan pihak Kementerian Perpaduan Negara (KPN).",
                 "Pendaftaran perkahwinan bagi selain orang Islam di Jabatan Pendaftaran Negara (JPN), Rumah Ibadat dan Persatuan Agama dibenarkan dengan kehadiran mengikut ketetapan pihak JPN.",
                 "Pengurusan pengebumian selain orang Islam adalah dibenarkan dengan mengikut ketetapan KPN. "
             ]
@@ -1175,20 +1172,19 @@
         {
             "title": "24. Sukan dan Riadah",
             "content": [
-                "Semua aktiviti sukan dan rekreasi secara individu yang tidak bersentuhan fizikal bagi tujuan kesihatan, kecergasan dan kemahiran kendiri dengan mematuhi penjarakan fizikal sekurang- kurangnya 2 hingga 3 meter bermula jam 6.00 pagi hingga 12.00 tengah malam tertakluk kepada arahan kawalan pergerakan yang sedang berkuat kuasa. Aktiviti tersebut adalah seperti joging, senaman, aktiviti gimnasium, renang, jetski, taichi, berbasikal, skateboarding, memancing, ekuestrian, memanah, mendaki, tenis/ badminton/ pingpong (single), golf, permotoran dan seumpamanya.",
-                "Aktiviti secara individu (tidak bersentuhan fizikal) yang dilakukan dalam kumpulan kecil dengan mematuhi penjarakan fizikal 2 hingga 3 meter adalah tertakluk kepada 50% kapasiti penggunaan/ kawasan atau tidak melebihi 50 orang termasuk jurulatih/ instruktur (mana-mana yang lebih rendah). Aktiviti berkumpulan adalah seperti senamrobik, zumba, tarian sukan, taekwondo tanpa sentuhan fizikal (poomsae) dan seumpamanya.",
+                "Semua aktiviti sukan dan rekreasi secara individu yang tidak bersentuhan fizikal bagi tujuan kesihatan, kecergasan dan kemahiran kendiri dengan mematuhi penjarakan fizikal sekurang- kurangnya 2 hingga 3 meter bermula jam 6.00 pagi hingga 12.00 tengah malam tertakluk kepada arahan kawalan pergerakan yang sedang berkuat kuasa. Aktiviti tersebut adalah seperti joging, senaman, aktiviti gimnasium, renang, jetski, taichi, berbasikal, skateboarding, memancing, ekuestrian, memanah, mendaki, tenis/ badminton/ ping pong (single), golf, permotoran dan seumpamanya.",
+                "Aktiviti secara individu (tidak bersentuhan fizikal) yang dilakukan dalam kumpulan kecil dengan mematuhi penjarakan fizikal 2 hingga 3 meter adalah tertakluk kepada 50% kapasiti penggunaan/ kawasan atau tidak melebihi 50 orang termasuk jurulatih/ instruktur (mana- mana yang lebih rendah). Aktiviti berkumpulan adalah seperti senamrobik, zumba, tarian sukan, taekwondo tanpa sentuhan fizikal (poomsae) dan seumpamanya.",
                 "Pengoperasian fasiliti sukan dan rekreasi komersial terbuka (outdoor) dan separa terbuka termasuk kolam renang terbuka dengan pematuhan kepada 60% kapasiti penggunaan/ kawasan DENGAN kawalan penyeliaan. Kehadiran pekerja adalah tidak melebihi 80% tenaga kerja merangkumi pengurusan dan operasi.",
                 "Pengoperasian fasiliti sukan dan rekreasi komersial tertutup (indoor) termasuk kolam renang tertutup dengan pematuhan kepada 50% kapasiti penggunaan/ kawasan DENGAN kawalan penyeliaan. Kehadiran pekerja adalah tidak melebihi 80% tenaga kerja merangkumi pengurusan dan operasi.",
                 "Pengoperasian fasiliti sukan dan rekreasi awam adalah TERTAKLUK kepada Pihak Berkuasa Tempatan (PBT).",
-                "Penganjuran kejohanan atau pertandingan peringkat kebangsaan atau antarabangsa mengikut model GELEMBUNG SUKAN tertakluk kepada KEBENARAN Kementerian Belia dan Sukan",
-                "(KBS) sahaja TANPA kehadiran penonton atau penyokong. "
+                "Penganjuran kejohanan atau pertandingan peringkat kebangsaan atau antarabangsa mengikut model GELEMBUNG SUKAN tertakluk kepada KEBENARAN Kementerian Belia dan Sukan (KBS) sahaja TANPA kehadiran penonton atau penyokong."
             ]
         },
         {
             "title": "24.Sukan dan Riadah",
             "content": [
                 "Program latihan berpusat secara kuarantin yang dilaksanakan oleh Majlis Sukan Negara (MSN) dan Majlis-Majlis Sukan Negeri (MSN Negeri) menggunakan model GELEMBUNG SUKAN (Camp/ Home Based Training).",
-                "Program latihan berpusat termasuk perlawanan latihan secara kuarantin dan tertutup bagi pasukan-pasukan dalam Malaysian Football League (MFL) menggunakan model GELEMBUNG SUKAN (Camp/ Home Based Training).",
+                "Program latihan berpusat termasuk perlawanan latihan secara kuarantin dan tertutup bagi pasukan-pasukan dalam Malaysian Football League (MFL) dan mana-mana DENGAN kebenaran khas KBS sahaja menggunakan model GELEMBUNG SUKAN (Camp/ Home Based Training).",
                 "Penyertaan atlet/ jurulatih/ pegawai/ teknikal Malaysia ke kejohanan atau pertandingan atau perlawanan di luar negara TERTAKLUK kepada kelulusan Jabatan Imigresen Malaysia (JIM) DENGAN sokongan KBS/ MSN.",
                 "Kemasukan atlet/ jurulatih/ pegawai/ teknikal asing ke Malaysia TERTAKLUK kepada kelulusan Jabatan Imigresen Malaysia (JIM) DENGAN sokongan KBS/ MSN dan pematuhan kepada peraturan-peraturan kemasukan warga asing ke Malaysia."
             ]
@@ -1250,12 +1246,13 @@
                 {
                     "title": "5. Aktiviti Sukan dan Rekreasi",
                     "content": [
-                        "Semua aktiviti sukan dan rekreasi bersentuhan fizikal KECUALI bagi penganjuran kejohanan atau pertandingan peringkat kebangsaan atau antarabangsa YANG MENDAPAT kebenaran Kementerian Belia dan Sukan (KBS) sahaja.",
+                        "Semua aktiviti sukan dan rekreasi bersentuhan fizikal KECUALI bagi penganjuran kejohanan atau pertandingan termasuk latihan peringkat kebangsaan atau antarabangsa YANG MENDAPAT kebenaran Kementerian Belia dan Sukan (KBS) sahaja.",
                         "Penganjuran semua kejohanan atau pertandingan KECUALI yang mendapat kebenaran KBS sahaja.",
                         "Kehadiran penonton atau penyokong ke venue sukan dan rekreasi.",
                         "Penyertaan atlet/ jurulatih/ pegawai/ teknikal Malaysia ke kejohanan atau pertandingan atau perlawanan di luar negara TANPA kelulusan Jabatan Imigresen Malaysia (JIM) dan sokongan KBS/ MSN.",
                         "Kemasukan atlet/ jurulatih/ pegawai/ teknikal asing ke Malaysia TANPA kelulusan Jabatan Imigresen Malaysia (JIM) dan sokongan KBS/ MSN dan tidak mematuhi peraturan-peraturan kemasukan warga asing ke Malaysia.",
-                        "Aktiviti sukan dan rekreasi yang dijalankan di luar atau merentas kawasan arahan kawalan pergerakan yang sedang berkuat kuasa KECUALI mendapat kebenaran PDRM."
+                        "Aktiviti sukan dan rekreasi yang dijalankan di luar atau merentas kawasan arahan kawalan pergerakan yang sedang berkuat kuasa KECUALI mendapat kebenaran",
+                        "PDRM."
                     ]
                 },
                 {
@@ -1265,6 +1262,187 @@
                         "Lain-lain perkara yang diputuskan oleh Kerajaan dari semasa ke semasa."
                     ]
                 }
+            ]
+        }
+    ],
+    "MKN - Pelan Pemulihan Negara SOP Fasa 4": [
+        {
+            "title": "1. Kawasan Terlibat",
+            "content": [
+                "WILAYAH PERSEKUTUAN LABUAN.",
+                "*SOP ini perlu dibaca bersama SOP Khusus Wilayah Persekutuan Labuan.",
+                "**Bagi kawasan yang dikuatkuasakan PKPD, SOP PKPD di kawasan berkenaan adalah berkuatkuasa sehingga tarikh tamat PKPD tersebut."
+            ]
+        },
+        {
+            "title": "2. Tempoh Kuat Kuasa",
+            "content": [
+                "Bermula pada 26 Ogos 2021 (mulai 12.01 pagi)"
+            ]
+        },
+        {
+            "title": "3. Vaksinasi Lengkap",
+            "content": [
+                "Individu yang telah lengkap divaksin adalah individu yang telah memenuhi kriteria- kriteria berikut:\n- Bagi jenis vaksin yang memerlukan dua dos suntikan (seperti Cormirnaty (Pfizer-BioNTech), COVID-19 AstraZeneca (Oxford-AstraZeneca), CoronaVac (Sinovac), Spikevax (Moderna) dan Covilo (Sinopharm)), individu berkenaan mestilah telah melepasi hari ke-14 dari tarikh suntikan dos kedua; atau\n- Bagi jenis vaksin yang hanya memerlukan satu dos suntikan (seperti COVID-19 Janssen (Johnson & Johnson) dan Convidecia (CanSino)), individu berkenaan mestilah telah melepasi hari ke-28 dari tarikh suntikan."
+            ]
+        },
+        {
+            "title": "4. Warganegara dan Bukan Warganegara yang Pulang/ Tiba dari Luar Negara",
+            "content": [
+                "Pengembara warganegara dan bukan warganegara yang mempunyai kediaman di Malaysia (termasuk PR dan Malaysia MY Second Home) yang pulang atau tiba dari luar negara dan telah lengkap divaksin, dibenarkan menjalani kuarantin wajib di rumah dan diberikan Perintah Pengawasan dan Pemerhatian di Rumah (HSO) digital tertakluk kepada penilaian risiko Kementerian Kesihatan Malaysia (KKM) dan perincian yang dikeluarkan oleh KKM.\n- Menunjukkan bukti laporan ujian RT PCR dengan keputusan negatif yang dijalankan 3 hari sebelum berlepas.\n- Mempunyai sijil sah vaksinasi COVID-19 dos lengkap (bergantung kepada jenis vaksin).\n- Tiada gejala semasa saringan kesihatan di Pintu Masuk Antarabangsa Negara (PMA).\n- Mempunyai tempat kediaman yang sesuai untuk dijalankan kuarantin.",
+                "Individu yang pulang / tiba dari luar negara dan belum lengkap divaksin atau tidak divaksin perlu menjalani kuarantin di pusat kuarantin yang ditetapkan serta tertakluk kepada perincian yang dikeluarkan oleh Kementerian Kesihatan Malaysia (KKM).",
+                "Tempoh kuarantin wajib bagi pengembara dari semua negara adalah 14 hari dan boleh dilanjutkan selama 7 hari lagi sekiranya terdapat keperluan berdasarkan hasil penilaian risiko yang dijalankan pada hari ke-14.",
+                "Pengembara dikehendaki membuat penilaian kendiri setiap hari melalui Home Assessment Tool (HAT) dalam aplikasi MySejahtera dan aktiviti ini perlu diteruskan sehingga tamat tempoh kuarantin (sama ada 14 hari atau 21 hari dari tarikh ketibaan).",
+                "Pengembara dikehendaki menjalani saringan ujian pengesanan jangkitan COVID-19 iaitu ujian RT-PCR COVID-19 semasa ketibaan di PMA. Ujian ulangan saringan ujian pengesanan jangkitan COVID-19, RT-PCR COVID-19 dilakukan pada hari ke 10 atau hari ke 18 (bagi pengembara yang perlu menjalani kuarantin selama 21 hari)."
+            ]
+        },
+        {
+            "title": "5. Protokol Kesihatan Umum",
+            "content": [
+                "Pemegang lesen dan pemilik premis diwajibkan menyediakan kemudahan Kod QR MySejahtera dan menyediakan buku pendaftaran kehadiran pelanggan.",
+                "Hand sanitizer disediakan di pintu masuk dan dipastikan penggunaannya sebelum masuk.",
+                "Penggunaan aplikasi MySejahtera diwajibkan di kawasan capaian internet yang luas. Penggunaan buku pendaftaran kehadiran pelanggan hanya dibenarkan di kawasan yang tiada liputan internet atau lain-lain alasan yang munasabah (warga emas, ketiadaan telefon pintar dan lain-lain).",
+                "Pemegang lesen dan pemilik premis memastikan pelanggan check in premis menggunakan MySejahtera atau menulis secara manual nama dan no. telefon sekiranya tiada liputan internet.",
+                "Majikan, pekerja, pelanggan dan pengunjung diwajibkan check in MySejahtera atau menulis secara manual nama dan nombor telefon yang boleh dibaca (sekiranya tiada liputan internet) sebelum memasuki premis termasuk di pejabat Kerajaan, swasta dan persendirian.",
+                "Bagi kompleks membeli belah, pasar raya atau departmental store, pelanggan hanya perlu menjalankan imbasan suhu badan sekali sahaja di pintu masuk kompleks dan bukan di setiap premis perniagaan bawah satu kompleks.",
+                "Suhu badan melebihi 37.5 darjah Celcius adalah tidak dibenarkan memasuki kompleks dan premis.",
+                "Pihak pemilik kompleks dan premis di luar kompleks perlu memastikan hanya pelanggan dengan status \"Low Risk\" termasuk \"Casual Contact Low Risk\" dalam MySejahtera dibenarkan masuk ke kompleks atau premis masing-masing.",
+                "Pemegang lesen dan pemilik premis memastikan kawalan keluar masuk pelanggan ke premis dengan penjarakan fizikal sekurang-kurangnya 1 meter.",
+                "Individu berumur 17 tahun dan ke bawah tidak digalakkan untuk berada di tempat dan kemudahan awam.",
+                "Pemegang lesen dan pemilik premis menghadkan bilangan pelanggan berada di premis dengan penjarakan fizikal sekurang-kurangnya 1 meter dalam sesuatu masa.",
+                "Setiap premis perlu memaparkan jumlah had kemasukan pelanggan pada sesuatu masa. Penggunaan sistem nombor giliran digalakkan bagi pelanggan masuk dari sesuatu premis.",
+                "Semua pemilik bangunan perlu menyediakan Kod QR di setiap aras.",
+                "Pekerja, pembekal dan pelanggan diwajibkan memakai pelitup muka dengan betul mengikut saranan KKM ketika berada di premis.",
+                "Memastikan VENTILASI DAN SISTEM PENGUDARAAN yang baik di premis berdasarkan garis panduan pengudaraan dan kualiti udara dalaman yang dikeluarkan oleh Jabatan Keselamatan dan Kesihatan Pekerjaan (JKKP).",
+                "Diwajibkan memakai pelitup muka terutama apabila berada di tempat awam yang sesak kecuali bagi aktiviti dan tempat seperti berikut:\n- Bilik hotel atau penginapan berbayar bersendirian dan melibatkan ahli isi rumah.\n- Ruang kerja bersendirian.\n- Aktiviti sukan dan rekreasi.\n- Kenderaan sendiri dan melibatkan ahli isi rumah.\n- Kawasan dan tempat awam indoor atau outdoor tanpa ada individu lain.\n- Sewaktu makan dan minum di tempat awam tanpa ada individu lain (selain di restoran atau premis makanan)."
+            ]
+        },
+        {
+            "title": "6. Kawalan Pergerakan",
+            "content": [
+                "Rentas negeri dibenarkan antara negeri Fasa 4 sahaja.",
+                "Rentas negeri ke negeri Fasa 1, Fasa 2 dan Fasa 3 dibenarkan dengan kebenaran PDRM dan mengemukakan dokumen yang berkaitan.",
+                "Pergerakan pekerja merentas negeri ke negeri Fasa 1, Fasa 2 dan Fasa 3 adalah tertakluk kepada pendaftaran atau surat kelulusan beroperasi atau pas pekerja atau surat pengesahan majikan.",
+                "Pergerakan merentas negeri bagi tujuan vaksinasi COVID-19 di Pusat Pemberian Vaksin (PPV) di luar daerah atau negeri tempat tinggal dibenarkan dengan menunjukkan butiran janji temu di aplikasi MySejahtera, laman sesawang atau SMS.",
+                "Ahli Parlimen dan Ahli Dewan Undangan Negeri dibenarkan merentas negeri untuk melawat kawasan masing-masing",
+                "Pergerakan individu, pengangkutan barangan dan pengangkutan awam bagi semua jenis kenderaan dibenarkan berdasarkan jumlah kapasiti kenderaan dan lesen pendaftaran kenderaan.",
+                "Aktiviti dan perkhidmatan di semua lapangan terbang dan pelabuhan  dibenarkan beroperasi 24 jam."
+            ]
+        },
+        {
+            "title": "7. Perkhidmatan Awam dan Swasta",
+            "content": [
+                "Kapasiti kehadiran 100%.",
+                "Perkhidmatan Awam tertakluk kepada arahan semasa Ketua Setiausaha Negara."
+            ]
+        },
+        {
+            "title": "8. Mesyuarat dan Temu Duga",
+            "content": [
+                "Mesyuarat dan temu duga bersemuka dibenarkan dengan penjarakan fizikal."
+            ]
+        },
+        {
+            "title": "9. Seminar, Bengkel, Kursus, Latihan dan Ceramah",
+            "content": [
+                "Seminar, bengkel, kursus, latihan dan ceramah dibenarkan dengan 50% kapasiti ruang dan penjarakan fizikal."
+            ]
+        },
+        {
+            "title": "10. Majlis Rasmi",
+            "content": [
+                "Majlis rasmi dibenarkan dengan 50% kapasiti ruang dengan penjarakan fizikal."
+            ]
+        },
+        {
+            "title": "11. Aktiviti Sosial",
+            "content": [
+                "Majlis sosial seperti kenduri-kendara, majlis sambutan perayaan, majlis meraikan pernikahan atau pertunangan, majlis perkahwinan, resepsi, majlis aqiqah, doa selamat, tahlil, sambutan ulang tahun, sambutan hari kelahiran, reunion, retreat dan lain-lain majlis sosial dibenarkan dengan 50% kapasiti ruang dan penjarakan fizikal."
+            ]
+        },
+        {
+            "title": "12. Perniagaan, Perkhidmatan, Pertanian, Perikanan, Penternakan, Perladangan, Komoditi, Pembalakan, Pembuatan, Pembinaan, Perlombongan dan Pengkuarian",
+            "content": [
+                "Semua aktiviti serta rantaiannya dibenarkan beroperasi mengikut syarat lesen kecuali seperti yang dinyatakan dalam Senarai Aktiviti Yang Tidak Dibenarkan (Negative List)."
+            ]
+        },
+        {
+            "title": "13. Pasar",
+            "content": [
+                "Semua jenis pasar dibenarkan beroperasi mengikut lesen atau permit tertakluk kepada pihak berkuasa tempatan (PBT) dengan pematuhan SOP dan pengawasan anggota RELA atau PBT."
+            ]
+        },
+        {
+            "title": "14.Pendidikan",
+            "content": [
+                "Semua Institut Pengajian Tinggi (IPT) Awam dan Swasta, Institut Latihan Kemahiran, sekolah selain bawah Kementerian Pendidikan Malaysia (KPM), pusat tahfiz dan institusi- institusi pendidikan lain dibuka.",
+                "Semua sekolah dan institusi pendidikan bawah KPM dan institusi pendidikan yang berdaftar bawah KPM dibuka dengan kemasukan murid/ pelajar secara berperingkat tertakluk kepada ketetapan KPM dengan mengambil kira penilaian risiko oleh KKM/ MKN.",
+                "Pergerakan bagi kemasukan murid/ pelajar ke asrama adalah dibenarkan dengan menggunakan surat pengesahan daripada KPM/ MARA atau kementerian/ agensi yang berkaitan untuk tujuan merentas negeri.",
+                "Murid/ pelajar yang merentas negeri daripada Semenanjung Malaysia ke Negeri Sabah, Sarawak dan Wilayah Persekutuan (WP) Labuan atau sebaliknya perlu mematuhi peraturan yang berkaitan saringan COVID-19 dan kuarantin yang dilaksanakan.",
+                "Sekolah antarabangsa dan sekolah ekspatriat dibenarkan dibuka.",
+                "Pergerakan guru atau tenaga pengajar ke sekolah/ institusi pendidikan untuk tujuan merentas negeri bagi melaksanakan Pengajaran dan Pembelajaran (PdP) dibenarkan dengan dokumen pengesahan daripada sekolah/ institusi pendidikan bawah KPM/MARA atau kementerian/agensi yang berkaitan.",
+                "Semua aktiviti PdP secara bersemuka/ berkumpulan/ berkelompok adalah dibenarkan dengan mematuhi SOP yang ditetapkan.",
+                "Peperiksaan antarabangsa dan badan profesional serta aktiviti penyelidikan yang memerlukan kemudahan makmal di IPT dibenarkan mengikut SOP IPT berkenaan dan pergerakan perlu disertai dengan pengesahan oleh Kementerian Pengajian Tinggi (KPT) atau IPT berkaitan.",
+                "Latihan Industri adalah dibenarkan mengikut SOP yang berkuatkuasa."
+            ]
+        },
+        {
+            "title": "15. Tabika, Taska, Tadika, Pusat Jagaan Harian dan Pusat Jagaan Berkediaman",
+            "content": [
+                "Taska dan Pusat Jagaan Harian di bawah Jabatan Kebajikan Masyarakat (JKM) dibenarkan beroperasi mengikut SOP yang ditetapkan.",
+                "Tabika, tadika swasta, tadika di sekolah swasta, antarabangsa dan ekspatriat serta pusat perkembangan minda bagi kanak-kanak berusia 4 hingga 6 tahun dibenarkan beroperasi mengikut SOP yang ditetapkan.",
+                "Pusat jagaan berkediaman atau pusat rehabilitasi bagi kanak-kanak, Orang Kurang Upaya (OKU), warga emas, wanita dan pusat jagaan pelbagai dibenarkan beroperasi mengikut SOP yang ditetapkan di bawah Kementerian, Jabatan atau Agensi berkaitan."
+            ]
+        },
+        {
+            "title": "16. Keagamaan",
+            "content": [
+                "Aktiviti di masjid dan surau dibenarkan mengikut ketetapan Pihak Berkuasa Agama Negeri.",
+                "Upacara pernikahan (akad nikah) Islam dibenarkan mengikut ketetapan pihak Berkuasa Agama Negeri.",
+                "Pengurusan pengebumian jenazah orang Islam adalah dibenarkan dengan mengikut ketetapan pihak Berkuasa Agama Negeri.",
+                "Aktiviti Rumah Ibadat Selain Islam adalah dibenarkan mengikut ketetapan pihak Kementerian Perpaduan Negara (KPN).",
+                "Pendaftaran perkahwinan bagi selain orang Islam di Jabatan Pendaftaran Negara (JPN), Rumah Ibadat dan Persatuan Agama dibenarkan dengan kehadiran mengikut ketetapan pihak JPN.",
+                "Pengurusan pengebumian selain orang Islam adalah dibenarkan dengan mengikut ketetapan KPN. "
+            ]
+        },
+        {
+            "title": "17. Sukan dan Riadah",
+            "content": [
+                "Semua aktiviti sukan dan rekreasi adalah dibenarkan termasuk sukan bersentuhan fizikal. Aktiviti yang boleh dilakukan adalah seperti joging, senaman, bola sepak, badminton, ragbi, sukan tempur, sukan udara, sukan air, renang, berbasikal, golf, permotoran dan seumpamanya.",
+                "Aktiviti sukan dan rekreasi yang dilakukan secara berkumpulan adalah TIDAK MELEBIHI 1,000 orang dalam satu-satu masa tertakluk kepada keluasan kawasan. Aktiviti berkumpulan adalah seperti senamrobik, zumba, tarian sukan dan seumpamanya.",
+                "Pengoperasian semua fasiliti sukan dan rekreasi komersial dengan kapasiti 100% merangkumi penggunaan oleh pelanggan/ pengguna dan kehadiran pekerja. Waktu operasi adalah TERTAKLUK kepada syarat lesen. Manakala, pengoperasian fasiliti sukan dan rekreasi awam pula adalah TERTAKLUK kepada Pihak Berkuasa Tempatan (PBT) dan Pihak Berkuasa yang berkaitan.",
+                "Penganjuran SEMUA   peringkat   kejohanan/   pertandingan   sukan   dan   rekreasi   DENGAN",
+                "Penganjuran kejohanan/ pertandingan/ acara sukan massa DENGAN kebenaran KBS TERHAD dengan penyertaan tidak melebihi 1,000 orang dalam satu-satu masa. Penganjuran adalah seperti triathlon, open water swimming, marathon, trail run, obstacle run, berbasikal dan seumpamanya.",
+                "Kehadiran penonton/ penyokong ke venue sukan dan rekreasi TERTAKLUK kepada 50% kapasiti kawasan/ tempat duduk atau 10,000 orang (mana-mana yang lebih rendah).",
+                "Penyertaan atlet/ jurulatih/ pegawai/ teknikal Malaysia ke kejohanan atau pertandingan atau perlawanan di luar negara TERTAKLUK kepada kelulusan Jabatan Imigresen Malaysia (JIM) DENGAN sokongan KBS/ MSN.",
+                "Kemasukan atlet/ jurulatih/ pegawai/ teknikal asing ke Malaysia TERTAKLUK kepada kelulusan Jabatan Imigresen Malaysia (JIM) DENGAN sokongan KBS/ MSN dan pematuhan kepada peraturan-peraturan kemasukan warga asing ke Malaysia."
+            ]
+        },
+        {
+            "title": "18. Aktiviti Industri Kreatif dan Hiburan",
+            "content": [
+                "Pembangunan dan penyiaran kandungan kreatif secara rakaman atau siaran langsung merangkumi animasi, penggambaran filem, drama, promosi, sitkom dan seumpamanya, termasuk aktiviti seni tari, seni teater, seni muzikal, persembahan kebudayaan dan warisan serta seni muzik dibenarkan dengan penonton tertakluk kepada keluasan ruang dan penjarakan fizikal.",
+                "Aktiviti penggambaran kandungan kreatif di dalam dan di luar studio (outdoor) dibenarkan dengan pematuhan ketat SOP yang dikeluarkan oleh FINAS.",
+                "Aktiviti indoor / outdoor busking dibenarkan dengan penjarakan fizikal.",
+                "Persembahan di lounge hotel dibenarkan dengan penjarakan fizikal.",
+                "Aktiviti pawagam pandu masuk dibenarkan.",
+                "Aktiviti panggung wayang dibenarkan dengan penjarakan fizikal."
+            ]
+        },
+        {
+            "title": "19. Aktiviti Pelancongan dan Kebudayaan",
+            "content": [
+                "Aktiviti pelancongan dan kebudayaan dalam negeri yang sama dibenarkan beroperasi dengan penjarakan fizikal tertakluk kepada kapasiti ruang premis yang dibenarkan serta mematuhi SOP-SOP yang berkaitan:\n- Produk tarikan utama pelancong seperti aktiviti pantai, sukan air, snorkeling, selam skuba, pelancongan memancing, pusat edutainment, taman rekreasi, extreme/ adventure/ nature parks, farms, akuarium, zoo, dan lain-lain kegiatan riadah, rekreasi serta sosial.\n- Aktiviti Pelancongan Minat Khas (golfing, scuba diving, cycling, angling, yatching dan sebagainya).\n- Aktiviti Eko-Kembara (bird watching, caving, mountain climbing, white-water rafting, hiking, jungle trekking, camping dan sebagainya).\n- Premis hasil seni, budaya dan warisan seperti muzium, perpustakaan, galeri seni, pusat/ kampung seni warisan budaya, pementasan persembahan budaya dan lain-lain.\n- Taman Tema dan Pusat Hiburan Keluarga.\n- Lawatan Bersifat Akademik (Pusat Sains, Planetarium, Petrosains).\n- Bussines Events (MICE), Acara Pelancongan dan Kebudayaan.",
+                "Aktiviti pelancongan merentas negeri ke negeri-negeri PPN Fasa 4 dibenarkan kecuali kawasan-kawasan yang disytiharkan PKPD atau tidak dibenarkan oleh Kerajaan.",
+                "Penginapan di hotel dan homestay yang berlesen dan berdaftar.",
+                "Lain-lain aktiviti pelancongan dan kebudayaan selain di bawah Senarai Aktiviti",
+                "Yang Tidak Dibenarkan (Negative List) perlu mengikut SOP-SOP Sektor Pelancongan dan Kebudayaan sedia ada yang sedang berkuatkuasa.  "
+            ]
+        },
+        {
+            "title": "20. Lain-lain Aktiviti",
+            "content": [
+                "Lain-lain aktiviti dibenarkan kecuali perkara yang diputuskan oleh Kerajaan dari semasa ke semasa."
             ]
         }
     ]

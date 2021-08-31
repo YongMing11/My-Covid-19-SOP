@@ -3,13 +3,16 @@ import { GOOGLE_MAPS_APIKEY } from "../constants/config";
 
 const getLocationByAddress = async (address) => {
     const geocode_API_URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_MAPS_APIKEY}&components=country:MY`;
-    const location = {};
+    let location = {};
 
     // CALL GOOGLE MAPS GEOCODING API
     await fetch(geocode_API_URL)
         .then(res => {
-            if (res.status == 200)
-                res.json()
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                console.log('res.status !== 200')
+            }
         }).then((json) => {
             if (json && json.results.length != 0) {
                 // GET STATE AND PHASE BASED ON COMPLETE ADDRESS FROM GEOCODING API
@@ -23,10 +26,13 @@ const getLocationByAddress = async (address) => {
                     phase: currentPhase,
                     state: currentState
                 }
+                console.log('location in the then method getLocationByAddress', JSON.stringify(location));
+
             }
         }).catch(err => {
             console.log("Geocoding failed : " + err)
         })
+    console.log('location returned in getLocationByAddress', location);
     return location;
 }
 
@@ -47,4 +53,21 @@ const getStateAndPhase = (address) => {
     return { currentState, currentPhase }
 }
 
-export { getLocationByAddress, getStateAndPhase }
+const checkCrossState = (locationState, destinationState) => {
+    let locationHitSpecialState, destinationHitSpecialState = false;
+    const specialSameState = ["SELANGOR", "PUTRAJAYA", "KUALA LUMPUR"];
+    specialSameState.forEach(state => {
+        if (state === locationState) {
+            locationHitSpecialState = true;
+        }
+        if (state === destinationState) {
+            destinationHitSpecialState = true;
+        }
+    })
+    if (locationHitSpecialState && destinationHitSpecialState) {
+        return false;
+    }
+    return locationState !== destinationState;
+}
+
+export { getLocationByAddress, getStateAndPhase, checkCrossState }
