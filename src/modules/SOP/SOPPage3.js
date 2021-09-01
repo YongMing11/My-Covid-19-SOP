@@ -2,10 +2,11 @@ import React, { Fragment, useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
 import { Searchbar, List } from "react-native-paper";
 import sop_details from "@mock/sop_details.json";
+import sop_index from "@mock/sop_index.json";
 
 const SOPPage3 = ({ route, navigation }) => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [activeAccordions, setActiveAccordions] = useState(sop_details[route.params.title]);
+    const [activeAccordions, setActiveAccordions] = useState(sop_details[sop_index.phases[route.params.sopPhaseIndex].title][route.params.title]);
 
     const onChangeSearch = (query) => {
         setSearchQuery(query);
