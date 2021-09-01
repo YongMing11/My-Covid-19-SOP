@@ -246,7 +246,7 @@ function HomePage({ navigation, route }) {
             await recordingRef.current.stopAndUnloadAsync().catch((err) => console.log("err at stopAndUnloadAsync", err));
             const uri = recordingRef.current.getURI();
             console.log("Recording stopped and stored at", uri);
-            playSound(uri);
+            // playSound(uri);
 
             uploadAudioAsync(uri)
                 .then((res) => res.json())
