@@ -52,6 +52,10 @@ const AssistancePage = ({ navigation, route }) => {
         if (destination && destination.address && destination.address.length !== 0) {
             destinationInputRef.current?.setAddressText(destination.address);
         }
+
+        if (route.params.hospitalDestination) {
+            destinationInputRef.current?.setAddressText(destination.address);
+        }
     }, []);
 
     useEffect(() => {
