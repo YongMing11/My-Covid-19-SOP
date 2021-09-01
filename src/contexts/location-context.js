@@ -14,6 +14,8 @@ const LocationContext = React.createContext({
     label: "",
     shortLabel: ""
   },
+  cahceLocation: null,
+  setUserCacheLocation: (newLocation) => { },
   location: JSON.parse(JSON.stringify(locationTemplate)),
   setUserAction: (newAction) => { },
   getUserLocation: () => { },
@@ -37,6 +39,7 @@ const LocationContext = React.createContext({
 
 const LocationProvider = ({ children }) => {
   const [action, setAction] = useState(null);
+  const [cahceLocation, setCahceLocation] = useState(null);
   const [location, setLocation] = useState(null);
   const [destination, setDestination] = useState(null);
 
@@ -44,6 +47,10 @@ const LocationProvider = ({ children }) => {
   const setUserAction = React.useCallback((newAction) => {
     setAction(newAction);
   }, [action])
+
+  const setUserCacheLocation = React.useCallback((newLocation) => {
+    setCahceLocation(newLocation);
+  }, [cahceLocation])
 
   // LOCATION / ORIGIN
   const getUserLocation = React.useCallback(() => {
@@ -105,6 +112,7 @@ const LocationProvider = ({ children }) => {
 
   return (<LocationContext.Provider value={{
     action, setUserAction,
+    cahceLocation, setUserCacheLocation,
     location, getUserLocation, getUserLocationCoordinates, setUserLocation, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, resetUserLocation,
     destination, setUserDestination, setUserDestinationAddress, setUserDestinationCoordinates, setUserDestinationPhase, setUserDestinationState, resetUserDestination
   }}>
