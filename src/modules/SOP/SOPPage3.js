@@ -87,13 +87,15 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginVertical: 5,
         shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 2,
+        // },
         shadowOpacity: 0.23,
         shadowRadius: 2.62,
-        elevation: 4,
+        borderWidth: 0.5,
+        borderColor: "#000",
+        // elevation: 4,
     },
     subheader: {
         fontSize: 15,

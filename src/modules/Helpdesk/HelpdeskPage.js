@@ -11,8 +11,11 @@ function HelpdeskPage({ navigation }) {
     const [selectedLanguage, setSelectedLanguage] = React.useState();
 
     const dropDownSelections = [
-        { label: "PNN Phase 1", value: "pnn phase 1" },
-        { label: "PNN Phase 2", value: "pnn phase 2" },
+        { label: "PNN Fasa 1", value: "pnn fasa 1" },
+        { label: "PNN Fasa 2", value: "pnn fasa 2" },
+        { label: "PNN Fasa 3", value: "pnn fasa 3" },
+        { label: "PNN Fasa 4", value: "pnn fasa 4" },
+        { label: "PKPB", value: "pkpb" },
     ];
 
     const dropDownItems = dropDownSelections.map((element, index) => <Picker.Item key={index} label={element.label} value={element.value} />);
