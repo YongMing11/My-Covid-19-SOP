@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, TouchableWithoutFeedback, Keyboard, FlatList, Text, Linking, Alert, Platform } from "react-native";
 import { Modal, Portal, Searchbar, Chip, List, Divider, TouchableRipple, Title, IconButton, Colors } from "react-native-paper";
+import { useLocationContext } from "../../contexts/location-context";
 import hospital_data from "@mock/hospital.json";
 import * as Clipboard from "expo-clipboard";
 
@@ -133,18 +134,20 @@ const ResultListView = React.memo(function ResultListView({ query, filters, area
         return filteringData;
     }, [query, filters, areaState, filterCount]);
 
-    filteredData = filteredData.map((item) => {
-        let dist = Infinity;
-        if (item.Latitude !== "") {
-            dist = cal_dist(coord[0], coord[1], parseFloat(item.Latitude), parseFloat(item.Longitude));
-        }
-        return {
-            Name: item.Name,
-            Address: item.Address,
-            Contact: item.Contact,
-            Dist: dist,
-        };
-    });
+    if (coord[0] !== Infinity) {
+        filteredData = filteredData.map((item) => {
+            let dist = Infinity;
+            if (item.Latitude !== "") {
+                dist = cal_dist(coord[0], coord[1], parseFloat(item.Latitude), parseFloat(item.Longitude));
+            }
+            return {
+                Name: item.Name,
+                Address: item.Address,
+                Contact: item.Contact,
+                Dist: dist,
+            };
+        });
+    }
     filteredData = filteredData.sort((a, b) => a.Dist >= b.Dist).slice(0, 50);
 
     // console.log(cal_dist(coord[0], coord[1], 3.1130947804875007, 101.65285567571348));
@@ -175,10 +178,20 @@ const ResultListView = React.memo(function ResultListView({ query, filters, area
 });
 
 function HospitalPage(props) {
+    const { location } = useLocationContext();
+    let areaState = location.state;
+    let coord = [Infinity, Infinity];
+
+    if (location.coordinates !== null) {
+        coord = [location.coordinates.latitude, location.coordinates.longitude];
+    }
+
+    if (areaState === null) {
+        areaState = "SELANGOR";
+    }
+
     const [searchQuery, setSearchQuery] = React.useState("");
     const onChangeSearch = (query) => setSearchQuery(query);
-    const [areaState, setAreaState] = React.useState("SELANGOR");
-    const [coord, setCpord] = React.useState([3.1153454798849145, 101.56581231664666]);
     const [filterOptions, setFilterOptions] = React.useState({ Clinic: false, Hospital: true, "COVID-19 Screening & Treatment": false, "Vaccines Administration Center": false });
 
     const chipOptions = ["Clinic", "Hospital", "COVID-19 Screening & Treatment", "Vaccines Administration Center"];
