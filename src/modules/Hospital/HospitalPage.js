@@ -4,6 +4,8 @@ import { Modal, Portal, Searchbar, Chip, List, Divider, TouchableRipple, Title, 
 import { useLocationContext } from "../../contexts/location-context";
 import hospital_data from "@mock/hospital.json";
 import * as Clipboard from "expo-clipboard";
+import { getLocationByAddress } from "../../shared/services/location.service";
+import action from '@mock/action.json';
 
 const RESULT_ITEM_HEIGHT = 57;
 
@@ -96,6 +98,7 @@ const HospitalList = React.memo(function HospitalList({ filteredData, onItemPres
 
 const ResultListView = React.memo(function ResultListView({ navigation, query, filters, areaState, coord }) {
     // console.log("Rendering ResultListView");
+    const { setUserDestination, setUserAction } = useLocationContext();
 
     const [detailVisible, setDetailVisible] = React.useState(false);
     const [selectedData, setSelectedData] = React.useState({});
@@ -150,8 +153,10 @@ const ResultListView = React.memo(function ResultListView({ navigation, query, f
     }
     filteredData = filteredData.sort((a, b) => a.Dist >= b.Dist).slice(0, 50);
 
-    const navigateToAssistancePage = (destination) => {
+    const navigateToAssistancePage = async (destination) => {
         hideModal();
+        setUserDestination(await getLocationByAddress(destination));
+        setUserAction(action.data.find(act => act.id === "SOMEWHERE"));
         navigation.navigate("AssistancePage", { title: "Emergency", hospitalDestination: destination });
     };
 

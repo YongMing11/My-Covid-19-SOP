@@ -22,8 +22,8 @@ const AssistancePage = ({ navigation, route }) => {
     const [isDifferentStateModalVisible, setIsDifferentStateModalVisible] = useState(false);
 
     const DEFAULT_COORDINATES = {
-        latitude: 3.0111,
-        longitude: 101.012211,
+        latitude: 3.1215657,
+        longitude: 101.6564091,
     };
     // const [location, setLocation] = useState({
     //     name: "Example Location",
@@ -48,11 +48,8 @@ const AssistancePage = ({ navigation, route }) => {
         if (location && location.phase && location.address) {
             locationInputRef.current?.setAddressText(location.address);
         }
-        const hospitalDestination = route.params.hospitalDestination;
 
-        if (hospitalDestination !== undefined && hospitalDestination !== null) {
-            destinationInputRef.current?.setAddressText(hospitalDestination);
-        } else if (destination && destination.address && destination.address.length !== 0) {
+        if (destination && destination.address && destination.address.length !== 0) {
             destinationInputRef.current?.setAddressText(destination.address);
         }
     }, []);
@@ -216,7 +213,7 @@ const styles = StyleSheet.create({
     },
     actionButton: {
         position: "absolute",
-        bottom: 150,
+        bottom: 140,
         backgroundColor: theme.colors.primaryBlue,
         width: "80%",
         shadowColor: "#000",
@@ -231,7 +228,7 @@ const styles = StyleSheet.create({
     },
     disabledButton: {
         position: "absolute",
-        bottom: 150,
+        bottom: 140,
         backgroundColor: theme.colors.secondaryGrey,
         color: "black",
         width: "80%",
