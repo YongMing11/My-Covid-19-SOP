@@ -94,7 +94,7 @@ const HospitalList = React.memo(function HospitalList({ filteredData, onItemPres
     );
 });
 
-const ResultListView = React.memo(function ResultListView({ query, filters, areaState, coord }) {
+const ResultListView = React.memo(function ResultListView({ navigation, query, filters, areaState, coord }) {
     // console.log("Rendering ResultListView");
 
     const [detailVisible, setDetailVisible] = React.useState(false);
@@ -150,7 +150,10 @@ const ResultListView = React.memo(function ResultListView({ query, filters, area
     }
     filteredData = filteredData.sort((a, b) => a.Dist >= b.Dist).slice(0, 50);
 
-    // console.log(cal_dist(coord[0], coord[1], 3.1130947804875007, 101.65285567571348));
+    const navigateToAssistancePage = (destination) => {
+        hideModal();
+        navigation.navigate("AssistancePage", { title: "Emergency", hospitalDestination: destination });
+    };
 
     const HospitalDetailModel = () => {
         return (
@@ -158,7 +161,8 @@ const ResultListView = React.memo(function ResultListView({ query, filters, area
                 <Modal visible={detailVisible} onDismiss={hideModal} contentContainerStyle={styles.detailModel}>
                     <View style={styles.modelTitleContainer}>
                         <Title style={styles.modelTitle}>{selectedData.Name}</Title>
-                        <IconButton style={styles.copyButton} icon="content-copy" color={Colors.grey700} size={20} onPress={() => copy_clipboard(selectedData.Name)} />
+                        {/* <IconButton style={styles.copyButton} icon="content-copy" color={Colors.grey700} size={20} onPress={() => copy_clipboard(selectedData.Name)} /> */}
+                        <IconButton style={styles.copyButton} icon="hospital-marker" color={Colors.grey700} size={26} onPress={() => navigateToAssistancePage(selectedData.Name)} />
                     </View>
                     <Text>{selectedData.Address}</Text>
                     <Text style={styles.clickableText} onPress={() => callNumber(selectedData.Contact)}>
@@ -177,7 +181,7 @@ const ResultListView = React.memo(function ResultListView({ query, filters, area
     );
 });
 
-function HospitalPage(props) {
+function HospitalPage({ navigation, route }) {
     const { location } = useLocationContext();
     let areaState = location.state;
     let coord = [Infinity, Infinity];
@@ -218,7 +222,7 @@ function HospitalPage(props) {
                     <View style={styles.chipContainer}>{chipFilter}</View>
                 </View>
             </TouchableWithoutFeedback>
-            <ResultListView filters={filterOptions} areaState={areaState} query={searchQuery} coord={coord} />
+            <ResultListView navigation={navigation} filters={filterOptions} areaState={areaState} query={searchQuery} coord={coord} />
         </View>
     );
 }

@@ -21,7 +21,24 @@
         "Johor"
       ],
       "sectors": [
-        "MKN - Pelan Pemulihan Negara SOP Fasa 1"
+        "MKN - Pelan Pemulihan Negara SOP Fasa 1",
+        "BNM - Perkhidmatan Kewangan (Aktiviti Berhadapan Dengan Pelanggan)",
+        "CIDB - Sektor Pembinaan",
+        "KBS - SOP AM Sektor Sukan Dan Rekreasi",
+        "KKM - SOP Sektor Kesihatan",
+        "KLN - SOP Sektor Luar  Negeri - Perkhidmatan Protokol",
+        "KPDNHEP - Perdagangan Pengedaran",
+        "KPKT - Sektor Pemajuan Perumahan",
+        "KPKT - Sektor Pengurusan Strata",
+        "KPKT - Sektor Penyenggaraan Bangunan Dan Fasiliti",
+        "KPN - Pembukaan Rumah Ibadat Selain Islam",
+        "KPN - Zhongyuan atau Yulanpen",
+        "LPPEH - Perkhidmatan Profesional Firma Penilaian- Pentaksiran- Perejenan Harta Tanah dan Pengurusan Harta",
+        "MAFI - Sektor Outlet Pemasaran Agromakanan (FAMA)",
+        "MITI - Pengilangan dan Pembuatan",
+        "MOF - Agensi Di Bawah Kawal Selia Kementerian Kewangan Malaysia)",
+        "MPIC - Sektor Agrikomoditi",
+        "SC - Sektor Pasaran Modal"
       ]
     },
     {
@@ -47,7 +64,27 @@
         "Perak"
       ],
       "sectors": [
-        "MKN - Pelan Pemulihan Negara SOP Fasa 2"
+        "MKN - Pelan Pemulihan Negara SOP Fasa 2",
+        "BNM - Perkhidmatan Kewangan (Aktiviti Berhadapan Dengan Pelanggan)",
+        "BNM - Perkhidmatan Kewangan (Aktiviti Jualan dan Pemasaran Di Luar Premis)",
+        "CIDB - Sektor Pembinaan",
+        "KBS - SOP AM Sektor Sukan Dan Rekreasi",
+        "KKM - Sektor Kesihatan",
+        "KPDNHEP - Perdagangan Pengedaran",
+        "KPKT - Sektor Pemajuan Perumahan",
+        "KPKT - Sektor Pengurusan Strata",
+        "KPKT - Sektor Penyelenggaraan Bangunan Dan Fasiliti",
+        "KPN - Pembukaan Rumah Ibadat Selain Islam",
+        "KPN - Zhongyuan atau Yulanpen",
+        "LPPEH - Perkhidmatan Profesional Firma Penilaian- Pentaksiran- Perejenah Harta Tanah dan Pengurusan Harta",
+        "MAFI - Sektor Outlet Pemasaran Agromakanan (FAMA)",
+        "MITI - Sektor Pengilangan Dan Pembuatan",
+        "MKN - Negeri Sarawak",
+        "MKN - Pelaksanaan Gelembung Persidangan Dewan Negeri Perak",
+        "MKN - Pelan Pemulihan Negara SOP Fasa 2 Bagi Seluruh Negeri Sabah",
+        "MOF - Agensi di bawah Kawal Selia Kementerian Kewangan Malaysia",
+        "MOTAC - Premis Penginapan Perhotelan",
+        "SC - Sektor Pasaran Modal"
       ]
     },
     {
@@ -63,7 +100,25 @@
         "Sarawak"
       ],
       "sectors": [
-        "MKN - Pelan Pemulihan Negara SOP Fasa 3"
+        "MKN - Pelan Pemulihan Negara SOP Fasa 3",
+        "BNM - Perkhidmatan Kewangan (Aktiviti Berhadapan Dengan Pelanggan)",
+        "BNM - Perkhidmatan Kewangan (Aktiviti Jualan dan Pemasaran Di Luar Premis)",
+        "CIDB - Sektor Pembinaan",
+        "KBS - Sektor Sukan Dan Rekreasi",
+        "KKM - Sektor Kesihatan",
+        "KKMM - Komunikasi",
+        "KPDNHEP - Perdagangan  Pengedaran",
+        "KPDNHEP - Perdagangan Pengedaran",
+        "KPN - Pembukaan Rumah Ibadat Selain Islam",
+        "KPN - Pengurusan Pengebumian Selain Orang Islam",
+        "KPN - Zhongyuan atau Yulanpen",
+        "MAFI - Sektor Outlet Pemasaran Agromakanan (FAMA)",
+        "MITI - Pengilangan dan Pembuatan",
+        "MKN - Negeri Sarawak",
+        "MKN - Wilayah Persekutuan Labuan",
+        "MOT - Pengangkutan - Logistik",
+        "MOTAC - Premis Penginapan Perhotelan",
+        "SC - Sektor Pasaran Modal"
       ]
     },
     {
@@ -77,7 +132,10 @@
         "Labuan"
       ],
       "sectors": [
-        "MKN - Pelan Pemulihan Negara SOP Fasa 4"
+        "MKN - Pelan Pemulihan Negara SOP Fasa 4",
+        "KBS - Sukan dan Rekreasi",
+        "KPN - Pembukaan Rumah Ibadat Selain Islam",
+        "KPN - Pengurusan Pengebumian Selain Orang Islam"
       ]
     },
     {

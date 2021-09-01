@@ -47,13 +47,13 @@ const SOPPage2 = ({ route, navigation }) => {
                 });
             }
             // generate list components
-            sectors = sectors.map((sector, index) => <List.Item key={index} style={styles.actionItem} titleNumberOfLines={4} onPress={() => onPressAction(sector)} title={sector} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />);
+            sectors = sectors.map((sector, index) => <List.Item key={index} style={styles.actionItem} titleNumberOfLines={4} onPress={() => onPressAction(sector, route.params.index)} title={sector} right={(props) => <List.Icon {...props} style={{ marginRight: 0 }} icon={icon} />} />);
             return sectors;
         }
     }, [index, searchQuery]);
 
-    const onPressAction = (sector) => {
-        navigation.navigate("SOPPage3", { title: sector });
+    const onPressAction = (sector, index) => {
+        navigation.navigate("SOPPage3", { title: sector, sopPhaseIndex: index });
     };
 
     return (
