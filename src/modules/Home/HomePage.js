@@ -36,7 +36,7 @@ function HomePage({ navigation, route }) {
     //         "state": "",
     //     },
     // }
-    const { setUserAction, location, setUserLocationCoordinates, setUserLocationAddress, setUserLocationState, setUserLocationPhase, resetUserLocation, setUserDestination, resetUserDestination } = useLocationContext();
+    const { cahceLocation, setUserCacheLocation, setUserAction, location, setUserLocation, setUserLocationCoordinates, resetUserLocation, setUserDestination, resetUserDestination } = useLocationContext();
     const [visible, setVisible] = useState(true);
     const [locationPermissionStatus, setLocationPermissionStatus] = useState(true);
     const [gettingLocation, setGettingLocation] = useState(false);
@@ -68,6 +68,10 @@ function HomePage({ navigation, route }) {
     const permissionFlow = async () => {
         resetUserLocation();
         resetUserDestination();
+        if (cahceLocation) {
+            setUserLocation(cahceLocation);
+            return;
+        }
         let { status } = await Location.requestForegroundPermissionsAsync().catch(error => {
             console.log("Failed to get location permission")
         });
@@ -125,16 +129,28 @@ function HomePage({ navigation, route }) {
                 .then(json => {
                     var address = json.results[0].formatted_address;
                     const { currentState, currentPhase } = getStateAndPhase(address);
-                    setUserLocationAddress(address);
-                    setUserLocationState(currentState);
-                    setUserLocationPhase(currentPhase);
+                    console.log(address)
+                    const locationObject = {
+                        coordinates: {
+                            latitude: currentLocation.coords.latitude,
+                            longitude: currentLocation.coords.longitude
+                        },
+                        name: null,
+                        address: address,
+                        state: currentState,
+                        phase: currentPhase
+                    }
+                    console.log(locationObject)
+                    setUserLocation(JSON.parse(JSON.stringify(locationObject)));
+                    setUserCacheLocation(JSON.parse(JSON.stringify(locationObject)));
+                    // SET CONDITION
                     setNetworkStatus(true);
                     setGettingLocation(false);
-                    console.log(address)
                 })
                 .catch(error => {
                     // below line commented for dev purpose
                     console.log('getFullAddressBasedOnLocation error', error)
+                    setGettingLocation(false);
                     setNetworkStatus(false);
                 });
         } else {

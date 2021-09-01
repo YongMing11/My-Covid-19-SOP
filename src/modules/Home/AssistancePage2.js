@@ -62,7 +62,7 @@ function TaskChecklists({ setCompleteChecklist, setIncompleteChecklist, isfullyV
     useEffect(() => {
         const vaccinationStatusKey = isfullyVaccinated ? "Vaccinated" : "NotVaccinated";
         let specialBeforeEnteringList = [];
-        if (location.phase !== destination.phase) {
+        if (location.phase && destination.phase && location.phase !== destination.phase) {
             specialBeforeEnteringList = generalPhase[destination.phase]["Before starting your journey_destination"]
         }
         const initialTask = action.id && location.phase && destination.phase ? {

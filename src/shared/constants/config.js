@@ -8,8 +8,8 @@ const title = {
     ReviewPage: "SOP Reviews and Rating",
 };
 
-// const GOOGLE_MAPS_APIKEY = 'AIzaSyBmnCNCFqgwbDSuiLTtEnS7b3BOb3bDitA';       // HL
-const GOOGLE_MAPS_APIKEY = 'AIzaSyDd4kNZrYkaZnh-3FLE27MZ3QaXiazlSck';    // ym
+const GOOGLE_MAPS_APIKEY = 'AIzaSyBmnCNCFqgwbDSuiLTtEnS7b3BOb3bDitA';       // HL
+// const GOOGLE_MAPS_APIKEY = 'AIzaSyDd4kNZrYkaZnh-3FLE27MZ3QaXiazlSck';    // ym
 // const GOOGLE_MAPS_APIKEY = '';
 
 export { title, GOOGLE_MAPS_APIKEY };
