@@ -21,6 +21,7 @@ module.exports = function(api) {
           alias: {
             '@mock': './src/shared/mock',
             '@services': './src/shared/services',
+            '@assets': './assets',
           },
         },
       ],

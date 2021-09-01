@@ -2,6 +2,7 @@ from google.cloud import speech
 import json
 
 def parse_multipart(request):
+  try:
     print("request",request.files['file'])
     # uncomment this to save file locally
     # but will remove file in object - parsing will fail
@@ -26,3 +27,5 @@ def parse_multipart(request):
     for result in response.results:
         print("Transcript: {}".format(result.alternatives[0].transcript))
     return json.dumps(str(response.results[0].alternatives[0].transcript)), 200, {'Content-Type': 'application/json'}
+  except Exception as e:
+    print('get Exception in Cloud Function', e)

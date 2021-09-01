@@ -136,6 +136,7 @@ function HomePage({ navigation, route }) {
                     // below line commented for dev purpose
                     console.log('getFullAddressBasedOnLocation error', error)
                     setNetworkStatus(false);
+                    setGettingLocation(false);
                 });
         } else {
             console.log('currentLocation is falsy', currentLocation);
@@ -184,7 +185,7 @@ function HomePage({ navigation, route }) {
 
     async function uploadAudioAsync(uri) {
         // let apiUrl = 'http://192.168.0.180:8080';
-        let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/cloud-source-repositories-test';
+        let apiUrl = 'https://asia-southeast1-meowmeow-280110.cloudfunctions.net/ozone-chipta-184949283342';
         let uriParts = uri.split('.');
         let fileType = uriParts[uriParts.length - 1];
 

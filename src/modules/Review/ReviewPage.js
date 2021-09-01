@@ -7,11 +7,23 @@ class ReviewPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            places: [{
-              title: 'Pulau Redang',
-              subtitle:'One of the largest islands off the east coast of Peninsular Malaysia. It is famous for its crystal clear waters and white sandy beaches.',
-              uri:'https://picsum.photos/700'
-            }],
+            places: [
+              {
+              title: '1 Utama Shopping Centre',
+              subtitle:'Elevating the ideals of shopping, entertainment and dining, 1 Utama Shopping Centre is the largest shopping mall in Malaysia.',
+              uri:'https://drive.google.com/uc?id=1XodF8wFQthHaM_4z7Ao3UYm16r66V61-'
+            },
+            {
+            title: 'Mid Valley Megamall',
+            subtitle:'Located strategically in the city of Kuala Lumpur, Mid Valley Megamall is a shopping mall surrounded with hotels and offices.',
+            uri:'https://drive.google.com/uc?id=1Yw7ykbqghp03SIV0ZGljcF9SaPeCCsZ3'
+          },
+              {
+              title: 'DinnerDate Malaysia',
+              subtitle:'Guests of DinnerDate can choose between three exclusive themed rooms: Tropical Summer, Colourful Dreams, or Mediterranean Memories.',
+              uri:'https://drive.google.com/uc?id=1Ym9uUwApPORd2MtD9CuvP6uvwLtRfvzv'
+            },
+          ],
         };
     }
 
@@ -27,14 +39,13 @@ class ReviewPage extends Component {
 
         return (
             <SafeAreaView style={styles.container}>
-                {/* <List> */}
-                    <View style={styles.view}>
+                <ScrollView style={styles.view}>
                         {places.map((place, index) => (
                             <Card style={styles.card} key={index} onPress={() => onPressAction(place.title, index)}>
                                 <Card.Cover source={{ uri: place.uri }} />
                                 <Card.Title title={place.title} subtitle={place.subtitle} />
-                                <Card.Content style={styles.bg}>
-                                  <Text style={styles.whiteText}>Overall SOP Rating</Text>
+                                <Card.Content>
+                                  <Text>Overall SOP Rating</Text>
                                 </Card.Content>
                                 <Card.Actions style={styles.flexSpaceBetween}>
                                   <View style={styles.icons}>
@@ -49,12 +60,11 @@ class ReviewPage extends Component {
                                       })
                                     }
                                   </View>
-                                  <Button color="blue">View Reviews</Button>
                                 </Card.Actions>
+                                  <Button color="white" style={styles.button}>View Reviews</Button>
                             </Card>
                         ))}
-                    </View>
-                {/* </List> */}
+                </ScrollView>
             </SafeAreaView>
         );
     }
@@ -69,8 +79,10 @@ const styles = StyleSheet.create({
     },
     card: {
         // flexDirection: "row",
-        // width: "96%",
+        width: "96%",
         marginBottom: 10,
+        left: 10,
+        right: 10,
         elevation: 6,
     },
     textCenter: {
@@ -89,10 +101,10 @@ const styles = StyleSheet.create({
     },
     rating:{
       fontWeight: 'bold',
-      height: 20,
-      width: 20,
+      height: 10,
+      width: 25,
       padding: 0,
-      color: '#3677D9'
+      color: '#3677D9',
     },
     flexSpaceBetween:{
       // flex:1,
@@ -103,8 +115,10 @@ const styles = StyleSheet.create({
       flex:1,
       flexDirection: "row"
     },
-    bg:{
+    button:{
       backgroundColor: '#3677D9',
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: 0,
     },
     whiteText:{
       color: 'white'
