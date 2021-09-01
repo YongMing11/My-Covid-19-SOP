@@ -88,11 +88,31 @@ function HomePage({ navigation, route }) {
                 return data;
             }).catch(error => {
                 //Failed to get device location coordinates
-                console.log('Failed to get coordinate', error)
-                // const defaultLatitude = 3.11111;
-                // const defaultLongitude = 255.11111;
-                setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
+                console.log('Failed to get high accuracy coordinate', error)
             });
+
+        if (!currentLocation) {
+            currentLocation = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Lowest })
+                .then(data => {
+                    setUserLocationCoordinates({ latitude: data.coords.latitude, longitude: data.coords.longitude })
+                    return data;
+                }).catch(error => {
+                    //Failed to get device location coordinates
+                    console.log('Failed to get low accuracy coordinate', error)
+                });
+        }
+
+        if (!currentLocation) {
+            currentLocation = await Location.getLastKnownPositionAsync({})
+                .then(data => {
+                    setUserLocationCoordinates({ latitude: data.coords.latitude, longitude: data.coords.longitude })
+                    return data;
+                }).catch(error => {
+                    //Failed to get device location coordinates
+                    console.log('Failed to get last known position coordinate', error)
+                    setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
+                });
+        }
 
         getFullAddressBasedOnLocation(currentLocation);
     }
@@ -114,7 +134,6 @@ function HomePage({ navigation, route }) {
                 })
                 .catch(error => {
                     // below line commented for dev purpose
-                    // setNetworkStatus(false);
                     console.log('getFullAddressBasedOnLocation error', error)
                     setNetworkStatus(false);
                 });
