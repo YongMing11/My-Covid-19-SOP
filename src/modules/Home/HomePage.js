@@ -110,7 +110,7 @@ function HomePage({ navigation, route }) {
                 }).catch(error => {
                     //Failed to get device location coordinates
                     console.log('Failed to get last known position coordinate', error)
-                    setUserLocationCoordinates({ latitude: 3.11111, longitude: 255.11111 })
+                    setUserLocationCoordinates({ latitude: 3.1215657, longitude: 101.6564091 })
                 });
         }
 
