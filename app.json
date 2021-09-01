@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AwesomeProject",
-    "slug": "AwesomeProject",
+    "name": "My COVID SOP",
+    "slug": "My COVID SOP",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
