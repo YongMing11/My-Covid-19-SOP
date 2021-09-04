@@ -11,10 +11,10 @@ const SOPPage3 = ({ route, navigation }) => {
     const onChangeSearch = (query) => {
         setSearchQuery(query);
         if (query === "") {
-            setActiveAccordions(sop_details[route.params.title]);
+            setActiveAccordions(sop_details[sop_index.phases[route.params.sopPhaseIndex].title][route.params.title]);
             return;
         }
-        const result = sop_details[route.params.title].filter((s) => {
+        const result = sop_details[sop_index.phases[route.params.sopPhaseIndex].title][route.params.title].filter((s) => {
             let isIncluded = s.title.toLowerCase().includes(query.toLowerCase());
             // isIncluded =
             //     isIncluded ||
