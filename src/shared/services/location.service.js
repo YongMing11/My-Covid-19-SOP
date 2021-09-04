@@ -35,14 +35,20 @@ const getLocationByAddress = async (address) => {
 
 const getStateAndPhase = (address) => {
     let currentState, currentPhase = null;
+    let addressArray = address.split(',');
+
+    loopFinding:
     for (let phase of sop_index.phases) {
         if (phase.title === "PKPD") break;
         for (let areaIndex = 0; areaIndex < phase.areas.length; areaIndex++) {
-            if (address.toUpperCase().includes(phase.areas[areaIndex].toUpperCase()) ||
-                address.toUpperCase().includes(phase.areas_en[areaIndex].toUpperCase())) {
-                currentState = phase.areas_en[areaIndex].toUpperCase();
-                currentPhase = phase.title_en;
-                break;
+            for (let addressArrayIndex = addressArray.length - 1; addressArrayIndex >= 0; addressArrayIndex--) {
+                let addressSegment = addressArray[addressArrayIndex];
+                if (addressSegment.toUpperCase().includes(phase.areas[areaIndex].toUpperCase()) ||
+                    addressSegment.toUpperCase().includes(phase.areas_en[areaIndex].toUpperCase())) {
+                    currentState = phase.areas_en[areaIndex].toUpperCase();
+                    currentPhase = phase.title_en;
+                    break loopFinding;
+                }
             }
         }
     }

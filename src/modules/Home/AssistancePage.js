@@ -52,20 +52,19 @@ const AssistancePage = ({ navigation, route }) => {
         if (destination && destination.address && destination.address.length !== 0) {
             destinationInputRef.current?.setAddressText(destination.address);
         }
-
-        if (route.params.hospitalDestination) {
-            destinationInputRef.current?.setAddressText(destination.address);
-        }
     }, []);
 
     useEffect(() => {
-        console.log("destination:", destination);
+        if (route.params.hospitalDestination) {
+            destinationInputRef.current?.setAddressText(route.params.hospitalDestination);
+            route.params.hospitalDestination = null;
+        }
         onUserLocationChange();
         // OPEN THE ALERT MODAL TO TELL USER THAT CROSS STATE IS NOT ALLOWED
         if (location && destination && location.state && destination.state && checkCrossState(location.state, destination.state) && !isDifferentStateModalVisible) {
             setIsDifferentStateModalVisible(true);
         }
-    }, [location, destination]);
+    }, [location, destination, route.params.hospitalDestination]);
 
     const resetDestination = () => {
         setIsDifferentStateModalVisible(false);
