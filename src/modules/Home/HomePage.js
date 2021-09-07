@@ -52,18 +52,21 @@ function HomePage({ navigation, route }) {
 
     useEffect(() => {
         if (isFocused) {
-            setVisible(true);
-            const timeOut = setTimeout(() => {
-                if (route.params) {
-                    setVisible(false);
-                }
-            }, 7000);
             permissionFlow();
-            return () => clearTimeout(timeOut);
         } else {
             setGettingLocation(false);
         }
     }, [isFocused]);
+
+    useEffect(() => {
+        setVisible(true);
+        const timeOut = setTimeout(() => {
+            if (route.params) {
+                setVisible(false);
+            }
+        }, 7000);
+        return () => clearTimeout(timeOut);
+    }, [route.params])
 
     const permissionFlow = async () => {
         resetUserLocation();
@@ -200,9 +203,9 @@ function HomePage({ navigation, route }) {
     React.useEffect(() => {
         return sound
             ? () => {
-                  console.log("Unloading Sound");
-                  sound.unloadAsync();
-              }
+                console.log("Unloading Sound");
+                sound.unloadAsync();
+            }
             : undefined;
     }, [sound]);
 
