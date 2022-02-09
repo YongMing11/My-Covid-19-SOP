@@ -7,7 +7,8 @@ technologies. This application also provide
 smart assistant to user when outing to avoid
 SOP violation.
 
-![Cover](Cover.jpg)
+<img src="Cover.jpg" alt="first screenshot" width="600"/>
+
 Link to wireframe: [Figma Link](https://www.figma.com/file/RexyAAStMiLHr8RN8kSANX/Mobile-Apps-Wireframe?node-id=0%3A1)
 
 ## Working Features on this prototype
